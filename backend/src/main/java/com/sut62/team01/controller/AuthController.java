@@ -1,8 +1,8 @@
-package com.din.dinentity.controller;
+package com.sut62.team01.controller;
 
-import com.din.dinentity.entity.Student;
-import com.din.dinentity.entity.payload.LoginRequest;
-import com.din.dinentity.repository.StudentRepository;
+import com.sut62.team01.entity.Student;
+import com.sut62.team01.entity.payload.LoginRequest;
+import com.sut62.team01.repository.StudentRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

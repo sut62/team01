@@ -1,6 +1,6 @@
-package com.din.dinentity.repository;
+package com.sut62.team01.repository;
 
-import com.din.dinentity.entity.Student;
+import com.sut62.team01.entity.Student;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;

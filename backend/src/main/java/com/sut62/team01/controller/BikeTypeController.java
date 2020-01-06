@@ -1,7 +1,7 @@
-package com.din.dinentity.controller;
+package com.sut62.team01.controller;
 
-import com.din.dinentity.entity.BikeType;
-import com.din.dinentity.repository.BikeTypeRepository;
+import com.sut62.team01.entity.BikeType;
+import com.sut62.team01.repository.BikeTypeRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;

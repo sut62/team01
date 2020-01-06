@@ -1,17 +1,17 @@
-package com.din.dinentity.controller;
+package com.sut62.team01.controller;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
-import com.din.dinentity.entity.BikeType;
-import com.din.dinentity.entity.BorrowedBike;
-import com.din.dinentity.entity.Student;
-import com.din.dinentity.entity.payload.BorrowedBikeRequest;
-import com.din.dinentity.entity.payload.LoginRequest;
-import com.din.dinentity.repository.BikeTypeRepository;
-import com.din.dinentity.repository.BorrowedBikeRepository;
-import com.din.dinentity.repository.StudentRepository;
+import com.sut62.team01.entity.BikeType;
+import com.sut62.team01.entity.BorrowedBike;
+import com.sut62.team01.entity.Student;
+import com.sut62.team01.entity.payload.BorrowedBikeRequest;
+import com.sut62.team01.entity.payload.LoginRequest;
+import com.sut62.team01.repository.BikeTypeRepository;
+import com.sut62.team01.repository.BorrowedBikeRepository;
+import com.sut62.team01.repository.StudentRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

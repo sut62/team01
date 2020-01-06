@@ -1,4 +1,4 @@
-package com.din.dinentity.entity;
+package com.sut62.team01.entity;
 
 import java.util.Date;
 
