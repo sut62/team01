@@ -1,4 +1,4 @@
-package com.din.dinentity;
+package com.sut62.team01;
 
 import java.util.Collections;
 
