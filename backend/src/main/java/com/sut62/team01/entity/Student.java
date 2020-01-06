@@ -1,7 +1,5 @@
 package com.din.dinentity.entity;
 
-import java.util.Set;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
