@@ -22,11 +22,12 @@ public class AuthController {
 
     @Autowired
     private StudentRepository studentRepository;
-    
+
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest){
-        Student student = studentRepository.findByUsernameAndPassword(loginRequest.getUsername(), loginRequest.getPassword());
-        if(student == null){
+    public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
+        Student student = studentRepository.findByUsernameAndPassword(loginRequest.getUsername(),
+                loginRequest.getPassword());
+        if (student == null) {
             return ResponseEntity.badRequest().body("Error: Username or Password is in correct.");
         }
         return ResponseEntity.ok().body(student);

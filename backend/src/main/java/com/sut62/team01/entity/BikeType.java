@@ -1,12 +1,9 @@
 package com.din.dinentity.entity;
 
-import java.util.Set;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 
 /**
  * BikeType
