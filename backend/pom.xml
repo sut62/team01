@@ -13,7 +13,7 @@
 	<artifactId>team01</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>sut62team01</name>
-	<description>SUT62 Team01 - 523332 SoftwareEngineering</description>
+	<description>SUT62 Team01 - 523332 SoftwareEngineering </description>
 
 	<properties>
 		<java.version>1.8</java.version>
