@@ -1,4 +1,4 @@
-package com.din.dinentity;
+package com.sut62.team01;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -8,6 +8,7 @@ class DemoApplicationTests {
 
 	@Test
 	void contextLoads() {
+
 	}
 
 }

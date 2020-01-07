@@ -29,5 +29,10 @@ public class BorrowedBike {
     // @JsonIgnore
     private Student student;
 
-    private Date borrowedDate;
+    @ManyToOne
+    @JoinColumn(name = "DATE_TYPE_ID")
+    // @JsonIgnore
+    private DateType dateType;
+
+    private Date requestDate;
 }

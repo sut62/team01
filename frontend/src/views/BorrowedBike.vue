@@ -8,8 +8,30 @@
         </v-toolbar>
         <v-card-text>
           <v-form>
-            <v-select v-model="selectedStudent" :items="students" item-text="username" item-value="id" label="เลือกนักศึกษา" outlined></v-select>
-            <v-select v-model="selectedBikeTypes" :items="bikeTypes" item-text="type" item-value="id" label="เลือกประเภทจักรยาน" outlined></v-select>
+            <v-select
+              v-model="selectedStudent"
+              :items="students"
+              item-text="username"
+              item-value="id"
+              label="เลือกนักศึกษา"
+              outlined
+            ></v-select>
+            <v-select
+              v-model="selectedBikeTypes"
+              :items="bikeTypes"
+              item-text="type"
+              item-value="id"
+              label="เลือกประเภทจักรยาน"
+              outlined
+            ></v-select>
+            <v-select
+              v-model="selectedDateType"
+              :items="dateTypes"
+              item-text="type"
+              item-value="id"
+              label="เลือกประเภทวันยืม"
+              outlined
+            ></v-select>
           </v-form>
         </v-card-text>
         <v-card-actions>
@@ -23,57 +45,71 @@
 </template>
 
 <script>
-import api from '../Api.js'
+import api from "../Api.js";
 
 export default {
   name: "borrowedBike",
   data() {
     return {
-        students: [],
-        bikeTypes: [],
-        selectedStudent: undefined,
-        selectedBikeTypes: undefined
+      students: [],
+      bikeTypes: [],
+      dateTypes: [],
+      selectedStudent: undefined,
+      selectedBikeTypes: undefined,
+      selectedDateType: undefined
     };
   },
   methods: {
     handleBorrowBike() {
       // alert("selectedStudent = " + JSON.stringify(this.selectedStudent)
       // + "\nselectedBikeTypes = " + JSON.stringify(this.selectedBikeTypes));
-      if(confirm("Do you want to continue?")){
+      if (confirm("Do you want to continue?")) {
         let body = {
           bikeType_id: this.selectedBikeTypes,
-          student_id: this.selectedStudent
+          student_id: this.selectedStudent,
+          dateType_id: this.selectedDateType
         };
-        api.post("/api/borrowedbike", body)
-        .then(() => {
-          alert("บันทึกข้อมูลการแจ้งยืมเรียบร้อย.")
-          this.$router.go();
-        })
-        .catch(e => {
-          alert(e)
-        })
+        api
+          .post("/api/borrowedbike", body)
+          .then(() => {
+            alert("บันทึกข้อมูลการแจ้งยืมเรียบร้อย.");
+            this.$router.go();
+          })
+          .catch(e => {
+            alert(e);
+          });
       }
     },
-    getStudentDetail(){
-        this.students.push(JSON.parse(localStorage.getItem('user')));
-        
+    getStudentDetail() {
+      this.students.push(JSON.parse(localStorage.getItem("user")));
     },
-    getAllBikeTypes(){
-        api.get("/api/biketypes")
+    getAllBikeTypes() {
+      api
+        .get("/api/biketypes")
         .then(res => {
-            this.bikeTypes = res.data;
-            // console.log(res.data)
-
+          this.bikeTypes = res.data;
+          // console.log(res.data)
         })
         .catch(e => {
-            console.log(e)
+          console.log(e);
+        });
+    },
+    getAllDateTypes() {
+      api
+        .get("/api/datetypes")
+        .then(res => {
+          this.dateTypes = res.data;
+          // console.log(res.data)
         })
+        .catch(e => {
+          console.log(e);
+        });
     }
   },
-  mounted(){
-      this.getStudentDetail();
-      this.getAllBikeTypes();
-      
+  mounted() {
+    this.getStudentDetail();
+    this.getAllBikeTypes();
+    this.getAllDateTypes();
   }
 };
 </script>

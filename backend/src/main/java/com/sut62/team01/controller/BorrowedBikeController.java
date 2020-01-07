@@ -6,11 +6,13 @@ import java.util.Optional;
 
 import com.sut62.team01.entity.BikeType;
 import com.sut62.team01.entity.BorrowedBike;
+import com.sut62.team01.entity.DateType;
 import com.sut62.team01.entity.Student;
 import com.sut62.team01.entity.payload.BorrowedBikeRequest;
 import com.sut62.team01.entity.payload.LoginRequest;
 import com.sut62.team01.repository.BikeTypeRepository;
 import com.sut62.team01.repository.BorrowedBikeRepository;
+import com.sut62.team01.repository.DateTypeRepository;
 import com.sut62.team01.repository.StudentRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +41,9 @@ public class BorrowedBikeController {
 
     @Autowired
     private StudentRepository studentRepository;
+
+    @Autowired
+    private DateTypeRepository dateTypeRepository;
 
     @GetMapping("/borrowedbikes")
     public Iterable<BorrowedBike> getBorrowedBikes() {
@@ -95,7 +100,12 @@ public class BorrowedBikeController {
         } else {
             return ResponseEntity.badRequest().body("Error: Student not found");
         }
-        _bb.setBorrowedDate(new Date());
+        _bb.setRequestDate(new Date());
+        Optional<DateType> _dt = dateTypeRepository.findById(bbRequest.getDateType_id());
+        if (!_dt.isPresent()) {
+            return ResponseEntity.badRequest().body("Error: DateType not found!");
+        }
+        _bb.setDateType(_dt.get());
         borrowedBikeRepository.save(_bb);
         return ResponseEntity.ok().body(_bb);
 
