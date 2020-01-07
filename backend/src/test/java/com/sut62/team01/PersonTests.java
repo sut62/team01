@@ -1,6 +1,7 @@
 package com.sut62.team01;
 
 import com.sut62.team01.entity.Person;
+import com.sut62.team01.entity.Student;
 import com.sut62.team01.repository.PersonRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -76,7 +77,9 @@ public class PersonTests {
         ConstraintViolation<Person> v = result.iterator().next();
         assertEquals("must match \"\\d{13}\"", v.getMessage());
         assertEquals("personId", v.getPropertyPath().toString());
+
     }
+
 
     @Test
     void testPersonIdMustNotBe14Digits() {
