@@ -1,4 +1,4 @@
-package com.SUTDominatory.Entity.Payload;
+package com.sut62.team01.entity.payload;
 
 import lombok.Data;
 
