@@ -18,19 +18,16 @@
                 label="เลือกชื่อผู้ดูแล"
               ></v-select>
 
-              <v-row >
-                
-                <v-text-field aria-setsize="5px" v-model="roomNumber" label="กรอกหมายเลขห้อง"></v-text-field> 
+              <v-row >                
+                <v-text-field aria-setsize="5px" 
+                  v-model="roomNumber" 
+                  @keyup.enter="getSearch" 
+                  label="กรอกหมายเลขห้อง"
+                ></v-text-field> 
                 <v-spacer></v-spacer>
-                <v-btn color="primary" @click="Search">search</v-btn>
+                <v-btn color="primary" @click="getSearch">search</v-btn>
               </v-row>
-              <!-- 
-              <v-field 
-                v-model="details"
-                :items="details"
-                label="กรอกหมายเลขห้อง"
-              ></v-field>-->
-
+              
               <v-select
                 v-model="selectedRoomBooking"
                 :items="roomBooking"
@@ -47,7 +44,10 @@
                 label="ประเภทเครื่องใช้ไฟฟ้า"
               ></v-select>
 
-              <v-text-field label="กรอกรายละเอียดเครื่องใช้ไฟฟ้า" id="id"></v-text-field>
+              <v-text-field 
+                v-model="details" 
+                label="กรอกรายละเอียดเครื่องใช้ไฟฟ้า" 
+              ></v-text-field>
 
               <div class="text-Right">
                 <v-btn color="warning" @click="Save">Save</v-btn>
@@ -65,14 +65,14 @@ import api from "../http-common";
 export default {
   mounted() {
     this.getAllStaffs();
-    this.getAllElectrictype();
-    this.getAllRoomBooking();
+    this.getAllElectrictype();    
   },
   data() {
     return {
       staff: [],
       selectedStaff: null,
       details: null,
+      StdNames: [],
       roomNumber: undefined,
 
       roomBooking: [],
@@ -85,7 +85,7 @@ export default {
   methods: {
     getAllStaffs() {
       api
-        .get("/staffs/")
+        .get("/api/staff")
         .then(response => {
           this.staff = response.data;
           console.log(JSON.parse(JSON.stringify(response.data)));
@@ -109,7 +109,7 @@ export default {
 
     getAllElectrictype() {
       api
-        .get("/electrictypes/")
+        .get("/api/electrictypes/")
         .then(response => {
           this.electricType = response.data;
           console.log(JSON.parse(JSON.stringify(response.data)));
@@ -128,7 +128,7 @@ export default {
         details: this.details
       };
       api
-        .post("/ElectricalRegis", newelepayload)
+        .post("/api/ElectricalRegis", newelepayload)
         .then(() => {
           alert("บันทึกสำเร็จ!");
           this.selectedStaff = null;
@@ -143,7 +143,7 @@ export default {
 
     getAllRoomBooking() {
       api
-        .get("/roombookings/")
+        .get("/api/roombookings/")
         .then(response => {
           this.roomBooking = response.data;
           console.log(JSON.parse(JSON.stringify(response.data)));
@@ -151,6 +151,18 @@ export default {
         .catch(e => {
           console.log(e);
         });
+    },
+
+    getSearch(){
+      api
+      .get("/api/roomBookings/" + this.roomNumber)
+      .then(response => {
+        this.StdNames = response.data;
+        console.log(JSON.parse(JSON.stringify(response.data)));
+      })
+      .catch(e => {
+        console.log("Error in getSearch() :" + e);
+      });
     }
   }
 };
