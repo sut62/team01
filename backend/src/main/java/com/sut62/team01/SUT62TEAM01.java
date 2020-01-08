@@ -6,7 +6,6 @@ import java.util.stream.Stream;
 import com.sut62.team01.entity.BikeType;
 import com.sut62.team01.entity.Branches;
 import com.sut62.team01.entity.DateType;
-import com.sut62.team01.entity.Room;
 import com.sut62.team01.entity.RoomBooking;
 import com.sut62.team01.entity.Rooms;
 import com.sut62.team01.entity.Students;
