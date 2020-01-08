@@ -63,7 +63,7 @@ export default {
   },
   methods: {
     getAlStudents() {
-    this. Students =  JSON.parse(localStorage.getItem('user'));
+      this.Students = JSON.parse(localStorage.getItem("user"));
     },
     getAllRooms() {
       api
