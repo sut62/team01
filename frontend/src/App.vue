@@ -147,6 +147,7 @@ export default {
   data() {
     return {
       isSignin: undefined,
+      isStudent: undefined,
       user: {},
       dialog: false,
       drawer: null,
