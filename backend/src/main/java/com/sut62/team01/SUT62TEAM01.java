@@ -9,6 +9,7 @@ import com.sut62.team01.entity.DateType;
 import com.sut62.team01.entity.RoomBooking;
 import com.sut62.team01.entity.Rooms;
 import com.sut62.team01.entity.Students;
+import com.sut62.team01.entity.VehicleType;
 import com.sut62.team01.repository.BikeTypeRepository;
 import com.sut62.team01.repository.BorrowedBikeRepository;
 import com.sut62.team01.repository.BranchesRepository;
@@ -16,6 +17,7 @@ import com.sut62.team01.repository.DateTypeRepository;
 import com.sut62.team01.repository.RoomBookingRepository;
 import com.sut62.team01.repository.RoomsRepository;
 import com.sut62.team01.repository.StudentsRepository;
+import com.sut62.team01.repository.VehicleTypeRepository;
 
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
@@ -38,7 +40,7 @@ public class SUT62TEAM01 {
     ApplicationRunner init(BorrowedBikeRepository borrowedBikeRepository, BikeTypeRepository bikeTypeRepository,
             DateTypeRepository dateTypeRepository, RoomBookingRepository roomBookingRepository,
             StudentsRepository studentsRepository, BranchesRepository branchesRepository,
-            RoomsRepository roomsRepository) {
+            RoomsRepository roomsRepository, VehicleTypeRepository vehicleTypeRepository) {
         return args -> {
 
             // TODO: Inject test data
@@ -85,6 +87,11 @@ public class SUT62TEAM01 {
             RoomBooking roomBooking1 = new RoomBooking(student1, room7133, branche1);
             roomBookingRepository.save(roomBooking1);
 
+            Stream.of("รถจักรยานยนต์", "รถยนต์", "จักรยาน").forEach(type -> {
+				VehicleType	vehicleType = new VehicleType(); // สร้าง Object Customer
+				vehicleType.setType(type); // set ชื่อ (name) ให้ Object ชื่อ Customer
+				vehicleTypeRepository.save(vehicleType); // บันทึก Objcet ชื่อ Customer
+			});
         };
     }
 

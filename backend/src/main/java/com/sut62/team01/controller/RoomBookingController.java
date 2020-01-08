@@ -80,4 +80,10 @@ public class RoomBookingController {
             return ResponseEntity.badRequest().body("Error: Incorrect Student_id!");
         
     }
+
+    //ค้นหาหมายเลขห้องของนักศึกษา
+    @GetMapping("/roomBookings/{rooms}")
+    public List<RoomBooking> findRooms(@PathVariable Rooms rooms) {
+        return roomBookingRepository.findByRooms(rooms);
+    }
 }
