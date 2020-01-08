@@ -85,7 +85,7 @@ export default {
   methods: {
     getAllStaffs() {
       api
-        .get("/staffs/")
+        .get("/api/staff")
         .then(response => {
           this.staff = response.data;
           console.log(JSON.parse(JSON.stringify(response.data)));
@@ -109,7 +109,7 @@ export default {
 
     getAllElectrictype() {
       api
-        .get("/electrictypes/")
+        .get("/api/electrictypes/")
         .then(response => {
           this.electricType = response.data;
           console.log(JSON.parse(JSON.stringify(response.data)));
@@ -128,7 +128,7 @@ export default {
         details: this.details
       };
       api
-        .post("/ElectricalRegis", newelepayload)
+        .post("/api/ElectricalRegis", newelepayload)
         .then(() => {
           alert("บันทึกสำเร็จ!");
           this.selectedStaff = null;
@@ -143,7 +143,7 @@ export default {
 
     getAllRoomBooking() {
       api
-        .get("/roombookings/")
+        .get("/api/roombookings/")
         .then(response => {
           this.roomBooking = response.data;
           console.log(JSON.parse(JSON.stringify(response.data)));
@@ -155,7 +155,7 @@ export default {
 
     getSearch(){
       api
-      .get("/roomBookings/" + this.roomNumber)
+      .get("/api/roomBookings/" + this.roomNumber)
       .then(response => {
         this.StdNames = response.data;
         console.log(JSON.parse(JSON.stringify(response.data)));
