@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.json.JsonParseException;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,6 +27,7 @@ import com.sut62.team01.entity.Branches;
 import com.sut62.team01.entity.Rooms;
 import com.sut62.team01.entity.RoomBooking;
 import com.sut62.team01.entity.Students;
+import com.sut62.team01.entity.payload.FindStudentPayload;
 import com.sut62.team01.repository.BranchesRepository;
 import com.sut62.team01.repository.RoomBookingRepository;
 import com.sut62.team01.repository.RoomsRepository;
@@ -50,20 +52,30 @@ public class RoomBookingController {
     }
 
     @PostMapping("/roombooking/{students_id}/{branches_id}/{rooms_id}")
-    public RoomBooking newroombooking(RoomBooking newRoomBooking,
-    @PathVariable long students_id,
-    @PathVariable long branches_id,
-    @PathVariable long rooms_id) {
+    public RoomBooking newroombooking(RoomBooking newRoomBooking, @PathVariable long students_id,
+            @PathVariable long branches_id, @PathVariable long rooms_id) {
 
-    Students students = studentsrepository.findById(students_id);
-    Branches branches = branchesrepository.findById(branches_id);
-    Rooms rooms = roomsrepository.findById(rooms_id);
-    
-    newRoomBooking.setStudents(students);
-    newRoomBooking.setBranches(branches);
-    newRoomBooking.setRooms(rooms);
-    
-    return roomBookingRepository.save(newRoomBooking); 
-        
+        Students students = studentsrepository.findById(students_id);
+        Branches branches = branchesrepository.findById(branches_id);
+        Rooms rooms = roomsrepository.findById(rooms_id);
+
+        newRoomBooking.setStudents(students);
+        newRoomBooking.setBranches(branches);
+        newRoomBooking.setRooms(rooms);
+
+        return roomBookingRepository.save(newRoomBooking);
+
+    }
+
+    // TODO: BorrowedBikeUI ต้องใช้ => ค้นหานักศึกษาที่เจาะจง ใน RoomBooking;
+    @GetMapping("/roombooking/student")
+    public ResponseEntity<?> findRoomBookingWhereStudent(@RequestBody FindStudentPayload payload) {
+
+        Optional<Students> student = studentsrepository.findById(payload.getStudent_id());
+        if (student.isEmpty()) {
+            return ResponseEntity.badRequest().body("Error: Incorrect Student_id!");
+        }
+
+        return ResponseEntity.ok().body(roomBookingRepository.findByStudents(student.get()));
     }
 }

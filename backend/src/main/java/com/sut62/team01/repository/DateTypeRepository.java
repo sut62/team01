@@ -1,6 +1,5 @@
 package com.sut62.team01.repository;
 
-import com.sut62.team01.entity.BikeType;
 import com.sut62.team01.entity.DateType;
 
 import org.springframework.data.jpa.repository.JpaRepository;

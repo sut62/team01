@@ -1,8 +1,10 @@
 package com.sut62.team01.controller;
 
-import com.sut62.team01.entity.Student;
+import com.sut62.team01.entity.Students;
+// import com.sut62.team01.entity.Student;
 import com.sut62.team01.entity.payload.LoginRequest;
-import com.sut62.team01.repository.StudentRepository;
+// import com.sut62.team01.repository.StudentRepository;
+import com.sut62.team01.repository.StudentsRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -21,11 +23,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthController {
 
     @Autowired
-    private StudentRepository studentRepository;
+    private StudentsRepository studentRepository;
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
-        Student student = studentRepository.findByUsernameAndPassword(loginRequest.getUsername(),
+        Students student = studentRepository.findByUsernameAndPassword(loginRequest.getUsername(),
                 loginRequest.getPassword());
         if (student == null) {
             return ResponseEntity.badRequest().body("Error: Username or Password is in correct.");
