@@ -72,10 +72,12 @@ public class RoomBookingController {
     public ResponseEntity<?> findRoomBookingWhereStudent(@RequestBody FindStudentPayload payload) {
 
         Optional<Students> student = studentsrepository.findById(payload.getStudent_id());
-        if (student.isEmpty()) {
-            return ResponseEntity.badRequest().body("Error: Incorrect Student_id!");
+        if (student.isPresent()) {
+            return ResponseEntity.ok().body(roomBookingRepository.findByStudent(student.get()));
         }
+        
 
-        return ResponseEntity.ok().body(roomBookingRepository.findByStudent(student.get()));
+            return ResponseEntity.badRequest().body("Error: Incorrect Student_id!");
+        
     }
 }
