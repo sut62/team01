@@ -172,6 +172,13 @@ export default {
           click: () => {
             this.$router.push("/borrowedBike");
           }
+        },
+        {
+          icon: "mdi-contacts",
+          text: "ลงทะเบียนยาน",
+          click: () => {
+            this.$router.push("/enrollVehicle");
+          }
         }
         
         // { icon: "mdi-history", text: "Frequently contacted" },
