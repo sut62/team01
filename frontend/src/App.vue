@@ -147,7 +147,6 @@ export default {
   data() {
     return {
       isSignin: undefined,
-      isStudent: undefined,
       user: {},
       dialog: false,
       drawer: null,
@@ -161,19 +160,18 @@ export default {
         },
         {
           icon: "mdi-contacts",
-          text: "จองห้องพัก",
-          click: () => {
-            this.$router.push("/roombooking");
-          }
-        },
-        {
-          icon: "mdi-contacts",
           text: "ยืมจักรยาน",
           click: () => {
             this.$router.push("/borrowedBike");
           }
+        },
+        {
+          icon: "mdi-contacts",
+          text: "จักรยานที่ฉันแจ้งยืม",
+          click: () => {
+            this.$router.push("/myborrowedBike");
+          }
         }
-        
         // { icon: "mdi-history", text: "Frequently contacted" },
         // { icon: "mdi-content-copy", text: "Duplicates" },
         // {

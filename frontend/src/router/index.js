@@ -39,16 +39,13 @@ const routes = [
       import(/* webpackChunkName: "about" */ "../views/Profile.vue")
   },
   {
-    path: "/staff/signin",
-    name: "staffsignin",
+    path: "/myborrowedbike",
+    name: "myborrowedBike",
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/StaffSignin.vue")
-  },
-  {
-    path: "/roombooking",
-    name: "roombooking",
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/RoomBooking.vue")
+      import(/* webpackChunkName: "about" */ "../views/MyBorrowedBike.vue")
   }
 ];
 
@@ -58,7 +55,7 @@ const router = new VueRouter({
   routes
 });
 router.beforeEach((to, from, next) => {
-  const publicPages = ["/signin", "/", "/register", "/staff/signin"];
+  const publicPages = ["/signin", "/", "/register"];
   const authRequired = !publicPages.includes(to.path);
   const loggedIn = localStorage.getItem("user");
 

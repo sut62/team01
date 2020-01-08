@@ -8,7 +8,6 @@ import com.sut62.team01.entity.Branches;
 import com.sut62.team01.entity.DateType;
 import com.sut62.team01.entity.RoomBooking;
 import com.sut62.team01.entity.Rooms;
-import com.sut62.team01.entity.Staff;
 import com.sut62.team01.entity.Students;
 import com.sut62.team01.repository.BikeTypeRepository;
 import com.sut62.team01.repository.BorrowedBikeRepository;
@@ -16,7 +15,6 @@ import com.sut62.team01.repository.BranchesRepository;
 import com.sut62.team01.repository.DateTypeRepository;
 import com.sut62.team01.repository.RoomBookingRepository;
 import com.sut62.team01.repository.RoomsRepository;
-import com.sut62.team01.repository.StaffRepository;
 import com.sut62.team01.repository.StudentsRepository;
 
 import org.springframework.boot.ApplicationRunner;
@@ -40,7 +38,7 @@ public class SUT62TEAM01 {
     ApplicationRunner init(BorrowedBikeRepository borrowedBikeRepository, BikeTypeRepository bikeTypeRepository,
             DateTypeRepository dateTypeRepository, RoomBookingRepository roomBookingRepository,
             StudentsRepository studentsRepository, BranchesRepository branchesRepository,
-            RoomsRepository roomsRepository, StaffRepository staffRepository) {
+            RoomsRepository roomsRepository) {
         return args -> {
 
             // TODO: Inject test data
@@ -64,25 +62,18 @@ public class SUT62TEAM01 {
             });
 
             // Students
-            Students student1 = new Students("นายพรเทพ ทวีทรัพย์", "b6000783", "pontep", "1234");
-            Students student2 = new Students("นายเจตุพนน์ ศรีภูธร", "b6000123", "jayza", "1234");
-            Students student3 = new Students("นายภูมิรินทร์ เพียวสูงเนิน", "b6003296", "leo2541", "1234");
+            Students student1 = new Students("นายพรเทพ ทวีทรัพย์", "b6000783", "pontep", "1234", "CPE");
+            Students student2 = new Students("นายเจตุพนน์ ศรีภูธร", "b6000123", "jayza", "1234", "CPE");
+            Students student3 = new Students("นายภูมิรินทร์ เพียวสูงเนิน", "b6003296", "leo2541", "1234", "CPE");
             Stream.of(student1, student2, student3).forEach(student -> {
                 studentsRepository.save(student);
                 System.out.println(student);
             });
 
-            Branches branches1 = new Branches("สำนักวิชาวิทยาศาสตร์");
-			Branches branches2 = new Branches("สำนักวิชาเทคโนโลยีสังคม");
-			Branches branches3 = new Branches("สำนักวิชาเทคโนโลยีการเกษตร");
-			Branches branches4 = new Branches("สำนักวิชาวิศวกรรมศาสตร์ ");
-			Branches branches5 = new Branches("สำนักวิชาแพทยศาสตร์");
-			Branches branches6 = new Branches("สำนักวิชาพยาบาลศาสตร์");
-			Branches branches7 = new Branches("สำนักวิชาทันตแพทยศาสตร์");
-			Branches branches8 = new Branches("สำนักวิชาสาธารณสุขศาสตร์");
-			Stream.of(branches1,branches2,branches3,branches4,branches5,branches6,branches7,branches8).forEach(bra -> {
-				branchesRepository.save(bra); 
-			});
+            // Branchs
+            Branches branche1 = new Branches("branch คืออะไร");
+            branchesRepository.save(branche1);
+
             // Room
             for (int i = 1; i <= 40; i++) {
                 Rooms room = new Rooms("71" + (i < 10 ? "0" + i : i));
@@ -91,18 +82,8 @@ public class SUT62TEAM01 {
             Rooms room7133 = roomsRepository.findByRoomId("7133");
 
             // RoomBooking
-            RoomBooking roomBooking1 = new RoomBooking(student1, room7133, branches1);
+            RoomBooking roomBooking1 = new RoomBooking(student1, room7133, branche1);
             roomBookingRepository.save(roomBooking1);
-
-            // STAFF
-            Staff staff1 = new Staff("Chanwit Keawkasi", "chanwit", "62");
-            Staff staff2 = new Staff("Nutthawut Sunthornrot", "black", "asdasd");
-            Staff staff3 = new Staff("Apple Apyoon", "apyoon", "1234");
-
-            Stream.of(staff1, staff2, staff3).forEach(staff -> {
-                staffRepository.save(staff);
-                System.out.println(staff);
-            });
 
         };
     }

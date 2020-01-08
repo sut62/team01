@@ -13,8 +13,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -33,26 +31,25 @@ public class Repair {
     private @NonNull Long id;
 
     @Column(name = "List")
-    private @NonNull String list;
+    private @NonNull String  list;
 
     @Column(name = "Repair_Date")
     private @NonNull Date repairDate;
 
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = DeviceType.class)
     @JoinColumn(name = "DEVICETYPE_ID", insertable = true)
-    // TODO: ใส่ @JsonManagedReference ไม่ต้อง OneToMany กลับที่ DeviceType ,
-    // DeviceProblem
-    @JsonManagedReference
     private DeviceType type;
 
-    @ManyToOne(fetch = FetchType.EAGER, targetEntity = DeviceProblem.class)
-    @JoinColumn(name = "DEVICEPROBLEMS_ID", insertable = true)
-    @JsonManagedReference
-    private DeviceProblem problem;
-
-    @ManyToOne(fetch = FetchType.EAGER, targetEntity = RoomBooking.class)
+    @ManyToOne(fetch = FetchType.EAGER, targetEntity = DeviceName.class)
+    @JoinColumn(name = "DEVICENAMES_ID", insertable = true)
+    private DeviceName name;
+    
+    @ManyToOne(fetch = FetchType.EAGER , targetEntity = RoomBooking.class)
     @JoinColumn(name = "ROOMBOOKING_ID", insertable = true)
-    @JsonManagedReference
     private RoomBooking enrolled;
+
+  
+
+   
 
 }

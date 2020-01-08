@@ -14,7 +14,7 @@ import com.sut62.team01.repository.BranchesRepository;
 
 
 
-@CrossOrigin(origins = "http://localhost:8080")
+@CrossOrigin(origins = "http://localhost:8081")
 @RestController
 @RequestMapping("/api")
 public class BranchesController {

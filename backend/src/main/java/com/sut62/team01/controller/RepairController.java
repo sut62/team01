@@ -20,12 +20,12 @@ import java.util.stream.Collectors;
 import java.util.Date;
 import com.sut62.team01.entity.RoomBooking;
 import com.sut62.team01.entity.Repair;
-import com.sut62.team01.entity.DeviceProblem;
+import com.sut62.team01.entity.DeviceName;
 import com.sut62.team01.entity.DeviceType;
 import com.sut62.team01.repository.RoomBookingRepository;
 import com.sut62.team01.repository.RepairRepository;
 import com.sut62.team01.repository.DeviceTypeRepository;
-import com.sut62.team01.repository.DeviceProblemRepository;
+import com.sut62.team01.repository.DeviceNameRepository;
 
 @CrossOrigin(origins = "http://localhost:8080")
 @RestController
@@ -39,7 +39,7 @@ public class RepairController{
     private  DeviceTypeRepository deviceTypeRepository;
 
     @Autowired
-    private  DeviceProblemRepository deviceProblemRepository;
+    DeviceNameRepository deviceNameRepository;
 
     @Autowired
     private RoomBookingRepository roomBookingRepository;
@@ -65,14 +65,14 @@ public class RepairController{
     {
         
         DeviceType type = deviceTypeRepository.findById(DeviceType_id);
-        DeviceProblem problem = deviceProblemRepository.findById(DeviceProblem_id);
+        DeviceName name = deviceNameRepository.findById(DeviceProblem_id);
         RoomBooking enrolled = roomBookingRepository.findById(roomBooking_id);
 
         newRepair.setEnrolled(enrolled);
         newRepair.setList(list);
         newRepair.setRepairDate(new Date());
         newRepair.setType(type);
-        newRepair.setProblem(problem);
+        newRepair.setName(name);
 
         return repairRepository.save(newRepair);
 
