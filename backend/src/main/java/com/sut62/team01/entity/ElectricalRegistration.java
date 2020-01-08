@@ -47,13 +47,16 @@ public class ElectricalRegistration {
     @JsonManagedReference
     private @NotNull Staff staff;
 
+    private String details;
+
     public ElectricalRegistration() {
     }
 
-    public ElectricalRegistration(RoomBooking rb, ElectricType et, Staff st) {
+    public ElectricalRegistration(RoomBooking rb, ElectricType et, Staff st, String details) {
         this.roomBooking = rb;
         this.electricType = et;
         this.staff = st;
+        this.details = details;
         this.ElectricalRegistrationdate = new Date();
     }
 }
