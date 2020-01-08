@@ -75,14 +75,16 @@ public class SUT62TEAM01 {
             Branches branche1 = new Branches("branch คืออะไร");
             branchesRepository.save(branche1);
 
-            // // Room
-            // for (int i = 0; i < 50; i++) {
-            // Rooms room = new Rooms("710"+ );
-            // }
-            // Rooms room1 = new Rooms("7133");
+            // Room
+            for (int i = 1; i <= 40; i++) {
+                Rooms room = new Rooms("71" + (i < 10 ? "0" + i : i));
+                roomsRepository.save(room);
+            }
+            Rooms room7133 = roomsRepository.findByRoomId("7133");
 
-            // // RoomBooking
-            // RoomBooking roomBooking = new RoomBooking(student1, room, branche1);
+            // RoomBooking
+            RoomBooking roomBooking1 = new RoomBooking(student1, room7133, branche1);
+            roomBookingRepository.save(roomBooking1);
 
         };
     }

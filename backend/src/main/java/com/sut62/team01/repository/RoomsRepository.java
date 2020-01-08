@@ -8,4 +8,6 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 @RepositoryRestResource
 public interface RoomsRepository extends JpaRepository<Rooms, Long> {
 	Rooms findById(long id);
+
+	Rooms findByRoomId(String roomId);
 }

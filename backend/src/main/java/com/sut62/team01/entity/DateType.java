@@ -16,7 +16,6 @@ public class DateType {
     @Id
     @Column(name = "DATE_TYPE_ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @NotNull
     private Long id;
 
     @NotNull
