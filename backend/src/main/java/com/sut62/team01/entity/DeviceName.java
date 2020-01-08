@@ -34,7 +34,6 @@ public class DeviceName {
     private @NonNull long id;
 
     private @NonNull String name;
-
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = DeviceType.class)
     @JoinColumn(name = "DEVICETYPE_ID", insertable = true)
     @JsonManagedReference
@@ -43,10 +42,11 @@ public class DeviceName {
     // @OneToMany(fetch = FetchType.EAGER)
     // private Collection<Repair> repair;
 
-    public DeviceName(){
+    public DeviceName() {
 
     }
-    public DeviceName(String name, DeviceType deviceType){
+
+    public DeviceName(String name, DeviceType deviceType) {
         this.name = name;
         this.deviceType = deviceType;
     }
