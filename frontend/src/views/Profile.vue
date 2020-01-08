@@ -30,8 +30,8 @@ export default {
     let user = JSON.parse(localStorage.getItem("user"));
     this.user = {
       id: user.id,
-      name: user.name,
-      bachelor: user.bachelor
+      name: user.fullName,
+      studentId: user.studentId
     };
   }
 };
