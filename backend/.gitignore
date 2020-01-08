@@ -5,6 +5,24 @@ build/
 !**/src/main/**
 !**/src/test/**
 
+### Maven ###
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+.mvn/wrapper/maven-wrapper.jar
+.flattened-pom.xml
+### Java ###
+# Compiled class file
+*.class
+
+# Log file
+*.log
 ### STS ###
 .apt_generated
 .classpath
