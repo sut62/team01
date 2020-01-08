@@ -12,5 +12,5 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 public interface RoomBookingRepository extends JpaRepository<RoomBooking, Long> {
     RoomBooking findById(long id);
 
-    List<RoomBooking> findByStudents(Students students);
+    List<RoomBooking> findByStudent(Students student);
 }

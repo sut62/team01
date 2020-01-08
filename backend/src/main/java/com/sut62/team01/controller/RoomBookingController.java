@@ -76,6 +76,6 @@ public class RoomBookingController {
             return ResponseEntity.badRequest().body("Error: Incorrect Student_id!");
         }
 
-        return ResponseEntity.ok().body(roomBookingRepository.findByStudents(student.get()));
+        return ResponseEntity.ok().body(roomBookingRepository.findByStudent(student.get()));
     }
 }
