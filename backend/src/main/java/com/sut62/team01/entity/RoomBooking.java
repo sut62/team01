@@ -17,19 +17,19 @@ import lombok.*;
 
 @Data
 @Entity
-@Table(name="ROOMBOOKING")
-public class RoomBooking{
+@Table(name = "ROOMBOOKING")
+public class RoomBooking {
 
     @Id
-    @SequenceGenerator(name="ROOMBOOKING_seq",sequenceName="ROOMBOOKING_seq")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="ROOMBOOKING_seq")
+    @SequenceGenerator(name = "ROOMBOOKING_seq", sequenceName = "ROOMBOOKING_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ROOMBOOKING_seq")
     @Column(name = "ROOMBOOKING_ID", unique = true, nullable = true)
     private @NonNull Long id;
 
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = Students.class)
-    @JoinColumn(name = "STUDENTS_ID", insertable = true)
+    @JoinColumn(name = "STUDENT_ID", insertable = true)
     @JsonManagedReference
-    private @NonNull Students students;
+    private @NonNull Students student;
 
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = Rooms.class)
     @JoinColumn(name = "ROOMS_ID", insertable = true)
@@ -41,11 +41,13 @@ public class RoomBooking{
     @JsonManagedReference
     private @NonNull Branches branches;
 
-    public RoomBooking(){}
-    public RoomBooking(Students students, Rooms rooms, Branches branches){
-        this.students = students;
+    public RoomBooking() {
+    }
+
+    public RoomBooking(Students students, Rooms rooms, Branches branches) {
+        this.student = students;
         this.rooms = rooms;
         this.branches = branches;
-        
+
     }
 }
