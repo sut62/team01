@@ -32,9 +32,6 @@ public class Students {
 	@NotNull
 	private String password;
 
-	@NotNull
-	private String bachelor;
-
 	public Students() {
 	}
 
@@ -42,11 +39,10 @@ public class Students {
 		this.studentId = students;
 	}
 
-	public Students(String fullName, String studentId, String username, String password, String bachelor) {
+	public Students(String fullName, String studentId, String username, String password) {
 		this.fullName = fullName;
 		this.username = username;
 		this.password = password;
 		this.studentId = studentId;
-		this.bachelor = bachelor;
 	}
 }

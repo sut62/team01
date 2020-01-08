@@ -160,18 +160,19 @@ export default {
         },
         {
           icon: "mdi-contacts",
-          text: "ยืมจักรยาน",
+          text: "จองห้องพัก",
           click: () => {
-            this.$router.push("/borrowedBike");
+            this.$router.push("/roombooking");
           }
         },
         {
           icon: "mdi-contacts",
-          text: "จักรยานที่ฉันแจ้งยืม",
+          text: "ยืมจักรยาน",
           click: () => {
-            this.$router.push("/myborrowedBike");
+            this.$router.push("/borrowedBike");
           }
         }
+        
         // { icon: "mdi-history", text: "Frequently contacted" },
         // { icon: "mdi-content-copy", text: "Duplicates" },
         // {
