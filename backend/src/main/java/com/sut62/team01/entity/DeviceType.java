@@ -20,19 +20,21 @@ import lombok.NonNull;
 @Entity
 @NoArgsConstructor
 @Table(name = "DEVICETYPE")
-public class DeviceType{
+public class DeviceType {
     @Id
-    @SequenceGenerator(name="DEVICETYPE_SEQ",sequenceName = "DEVICETYPE_SEQ")
+    @SequenceGenerator(name = "DEVICETYPE_SEQ", sequenceName = "DEVICETYPE_SEQ")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "DEVICETYPE_SEQ")
-    @Column(name= "DEVICETYPE_ID",unique = true, nullable = true)
+    @Column(name = "DEVICETYPE_ID", unique = true, nullable = true)
 
     private @NonNull long id;
 
     private @NonNull String type;
 
+    // TODO: DeviceType 1 - * DeviceProblem
+    // @OneToMany
+    // private Collection<DeviceProblem> deviceProblems;
 
-    @OneToMany(fetch = FetchType.EAGER)
-    
-    private Collection<Repair> repair;
+    // @OneToMany(fetch = FetchType.EAGER)
+    // private Collection<Repair> repair;
 
 }

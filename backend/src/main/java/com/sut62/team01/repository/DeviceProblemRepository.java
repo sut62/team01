@@ -8,7 +8,9 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 @RepositoryRestResource
 public interface DeviceProblemRepository extends JpaRepository<DeviceProblem, Long> {
+
     DeviceProblem findById(long id);
-    
-    public List<DeviceProblem> findByDeviceType(DeviceType DeviceType);
+
+    // TODO: แก้จาก (DeviceType DeviceType) -> (DeviceType deviceType)
+    public List<DeviceProblem> findByDeviceType(DeviceType deviceType);
 }
