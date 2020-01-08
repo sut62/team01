@@ -15,30 +15,37 @@ import javax.persistence.Entity;
 @Entity
 @Table(name = "STUDENTS")
 public class Students {
+
 	@Id
 	@SequenceGenerator(name = "STUDENTS_seq", sequenceName = "STUDENTS_seq")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "STUDENTS_seq")
 	@Column(name = "STUDENTS_ID", unique = true, nullable = true)
 	private @NonNull Long id;
 
-	private @NonNull String students;
+	private @NotNull String studentId;
 
+	@NotNull
+	private String fullName;
 	@NotNull
 	private String username;
 
 	@NotNull
 	private String password;
 
+	@NotNull
+	private String bachelor;
+
 	public Students() {
 	}
 
 	public Students(String students) {
-		this.students = students;
+		this.studentId = students;
 	}
 
-	public Students(String students, String username, String password) {
-		this.students = students;
+	public Students(String fullName, String studentId, String username, String password) {
+		this.fullName = fullName;
 		this.username = username;
 		this.password = password;
+		this.studentId = studentId;
 	}
 }

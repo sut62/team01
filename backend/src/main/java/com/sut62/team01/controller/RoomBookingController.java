@@ -59,7 +59,7 @@ public class RoomBookingController {
         Branches branches = branchesrepository.findById(branches_id);
         Rooms rooms = roomsrepository.findById(rooms_id);
 
-        newRoomBooking.setStudents(students);
+        newRoomBooking.setStudent(students);
         newRoomBooking.setBranches(branches);
         newRoomBooking.setRooms(rooms);
 
