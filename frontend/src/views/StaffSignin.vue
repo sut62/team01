@@ -53,7 +53,7 @@ export default {
         password: this.password
       };
       api
-        .post("/auth/login", JSON.stringify(user))
+        .post("/auth/staff/signin", JSON.stringify(user))
         .then(res => {
           let user = res.data;
           alert("Signin successfully..." + user.username);
