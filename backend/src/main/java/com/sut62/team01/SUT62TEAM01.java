@@ -62,9 +62,9 @@ public class SUT62TEAM01 {
             });
 
             // Students
-            Students student1 = new Students("นายพรเทพ ทวีทรัพย์", "b6000783", "pontep", "1234");
-            Students student2 = new Students("นายเจตุพนน์ ศรีภูธร", "b6000123", "jayza", "1234");
-            Students student3 = new Students("นายภูมิรินทร์ เพียวสูงเนิน", "b6003296", "leo2541", "1234");
+            Students student1 = new Students("นายพรเทพ ทวีทรัพย์", "b6000783", "pontep", "1234", "CPE");
+            Students student2 = new Students("นายเจตุพนน์ ศรีภูธร", "b6000123", "jayza", "1234", "CPE");
+            Students student3 = new Students("นายภูมิรินทร์ เพียวสูงเนิน", "b6003296", "leo2541", "1234", "CPE");
             Stream.of(student1, student2, student3).forEach(student -> {
                 studentsRepository.save(student);
                 System.out.println(student);
