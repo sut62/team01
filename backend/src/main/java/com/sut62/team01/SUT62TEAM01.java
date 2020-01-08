@@ -99,15 +99,7 @@ public class SUT62TEAM01 {
             // RoomBooking
             RoomBooking roomBooking1 = new RoomBooking(student1, room7133, branches1);
             roomBookingRepository.save(roomBooking1);
-            // Staff
-            Staff s1 = new Staff("Nutthawut S.", "nutts", "12345678");
-			Staff s2 = new Staff("Phatcharaphon Thaicharoen", "newza", "00000000");
-			Staff s3 = new Staff("Pakorn Harnnirojrum", "somtuy", "55555555");
-			Staff s4 = new Staff("System Administrator", "admin", "admin");
-			Stream.of(s1, s2, s3,s4).forEach(s -> {
-				staffRepository.save(s); // บันทึก Objcet ชื่อ Staff
-            });
-            
+                      
             //ElectricType-LEO
 			ElectricType electricType1 = new ElectricType("พัดลม");
 			ElectricType electricType2 = new ElectricType("เต้ารีด");
