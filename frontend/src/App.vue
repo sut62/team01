@@ -107,7 +107,9 @@
         <v-icon>mdi-bell</v-icon>
       </v-btn>
       <template v-if="isSignin">
-        <v-btn text @click="handleProfile"> {{ user.name }} </v-btn>
+        <v-btn text @click="handleProfile">
+          {{ user.fullName }}
+        </v-btn>
         <v-menu left bottom>
           <template v-slot:activator="{ on }">
             <v-btn icon v-on="on">
@@ -173,7 +175,7 @@ export default {
             this.$router.push("/borrowedBike");
           }
         }
-        
+
         // { icon: "mdi-history", text: "Frequently contacted" },
         // { icon: "mdi-content-copy", text: "Duplicates" },
         // {
