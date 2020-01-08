@@ -1,8 +1,6 @@
 package com.sut62.team01.controller;
 
-import com.sut62.team01.entity.BikeType;
 import com.sut62.team01.entity.DateType;
-import com.sut62.team01.repository.BikeTypeRepository;
 import com.sut62.team01.repository.DateTypeRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;

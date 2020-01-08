@@ -63,7 +63,6 @@ export default {
     handleBorrowBike() {
       // alert("selectedStudent = " + JSON.stringify(this.selectedStudent)
       // + "\nselectedBikeTypes = " + JSON.stringify(this.selectedBikeTypes));
-      if (confirm("Do you want to continue?")) {
         let body = {
           bikeType_id: this.selectedBikeTypes,
           student_id: this.selectedStudent,

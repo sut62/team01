@@ -85,6 +85,7 @@ public class BorrowedBikeController {
 
         BorrowedBike _bb = new BorrowedBike();
 
+        // BikeType
         Optional<BikeType> bikeType = bikeTypeRepository.findById(bbRequest.getBikeType_id());
         if (bikeType.isPresent()) {
             BikeType _bikeType = bikeType.get();
@@ -93,6 +94,7 @@ public class BorrowedBikeController {
             return ResponseEntity.badRequest().body("Error: BikeType not found!");
         }
 
+        // Student (RoomBooking รอของ ฟร้อง)
         Optional<Student> optionalStudent = studentRepository.findById(bbRequest.getStudent_id());
         if (optionalStudent.isPresent()) {
             Student student = optionalStudent.get();
@@ -101,6 +103,8 @@ public class BorrowedBikeController {
             return ResponseEntity.badRequest().body("Error: Student not found");
         }
         _bb.setRequestDate(new Date());
+
+        // DateType
         Optional<DateType> _dt = dateTypeRepository.findById(bbRequest.getDateType_id());
         if (!_dt.isPresent()) {
             return ResponseEntity.badRequest().body("Error: DateType not found!");
