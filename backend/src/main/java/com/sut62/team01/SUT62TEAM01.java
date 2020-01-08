@@ -8,6 +8,7 @@ import com.sut62.team01.entity.Branches;
 import com.sut62.team01.entity.DateType;
 import com.sut62.team01.entity.RoomBooking;
 import com.sut62.team01.entity.Rooms;
+import com.sut62.team01.entity.Staff;
 import com.sut62.team01.entity.Students;
 import com.sut62.team01.repository.BikeTypeRepository;
 import com.sut62.team01.repository.BorrowedBikeRepository;
@@ -15,6 +16,7 @@ import com.sut62.team01.repository.BranchesRepository;
 import com.sut62.team01.repository.DateTypeRepository;
 import com.sut62.team01.repository.RoomBookingRepository;
 import com.sut62.team01.repository.RoomsRepository;
+import com.sut62.team01.repository.StaffRepository;
 import com.sut62.team01.repository.StudentsRepository;
 
 import org.springframework.boot.ApplicationRunner;
@@ -38,7 +40,7 @@ public class SUT62TEAM01 {
     ApplicationRunner init(BorrowedBikeRepository borrowedBikeRepository, BikeTypeRepository bikeTypeRepository,
             DateTypeRepository dateTypeRepository, RoomBookingRepository roomBookingRepository,
             StudentsRepository studentsRepository, BranchesRepository branchesRepository,
-            RoomsRepository roomsRepository) {
+            RoomsRepository roomsRepository, StaffRepository staffRepository) {
         return args -> {
 
             // TODO: Inject test data
@@ -91,6 +93,16 @@ public class SUT62TEAM01 {
             // RoomBooking
             RoomBooking roomBooking1 = new RoomBooking(student1, room7133, branches1);
             roomBookingRepository.save(roomBooking1);
+
+            // STAFF
+            Staff staff1 = new Staff("Chanwit Keawkasi", "chanwit", "62");
+            Staff staff2 = new Staff("Nutthawut Sunthornrot", "black", "asdasd");
+            Staff staff3 = new Staff("Apple Apyoon", "apyoon", "1234");
+
+            Stream.of(staff1, staff2, staff3).forEach(staff -> {
+                staffRepository.save(staff);
+                System.out.println(staff);
+            });
 
         };
     }

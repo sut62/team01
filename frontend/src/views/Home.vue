@@ -16,7 +16,7 @@
                 ></v-progress-circular>
               </v-row>
             </template>
-            <v-card-title>Student Home</v-card-title>
+            <v-card-title>STAFF/Student Home</v-card-title>
           </v-img>
 
           <v-card-subtitle class="pb-0">Number 10</v-card-subtitle>

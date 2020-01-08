@@ -2,14 +2,14 @@
   <v-row align="center" justify="center">
     <v-col cols="12" sm="8" md="6">
       <v-card class="elevation-12">
-        <v-toolbar color="primary" dark flat>
-          <v-toolbar-title>Sign in</v-toolbar-title>
+        <v-toolbar color="amber" dark flat>
+          <v-toolbar-title>STAFF Sign in</v-toolbar-title>
           <v-spacer />
         </v-toolbar>
         <v-card-text>
           <v-form>
             <v-text-field
-              label="Login"
+              label="Username"
               name="login"
               prepend-icon="mdi-account"
               type="text"
@@ -27,9 +27,9 @@
           </v-form>
         </v-card-text>
         <v-card-actions>
-          <a @click="handleStaffSignin">เข้าสู่ระบบสำหรับที่ปรึกษาหอพัก?</a>
+          <a @click="handleStaffSignin">เข้าสู่ระบบสำหรับที่นักศึกษา?</a>
           <v-spacer />
-          <v-btn color="primary" @click="signin">Login</v-btn>
+          <v-btn color="amber" @click="signin">Login</v-btn>
         </v-card-actions>
       </v-card>
     </v-col>
@@ -49,7 +49,7 @@ export default {
   },
   methods: {
     handleStaffSignin() {
-      this.$router.push("/staff/signin");
+      this.$router.push("/signin");
     },
     signin() {
       let user = {
@@ -57,7 +57,7 @@ export default {
         password: this.password
       };
       api
-        .post("/auth/login", JSON.stringify(user))
+        .post("/auth/staff/signin", JSON.stringify(user))
         .then(res => {
           let user = res.data;
           alert("Signin successfully..." + user.username);
