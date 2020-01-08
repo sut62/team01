@@ -19,10 +19,12 @@ public class Rooms {
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="ROOMS_seq")
 	@Column(name="ROOMS_ID",unique = true, nullable = true)
 	private @NonNull Long id;
-	private @NonNull String rooms;
+
+	private @NonNull String roomId;
 
 	public Rooms(){}
-    public Rooms(String rooms){
-        this.rooms=rooms;
-    }
+
+	public Rooms(@NonNull String roomId) {
+		this.roomId = roomId;
+	}
 }

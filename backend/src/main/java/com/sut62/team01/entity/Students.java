@@ -36,4 +36,9 @@ public class Students {
 		this.students = students;
 	}
 
+	public Students(String students, String username, String password) {
+		this.students = students;
+		this.username = username;
+		this.password = password;
+	}
 }
