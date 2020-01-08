@@ -22,12 +22,14 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "ElectricalRegistration")
-public class ElectricalRegistration{
+public class ElectricalRegistration {
     @Id
     @SequenceGenerator(name = "ElectricalRegistration_seq", sequenceName = "ElectricalRegistration_seq")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="ElectricalRegistration_seq")
-    @Column(name = "ElectricalRegistration_ID", unique = true, nullable = true,insertable = true)    
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ElectricalRegistration_seq")
+    @Column(name = "ElectricalRegistration_ID", unique = true, nullable = true, insertable = true)
     private @NotNull long id;
+
+    // TODO: แก้ชื่อตัวแปรให้ขึ้นต้นด้วยตัวพิมพ์เล็ก
     private @NotNull Date ElectricalRegistrationdate;
 
     @OneToOne(fetch = FetchType.EAGER, targetEntity = RoomBooking.class)
@@ -45,9 +47,10 @@ public class ElectricalRegistration{
     @JsonManagedReference
     private @NotNull Staff staff;
 
+    public ElectricalRegistration() {
+    }
 
-    public ElectricalRegistration(){}
-    public ElectricalRegistration(RoomBooking rb, ElectricType et, Staff st){
+    public ElectricalRegistration(RoomBooking rb, ElectricType et, Staff st) {
         this.roomBooking = rb;
         this.electricType = et;
         this.staff = st;

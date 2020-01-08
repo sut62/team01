@@ -25,10 +25,11 @@ import lombok.NonNull;
 @NoArgsConstructor
 @Table(name = "DEVICEPROBLEMS")
 public class DeviceProblem {
+    // TODO: แก้ DeviceProblem ID (PK) => DEVICEPROBLEMS_SEQ -> DEVICEPROBLEMS_ID
     @Id
     @SequenceGenerator(name = "DEVICEPROBLEMS_SEQ", sequenceName = "DEVICEPROBLEMS_SEQ")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "DEVICEPROBLEMS_SEQ")
-    @Column(name = "DEVICEPROBLEMS_SEQ", unique = true, nullable = true)
+    @Column(name = "DEVICEPROBLEMS_ID", unique = true, nullable = true) // <--- แก้ให้แล้วนะ
 
     private @NonNull long id;
 
