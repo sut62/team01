@@ -68,6 +68,7 @@ export default {
           student_id: this.selectedStudent,
           dateType_id: this.selectedDateType
         };
+
         api
           .post("/api/borrowedbike", body)
           .then(() => {
