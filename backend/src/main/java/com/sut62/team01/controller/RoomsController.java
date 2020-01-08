@@ -26,5 +26,4 @@ public class RoomsController {
     public Collection<Rooms> getAllRooms() {
         return roomsRepository.findAll().stream().collect(Collectors.toList());
     }
-
 }
