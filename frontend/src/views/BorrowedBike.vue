@@ -11,7 +11,7 @@
             <v-select
               v-model="selectedRoomBooking"
               :items="roomBookings"
-              item-text="students.students"
+              item-text="student.fullName"
               item-value="id"
               label="เลือกนักศึกษา"
               outlined
