@@ -105,7 +105,7 @@ export default {
   },
 
   mounted() {
-    this.getStaffName();
+    // this.getStaffName();
     this.getVehicleTypes();
     // this.checkValiable();
   },
@@ -113,7 +113,7 @@ export default {
   methods: {
     getStaffName() {
       api
-      .get("/staff")
+      .get("/api/staff")
       .then(response => {
         this.Staffs = response.data;
         console.log(JSON.parse(JSON.stringify(response.data)));
@@ -124,7 +124,7 @@ export default {
     },
     getStudentName() {
       api
-      .get("/roombooking/" + this.insRoomNo)
+      .get("/api/roombooking/" + this.insRoomNo)
       .then(response => {
         this.StdNames = response.data;
         console.log(JSON.parse(JSON.stringify(response.data)));
@@ -135,7 +135,7 @@ export default {
     },
     getVehicleTypes() {
       api
-      .get("/vehicleTypes")
+      .get("/api/vehicleTypes")
       .then(response => {
         this.VehicleTypes = response.data;
         console.log(JSON.parse(JSON.stringify(response.data)));

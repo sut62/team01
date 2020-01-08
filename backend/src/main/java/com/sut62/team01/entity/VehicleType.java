@@ -29,7 +29,4 @@ public class VehicleType {
     private @NonNull long id;
 
     private @NonNull String type;
-
-    @OneToMany(fetch = FetchType.EAGER)
-    private Collection<EnrollVehicle> enroll;
 }
