@@ -33,7 +33,7 @@ import com.sut62.team01.repository.RoomBookingRepository;
 import com.sut62.team01.repository.RoomsRepository;
 import com.sut62.team01.repository.StudentsRepository;
 
-@CrossOrigin(origins = "http://localhost:8081")
+@CrossOrigin(origins = "http://localhost:8080")
 @RestController
 @RequestMapping("/api")
 public class RoomBookingController {
@@ -51,7 +51,7 @@ public class RoomBookingController {
         return roomBookingRepository.findAll().stream().collect(Collectors.toList());
     }
 
-    @PostMapping("/roombooking/{students_id}/{branches_id}/{rooms_id}")
+    @PostMapping("/roombooking/{students_id}/{rooms_id}/{branches_id}")
     public RoomBooking newroombooking(RoomBooking newRoomBooking, @PathVariable long students_id,
             @PathVariable long branches_id, @PathVariable long rooms_id) {
 
@@ -79,11 +79,5 @@ public class RoomBookingController {
 
             return ResponseEntity.badRequest().body("Error: Incorrect Student_id!");
         
-    }
-
-    //ค้นหาหมายเลขห้องของนักศึกษา
-    @GetMapping("/roomBookings/{rooms}")
-    public List<RoomBooking> findRooms(@PathVariable Rooms rooms) {
-        return roomBookingRepository.findByRooms(rooms);
     }
 }

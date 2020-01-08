@@ -14,7 +14,7 @@ import com.sut62.team01.repository.RoomsRepository;
 
 
 
-@CrossOrigin(origins = "http://localhost:8081")
+@CrossOrigin(origins = "http://localhost:8080")
 @RestController
 @RequestMapping("/api")
 public class RoomsController {
@@ -26,4 +26,5 @@ public class RoomsController {
     public Collection<Rooms> getAllRooms() {
         return roomsRepository.findAll().stream().collect(Collectors.toList());
     }
+
 }
