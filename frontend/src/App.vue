@@ -107,9 +107,17 @@
         <v-icon>mdi-bell</v-icon>
       </v-btn>
       <template v-if="isSignin">
-        <v-btn text @click="handleProfile">
-          {{ user.fullName }}
-        </v-btn>
+        <template v-if="user.studentId">
+          <v-btn text @click="handleProfile">
+            {{ user.fullName }}
+          </v-btn>
+        </template>
+        <template v-else>
+          <v-btn text @click="handleProfile">
+            {{ user.name }}
+          </v-btn>
+        </template>
+
         <v-menu left bottom>
           <template v-slot:activator="{ on }">
             <v-btn icon v-on="on">
@@ -156,6 +164,7 @@ export default {
       items: [
         {
           icon: "mdi-home",
+          role: "all",
           text: "หน้าหลัก",
           click: () => {
             this.$router.push("/home");
@@ -163,6 +172,7 @@ export default {
         },
         {
           icon: "mdi-contacts",
+          role: "student",
           text: "จองห้องพัก",
           click: () => {
             this.$router.push("/roombooking");
@@ -170,7 +180,24 @@ export default {
         },
         {
           icon: "mdi-contacts",
+          role: "student",
           text: "ยืมจักรยาน",
+          click: () => {
+            this.$router.push("/borrowedBike");
+          }
+        },
+        {
+          icon: "mdi-contacts",
+          role: "staff",
+          text: "ลงทะเบียนเครื่องใช้ไฟฟ้า",
+          click: () => {
+            this.$router.push("/borrowedBike");
+          }
+        },
+        {
+          icon: "mdi-contacts",
+          role: "staff",
+          text: "ลงทะเบียนยานพาหนะ",
           click: () => {
             this.$router.push("/borrowedBike");
           }
