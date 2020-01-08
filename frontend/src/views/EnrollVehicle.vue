@@ -35,7 +35,7 @@
             label="เลือกชื่อนักศึกษา"
             v-model="selectedStdName"
             :items="StdNames"
-            item-text="stdName"
+            item-text="student.fullName"
             item-value="id"
             />
           </v-col>
@@ -113,7 +113,7 @@ export default {
   methods: {
     getStaffName() {
       api
-      .get("/staffs")
+      .get("/staff")
       .then(response => {
         this.Staffs = response.data;
         console.log(JSON.parse(JSON.stringify(response.data)));
@@ -124,7 +124,7 @@ export default {
     },
     getStudentName() {
       api
-      .get("/roomBookings/" + this.insRoomNo)
+      .get("/roombooking/" + this.insRoomNo)
       .then(response => {
         this.StdNames = response.data;
         console.log(JSON.parse(JSON.stringify(response.data)));
