@@ -6,6 +6,7 @@ import java.util.stream.Stream;
 import com.sut62.team01.entity.BikeType;
 import com.sut62.team01.entity.Branches;
 import com.sut62.team01.entity.DateType;
+import com.sut62.team01.entity.ElectricType;
 import com.sut62.team01.entity.RoomBooking;
 import com.sut62.team01.entity.Rooms;
 import com.sut62.team01.entity.Staff;
@@ -15,6 +16,7 @@ import com.sut62.team01.repository.BikeTypeRepository;
 import com.sut62.team01.repository.BorrowedBikeRepository;
 import com.sut62.team01.repository.BranchesRepository;
 import com.sut62.team01.repository.DateTypeRepository;
+import com.sut62.team01.repository.ElectricTypeRepository;
 import com.sut62.team01.repository.RoomBookingRepository;
 import com.sut62.team01.repository.RoomsRepository;
 import com.sut62.team01.repository.StaffRepository;
@@ -43,7 +45,8 @@ public class SUT62TEAM01 {
             DateTypeRepository dateTypeRepository, RoomBookingRepository roomBookingRepository,
             StudentsRepository studentsRepository, BranchesRepository branchesRepository,
             RoomsRepository roomsRepository, StaffRepository staffRepository,
-            VehicleTypeRepository vehicleTypeRepository) {
+            VehicleTypeRepository vehicleTypeRepository, ElectricTypeRepository electrictypeRepository) {
+          
         return args -> {
 
             // TODO: Inject test data
@@ -96,6 +99,23 @@ public class SUT62TEAM01 {
             // RoomBooking
             RoomBooking roomBooking1 = new RoomBooking(student1, room7133, branches1);
             roomBookingRepository.save(roomBooking1);
+            // Staff
+            Staff s1 = new Staff("Nutthawut S.", "nutts", "12345678");
+			Staff s2 = new Staff("Phatcharaphon Thaicharoen", "newza", "00000000");
+			Staff s3 = new Staff("Pakorn Harnnirojrum", "somtuy", "55555555");
+			Staff s4 = new Staff("System Administrator", "admin", "admin");
+			Stream.of(s1, s2, s3,s4).forEach(s -> {
+				staffRepository.save(s); // บันทึก Objcet ชื่อ Staff
+            });
+            
+            //ElectricType-LEO
+			ElectricType electricType1 = new ElectricType("พัดลม");
+			ElectricType electricType2 = new ElectricType("เต้ารีด");
+			ElectricType electricType3 = new ElectricType("กะทะไฟฟ้า");
+			ElectricType electricType4 = new ElectricType("คอม");
+			Stream.of(electricType1,electricType2,electricType3,electricType4).forEach(electricType -> {
+				electrictypeRepository.save(electricType);
+            });
 
             // STAFF
             Staff staff1 = new Staff("Chanwit Keawkasi", "chanwit", "62");
