@@ -27,8 +27,8 @@ public class BorrowedBike {
     private BikeType bikeType;
 
     // TODO: Change student_id to roomBooking_id
-    @ManyToOne(fetch = FetchType.EAGER, targetEntity = Students.class)
-    @JoinColumn(name = "STUDENTS_ID", insertable = true)
+    @ManyToOne(fetch = FetchType.EAGER, targetEntity = RoomBooking.class)
+    @JoinColumn(name = "ROOMBOOKING_ID", insertable = true)
     @JsonManagedReference
     private RoomBooking roomBooking;
 

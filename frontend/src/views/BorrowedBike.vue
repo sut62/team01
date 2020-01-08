@@ -9,9 +9,9 @@
         <v-card-text>
           <v-form>
             <v-select
-              v-model="selectedStudent"
-              :items="students"
-              item-text="username"
+              v-model="selectedRoomBooking"
+              :items="roomBookings"
+              item-text="students.students"
               item-value="id"
               label="เลือกนักศึกษา"
               outlined
@@ -51,37 +51,50 @@ export default {
   name: "borrowedBike",
   data() {
     return {
-      students: [],
+      student_id: null,
+      roomBookings: [],
       bikeTypes: [],
       dateTypes: [],
-      selectedStudent: undefined,
+      selectedRoomBooking: undefined,
       selectedBikeTypes: undefined,
       selectedDateType: undefined
     };
   },
   methods: {
     handleBorrowBike() {
-      // alert("selectedStudent = " + JSON.stringify(this.selectedStudent)
-      // + "\nselectedBikeTypes = " + JSON.stringify(this.selectedBikeTypes));
-        let body = {
-          bikeType_id: this.selectedBikeTypes,
-          student_id: this.selectedStudent,
-          dateType_id: this.selectedDateType
-        };
+      let body = {
+        bikeType_id: this.selectedBikeTypes,
+        roomBooking_id: this.selectedRoomBooking,
+        dateType_id: this.selectedDateType
+      };
 
-        api
-          .post("/api/borrowedbike", body)
-          .then(() => {
-            alert("บันทึกข้อมูลการแจ้งยืมเรียบร้อย.");
-            this.$router.go();
-          })
-          .catch(e => {
-            alert(e);
-          });
-      }
+      api
+        .post("/api/borrowedbike", body)
+        .then(() => {
+          alert("บันทึกข้อมูลการแจ้งยืมเรียบร้อย.");
+          this.$router.go();
+        })
+        .catch(e => {
+          alert(e);
+        });
     },
-    getStudentDetail() {
-      this.students.push(JSON.parse(localStorage.getItem("user")));
+    // getStudentDetail() {
+    //   this.students.push(JSON.parse(localStorage.getItem("user")));
+    // },
+    getSpecificRoomBookings() {
+      let body = {
+        student_id: this.student_id
+      };
+
+      api
+        .get("/api/roombooking", body)
+        .then(res => {
+          this.roomBookings = res.data;
+          // console.log(res.data)
+        })
+        .catch(e => {
+          console.log(e);
+        });
     },
     getAllBikeTypes() {
       api
@@ -107,9 +120,10 @@ export default {
     }
   },
   mounted() {
-    this.getStudentDetail();
+    // this.getStudentDetail();
     this.getAllBikeTypes();
     this.getAllDateTypes();
+    this.getSpecificRoomBookings();
   }
 };
 </script>
