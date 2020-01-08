@@ -15,7 +15,7 @@ public class BorrowedBikeRequest {
     private Long bikeType_id;
 
     @NotBlank
-    private Long student_id;
+    private Long roomBooking_id;
 
     @NotBlank
     private Long dateType_id;

@@ -7,12 +7,14 @@ import java.util.Optional;
 import com.sut62.team01.entity.BikeType;
 import com.sut62.team01.entity.BorrowedBike;
 import com.sut62.team01.entity.DateType;
+import com.sut62.team01.entity.RoomBooking;
 import com.sut62.team01.entity.Student;
 import com.sut62.team01.entity.payload.BorrowedBikeRequest;
 import com.sut62.team01.entity.payload.LoginRequest;
 import com.sut62.team01.repository.BikeTypeRepository;
 import com.sut62.team01.repository.BorrowedBikeRepository;
 import com.sut62.team01.repository.DateTypeRepository;
+import com.sut62.team01.repository.RoomBookingRepository;
 import com.sut62.team01.repository.StudentRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +42,7 @@ public class BorrowedBikeController {
     private BikeTypeRepository bikeTypeRepository;
 
     @Autowired
-    private StudentRepository studentRepository;
+    private RoomBookingRepository roomBookingRepository;
 
     @Autowired
     private DateTypeRepository dateTypeRepository;
@@ -61,31 +63,36 @@ public class BorrowedBikeController {
 
     }
 
-    @PostMapping("/myborrowedbike")
-    public ResponseEntity<?> getMyBorrowedBike(@RequestBody LoginRequest loginRequest) {
-        // Optional<Student> my =
-        // studentRepository.findByUsernameAndPassword(loginRequest.getUsername(),
-        // loginRequest.getPassword());
-        Student my = studentRepository.findByUsernameAndPassword(loginRequest.getUsername(),
-                loginRequest.getPassword());
-        if (my == null) {
-            return ResponseEntity.badRequest().body("Error: Username or Password is incorrect.");
-        } else {
-            List<BorrowedBike> bb = borrowedBikeRepository.findByStudent(my);
-            if (bb.isEmpty()) {
-                return ResponseEntity.badRequest().body("Error: You have no borrowed bike request.");
-            } else {
-                return ResponseEntity.ok().body(bb);
-            }
-        }
-    }
+    // @PostMapping("/myborrowedbike")
+    // public ResponseEntity<?> getMyBorrowedBike(@RequestBody LoginRequest
+    // loginRequest) {
+    // // Optional<Student> my =
+    // // studentRepository.findByUsernameAndPassword(loginRequest.getUsername(),
+    // // loginRequest.getPassword());
+    // Student my =
+    // studentRepository.findByUsernameAndPassword(loginRequest.getUsername(),
+    // loginRequest.getPassword());
+    // if (my == null) {
+    // return ResponseEntity.badRequest().body("Error: Username or Password is
+    // incorrect.");
+    // } else {
+    // List<BorrowedBike> bb = borrowedBikeRepository.findByStudent(my);
+    // if (bb.isEmpty()) {
+    // return ResponseEntity.badRequest().body("Error: You have no borrowed bike
+    // request.");
+    // } else {
+    // return ResponseEntity.ok().body(bb);
+    // }
+    // }
+    // }
 
     @PostMapping(value = "/borrowedbike")
     public ResponseEntity<?> newBorrowedBike(@RequestBody BorrowedBikeRequest bbRequest) {
 
+        // new BorowedBike
         BorrowedBike _bb = new BorrowedBike();
 
-        // BikeType
+        // set BikeType
         Optional<BikeType> bikeType = bikeTypeRepository.findById(bbRequest.getBikeType_id());
         if (bikeType.isPresent()) {
             BikeType _bikeType = bikeType.get();
@@ -94,25 +101,29 @@ public class BorrowedBikeController {
             return ResponseEntity.badRequest().body("Error: BikeType not found!");
         }
 
-        // Student (RoomBooking รอของ ฟร้อง)
-        Optional<Student> optionalStudent = studentRepository.findById(bbRequest.getStudent_id());
-        if (optionalStudent.isPresent()) {
-            Student student = optionalStudent.get();
-            _bb.setStudent(student);
+        // set RoomBooking
+        Optional<RoomBooking> rb = roomBookingRepository.findById(bbRequest.getRoomBooking_id();
+        if (rb.isPresent()) {
+            RoomBooking _rb = rb.get();
+            _bb.setRoomBooking(_rb);
         } else {
-            return ResponseEntity.badRequest().body("Error: Student not found");
+            return ResponseEntity.badRequest().body("Error: RoomBooking not found");
         }
-        _bb.setRequestDate(new Date());
 
-        // DateType
+        //set DateType
         Optional<DateType> _dt = dateTypeRepository.findById(bbRequest.getDateType_id());
         if (!_dt.isPresent()) {
             return ResponseEntity.badRequest().body("Error: DateType not found!");
         }
         _bb.setDateType(_dt.get());
-        borrowedBikeRepository.save(_bb);
-        return ResponseEntity.ok().body(_bb);
+        
+        //set RequestDate
+        _bb.setRequestDate(new Date());
 
+        //save BorrowedBike
+        borrowedBikeRepository.save(_bb);
+        
+        return ResponseEntity.ok().body(_bb);
     }
 
 }

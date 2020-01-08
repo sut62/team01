@@ -4,6 +4,8 @@ import java.util.Date;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import lombok.Data;
 
 /**
@@ -24,10 +26,11 @@ public class BorrowedBike {
     // @JsonIgnore
     private BikeType bikeType;
 
-    @ManyToOne
-    @JoinColumn(name = "STUDENT_ID")
-    // @JsonIgnore
-    private Student student;
+    // TODO: Change student_id to roomBooking_id
+    @ManyToOne(fetch = FetchType.EAGER, targetEntity = Students.class)
+    @JoinColumn(name = "STUDENTS_ID", insertable = true)
+    @JsonManagedReference
+    private RoomBooking roomBooking;
 
     @ManyToOne
     @JoinColumn(name = "DATE_TYPE_ID")
