@@ -15,7 +15,7 @@ import com.sut62.team01.entity.Students;
 import com.sut62.team01.entity.payload.LoginRequest;
 import com.sut62.team01.repository.StudentsRepository;
 
-@CrossOrigin(origins = "http://localhost:8080")
+@CrossOrigin(origins = "http://localhost:8081")
 @RestController
 @RequestMapping("/api")
 public class StudentsController {
