@@ -27,6 +27,7 @@
           </v-form>
         </v-card-text>
         <v-card-actions>
+          <a @click="handleStaffSignin">เข้าสู่ระบบสำหรับที่นักศึกษา?</a>
           <v-spacer />
           <v-btn color="amber" @click="signin">Login</v-btn>
         </v-card-actions>
@@ -47,6 +48,9 @@ export default {
     };
   },
   methods: {
+    handleStaffSignin() {
+      this.$router.push("/signin");
+    },
     signin() {
       let user = {
         username: this.username,
