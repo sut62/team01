@@ -12,6 +12,7 @@ import com.sut62.team01.entity.Rooms;
 import com.sut62.team01.entity.Staff;
 import com.sut62.team01.entity.Students;
 import com.sut62.team01.entity.VehicleType;
+import com.sut62.team01.entity.PackageType;
 import com.sut62.team01.repository.BikeTypeRepository;
 import com.sut62.team01.repository.BorrowedBikeRepository;
 import com.sut62.team01.repository.BranchesRepository;
@@ -22,6 +23,7 @@ import com.sut62.team01.repository.RoomsRepository;
 import com.sut62.team01.repository.StaffRepository;
 import com.sut62.team01.repository.StudentsRepository;
 import com.sut62.team01.repository.VehicleTypeRepository;
+import com.sut62.team01.repository.PackageTypeRepository;
 
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
@@ -45,7 +47,8 @@ public class SUT62TEAM01 {
             DateTypeRepository dateTypeRepository, RoomBookingRepository roomBookingRepository,
             StudentsRepository studentsRepository, BranchesRepository branchesRepository,
             RoomsRepository roomsRepository, StaffRepository staffRepository,
-            VehicleTypeRepository vehicleTypeRepository, ElectricTypeRepository electrictypeRepository) {
+            VehicleTypeRepository vehicleTypeRepository, ElectricTypeRepository electrictypeRepository,
+            PackageTypeRepository packageTypeRepository) {
           
         return args -> {
 
@@ -107,6 +110,16 @@ public class SUT62TEAM01 {
 			ElectricType electricType4 = new ElectricType("คอม");
 			Stream.of(electricType1,electricType2,electricType3,electricType4).forEach(electricType -> {
 				electrictypeRepository.save(electricType);
+            });
+
+	    //PackageType
+            PackageType pt1 = new PackageType("ซองจดหมาย");
+            PackageType pt2 = new PackageType("ซองเอกสาร");
+            PackageType pt3 = new PackageType("ซองพลาสติก");
+            PackageType pt4 = new PackageType("กล่องพัสดุ");
+            Stream.of(pt1, pt2, pt3, pt4).forEach(pt -> {
+                packageTypeRepository.save(pt);
+                System.out.println(pt);
             });
 
             // STAFF
