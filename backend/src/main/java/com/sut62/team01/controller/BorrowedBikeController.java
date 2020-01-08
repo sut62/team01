@@ -8,14 +8,14 @@ import com.sut62.team01.entity.BikeType;
 import com.sut62.team01.entity.BorrowedBike;
 import com.sut62.team01.entity.DateType;
 import com.sut62.team01.entity.RoomBooking;
-import com.sut62.team01.entity.Student;
+// import com.sut62.team01.entity.Student;
 import com.sut62.team01.entity.payload.BorrowedBikeRequest;
 import com.sut62.team01.entity.payload.LoginRequest;
 import com.sut62.team01.repository.BikeTypeRepository;
 import com.sut62.team01.repository.BorrowedBikeRepository;
 import com.sut62.team01.repository.DateTypeRepository;
 import com.sut62.team01.repository.RoomBookingRepository;
-import com.sut62.team01.repository.StudentRepository;
+// import com.sut62.team01.repository.StudentRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -102,7 +102,7 @@ public class BorrowedBikeController {
         }
 
         // set RoomBooking
-        Optional<RoomBooking> rb = roomBookingRepository.findById(bbRequest.getRoomBooking_id();
+        Optional<RoomBooking> rb = roomBookingRepository.findById(bbRequest.getRoomBooking_id());
         if (rb.isPresent()) {
             RoomBooking _rb = rb.get();
             _bb.setRoomBooking(_rb);
@@ -110,19 +110,19 @@ public class BorrowedBikeController {
             return ResponseEntity.badRequest().body("Error: RoomBooking not found");
         }
 
-        //set DateType
+        // set DateType
         Optional<DateType> _dt = dateTypeRepository.findById(bbRequest.getDateType_id());
         if (!_dt.isPresent()) {
             return ResponseEntity.badRequest().body("Error: DateType not found!");
         }
         _bb.setDateType(_dt.get());
-        
-        //set RequestDate
+
+        // set RequestDate
         _bb.setRequestDate(new Date());
 
-        //save BorrowedBike
+        // save BorrowedBike
         borrowedBikeRepository.save(_bb);
-        
+
         return ResponseEntity.ok().body(_bb);
     }
 

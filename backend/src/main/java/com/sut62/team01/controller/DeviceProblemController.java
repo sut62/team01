@@ -18,15 +18,12 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 public class DeviceProblemController {
 
         @Autowired
-        DeviceProblemRepository deviceProblemRepository;
-
+        private DeviceProblemRepository deviceProblemRepository;
 
         @GetMapping("/DeviceProblems")
-        public Collection<DeviceProblem> getProblems(){
+        public Collection<DeviceProblem> getProblems() {
                 return deviceProblemRepository.findAll().stream().collect(Collectors.toList());
 
         }
-
-
 
 }

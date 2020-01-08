@@ -21,6 +21,12 @@ public class BikeType {
     @NotBlank
     private String type;
 
+    public BikeType() {
+    }
+
+    public BikeType(String type) {
+        this.type = type;
+    }
     // @OneToMany(mappedBy = "bikeType", cascade = CascadeType.ALL)
     // private Set<BorrowedBike> borrowedBikes;
 
