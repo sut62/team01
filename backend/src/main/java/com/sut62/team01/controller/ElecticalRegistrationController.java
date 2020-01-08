@@ -9,6 +9,7 @@ import com.sut62.team01.entity.ElectricType;
 import com.sut62.team01.entity.ElectricalRegistration;
 import com.sut62.team01.entity.RoomBooking;
 import com.sut62.team01.entity.Staff;
+import com.sut62.team01.entity.payload.NewElectricalRegistrationPayload;
 import com.sut62.team01.repository.ElectricTypeRepository;
 import com.sut62.team01.repository.ElectricalRegistrationRepository;
 import com.sut62.team01.repository.RoomBookingRepository;
