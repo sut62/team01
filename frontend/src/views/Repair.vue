@@ -5,9 +5,9 @@
     >
     <v-container class="fill-height" fluid>
       <v-row align="center" justify="center">
-        <v-col cols="12" sm="8" md="6">
+        <v-col cols="12" sm="8" md="7">
           <v-card class="elevation-12">
-            <v-toolbar color="deep-purple" light flat>
+            <v-toolbar color="primary" light flat>
             
               <v-icon dark>mdi-wrench</v-icon>&nbsp;&nbsp;
               
@@ -39,9 +39,9 @@
               ></v-select>
 
               <v-select
-                v-model="selectedDeviceProblem"
+                v-model="selectedDeviceName"
                 :items="problems"
-                item-text="problem"
+                item-text="name"
                 item-value="id"
                 label="เลือกชื่ออุปกรณ์ที่ชำรุด"
                 :rules="[(v) => !!v || 'กรุณาเลือกชื่ออุปกรณ์ที่ชำรุด']"
@@ -74,15 +74,18 @@
  <script>
 import api from "../Api.js";
 export default {
-  props: {
-    student: {}
+ 
+  watch:{
+    selectedDeviceType: function() {
+      this.getAllDeviceNames();
+    }
   },
   data() {
     return {
       insertList: undefined,
       selectedStudent: null,
       selectedDeviceType: null,
-      selectedDeviceProblem: null,
+      selectedDeviceName: null,
       titles: [],
       students: [],
       types: [],
@@ -93,19 +96,19 @@ export default {
     //ประกาศฟังก์ชันที่ต้องการดึงข้อมูลจากหลังบ้านมาแสดงใน combobox แต่ละตัว
     this.getAllStudents();
     this.getAllDeviceTypes();
-    this.getAllDeviceProblems();
+    
   },
   methods: {
     Resetshow() {
       this.$refs.form.reset();
     },
-      Save() {
+      Saveshow() {
       //เมือกดปุ่มบันทึก ขณะที่ยังกรอกข้อมูลไม่ครบ ระบบจะแจ้งเตื่อน "กรุณากรอรกข้อมูลให้ครบ"
       if (
         !this.insertList ||
         !this.selectedStudent ||
         !this.selectedDeviceType||
-        !this.selectedDeviceProblem
+        !this.selectedDeviceName
       ) {
         alert("กรุณากรอกข้อมูลให้ครบ!");
          
@@ -123,7 +126,7 @@ export default {
             "/" +
             this.selectedDeviceType +
             "/" +
-            this.selectedDeviceProblem +
+            this.selectedDeviceName +
             "/" +
             this.insertList
         )
@@ -133,7 +136,7 @@ export default {
           this.insertList= null;
           this.selectedStudent = null;
           this.selectedDeviceType = null;
-          this.selectedDeviceProblem = null;
+          this.selectedDeviceName = null;
            this.Resetshow();
         })
         .catch(e => {
@@ -167,9 +170,9 @@ export default {
         });
     },
 
-    getAllDeviceProblems() {
+    getAllDeviceNames() {
       api
-        .get("/DeviceProblems")
+        .get("/DeviceName/"+this.selectedDeviceType)
         .then(response => {
           this.problems = response.data;
           console.log("ดึงข้อมูล Problem สำเร็จ");
