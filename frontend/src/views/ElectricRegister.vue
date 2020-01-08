@@ -31,8 +31,8 @@
 
               <v-select
                 v-model="selectedRoomBooking"
-                :items="roomBooking"
-                item-text="name"
+                :items="StdNames"
+                item-text="student.fullName"
                 item-value="id"
                 label="เลือกชื่อนักศึกษา"
               ></v-select>
@@ -104,6 +104,7 @@ export default {
       ) {
         alert("กรุณาเลือกข้อมูลให้ครบ!");
       } else {
+        
         this.SavaData();
       }
     },
@@ -128,8 +129,9 @@ export default {
         staffId: this.selectedStaff,
         details: this.details
       };
+      console.log(newelepayload)
       api
-        .post("/api/ElectricalRegis", newelepayload)
+        .post("/api/electricRegister", newelepayload)
         .then(() => {
           alert("บันทึกสำเร็จ!");
           this.selectedStaff = null;
@@ -144,7 +146,7 @@ export default {
 
     getAllRoomBooking() {
       api
-        .get("/api/roombookings/")
+        .get("/api/roombooking/")
         .then(response => {
           this.roomBooking = response.data;
           console.log(JSON.parse(JSON.stringify(response.data)));
@@ -156,7 +158,7 @@ export default {
 
     getSearch() {
       api
-        .get("/api/roomBookings/" + this.roomNumber)
+        .get("/api/roombooking/" + this.roomNumber)
         .then(response => {
           this.StdNames = response.data;
           console.log(JSON.parse(JSON.stringify(response.data)));
