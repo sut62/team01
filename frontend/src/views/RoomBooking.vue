@@ -134,10 +134,10 @@ export default {
             this.selectedBranches +
             "/"
         )
-        .then(res => {
+        .then(() => {
           alert("จองห้องพักสำเร็จ!");
-          console.log(JSON.parse(JSON.stringify(res.data)));
-          this.$router.go("/");
+          this.$router.push("/home");
+          this.$router.go("/home");
         })
         .catch(e => {
           console.log(e);
