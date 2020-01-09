@@ -56,7 +56,7 @@
 
                 <div class="text-center">
                   <v-btn class="mr-3" color="warning" @click="Saveshow"
-                    >แจ้ง</v-btn
+                    >บันทึก</v-btn
                   >
                 </div>
               </v-card-text>
