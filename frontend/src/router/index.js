@@ -20,12 +20,6 @@ const routes = [
     name: "borrowedBike",
     component: () => import("../views/BorrowedBike.vue")
   },
-
-  {
-    path: "/Repair",
-    name: "Repair",
-    component: () => import("../views/BorrowedBike.vue")
-  },
   {
     path: "/signin",
     name: "sigin",
@@ -67,13 +61,6 @@ const routes = [
     name: "roombooking",
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/RoomBooking.vue")
-  },
-
-  {
-    path: "/Repair",
-    name: "Repair",
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/Repair.vue")
   },
   {
     path: "/repair",
