@@ -79,10 +79,16 @@ public class RoomBookingController {
         return ResponseEntity.badRequest().body("Error: Incorrect Student_id!");
 
     }
-
+    //ค้นหาห้องด้วย ชื่อห้อง (7133)
     @GetMapping("/roombooking/{roomName}")
     List<RoomBooking> findRoomNo(@PathVariable String roomName) {
         Rooms room = roomsrepository.findByRoomId(roomName);
         return roomBookingRepository.findByRooms(room);
+    }
+    //ค้นหาห้องด้วย ไอดีห้อง (33)
+    @GetMapping("/roombooking/fronk/{x}")
+    List<RoomBooking> findRoomNo2(@PathVariable Long x) {
+        Optional<Rooms> room = roomsrepository.findById(x);
+        return roomBookingRepository.findByRooms(room.get());
     }
 }

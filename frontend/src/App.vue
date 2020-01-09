@@ -300,7 +300,7 @@ export default {
           role: "student",
           text: "แจ้งซ่อม",
           click: () => {
-            this.$router.push("/Repair");
+            this.$router.push("/repair");
           }
         }
 
@@ -359,7 +359,9 @@ export default {
       api
         .post("/api/roombooking/student", JSON.stringify(body))
         .then(res => {
-          if (res.data) {
+          console.log(JSON.parse(JSON.stringify(res.data)));
+          console.log(res.data.length);
+          if (res.data.length > 0) {
             this.items[1].click = () => {
               alert("นักศึกษาจองห้องไปแล้ว");
             };

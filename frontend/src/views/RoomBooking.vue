@@ -46,6 +46,11 @@
 import api from "../Api.js";
 
 export default {
+  watch: {
+    selectedRooms: function() {
+      this.checkStudentInRoom();
+    }
+  },
   mounted() {
     this.getAlStudents();
     this.getAllRooms();
@@ -89,6 +94,23 @@ export default {
           console.log(e);
         });
     },
+    checkStudentInRoom() {
+      // this.selectedRooms = 33
+      api
+        .get("/api/roombooking/fronk/" + this.selectedRooms)
+        .then(res => {
+          console.log("ห้อง " + this.selectedRooms)
+          console.log(JSON.parse(JSON.stringify(res.data)))
+          let knh = res.data;
+          console.log("มีคนในห้องทั้งหมด = " + knh.length)
+          if (knh.length >= 3  ){
+            alert ("Room "+this.selectedRooms+" is Full")
+          }
+        })
+        .catch(e => {
+          console.log(e);
+        });
+    },
     Save() {
       if (
         !this.selectedStudents ||
@@ -112,10 +134,10 @@ export default {
             this.selectedBranches +
             "/"
         )
-        .then(res => {
+        .then(() => {
           alert("จองห้องพักสำเร็จ!");
-          console.log(JSON.parse(JSON.stringify(res.data)));
-          this.$router.push("/");
+          this.$router.push("/home");
+          this.$router.go("/home");
         })
         .catch(e => {
           console.log(e);
