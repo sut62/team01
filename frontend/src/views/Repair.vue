@@ -29,8 +29,8 @@
                   :items="types"
                   item-text="type"
                   item-value="id"
-                  label="เลือกประเภทงาน"
-                  :rules="[v => !!v || 'กรุณาเลือกประเภทงาน']"
+                  label="เลือกประเภทอุปกรณ์ที่ชำรุด"
+                  :rules="[v => !!v || 'กรุณาเลือกประเภทอุปกรณ์ที่ชำรุด']"
                   required
                 ></v-select>
 
