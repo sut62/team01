@@ -40,14 +40,17 @@ public class Repair {
 
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = DeviceType.class)
     @JoinColumn(name = "DEVICETYPE_ID", insertable = true)
+    @JsonManagedReference
     private DeviceType type;
 
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = DeviceName.class)
     @JoinColumn(name = "DEVICENAMES_ID", insertable = true)
+    @JsonManagedReference
     private DeviceName name;
     
     @ManyToOne(fetch = FetchType.EAGER , targetEntity = RoomBooking.class)
     @JoinColumn(name = "ROOMBOOKING_ID", insertable = true)
+    @JsonManagedReference
     private RoomBooking enrolled;
 
   
