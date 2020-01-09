@@ -20,7 +20,7 @@
               :items="roomBookings"
               item-text="student.fullName"
               item-value="id"
-              label="เลือกนักศึกษา"
+              label="เลือกนักศึกษาที่จองห้องแล้ว"
               outlined
             ></v-select>
             <v-select
@@ -36,7 +36,7 @@
               :items="dateTypes"
               item-text="type"
               item-value="id"
-              label="เลือกประเภทวันยืม"
+              label="เลือกประเภทระยะเวลา"
               outlined
             ></v-select>
           </v-form>
