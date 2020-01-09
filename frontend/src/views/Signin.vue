@@ -60,7 +60,9 @@ export default {
         .post("/auth/login", JSON.stringify(user))
         .then(res => {
           let user = res.data;
-          alert("Signin successfully..." + user.username);
+          //TODO: Katalon Recorder ไม่ตรวจจับ alert() เลยเอาออก
+          // alert("Signin successfully..." + user.username); alert ไม่ผ่าน
+          // confirm("login OK" + user.fullName); alert ผ่านแต่ assert ไม่เจอ
           localStorage.setItem("user", JSON.stringify(user));
           this.$router.go("/home");
         })
