@@ -237,7 +237,7 @@ export default {
           role: "staff",
           text: "ลงทะเบียนเครื่องใช้ไฟฟ้า",
           click: () => {
-            this.$router.push("/borrowedBike");
+            this.$router.push("/staff/electricregister");
           }
         }
       ],
