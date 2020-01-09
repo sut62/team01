@@ -13,12 +13,12 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import lombok.Data;
-import lombok.NoArgsConstructor;
+
 import lombok.NonNull;
 
 @Data
 @Entity
-@NoArgsConstructor
+
 @Table(name = "DEVICETYPE")
 public class DeviceType {
     @Id
@@ -36,5 +36,10 @@ public class DeviceType {
 
     // @OneToMany(fetch = FetchType.EAGER)
     // private Collection<Repair> repair;
+    
+    public DeviceType(){}
+    public DeviceType(String type){
+        this.type = type;
+    }
 
 }
