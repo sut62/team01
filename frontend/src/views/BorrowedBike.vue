@@ -82,19 +82,22 @@ export default {
     //   this.students.push(JSON.parse(localStorage.getItem("user")));
     // },
     getSpecificRoomBookings() {
+      let user = JSON.parse(localStorage.getItem("user"));
       let body = {
-        student_id: this.student_id
+        student_id: user.id
       };
-
+      console.log(body);
       api
-        .get("/api/roombooking", body)
+        .post("/api/roombooking/student", JSON.stringify(body))
         .then(res => {
           this.roomBookings = res.data;
-          // console.log(res.data)
+          console.log("getRoomBookingWhereStudent");
+          console.log(res.data);
         })
         .catch(e => {
           console.log(e);
         });
+      //TODO: ถ้า student จองห้องแล้ว ให้เอาเมนูจองห้องออก หรือ เข้าจองห้องไม่ได้
     },
     getAllBikeTypes() {
       api

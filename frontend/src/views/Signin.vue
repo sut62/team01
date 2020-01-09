@@ -3,7 +3,7 @@
     <v-col cols="12" sm="8" md="6">
       <v-card class="elevation-12">
         <v-toolbar color="primary" dark flat>
-          <v-toolbar-title>Sign in</v-toolbar-title>
+          <v-toolbar-title>เข้าสู่ระบบในฐานะนักศึกษา</v-toolbar-title>
           <v-spacer />
         </v-toolbar>
         <v-card-text>
