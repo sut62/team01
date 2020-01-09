@@ -7,7 +7,4 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 @RepositoryRestResource
 public
-interface EnrollVehicleRepository extends JpaRepository<EnrollVehicle, Long> {
-
-
-}
+interface EnrollVehicleRepository extends JpaRepository<EnrollVehicle, Long> {}
