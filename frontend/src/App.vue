@@ -229,7 +229,7 @@ export default {
           role: "staff",
           text: "ลงทะเบียนยานพาหนะ",
           click: () => {
-            this.$router.push("/borrowedBike");
+            this.$router.push("/staff/enrollvehicle");
           }
         },
         {
@@ -264,13 +264,6 @@ export default {
           text: "ยืมจักรยาน",
           click: () => {
             this.$router.push("/borrowedBike");
-          }
-        },
-        {
-          icon: "mdi-contacts",
-          text: "ลงทะเบียนยาน",
-          click: () => {
-            this.$router.push("/enrollVehicle");
           }
         }
 
