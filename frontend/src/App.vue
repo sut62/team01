@@ -260,6 +260,14 @@ export default {
           click: () => {
             this.$router.push("/staff/electricregister");
           }
+        },
+        {
+          icon: "mdi-contacts",
+          role: "staff",
+          text: "จัดการพัสดุ",
+          click: () => {
+            this.$router.push("/staff/packageManagement");
+          }
         }
       ],
       items: [
