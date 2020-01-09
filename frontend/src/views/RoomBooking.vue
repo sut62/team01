@@ -137,7 +137,7 @@ export default {
         .then(res => {
           alert("จองห้องพักสำเร็จ!");
           console.log(JSON.parse(JSON.stringify(res.data)));
-          this.$router.push("/");
+          this.$router.go("/");
         })
         .catch(e => {
           console.log(e);
