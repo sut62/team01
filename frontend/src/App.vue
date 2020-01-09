@@ -133,7 +133,7 @@
       :clipped-left="$vuetify.breakpoint.lgAndUp"
       app
       :color="appBarColor()"
-      :light="whichColor()"
+      :dark="user ? true : false"
     >
       <!-- student: blue darken-3 , staff: amber darken-3 -->
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
@@ -212,6 +212,20 @@ export default {
   components: {},
   data() {
     return {
+      themes: {
+        student: {
+          appBar: "blue darken-3",
+          fontColor: "light"
+        },
+        staff: {
+          appBar: "amber darken-3",
+          fontColor: "light"
+        },
+        public: {
+          appBar: "white",
+          fontColor: "dark"
+        }
+      },
       isSignin: undefined,
       userRole: null,
       user: {},
@@ -316,10 +330,10 @@ export default {
   },
   methods: {
     whichColor() {
-      if (this.userRole == "staff") {
-        return "false";
+      if (!this.userRole) {
+        return "white";
       } else {
-        return "true";
+        return "dark";
       }
     },
     appBarColor() {
