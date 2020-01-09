@@ -1,68 +1,77 @@
 <template>
-  <v-content>
-    <v-container class="fill-height" fluid>
-      <v-row align="center" justify="center">
-        <v-col cols="12" sm="8" md="6">
-          <v-card class="elevation-12">
-            <v-toolbar color="amber" light flat>
-              <v-icon>mdi-package</v-icon>&nbsp;&nbsp;
-              <v-toolbar-title>จัดการพัสดุ</v-toolbar-title>
-              <div class="flex-grow-1"></div>
-            </v-toolbar>
-            <v-card-text>
-              <v-row justify="center" class="pb-0 mb-0">
-                <v-col cols="3">
-                  <v-text-field
-                    solo
-                    label="กรอกหมายเลขห้อง"
-                    v-model="insRoomNo"
-                    @keyup.enter="getStudentName"
-                  />
-                </v-col>
-                <v-col cols="1">
-                  <v-btn @click="getStudentName" large class="light-green accent-4">Search</v-btn>
-                </v-col>
-              </v-row>
+  <v-container>
+    <v-layout text-center wrap>
+      <v-flex xs3 sm6 md9 lg12>
+        <br />
+        <h1 class="display-2 font-weight-bold mb-3">Package Management</h1>
 
-              <v-select
-                v-model="selectedRoomBooking"
-                :items="roomBooking"
-                item-text="name"
-                item-value="id"
-                label="เลือกชื่อนักศึกษา"
-              ></v-select>
+        <v-row justify="center" class="pb-0 mb-0">
+          <v-col cols="3">
+            <v-text-field
+              solo
+              label="กรอกหมายเลขห้อง"
+              v-model="roomNumber"
+              @keyup.enter="getSearch"
+            />
+          </v-col>
+          <v-col cols="1">
+            <v-btn @click="getSearch" large class="light-green accent-4">Search</v-btn>
+          </v-col>
+        </v-row>
 
-              <v-select
-                v-model="selectedPackageType"
-                :items="packageTypes"
-                item-text="packageType"
-                item-value="id"
-                label="เลือกประเภทของพัสดุ"
-              ></v-select>
+        <v-row justify="center">
+          <v-col cols="6">
+            <v-select
+              class="pa-0"
+              label="เลือกชื่อนักศึกษา"
+              v-model="selectedRoomBooking"
+              :items="StdNames"
+              item-text="student.fullName"
+              item-value="id"
+            />
+          </v-col>
+        </v-row>
 
-              <v-select
-                v-model="selectedStaff"
-                :items="staff"
-                item-text="name"
-                item-value="id"
-                label="เลือกชื่อผู้ดูแล"
-              ></v-select>
+        <v-row justify="center">
+          <v-col cols="6">
+            <v-select
+              v-model="selectedPackageType"
+              :items="packageTypes"
+              item-text="packageType"
+              item-value="id"
+              label="เลือกประเภทของพัสดุ"
+            />
+          </v-col>
+        </v-row>
 
-              <v-text-field v-model="details" label="โปรดระบุสภาพของพัสดุ"></v-text-field>
+        <v-row justify="center">
+          <v-col cols="6">
+            <v-select
+              v-model="selectedStaff"
+              :items="staff"
+              item-text="name"
+              item-value="id"
+              label="เลือกชื่อผู้ดูแล"
+            />
+          </v-col>
+        </v-row>
 
-              <div class="text-center">
-                <v-btn class="mr-3" color="warning" @click="save">บันทึก</v-btn>
-              </div>
-            </v-card-text>
-          </v-card>
-        </v-col>
-      </v-row>
-    </v-container>
-  </v-content>
+        <v-row justify="center">
+          <v-col cols="6" class="pa-0 mx-2">
+            <v-text-field solo label="โปรดระบุสภาพของพัสดุ" height="80px" v-model="details" />
+          </v-col>
+        </v-row>
+
+        <div class="text-center">
+          <v-btn class="mr-3" color="warning" @click="save">SAVE</v-btn>
+        </div>
+      </v-flex>
+    </v-layout>
+  </v-container>
 </template>
 
   <script>
-import api from "../http-common";
+import api from "../Api";
 
 export default {
   mounted() {
@@ -72,30 +81,29 @@ export default {
   },
   data() {
     return {
-      insRoomNo: undefined,
       staff: [],
       selectedStaff: null,
       details: null,
+      StdNames: [],
       roomNumber: undefined,
 
       roomBooking: [],
       selectedRoomBooking: null,
 
       packageTypes: [],
-      selectedPackageType: null
+      selectedPackageType: undefined
     };
   },
   methods: {
     getAllRoomBooking() {
       api
-        .get("/api/roomBooking/")
+        .get("/api/roombooking/" + this.insRoomNo)
         .then(response => {
-          this.roomBookings = response.data;
-          console.log("Room Booking data have bean loaded.");
+          this.StdNames = response.data;
           console.log(JSON.parse(JSON.stringify(response.data)));
         })
         .catch(e => {
-          console.log("Error in getAllStaffs() : " + e);
+          console.log("Error in getStudentName() :" + e);
         });
     },
     getAllPackageTypes() {
@@ -115,7 +123,7 @@ export default {
       api
         .get("/api/staff/")
         .then(response => {
-          this.staff = response.data;
+          this.staff = JSON.parse(localStorage.getItem("user"));
           console.log("Staff data have bean loaded.");
           console.log(JSON.parse(JSON.stringify(response.data)));
         })
@@ -123,15 +131,15 @@ export default {
           console.log("Error in getAllStaffs() : " + e);
         });
     },
-    getStudentName() {
+    getSearch() {
       api
-        .get("/api/roombooking/" + this.insRoomNo)
+        .get("/api/roombooking/" + this.roomNumber)
         .then(response => {
           this.StdNames = response.data;
           console.log(JSON.parse(JSON.stringify(response.data)));
         })
         .catch(e => {
-          console.log("Error in getStudentName() :" + e);
+          console.log("Error in getSearch() :" + e);
         });
     },
     cancle() {
@@ -139,10 +147,10 @@ export default {
     },
     save() {
       if (
-        !this.details ||
         !this.selectedRoomBooking ||
         !this.selectedPackageType ||
-        !this.selectedStaff
+        !this.selectedStaff ||
+        !this.details
       ) {
         alert("กรุณาระบุข้อมูลให้ครบ!");
       } else {
@@ -157,13 +165,14 @@ export default {
         staffId: this.selectedStaff,
         details: this.details
       };
+      console.log(newelepayload);
       api
-        .post("/packageManagement", newelepayload)
+        .post("/api/packageManagement", newelepayload)
         .then(() => {
           alert("บันทึกข้อมูลสำเร็จ!");
-          this.selectedStaff = null;
           this.selectedPackageType = null;
           this.selectedRoomBooking = null;
+          this.selectedStaff = null;
           this.details = null;
         })
         .catch(e => {
