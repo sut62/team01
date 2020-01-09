@@ -265,6 +265,14 @@ export default {
           click: () => {
             this.$router.push("/borrowedBike");
           }
+        },
+        {
+          icon: "mdi-contacts",
+          role: "student",
+          text: "แจ้งซ่อม",
+          click: () => {
+            this.$router.push("/Repair");
+          }
         }
 
         // { icon: "mdi-history", text: "Frequently contacted" },
