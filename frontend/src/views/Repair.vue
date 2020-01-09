@@ -113,7 +113,7 @@ export default {
     SaveRepair() {
       api
         .post(
-          "/Repair/" +
+          "/api/Repair/" +
             this.selectedStudent +
             "/" +
             this.selectedDeviceType +
@@ -157,7 +157,7 @@ export default {
 
     getAllDeviceTypes() {
       api
-        .get("/DeviceTypes")
+        .get("/api/DeviceTypes")
         .then(response => {
           this.types = response.data;
           console.log("เพิ่มข้อมูล DeviceType แล้ว");
@@ -170,7 +170,7 @@ export default {
 
     getAllDeviceNames() {
       api
-        .get("/DeviceName/" + this.selectedDeviceType)
+        .get("/api/DeviceName/" + this.selectedDeviceType)
         .then(response => {
           this.problems = response.data;
           console.log("ดึงข้อมูล Problem สำเร็จ");
