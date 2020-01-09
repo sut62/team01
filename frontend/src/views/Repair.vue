@@ -2,7 +2,7 @@
         <v-row align="center" justify="center">
           <v-col cols="12" sm="8" md="6">
             <v-alert type="success" dismissible v-model="alertSuccess">บันทึกข้อมูลการแจ้งซ่อมสำเร็จ</v-alert>
-             <v-alert type="error" dismissible v-model="alertFailed">กรุณาเลือกข้อมูลให้ครบทุกช่อง!</v-alert>
+             <v-alert type="error" dismissible v-model="alertFailed">กรุณาใส่ข้อมูลให้ครบทุกช่อง!</v-alert>
             <v-card class="elevation-12">
               <v-toolbar color="primary" light flat>
                 <v-icon dark>mdi-wrench</v-icon>&nbsp;&nbsp;
@@ -97,6 +97,7 @@ export default {
         //alert("กรุณากรอกข้อมูลให้ครบ!");
         this.clearAlert();
         this.alertFailed = true;
+        this.clearCombobox();
       } else {
         this.SaveRepair();
       }
