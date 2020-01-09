@@ -160,20 +160,21 @@ public class SUT62TEAM01 {
 			
 			DeviceName deviceName6 = new DeviceName("ท่อน้ำ",deviceType2);
 			DeviceName deviceName7 = new DeviceName("ก็อกน้ำอ่างล่างหน้า",deviceType2);
-			DeviceName deviceName8 = new DeviceName("ท่อน้ำทิ้ง",deviceType2);
+            DeviceName deviceName8 = new DeviceName("ท่อน้ำทิ้ง",deviceType2);
+            DeviceName deviceName9 = new DeviceName("ชักโครก",deviceType2);
 
-			DeviceName deviceName9 = new  DeviceName("มุ้งลวด",deviceType3);
-			DeviceName deviceName10 = new DeviceName("เตียง",deviceType3);
-			DeviceName deviceName11 = new DeviceName("เพดาน",deviceType3);
-			DeviceName deviceName12 = new DeviceName("ลูกบิดประตู",deviceType3);
-			DeviceName deviceName13 = new DeviceName("ประตูห้องพัก",deviceType3);
-			DeviceName deviceName14 = new DeviceName("บานเกล็ด",deviceType3);
+			DeviceName deviceName10 = new  DeviceName("มุ้งลวด",deviceType3);
+			DeviceName deviceName11 = new DeviceName("เตียง",deviceType3);
+			DeviceName deviceName12 = new DeviceName("เพดาน",deviceType3);
+			DeviceName deviceName13 = new DeviceName("ลูกบิดประตู",deviceType3);
+			DeviceName deviceName14 = new DeviceName("ประตูห้องพัก",deviceType3);
+			DeviceName deviceName15 = new DeviceName("บานเกล็ด",deviceType3);
 			
 
-			DeviceName deviceName15 = new DeviceName("อื่นๆ (โปรดระบุอุปกรณ์ที่เสียในช่องระบุอาการ/ปัญหาที่เกิดขึ้น)",deviceType4);
+			DeviceName deviceName16 = new DeviceName("อื่นๆ (โปรดระบุอุปกรณ์ที่เสียในช่องระบุอาการ/ปัญหาที่เกิดขึ้น)",deviceType4);
 			Stream.of(deviceName1,deviceName2,deviceName3,deviceName4,deviceName5,
 			deviceName6,deviceName7,deviceName8,deviceName9,deviceName10,
-			deviceName11,deviceName12,deviceName13,deviceName14,deviceName15).forEach(deviceName -> {
+			deviceName11,deviceName12,deviceName13,deviceName14,deviceName15,deviceName16).forEach(deviceName -> {
 				deviceNameRepository.save(deviceName); // บันทึก Objcet ชื่อ Customer
 			});
     };
