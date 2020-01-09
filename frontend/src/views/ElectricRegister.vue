@@ -18,16 +18,17 @@
                 label="เลือกชื่อผู้ดูแล"
               ></v-select>
 
-              <v-row >                
-                <v-text-field aria-setsize="5px" 
-                  v-model="roomNumber" 
-                  @keyup.enter="getSearch" 
+              <v-row>
+                <v-text-field
+                  aria-setsize="5px"
+                  v-model="roomNumber"
+                  @keyup.enter="getSearch"
                   label="กรอกหมายเลขห้อง"
-                ></v-text-field> 
+                ></v-text-field>
                 <v-spacer></v-spacer>
                 <v-btn color="primary" @click="getSearch">search</v-btn>
               </v-row>
-              
+
               <v-select
                 v-model="selectedRoomBooking"
                 :items="roomBooking"
@@ -44,9 +45,9 @@
                 label="ประเภทเครื่องใช้ไฟฟ้า"
               ></v-select>
 
-              <v-text-field 
-                v-model="details" 
-                label="กรอกรายละเอียดเครื่องใช้ไฟฟ้า" 
+              <v-text-field
+                v-model="details"
+                label="กรอกรายละเอียดเครื่องใช้ไฟฟ้า"
               ></v-text-field>
 
               <div class="text-Right">
@@ -60,12 +61,12 @@
   </v-content>
 </template>
 
-  <script>
-import api from "../http-common";
+<script>
+import api from "../Api.js";
 export default {
   mounted() {
     this.getAllStaffs();
-    this.getAllElectrictype();    
+    this.getAllElectrictype();
   },
   data() {
     return {
@@ -153,16 +154,16 @@ export default {
         });
     },
 
-    getSearch(){
+    getSearch() {
       api
-      .get("/api/roomBookings/" + this.roomNumber)
-      .then(response => {
-        this.StdNames = response.data;
-        console.log(JSON.parse(JSON.stringify(response.data)));
-      })
-      .catch(e => {
-        console.log("Error in getSearch() :" + e);
-      });
+        .get("/api/roomBookings/" + this.roomNumber)
+        .then(response => {
+          this.StdNames = response.data;
+          console.log(JSON.parse(JSON.stringify(response.data)));
+        })
+        .catch(e => {
+          console.log("Error in getSearch() :" + e);
+        });
     }
   }
 };
