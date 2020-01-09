@@ -15,24 +15,26 @@
                 :items="staff"
                 item-text="name"
                 item-value="id"
-                label="เลือกชื่อผู้ดูแล"
+                label="เลือกชื่อที่ปรึกษาหอพัก"
               ></v-select>
 
-              <v-row>
-                <v-text-field
-                  aria-setsize="5px"
-                  v-model="roomNumber"
-                  @keyup.enter="getSearch"
-                  label="กรอกหมายเลขห้อง"
-                ></v-text-field>
-                <v-spacer></v-spacer>
-                <v-btn color="primary" @click="getSearch">search</v-btn>
+              <v-row align="center" sm="6">
+                <v-col cols="6">
+                  <v-text-field
+                    v-model="roomNumber"
+                    @keyup.enter="getSearch"
+                    label="กรอกหมายเลขห้อง"
+                  ></v-text-field>
+                </v-col>
+                <v-col cols="3">
+                  <v-btn class="yellow lighten-3" @click="getSearch">search</v-btn>
+                </v-col>
               </v-row>
 
               <v-select
                 v-model="selectedRoomBooking"
-                :items="roomBooking"
-                item-text="name"
+                :items="StdNames"
+                item-text="student.fullName"
                 item-value="id"
                 label="เลือกชื่อนักศึกษา"
               ></v-select>
@@ -85,15 +87,7 @@ export default {
   },
   methods: {
     getAllStaffs() {
-      api
-        .get("/api/staff")
-        .then(response => {
-          this.staff = response.data;
-          console.log(JSON.parse(JSON.stringify(response.data)));
-        })
-        .catch(e => {
-          console.log(e);
-        });
+      this.staff = JSON.parse(localStorage.getItem("user"))
     },
 
     Save() {
@@ -104,6 +98,7 @@ export default {
       ) {
         alert("กรุณาเลือกข้อมูลให้ครบ!");
       } else {
+        
         this.SavaData();
       }
     },
@@ -128,8 +123,9 @@ export default {
         staffId: this.selectedStaff,
         details: this.details
       };
+      // console.log(newelepayload)
       api
-        .post("/api/ElectricalRegis", newelepayload)
+        .post("/api/electricRegister", newelepayload)
         .then(() => {
           alert("บันทึกสำเร็จ!");
           this.selectedStaff = null;
@@ -144,7 +140,7 @@ export default {
 
     getAllRoomBooking() {
       api
-        .get("/api/roombookings/")
+        .get("/api/roombooking/")
         .then(response => {
           this.roomBooking = response.data;
           console.log(JSON.parse(JSON.stringify(response.data)));
@@ -156,7 +152,7 @@ export default {
 
     getSearch() {
       api
-        .get("/api/roomBookings/" + this.roomNumber)
+        .get("/api/roombooking/" + this.roomNumber)
         .then(response => {
           this.StdNames = response.data;
           console.log(JSON.parse(JSON.stringify(response.data)));
