@@ -2,8 +2,8 @@
   <v-row align="center" justify="center">
     <v-col cols="12" sm="8" md="6">
       <v-card class="elevation-12">
-        <v-toolbar color="amber" dark flat>
-          <v-toolbar-title>STAFF Sign in</v-toolbar-title>
+        <v-toolbar color="amber" flat>
+          <v-toolbar-title>เข้าสู่ระบบในฐานะที่ปรึกษาหอพัก</v-toolbar-title>
           <v-spacer />
         </v-toolbar>
         <v-card-text>

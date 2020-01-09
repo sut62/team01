@@ -132,9 +132,10 @@
     <v-app-bar
       :clipped-left="$vuetify.breakpoint.lgAndUp"
       app
-      color="blue darken-3"
-      dark
+      :color="appBarColor()"
+      :light="whichColor()"
     >
+      <!-- student: blue darken-3 , staff: amber darken-3 -->
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-btn icon large>
         <v-avatar size="32px" item>
@@ -212,6 +213,7 @@ export default {
   data() {
     return {
       isSignin: undefined,
+      userRole: null,
       user: {},
       dialog: false,
       drawer: null,
@@ -301,11 +303,34 @@ export default {
     this.user = JSON.parse(localStorage.getItem("user"));
     if (this.user) {
       this.isSignin = true;
+      if (this.user.studentId) {
+        // alert("welcome student.");
+        this.userRole = "student";
+      } else {
+        // alert("welcome staff.");
+        this.userRole = "staff";
+      }
     } else {
       this.isSignin = false;
     }
   },
   methods: {
+    whichColor() {
+      if (this.userRole == "staff") {
+        return "false";
+      } else {
+        return "true";
+      }
+    },
+    appBarColor() {
+      if (this.userRole == "staff") {
+        return "amber darken-3";
+      } else if (this.userRole == "student") {
+        return "blue darken-3";
+      } else {
+        return "white";
+      }
+    },
     handleProfile() {
       this.$router.push("/profile");
     },
