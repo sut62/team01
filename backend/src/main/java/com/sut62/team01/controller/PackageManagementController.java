@@ -42,7 +42,7 @@ public class PackageManagementController {
         return packageManagementRepository.findAll().stream().collect(Collectors.toList());
     }
 
-    @PostMapping("/packageManagement/{ROOMBOOKING_ID}/{ELECTRICTYPE_ID}/{STAFF_ID}")
+    @PostMapping("/packageManagement/{ROOMBOOKING_ID}/{PACKAGETYPE_ID}/{STAFF_ID}")
     public PackageManagement Save(PackageManagement newPackageManagement, @PathVariable long ROOMBOOKING_ID,
             @PathVariable long packageType_id, @PathVariable long STAFF_ID) {
 

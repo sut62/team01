@@ -18,7 +18,7 @@ public class PackageManagement {
     @Column(name = "PACKAGEMANAMENT_ID", unique = true, nullable = true, insertable = true)
     private @NotNull long id;
 
-    @OneToOne(fetch = FetchType.EAGER, targetEntity = RoomBooking.class)
+    @ManyToOne(fetch = FetchType.EAGER, targetEntity = RoomBooking.class)
     @JoinColumn(name = "ROOMBOOKING_ID", insertable = true)
     @JsonManagedReference
     private @NotNull RoomBooking roomBooking;
