@@ -9,7 +9,7 @@
         <template v-if="user.studentId">
           <v-list dense>
             <template v-for="item in items">
-              <v-row v-if="item.heading" :key="item.heading" align="center">
+              <!-- <v-row v-if="item.heading" :key="item.heading" align="center">
                 <v-col cols="6">
                   <v-subheader v-if="item.heading">
                     {{ item.heading }}
@@ -45,8 +45,14 @@
                     </v-list-item-title>
                   </v-list-item-content>
                 </v-list-item>
-              </v-list-group>
-              <v-list-item v-else :key="item.text" link @click="item.click">
+              </v-list-group> -->
+              <!-- <v-list-item v-else :key="item.text" link @click="item.click"> -->
+              <v-list-item
+                :key="item.text"
+                link
+                @click="item.click"
+                :disabled="item.disabled"
+              >
                 <v-list-item-action>
                   <v-icon>{{ item.icon }}</v-icon>
                 </v-list-item-action>
@@ -205,8 +211,7 @@
   </v-app>
 </template>
 <script>
-// import HelloWorld from './components/HelloWorld';
-// import Navbar from './components/Navbar'
+import api from "../src/Api";
 export default {
   name: "App",
   components: {},
@@ -320,6 +325,7 @@ export default {
       if (this.user.studentId) {
         // alert("welcome student.");
         this.userRole = "student";
+        this.checkStudentAlreadyBookingRoom();
       } else {
         // alert("welcome staff.");
         this.userRole = "staff";
@@ -329,6 +335,24 @@ export default {
     }
   },
   methods: {
+    checkStudentAlreadyBookingRoom() {
+      let user = JSON.parse(localStorage.getItem("user"));
+      let body = {
+        student_id: user.id
+      };
+      api
+        .post("/api/roombooking/student", JSON.stringify(body))
+        .then(res => {
+          if (res.data) {
+            this.items[1].click = () => {
+              alert("นักศึกษาจองห้องไปแล้ว");
+            };
+          }
+        })
+        .catch(e => {
+          console.log(e);
+        });
+    },
     whichColor() {
       if (!this.userRole) {
         return "white";

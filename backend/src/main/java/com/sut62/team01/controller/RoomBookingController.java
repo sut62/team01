@@ -68,17 +68,16 @@ public class RoomBookingController {
     }
 
     // TODO: BorrowedBikeUI ต้องใช้ => ค้นหานักศึกษาที่เจาะจง ใน RoomBooking;
-    @GetMapping("/roombooking/student")
+    @PostMapping("/roombooking/student")
     public ResponseEntity<?> findRoomBookingWhereStudent(@RequestBody FindStudentPayload payload) {
 
         Optional<Students> student = studentsrepository.findById(payload.getStudent_id());
         if (student.isPresent()) {
             return ResponseEntity.ok().body(roomBookingRepository.findByStudent(student.get()));
         }
-        
 
-            return ResponseEntity.badRequest().body("Error: Incorrect Student_id!");
-        
+        return ResponseEntity.badRequest().body("Error: Incorrect Student_id!");
+
     }
 
     @GetMapping("/roombooking/{roomName}")
