@@ -168,7 +168,10 @@
       <v-btn icon>
         <v-icon>mdi-bell</v-icon>
       </v-btn>
+      <!-- TODO: เพิ่ม Sign in as ให้ Katalon ตรวจจับ assert -->
+
       <template v-if="isSignin">
+        <span>Sign in as</span>
         <template v-if="user.studentId">
           <v-btn text @click="handleProfile">
             {{ user.fullName }}
