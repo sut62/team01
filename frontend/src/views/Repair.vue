@@ -1,9 +1,8 @@
 <template>
-  <v-content>
-    <v-form ref="form">
-      <v-container class="fill-height" fluid>
         <v-row align="center" justify="center">
-          <v-col cols="12" sm="8" md="7">
+          <v-col cols="12" sm="8" md="6">
+            <v-alert type="success" dismissible v-model="alertSuccess">บันทึกข้อมูลการแจ้งยืมเรียบร้อย</v-alert>
+             <v-alert type="error" dismissible v-model="alertFailed">กรุณาเลือกข้อมูลให้ครบทุกช่อง!</v-alert>
             <v-card class="elevation-12">
               <v-toolbar color="primary" light flat>
                 <v-icon dark>mdi-wrench</v-icon>&nbsp;&nbsp;
@@ -20,8 +19,6 @@
                   item-text="student.fullName"
                   item-value="id"
                   label="เลือกชื่อนักศึกษา"
-                  :rules="[v => !!v || 'กรุณาเลือกชื่อนักศึกษา']"
-                  required
                 ></v-select>
 
                 <v-select
@@ -30,8 +27,6 @@
                   item-text="type"
                   item-value="id"
                   label="เลือกประเภทอุปกรณ์ที่ชำรุด"
-                  :rules="[v => !!v || 'กรุณาเลือกประเภทอุปกรณ์ที่ชำรุด']"
-                  required
                 ></v-select>
 
                 <v-select
@@ -40,8 +35,6 @@
                   item-text="name"
                   item-value="id"
                   label="เลือกชื่ออุปกรณ์ที่ชำรุด"
-                  :rules="[v => !!v || 'กรุณาเลือกชื่ออุปกรณ์ที่ชำรุด']"
-                  required
                 ></v-select>
 
                 <v-text-field
@@ -50,8 +43,6 @@
                   item-text="name"
                   item-value="id"
                   label="ระบุอาการ/ปัญหา"
-                  :rules="[v => !!v || 'กรุณาระบุอาการ/ปัญหา']"
-                  required
                 ></v-text-field>
 
                 <div class="text-center">
@@ -63,9 +54,6 @@
             </v-card>
           </v-col>
         </v-row>
-      </v-container>
-    </v-form>
-  </v-content>
 </template>
 <script>
 import api from "../Api.js";
@@ -81,6 +69,8 @@ export default {
       selectedStudent: null,
       selectedDeviceType: null,
       selectedDeviceName: null,
+      alertSuccess: false,
+      alertFailed: false,
       titles: [],
       roomBookings: [],
       types: [],
@@ -104,7 +94,9 @@ export default {
         !this.selectedDeviceType ||
         !this.selectedDeviceName
       ) {
-        alert("กรุณากรอกข้อมูลให้ครบ!");
+        //alert("กรุณากรอกข้อมูลให้ครบ!");
+        this.clearAlert();
+        this.alertFailed = true;
       } else {
         this.SaveRepair();
       }
@@ -122,18 +114,30 @@ export default {
             "/" +
             this.insertList
         )
-        .then(response => {
-          alert("บันทึกข้อมูลสำเร็จ!");
-          console.log(JSON.parse(JSON.stringify(response.data)));
-          this.insertList = null;
-          this.selectedStudent = null;
-          this.selectedDeviceType = null;
-          this.selectedDeviceName = null;
-          this.Resetshow();
-        })
-        .catch(e => {
-          console.log(e);
-        });
+        .then(()=> {
+         // alert("บันทึกข้อมูลสำเร็จ!");
+          //console.log(JSON.parse(JSON.stringify(response.data)));
+          
+         this.clearAlert();
+            // แจ้งเตือนว่าบันทึกเสร็จ
+            this.alertSuccess = true;
+            this.clearCombobox();
+          })
+          .catch(() => {
+            this.clearAlert();
+            this.alertFailed = true;
+          });
+      
+    },
+    clearAlert() {
+      this.alertSuccess = false;
+      this.alertFailed = false;
+    },
+    clearCombobox() {
+     this.insertList = null;
+     this.selectedStudent = null;
+     this.selectedDeviceType = null;
+     this.selectedDeviceName = null;
     },
 
     getSpecificRoomBookings() {
