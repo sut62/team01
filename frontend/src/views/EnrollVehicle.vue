@@ -23,7 +23,7 @@
             label="เลือกชื่อที่ปรึกษาหอพัก"
             v-model="selectedStaffName"
             :items="StaffName"
-            item-text="staffName"
+            item-text="name"
             item-value="id"
             />
           </v-col>
