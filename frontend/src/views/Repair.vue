@@ -1,7 +1,7 @@
 <template>
         <v-row align="center" justify="center">
           <v-col cols="12" sm="8" md="6">
-            <v-alert type="success" dismissible v-model="alertSuccess">บันทึกข้อมูลการแจ้งยืมเรียบร้อย</v-alert>
+            <v-alert type="success" dismissible v-model="alertSuccess">บันทึกข้อมูลการแจ้งซ่อมสำเร็จ</v-alert>
              <v-alert type="error" dismissible v-model="alertFailed">กรุณาเลือกข้อมูลให้ครบทุกช่อง!</v-alert>
             <v-card class="elevation-12">
               <v-toolbar color="primary" light flat>
