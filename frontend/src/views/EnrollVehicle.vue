@@ -107,24 +107,11 @@ export default {
   mounted() {
     this.getStaffName();
     this.getVehicleTypes();
-    // this.checkValiable();
   },
 
   methods: {
-    // getStaffName() {
-    //   api
-    //   .get("/api/staff")
-    //   .then(response => {
-    //     this.Staffs = response.data;
-    //     console.log(JSON.parse(JSON.stringify(response.data)));
-    //   })
-    //   .catch(e => {
-    //     console.log("Error in getStaffName() :" + e);
-    //   });
-    // },
     getStaffName() {
       this.StaffName = JSON.parse(localStorage.getItem("user"));
-      alert(this.StaffName);
     },
     getStudentName() {
       api
@@ -153,7 +140,7 @@ export default {
       if(this.checkValiable()){
         api
         .post(
-          "/enrollVehicle/" +
+          "/api/enrollVehicle/" +
           this.selectedStaffName + "/" + 
           this.selectedVehicleType + "/" +
           this.selectedStdName + "/" +
