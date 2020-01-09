@@ -22,8 +22,8 @@
             <v-select class="pa-0 ma-0"
             label="เลือกชื่อที่ปรึกษาหอพัก"
             v-model="selectedStaffName"
-            :items="Staffs"
-            item-text="staffName"
+            :items="StaffName"
+            item-text="name"
             item-value="id"
             />
           </v-col>
@@ -98,29 +98,33 @@ export default {
       insLcPlate: undefined,
       insVhcBrand: undefined,
       insOtherDetails: undefined,
-      Staffs: [],
+      StaffName: [],
       StdNames: [],
       VehicleTypes: [],
     }
   },
 
   mounted() {
-    // this.getStaffName();
+    this.getStaffName();
     this.getVehicleTypes();
     // this.checkValiable();
   },
 
   methods: {
+    // getStaffName() {
+    //   api
+    //   .get("/api/staff")
+    //   .then(response => {
+    //     this.Staffs = response.data;
+    //     console.log(JSON.parse(JSON.stringify(response.data)));
+    //   })
+    //   .catch(e => {
+    //     console.log("Error in getStaffName() :" + e);
+    //   });
+    // },
     getStaffName() {
-      api
-      .get("/api/staff")
-      .then(response => {
-        this.Staffs = response.data;
-        console.log(JSON.parse(JSON.stringify(response.data)));
-      })
-      .catch(e => {
-        console.log("Error in getStaffName() :" + e);
-      });
+      this.StaffName = JSON.parse(localStorage.getItem("user"));
+      alert(this.StaffName);
     },
     getStudentName() {
       api
@@ -154,7 +158,7 @@ export default {
           this.selectedVehicleType + "/" +
           this.selectedStdName + "/" +
           this.insLcPlate + "/" +
-          this.insRoomNo + "/" +
+          this.insVhcBrand + "/" +
           this.insOtherDetails
         )
         .then(response => {
@@ -169,20 +173,19 @@ export default {
         alert("กรุณากรอกข้อมูลให้ครบ")
       }
     },
-
     checkValiable() {
-    if(
-    !this.selectedStaffName ||
-    !this.selectedStdName ||
-    !this.selectedVehicleType ||
-    !this.insLcPlate || 
-    !this.insVhcBrand ||
-    !this.insOtherDetails) {
-      return false;
-    } else {
-      return true;
+      if(
+      !this.selectedStaffName ||
+      !this.selectedStdName ||
+      !this.selectedVehicleType ||
+      !this.insLcPlate || 
+      !this.insVhcBrand ||
+      !this.insOtherDetails) {
+        return false;
+      } else {
+        return true;
+      }
     }
-  }
   },
 }
 </script>
