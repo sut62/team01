@@ -2,12 +2,8 @@
   <v-row align="center" justify="center">
     <v-col cols="12" sm="8" md="6">
       <!-- TODO: เพิ่มการแจ้งเตือนเพื่อให้ katalon ตรวจจับได้ -->
-      <v-alert type="success" dismissible v-model="alertSuccess">
-        บันทึกข้อมูลการแจ้งยืมเรียบร้อย
-      </v-alert>
-      <v-alert type="error" dismissible v-model="alertFailed">
-        กรุณาเลือกข้อมูลให้ครบทุกช่อง!
-      </v-alert>
+      <v-alert type="success" dismissible v-model="alertSuccess">บันทึกข้อมูลการแจ้งยืมเรียบร้อย</v-alert>
+      <v-alert type="error" dismissible v-model="alertFailed">กรุณาเลือกข้อมูลให้ครบทุกช่อง!</v-alert>
       <v-card class="elevation-12">
         <v-toolbar color="primary" dark flat>
           <v-toolbar-title>ยืมจักรยาน</v-toolbar-title>
@@ -73,30 +69,39 @@ export default {
   },
   methods: {
     handleBorrowBike() {
-      let body = {
-        bikeType_id: this.selectedBikeTypes,
-        roomBooking_id: this.selectedRoomBooking,
-        dateType_id: this.selectedDateType
-      };
+      if (
+        !this.selectedRoomBooking ||
+        !this.selectedBikeTypes ||
+        !this.selectedDateType
+      ) {
+        this.clearAlert();
+        this.alertFailed = true;
+      } else {
+        let body = {
+          bikeType_id: this.selectedBikeTypes,
+          roomBooking_id: this.selectedRoomBooking,
+          dateType_id: this.selectedDateType
+        };
 
-      api
-        .post("/api/borrowedbike", body)
-        .then(() => {
-          // Katalon Recorder จับไม่เจอ ต้องใช้ Katalon Studio
-          // alert("บันทึกข้อมูลการแจ้งยืมเรียบร้อย.");
-          // this.$router.go();
-          //---------------------------------------------
+        api
+          .post("/api/borrowedbike", body)
+          .then(() => {
+            // Katalon Recorder จับไม่เจอ ต้องใช้ Katalon Studio
+            // alert("บันทึกข้อมูลการแจ้งยืมเรียบร้อย.");
+            // this.$router.go();
+            //---------------------------------------------
 
-          // ปิด Alert อันเก่าไปก่อน เดี๋ยวอันใหม่เด้งมาทับ
-          this.clearAlert();
-          // แจ้งเตือนว่าบันทึกเสร็จ
-          this.alertSuccess = true;
-          this.clearCombobox();
-        })
-        .catch(() => {
-          this.clearAlert();
-          this.alertFailed = true;
-        });
+            // ปิด Alert อันเก่าไปก่อน เดี๋ยวอันใหม่เด้งมาทับ
+            this.clearAlert();
+            // แจ้งเตือนว่าบันทึกเสร็จ
+            this.alertSuccess = true;
+            this.clearCombobox();
+          })
+          .catch(() => {
+            this.clearAlert();
+            this.alertFailed = true;
+          });
+      }
     },
     clearAlert() {
       this.alertSuccess = false;
