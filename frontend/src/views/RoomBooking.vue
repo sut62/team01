@@ -1,11 +1,18 @@
 <template>
   <v-row align="center" justify="center">
     <v-col cols="12" sm="8" md="6">
+      <v-alert type="success" dismissible v-model="alertSuccess"
+        >บันทึกข้อมูลสำเร็จ</v-alert
+      >
+      <v-alert type="error" dismissible v-model="alertFailed"
+        >กรุณาเลือกข้อมูลให้ครบทุกช่อง!</v-alert
+      >
       <v-card class="elevation-12">
         <v-toolbar color="primary" dark flat>
           <v-icon large>mdi-home</v-icon>
           <v-toolbar-title>จองห้องพัก</v-toolbar-title>
         </v-toolbar>
+
         <v-card-text>
           <v-select
             v-model="selectedStudents"
@@ -101,12 +108,12 @@ export default {
       api
         .get("/api/roombooking/fronk/" + this.selectedRooms)
         .then(res => {
-          console.log("ห้อง " + this.selectedRooms)
-          console.log(JSON.parse(JSON.stringify(res.data)))
+          console.log("ห้อง " + this.selectedRooms);
+          console.log(JSON.parse(JSON.stringify(res.data)));
           let knh = res.data;
-          console.log("มีคนในห้องทั้งหมด = " + knh.length)
-          if (knh.length >= 3  ){
-            alert ("Room "+this.selectedRooms+" is Full")
+          console.log("มีคนในห้องทั้งหมด = " + knh.length);
+          if (knh.length >= 3) {
+            alert("Room " + this.selectedRooms + " is Full");
           }
         })
         .catch(e => {
@@ -131,15 +138,15 @@ export default {
       this.alertFailed = false;
     },
     registered() {
-     // เพิ่มเข้ามาใหม่
+      // เพิ่มเข้ามาใหม่
       let newelepayload = {
-        Students: this.selectedStudents,
-        Rooms: this.selectedRooms,
-        Branches: this.selectedBranches,
+        student_id: this.selectedStudents,
+        room_id: this.selectedRooms,
+        branche_id: this.selectedBranches
       };
       console.log(newelepayload);
       api
-        .post("/api/roombooking", newelepayload)
+        .post("/api/roombooking/new", newelepayload)
         .then(() => {
           this.clearAlert();
           this.alertSuccess = true;
@@ -150,6 +157,8 @@ export default {
         })
         .catch(e => {
           console.log(e);
+          this.clearAlert();
+          this.alertFailed = true;
         });
     },
     Back() {}

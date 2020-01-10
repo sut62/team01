@@ -28,6 +28,7 @@ import com.sut62.team01.entity.Rooms;
 import com.sut62.team01.entity.RoomBooking;
 import com.sut62.team01.entity.Students;
 import com.sut62.team01.entity.payload.FindStudentPayload;
+import com.sut62.team01.entity.payload.RoomBookingPayload;
 import com.sut62.team01.repository.BranchesRepository;
 import com.sut62.team01.repository.RoomBookingRepository;
 import com.sut62.team01.repository.RoomsRepository;
@@ -67,6 +68,19 @@ public class RoomBookingController {
 
     }
 
+    @PostMapping("/roombooking/new")
+    public RoomBooking newRoomBooking2(@RequestBody RoomBookingPayload r) {
+        RoomBooking newRoomBooking = new RoomBooking();
+        Optional<Students> students = studentsrepository.findById(r.getStudent_id());
+        Optional<Branches> branches = branchesrepository.findById(r.getBranche_id());
+        Optional<Rooms> rooms = roomsrepository.findById(r.getRoom_id());
+
+        newRoomBooking.setStudent(students.get());
+        newRoomBooking.setBranches(branches.get());
+        newRoomBooking.setRooms(rooms.get());
+        return roomBookingRepository.save(newRoomBooking);
+    }
+
     // TODO: BorrowedBikeUI ต้องใช้ => ค้นหานักศึกษาที่เจาะจง ใน RoomBooking;
     @PostMapping("/roombooking/student")
     public ResponseEntity<?> findRoomBookingWhereStudent(@RequestBody FindStudentPayload payload) {
@@ -79,13 +93,15 @@ public class RoomBookingController {
         return ResponseEntity.badRequest().body("Error: Incorrect Student_id!");
 
     }
-    //ค้นหาห้องด้วย ชื่อห้อง (7133)
+
+    // ค้นหาห้องด้วย ชื่อห้อง (7133)
     @GetMapping("/roombooking/{roomName}")
     List<RoomBooking> findRoomNo(@PathVariable String roomName) {
         Rooms room = roomsrepository.findByRoomId(roomName);
         return roomBookingRepository.findByRooms(room);
     }
-    //ค้นหาห้องด้วย ไอดีห้อง (33)
+
+    // ค้นหาห้องด้วย ไอดีห้อง (33)
     @GetMapping("/roombooking/fronk/{x}")
     List<RoomBooking> findRoomNo2(@PathVariable Long x) {
         Optional<Rooms> room = roomsrepository.findById(x);
