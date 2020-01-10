@@ -3,6 +3,8 @@
     <v-container class="fill-height" fluid>
       <v-row align="center" justify="center">
         <v-col cols="12" sm="8" md="6">
+          <v-alert type="success" dismissible v-model="alertSuccess">บันทึกข้อมูลการแจ้งยืมเรียบร้อย</v-alert>
+          <v-alert type="error" dismissible v-model="alertFailed">กรุณาเลือกข้อมูลให้ครบทุกช่อง!</v-alert>
           <v-card class="elevation-12">
             <v-toolbar color="amber" light flat>
               <v-icon>mdi-paper-roll</v-icon>&nbsp;&nbsp;
@@ -96,7 +98,9 @@ export default {
         !this.selectedElectrictype ||
         !this.selectedRoomBooking
       ) {
-        alert("กรุณาเลือกข้อมูลให้ครบ!");
+        this.clearAlert();
+        this.alertFailed = true;
+        // alert("กรุณาเลือกข้อมูลให้ครบ!");
       } else {
         
         this.SavaData();
@@ -127,7 +131,9 @@ export default {
       api
         .post("/api/electricRegister", newelepayload)
         .then(() => {
-          alert("บันทึกสำเร็จ!");
+          this.clearAlert();
+          this.alertSuccess = true;
+          // alert("บันทึกสำเร็จ!");
           this.selectedStaff = null;
           this.selectedElectrictype = null;
           this.selectedRoomBooking = null;
@@ -148,6 +154,11 @@ export default {
         .catch(e => {
           console.log(e);
         });
+    },
+
+    clearAlert() {
+      this.alertSuccess = false;
+      this.alertFailed = false;
     },
 
     getSearch() {
