@@ -140,6 +140,7 @@ export default {
           this.selectedElectrictype = null;
           this.selectedRoomBooking = null;
           this.details = null;
+          this.roomNumber = null;
         })
         .catch(e => {
           console.log(e);
