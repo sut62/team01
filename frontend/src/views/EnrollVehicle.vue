@@ -162,8 +162,14 @@ export default {
         )
         .then(response => {
           console.log(response.data);
-          // location.reload();
-          // alert("บันทึกสำเร็จ");
+          this.selectedStaffName = null;
+          this.selectedStdName = null;
+          this.selectedVehicleType = null;
+          this.insRoomNo = null;
+          this.insLcPlate = null;
+          this.insVhcBrand = null;
+          this.insOtherDetails = null;
+          
           this.clearAlert();
           this.alertSuccess = true
         })
