@@ -57,7 +57,7 @@
               :items="staff"
               item-text="name"
               item-value="id"
-              label="เลือกชื่อผู้ดูแล"
+              label="เลือกชื่อที่ปรึกษาหอพัก"
             />
           </v-col>
         </v-row>
