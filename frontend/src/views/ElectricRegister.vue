@@ -79,6 +79,8 @@ export default {
       details: null,
       StdNames: [],
       roomNumber: undefined,
+      alertSuccess: false,
+      alertFailed: false,
 
       roomBooking: [],
       selectedRoomBooking: null,
