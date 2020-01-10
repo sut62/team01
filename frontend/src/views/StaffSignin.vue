@@ -61,7 +61,7 @@ export default {
         .post("/auth/staff/signin", JSON.stringify(user))
         .then(res => {
           let user = res.data;
-          alert("Signin successfully..." + user.username);
+          // alert("Signin successfully..." + user.username);
           localStorage.setItem("user", JSON.stringify(user));
           this.$router.go("/home");
         })
