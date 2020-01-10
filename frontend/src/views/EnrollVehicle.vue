@@ -2,6 +2,12 @@
   <v-container>
     <v-layout text-center wrap>
       <v-flex xs3 sm6 md9 lg12>
+        <v-row align="center" justify="center">
+          <v-col cols="12" sm="8" md="6">
+            <v-alert type="success" dismissible v-model="alertSuccess">บันทึกข้อมูลสำเร็จ</v-alert>
+            <v-alert type="error" dismissible v-model="alertFailed">กรุณาระบุข้อมูลให้ครบ!</v-alert>
+          </v-col>
+        </v-row>
         <br />
         <h1 class="display-2 font-weight-bold mb-3">Enroll Vehicle</h1>
 
@@ -78,7 +84,7 @@
 
         <v-row justify="center">
           <v-col cols="6" class="pa-0 mx-2">
-            <v-btn @click="enrollVehicle" class="light-blue accent-4">ENROLL</v-btn>
+            <v-btn @click="checkValiable" class="light-blue accent-4">ENROLL</v-btn>
           </v-col>
         </v-row>
       </v-flex>
@@ -94,13 +100,18 @@ export default {
       selectedStaffName: undefined,
       selectedStdName: undefined,
       selectedVehicleType: undefined,
+
       insRoomNo: undefined,
       insLcPlate: undefined,
       insVhcBrand: undefined,
       insOtherDetails: undefined,
+      
       StaffName: [],
       StdNames: [],
       VehicleTypes: [],
+
+      alertFailed: false,
+      alertSuccess: false,
     }
   },
 
@@ -113,6 +124,7 @@ export default {
     getStaffName() {
       this.StaffName = JSON.parse(localStorage.getItem("user"));
     },
+
     getStudentName() {
       api
       .get("/api/roombooking/" + this.insRoomNo)
@@ -124,6 +136,7 @@ export default {
         console.log("Error in getStudentName() :" + e);
       });
     },
+    
     getVehicleTypes() {
       api
       .get("/api/vehicleTypes")
@@ -135,9 +148,8 @@ export default {
         console.log("Error in getVehicleTypes() :" + e);
       });
     },
+    
     enrollVehicle() {
-      
-      if(this.checkValiable()){
         api
         .post(
           "/api/enrollVehicle/" +
@@ -150,16 +162,16 @@ export default {
         )
         .then(response => {
           console.log(response.data);
-          location.reload();
-          alert("บันทึกสำเร็จ");
+          // location.reload();
+          // alert("บันทึกสำเร็จ");
+          this.clearAlert();
+          this.alertSuccess = true
         })
         .catch(e => {
           console.log(e);
         });
-      } else {
-        alert("กรุณากรอกข้อมูลให้ครบ")
-      }
     },
+
     checkValiable() {
       if(
       !this.selectedStaffName ||
@@ -168,11 +180,17 @@ export default {
       !this.insLcPlate || 
       !this.insVhcBrand ||
       !this.insOtherDetails) {
-        return false;
+        this.clearAlert();
+        this.alertFailed = true;
       } else {
-        return true;
+        this.enrollVehicle();
       }
-    }
+    },
+
+    clearAlert() {
+      this.alertSuccess = false;
+      this.alertFailed = false;
+    },
   },
 }
 </script>
