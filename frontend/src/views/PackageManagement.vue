@@ -1,5 +1,11 @@
 <template>
   <v-container>
+    <v-row align="center" justify="center">
+      <v-col cols="12" sm="8" md="6">
+        <v-alert type="success" dismissible v-model="alertSuccess">บันทึกข้อมูลสำเร็จ</v-alert>
+        <v-alert type="error" dismissible v-model="alertFailed">กรุณาระบุข้อมูลให้ครบ!</v-alert>
+      </v-col>
+    </v-row>
     <v-layout text-center wrap>
       <v-flex xs3 sm6 md9 lg12>
         <br />
@@ -71,7 +77,7 @@
 </template>
 
   <script>
-import api from "../Api";
+import api from "../Api.js";
 
 export default {
   mounted() {
@@ -91,7 +97,9 @@ export default {
       selectedRoomBooking: null,
 
       packageTypes: [],
-      selectedPackageType: undefined
+      selectedPackageType: undefined,
+      alertSuccess: false,
+      alertFailed: false
     };
   },
   methods: {
@@ -131,6 +139,10 @@ export default {
           console.log("Error in getAllStaffs() : " + e);
         });
     },
+    clearAlert() {
+      this.alertSuccess = false;
+      this.alertFailed = false;
+    },
     getSearch() {
       api
         .get("/api/roombooking/" + this.roomNumber)
@@ -152,7 +164,9 @@ export default {
         !this.selectedStaff ||
         !this.details
       ) {
-        alert("กรุณาระบุข้อมูลให้ครบ!");
+        this.clearAlert();
+        this.alertFailed = true;
+        //alert("กรุณาระบุข้อมูลให้ครบ!");
       } else {
         this.checksave();
       }
@@ -169,7 +183,10 @@ export default {
       api
         .post("/api/packageManagement", newelepayload)
         .then(() => {
-          alert("บันทึกข้อมูลสำเร็จ!");
+          this.clearAlert();
+          this.alertSuccess = true;
+          //alert("บันทึกข้อมูลสำเร็จ!");
+          this.roomNumber = null;
           this.selectedPackageType = null;
           this.selectedRoomBooking = null;
           this.selectedStaff = null;
