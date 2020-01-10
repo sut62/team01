@@ -63,7 +63,9 @@ export default {
       selectedBranches: null,
       Students: [],
       Rooms: [],
-      Branches: []
+      Branches: [],
+      alertSuccess: false,
+      alertFailed: false
     };
   },
   methods: {
@@ -117,27 +119,34 @@ export default {
         !this.selectedRooms ||
         !this.selectedBranches
       ) {
-        alert("กรุณากรอกข้อมูลให้ครบถ้วน!");
+        this.clearAlert();
+        this.alertFailed = true;
+        // alert("กรุณาเลือกข้อมูลให้ครบ!");
       } else {
         this.registered();
       }
     },
+    clearAlert() {
+      this.alertSuccess = false;
+      this.alertFailed = false;
+    },
     registered() {
+     // เพิ่มเข้ามาใหม่
+      let newelepayload = {
+        Students: this.selectedStudents,
+        Rooms: this.selectedRooms,
+        Branches: this.selectedBranches,
+      };
+      console.log(newelepayload);
       api
-        .post(
-          "/api/roombooking" +
-            "/" +
-            this.selectedStudents +
-            "/" +
-            this.selectedRooms +
-            "/" +
-            this.selectedBranches +
-            "/"
-        )
+        .post("/api/roombooking", newelepayload)
         .then(() => {
-          alert("จองห้องพักสำเร็จ!");
-          this.$router.push("/home");
-          this.$router.go("/home");
+          this.clearAlert();
+          this.alertSuccess = true;
+          //alert("บันทึกข้อมูลสำเร็จ!");
+          this.selectedStudents = null;
+          this.selectedRooms = null;
+          this.selectedBranches = null;
         })
         .catch(e => {
           console.log(e);
