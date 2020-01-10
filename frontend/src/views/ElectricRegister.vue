@@ -3,8 +3,8 @@
     <v-container class="fill-height" fluid>
       <v-row align="center" justify="center">
         <v-col cols="12" sm="8" md="6">
-          <v-alert type="success" dismissible v-model="alertSuccess">บันทึกข้อมูลการแจ้งยืมเรียบร้อย</v-alert>
-          <v-alert type="error" dismissible v-model="alertFailed">กรุณาเลือกข้อมูลให้ครบทุกช่อง!</v-alert>
+          <v-alert type="success" dismissible v-model="alertSuccess">บันทึกสำเร็จ</v-alert>
+          <v-alert type="error" dismissible v-model="alertFailed">กรุณาเลือกข้อมูลให้ครบ!</v-alert>
           <v-card class="elevation-12">
             <v-toolbar color="amber" light flat>
               <v-icon>mdi-paper-roll</v-icon>&nbsp;&nbsp;
@@ -29,7 +29,7 @@
                   ></v-text-field>
                 </v-col>
                 <v-col cols="3">
-                  <v-btn class="yellow lighten-3" @click="getSearch">search</v-btn>
+                  <v-btn class="yellow lighten-3" @click="getSearch">ค้นหา</v-btn>
                 </v-col>
               </v-row>
 
@@ -55,7 +55,7 @@
               ></v-text-field>
 
               <div class="text-Right">
-                <v-btn color="warning" @click="Save">Save</v-btn>
+                <v-btn color="warning" @click="Save">บันทึก</v-btn>
               </div>
             </v-card-text>
           </v-card>
@@ -79,6 +79,8 @@ export default {
       details: null,
       StdNames: [],
       roomNumber: undefined,
+      alertSuccess: false,
+      alertFailed: false,
 
       roomBooking: [],
       selectedRoomBooking: null,
@@ -138,6 +140,7 @@ export default {
           this.selectedElectrictype = null;
           this.selectedRoomBooking = null;
           this.details = null;
+          this.roomNumber = null;
         })
         .catch(e => {
           console.log(e);
@@ -173,5 +176,6 @@ export default {
         });
     }
   }
+  
 };
 </script>
