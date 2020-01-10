@@ -29,7 +29,7 @@
                   ></v-text-field>
                 </v-col>
                 <v-col cols="3">
-                  <v-btn class="yellow lighten-3" @click="getSearch">search</v-btn>
+                  <v-btn class="yellow lighten-3" @click="getSearch">ค้นหา</v-btn>
                 </v-col>
               </v-row>
 
@@ -55,7 +55,7 @@
               ></v-text-field>
 
               <div class="text-Right">
-                <v-btn color="warning" @click="Save">Save</v-btn>
+                <v-btn color="warning" @click="Save">บันทึก</v-btn>
               </div>
             </v-card-text>
           </v-card>
