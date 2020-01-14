@@ -3,6 +3,7 @@ package com.sut62.team01.entity;
 import java.util.Date;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -23,19 +24,23 @@ public class BorrowedBike {
 
     @ManyToOne
     @JoinColumn(name = "BIKETYPE_ID")
-    // @JsonIgnore
+    @JsonManagedReference
+    @NotNull
     private BikeType bikeType;
 
     // TODO: Change student_id to roomBooking_id
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = RoomBooking.class)
-    @JoinColumn(name = "ROOMBOOKING_ID", insertable = true)
+    @JoinColumn(name = "ROOMBOOKING_ID")
     @JsonManagedReference
+    @NotNull
     private RoomBooking roomBooking;
 
     @ManyToOne
     @JoinColumn(name = "DATE_TYPE_ID")
-    // @JsonIgnore
+    @JsonManagedReference
+    @NotNull
     private DateType dateType;
 
+    @NotNull
     private Date requestDate;
 }

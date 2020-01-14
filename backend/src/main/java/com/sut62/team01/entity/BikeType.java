@@ -1,7 +1,7 @@
 package com.sut62.team01.entity;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import lombok.Data;
 
@@ -18,7 +18,7 @@ public class BikeType {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
+    @NotNull
     private String type;
 
     public BikeType() {
@@ -27,7 +27,5 @@ public class BikeType {
     public BikeType(String type) {
         this.type = type;
     }
-    // @OneToMany(mappedBy = "bikeType", cascade = CascadeType.ALL)
-    // private Set<BorrowedBike> borrowedBikes;
 
 }
