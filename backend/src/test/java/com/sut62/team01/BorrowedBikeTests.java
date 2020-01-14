@@ -142,6 +142,7 @@ public class BorrowedBikeTests {
         assertEquals("must not be null", result.iterator().next().getMessage());
         assertEquals("bikeType", result.iterator().next().getPropertyPath().toString());
     }
+    
 
     @Test
     void b6000783_testRoomBookingMustNotBeNull() {
