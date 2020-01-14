@@ -12,12 +12,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
 
 @Data
 @Entity
@@ -29,19 +29,19 @@ public class EnrollVehicle {
     @SequenceGenerator(name="enroll_vehicle_seq",sequenceName="enroll_vehicle_seq")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="enroll_vehicle_seq")
     @Column(name = "ENROLL_VEHICLE_ID", unique = true, nullable = true)
-    private @NonNull Long id;
+    private @NotNull Long id;
 
     @Column(name = "ENROLL_DATE")
-    private @NonNull Date enrollDate;
+    private @NotNull Date enrollDate;
 
     @Column(name = "LICENSE_PLATE")
-    private @NonNull String licensePlate;
+    private @NotNull String licensePlate;
 
     @Column(name = "BRAND_NAME")
-    private @NonNull String brandName;
+    private @NotNull String brandName;
 
     @Column(name = "OTHER_DETAILS")
-    private @NonNull String otherDetails;
+    private @NotNull String otherDetails;
 
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = VehicleType.class)
     @JoinColumn(name = "VEHICLE_TYPE_ID", insertable = true)
