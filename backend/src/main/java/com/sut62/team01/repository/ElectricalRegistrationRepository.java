@@ -8,7 +8,7 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 @RepositoryRestResource
 public interface ElectricalRegistrationRepository extends JpaRepository<ElectricalRegistration, Long> {
-    ElectricalRegistration findById(long id);
+    // ElectricalRegistration findById(long id);
 
     ElectricalRegistration findByRoomBooking(RoomBooking roomBooking);
 }
