@@ -59,6 +59,7 @@ public class DateTypeTests {
         // ต้องมี 1 error
         assertEquals(1,result.size());
         assertEquals("must not be null",result.iterator().next().getMessage());
+        assertEquals("type",result.iterator().next().getPropertyPath().toString());
     }
 
 }
