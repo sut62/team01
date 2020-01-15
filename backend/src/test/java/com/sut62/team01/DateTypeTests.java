@@ -5,10 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.Optional;
 import java.util.Set;
 
-import javax.validation.ConstraintViolation;
-import javax.validation.Validation;
-import javax.validation.Validator;
-import javax.validation.ValidatorFactory;
+import javax.validation.*;
 
 import com.sut62.team01.entity.DateType;
 import com.sut62.team01.repository.DateTypeRepository;
@@ -23,6 +20,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
  */
 @DataJpaTest
 public class DateTypeTests {
+
 
     private Validator validator;
 
@@ -61,5 +59,25 @@ public class DateTypeTests {
         assertEquals("must not be null",result.iterator().next().getMessage());
         assertEquals("type",result.iterator().next().getPropertyPath().toString());
     }
+
+    @Test
+    void b6000783_testTypeMustBeGreaterEqual5(){
+        DateType dateType1 = new DateType();
+        dateType1.setType("1234");
+        Set<ConstraintViolation<DateType>> result = validator.validate(dateType1);
+        assertEquals(1,result.size());
+        assertEquals("size must be between 5 and 20",result.iterator().next().getMessage());
+        assertEquals("type",result.iterator().next().getPropertyPath().toString());
+    }
+    @Test
+    void b6000783_testTypeMustBeLessEqual20(){
+        DateType dateType1 = new DateType();
+        dateType1.setType("123456789012345678901");
+        Set<ConstraintViolation<DateType>> result = validator.validate(dateType1);
+        assertEquals(1,result.size());
+        assertEquals("size must be between 5 and 20",result.iterator().next().getMessage());
+        assertEquals("type",result.iterator().next().getPropertyPath().toString());
+    }
+
 
 }
