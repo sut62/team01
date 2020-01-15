@@ -43,11 +43,27 @@ public class BikeTypeTests {
     void b6000783_testTypeMustNotBeNull() {
         BikeType bikeType = new BikeType();
         bikeType.setType(null);
-
         Set<ConstraintViolation<BikeType>> result = validator.validate(bikeType);
         assertEquals(1, result.size());
-
         assertEquals("must not be null", result.iterator().next().getMessage());
+        assertEquals("type", result.iterator().next().getPropertyPath().toString());
+    }
+    @Test
+    void b6000783_testTypeMustBeGreaterEqual5() {
+        BikeType bikeType = new BikeType();
+        bikeType.setType("1234");
+        Set<ConstraintViolation<BikeType>> result = validator.validate(bikeType);
+        assertEquals(1, result.size());
+        assertEquals("size must be between 5 and 30", result.iterator().next().getMessage());
+        assertEquals("type", result.iterator().next().getPropertyPath().toString());
+    }
+    @Test
+    void b6000783_testTypeMustBeLessEqual30() {
+        BikeType bikeType = new BikeType();
+        bikeType.setType("1234567890123456789012345678901");
+        Set<ConstraintViolation<BikeType>> result = validator.validate(bikeType);
+        assertEquals(1, result.size());
+        assertEquals("size must be between 5 and 30", result.iterator().next().getMessage());
         assertEquals("type", result.iterator().next().getPropertyPath().toString());
     }
 }

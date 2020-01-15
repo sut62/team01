@@ -110,6 +110,36 @@ public class BorrowedBikeTests {
         assertEquals("must not be null", result.iterator().next().getMessage());
         assertEquals("requestDate", result.iterator().next().getPropertyPath().toString());
     }
+    @Test
+    void b6000783_testDateTypeMustNotBeNull() {
+        // จำลองข้อมูลที่จำเป็นในการบันทึก BorrowedBike
+        BikeType bikeType = new BikeType("จักรยานล้อเดียว");
+        bikeType = bikeTypeRepository.saveAndFlush(bikeType);
+        DateType dateType = new DateType("ยืมแป๊ปเดียว");
+        dateType = dateTypeRepository.saveAndFlush(dateType);
+        Students students = new Students("Pontep Thaweesup", "B6000783", "pontep", "1234");
+        students = studentsRepository.saveAndFlush(students);
+        Rooms rooms = new Rooms("7133");
+        rooms = roomsRepository.saveAndFlush(rooms);
+        Branches branches = new Branches("What's branch?");
+        branches = branchesRepository.saveAndFlush(branches);
+        RoomBooking roomBooking = new RoomBooking(students, rooms, branches);
+        roomBooking = roomBookingRepository.saveAndFlush(roomBooking);
+
+        // สร้าง borrowedBike และ set ค่าต่างๆ
+        BorrowedBike borrowedBike = new BorrowedBike();
+        borrowedBike.setBikeType(bikeType);
+        borrowedBike.setDateType(null);
+        borrowedBike.setRoomBooking(roomBooking);
+        borrowedBike.setRequestDate(new Date());
+        // validate borrowedBike
+        Set<ConstraintViolation<BorrowedBike>> result = validator.validate(borrowedBike);
+        // ต้องมี 1 Error
+        assertEquals(1, result.size());
+        // error message ตรงชนิด และ ถูก field
+        assertEquals("must not be null", result.iterator().next().getMessage());
+        assertEquals("dateType", result.iterator().next().getPropertyPath().toString());
+    }
 
     @Test
     void b6000783_testBikeTypeMustNotBeNull() {
