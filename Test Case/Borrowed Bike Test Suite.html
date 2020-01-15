@@ -46,5 +46,41 @@
 <tr><td>assertText</td><td>xpath=(.//*[normalize-space(text()) and normalize-space(.)='นายพรเทพ ทวีทรัพย์'])[2]/following::div[10]<datalist><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='นายพรเทพ ทวีทรัพย์'])[2]/following::div[10]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Sign in as'])[1]/following::div[10]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='กรุณาเลือกข้อมูลให้ครบทุกช่อง!'])[1]/preceding::div[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='ยืมจักรยาน'])[2]/preceding::div[4]</option><option>xpath=//*/text()[normalize-space(.)='บันทึกข้อมูลการแจ้งยืมเรียบร้อย']/parent::*</option><option>//div[@id='inspire']/div[4]/main/div/div/div/div/div/div/div/div</option><option>//div/div/div/div/div/div/div/div</option><option>css=div.v-alert__content</option></datalist></td><td>บันทึกข้อมูลการแจ้งยืมเรียบร้อย</td>
 </tr>
 </tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Borrowed Bike Test Failed Case</td></tr>
+</thead>
+<tbody>
+<tr><td>open</td><td>http://localhost:8080/signin<datalist><option>http://localhost:8080/signin</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>id=input-30<datalist><option>id=input-30</option><option>name=login</option><option>//input[@id='input-30']</option><option>//div[@id='inspire']/div/main/div/div/div/div/div/div/div/form/div/div[2]/div/div/input</option><option>//div[2]/div/div/input</option><option>css=#input-30</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=input-30<datalist><option>id=input-30</option><option>name=login</option><option>//input[@id='input-30']</option><option>//div[@id='inspire']/div/main/div/div/div/div/div/div/div/form/div/div[2]/div/div/input</option><option>//div[2]/div/div/input</option><option>css=#input-30</option></datalist></td><td>pontep</td>
+</tr>
+<tr><td>type</td><td>id=password<datalist><option>id=password</option><option>name=password</option><option>//input[@id='password']</option><option>//div[@id='inspire']/div/main/div/div/div/div/div/div/div/form/div[2]/div[2]/div/div/input</option><option>//div[2]/div[2]/div/div/input</option><option>css=#password</option></datalist></td><td>1234</td>
+</tr>
+<tr><td>click</td><td>xpath=(//button[@type='button'])[5]<datalist><option>xpath=(//button[@type='button'])[5]</option><option>//div[@id='inspire']/div/main/div/div/div/div/div/div/div[2]/button</option><option>//div[2]/button</option><option>css=button.v-btn.v-btn--contained.theme--light.v-size--default.primary</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>//div[@id='inspire']/div/header/div/span<datalist><option>//div[@id='inspire']/div/header/div/span</option><option>//div/span</option><option>css=div.v-toolbar__content &gt; span</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>//div[@id='inspire']/div/header/div/span<datalist><option>//div[@id='inspire']/div/header/div/span</option><option>//div/span</option><option>css=div.v-toolbar__content &gt; span</option></datalist></td><td>Sign in as</td>
+</tr>
+<tr><td>click</td><td>//div[@id='inspire']/div/nav/div/div/div[3]/div[2]/div<datalist><option>//div[@id='inspire']/div/nav/div/div/div[3]/div[2]/div</option><option>//div[3]/div[2]/div</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>xpath=(.//*[normalize-space(text()) and normalize-space(.)='เลือกนักศึกษาที่จองห้องแล้ว'])[1]/following::div[1]<datalist><option>//div[@id='inspire']/div[2]/main/div/div/div/div/div/div[3]/div/form/div/div/div/div/div</option><option>//form/div/div/div/div/div</option><option>css=div.v-select__selections</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='เลือกนักศึกษาที่จองห้องแล้ว'])[1]/following::div[1]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>id=นายพรเทพ-ทวีทรัพย์-list-item-94<datalist><option>id=นายพรเทพ-ทวีทรัพย์-list-item-94</option><option>//div[@id='นายพรเทพ-ทวีทรัพย์-list-item-94']</option><option>xpath=(//div[@id='list-72']/div/div/div)[2]</option><option>//div/div/div/div/div/div/div</option><option>css=#นายพรเทพ-ทวีทรัพย์-list-item-94</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>xpath=(.//*[normalize-space(text()) and normalize-space(.)='เลือกประเภทจักรยาน'])[1]/following::div[1]<datalist><option>//div[@id='inspire']/div[3]/main/div/div/div/div/div/div[3]/div/form/div[2]/div/div/div/div</option><option>//form/div[2]/div/div/div/div</option><option>css=div.v-input.v-input--is-focused.theme--light.v-text-field.v-text-field--is-booted.v-text-field--enclosed.v-text-field--outlined.v-select.v-select--is-menu-active.primary--text &gt; div.v-input__control &gt; div.v-input__slot &gt; div.v-select__slot &gt; div.v-select__selections</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='เลือกประเภทจักรยาน'])[1]/following::div[1]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>id=จักรยาน-2-ล้อ-สำหรับคนเดียว-list-item-97<datalist><option>id=จักรยาน-2-ล้อ-สำหรับคนเดียว-list-item-97</option><option>//div[@id='จักรยาน-2-ล้อ-สำหรับคนเดียว-list-item-97']</option><option>xpath=(//div[@id='list-79']/div/div/div)[2]</option><option>//div/div/div/div/div/div/div</option><option>css=#จักรยาน-2-ล้อ-สำหรับคนเดียว-list-item-97</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>//div[@id='inspire']/div[3]/main/div/div/div/div/div/div[3]/div[2]/button/span<datalist><option>//div[@id='inspire']/div[3]/main/div/div/div/div/div/div[3]/div[2]/button/span</option><option>//div[2]/button/span</option><option>css=button.v-btn.v-btn--contained.theme--light.v-size--default.primary &gt; span.v-btn__content</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>//div[@id='inspire']/div[3]/main/div/div/div/div/div/div[2]/div/div<datalist><option>//div[@id='inspire']/div[3]/main/div/div/div/div/div/div[2]/div/div</option><option>//div/div/div/div/div/div[2]/div/div</option><option>css=div.v-alert.v-sheet.theme--dark.error &gt; div.v-alert__wrapper &gt; div.v-alert__content</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>//div[@id='inspire']/div[3]/main/div/div/div/div/div/div[2]/div/div<datalist><option>//div[@id='inspire']/div[3]/main/div/div/div/div/div/div[2]/div/div</option><option>//div/div/div/div/div/div[2]/div/div</option><option>css=div.v-alert.v-sheet.theme--dark.error &gt; div.v-alert__wrapper &gt; div.v-alert__content</option></datalist></td><td>กรุณาเลือกข้อมูลให้ครบทุกช่อง!</td>
+</tr>
+</tbody></table>
 </body>
 </html>

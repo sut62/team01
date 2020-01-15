@@ -1,21 +1,17 @@
 package com.sut62.team01.controller;
 
 import java.util.Date;
-import java.util.List;
 import java.util.Optional;
 
 import com.sut62.team01.entity.BikeType;
 import com.sut62.team01.entity.BorrowedBike;
 import com.sut62.team01.entity.DateType;
 import com.sut62.team01.entity.RoomBooking;
-// import com.sut62.team01.entity.Student;
 import com.sut62.team01.entity.payload.BorrowedBikeRequest;
-import com.sut62.team01.entity.payload.LoginRequest;
 import com.sut62.team01.repository.BikeTypeRepository;
 import com.sut62.team01.repository.BorrowedBikeRepository;
 import com.sut62.team01.repository.DateTypeRepository;
 import com.sut62.team01.repository.RoomBookingRepository;
-// import com.sut62.team01.repository.StudentRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -27,9 +23,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-/**
- * BorrowedBikeController
- */
 @CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api")
