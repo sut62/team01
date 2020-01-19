@@ -1,0 +1,487 @@
+package com.sut62.team01;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.util.Date;
+import java.util.Optional;
+import java.util.Set;
+
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.Validator;
+import javax.validation.ValidatorFactory;
+
+import com.sut62.team01.entity.Branches;
+import com.sut62.team01.entity.EnrollVehicle;
+import com.sut62.team01.entity.RoomBooking;
+import com.sut62.team01.entity.Rooms;
+import com.sut62.team01.entity.Staff;
+import com.sut62.team01.entity.Students;
+import com.sut62.team01.entity.VehicleType;
+import com.sut62.team01.repository.BranchesRepository;
+import com.sut62.team01.repository.EnrollVehicleRepository;
+import com.sut62.team01.repository.RoomBookingRepository;
+import com.sut62.team01.repository.RoomsRepository;
+import com.sut62.team01.repository.StaffRepository;
+import com.sut62.team01.repository.StudentsRepository;
+import com.sut62.team01.repository.VehicleTypeRepository;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+
+@DataJpaTest
+public class EnrollVehicleTests {
+    private Validator validator;
+
+    @Autowired
+    private EnrollVehicleRepository enrollVehicleRepository;
+
+    @Autowired
+    private VehicleTypeRepository vehicleTypeRepository;
+
+    @Autowired
+    private StaffRepository staffRepository;
+
+    @Autowired
+    private StudentsRepository studentsRepository;
+
+    @Autowired
+    private RoomBookingRepository roomBookingRepository;
+
+    @Autowired
+    private BranchesRepository branchesRepository;
+
+    @Autowired
+    private RoomsRepository roomsRepository;
+
+    @BeforeEach
+    public void setup() {
+        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+        validator = factory.getValidator();
+    }
+
+    @Test
+    void b6025502_testInsertDataToEnrollVehicleIsWork() {
+        // จำลองข้อมูลในการบันทึก EnrollVehicle
+        VehicleType v_type = new VehicleType();
+        v_type.setType("รถยนต์");
+        v_type = vehicleTypeRepository.saveAndFlush(v_type);
+        Staff staff = new Staff("Natthawut Sunthornrot", "black", "asd123");
+        staff = staffRepository.saveAndFlush(staff);
+        Students students = new Students("Natthawut Sunthornrot", "B6025502", "black", "asdasd");
+        students = studentsRepository.saveAndFlush(students);
+        Rooms rooms = new Rooms("7133");
+        rooms = roomsRepository.saveAndFlush(rooms);
+        Branches branches = new Branches("What's branch?");
+        branches = branchesRepository.saveAndFlush(branches);
+        RoomBooking rbk = new RoomBooking(students, rooms, branches);
+        rbk = roomBookingRepository.saveAndFlush(rbk);
+        
+        // สร้าง EnrollVehice และ setter ทุก field ของ EnrollVehicle
+        EnrollVehicle en_Vehicle = new EnrollVehicle();
+        en_Vehicle.setEnrollDate(new Date());
+        en_Vehicle.setLicensePlate("กข649");
+        en_Vehicle.setBrandName("YAMAHA");
+        en_Vehicle.setOtherDetails("Fino สีดำ-แดง");
+        en_Vehicle.setTypeOfVehicle(v_type);
+        en_Vehicle.setCreatedBy(staff);
+        en_Vehicle.setEnrolledStudents(rbk);
+
+        // บันทึก EnrollVehicle
+        en_Vehicle = enrollVehicleRepository.saveAndFlush(en_Vehicle);
+
+        Optional<EnrollVehicle> found = enrollVehicleRepository.findById(en_Vehicle.getId());
+        assertEquals(en_Vehicle, found.get());
+    }
+
+    // Test ส่วน NotBeNull
+    @Test
+    void b6025502_testEnrollDateMustNotBeNull() {
+        // จำลองข้อมูลในการบันทึก EnrollVehicle
+        VehicleType v_type = new VehicleType();
+        v_type.setType("รถยนต์");
+        v_type = vehicleTypeRepository.saveAndFlush(v_type);
+        Staff staff = new Staff("Natthawut Sunthornrot", "black", "asd123");
+        staff = staffRepository.saveAndFlush(staff);
+        Students students = new Students("Natthawut Sunthornrot", "B6025502", "black", "asdasd");
+        students = studentsRepository.saveAndFlush(students);
+        Rooms rooms = new Rooms("7133");
+        rooms = roomsRepository.saveAndFlush(rooms);
+        Branches branches = new Branches("What's branch?");
+        branches = branchesRepository.saveAndFlush(branches);
+        RoomBooking rbk = new RoomBooking(students, rooms, branches);
+        rbk = roomBookingRepository.saveAndFlush(rbk);
+
+        // สร้าง EnrollVehice และ setter ทุก field ของ EnrollVehicle
+        EnrollVehicle en_Vehicle = new EnrollVehicle();
+        // set ให้ enrollDate เป็น Null
+        en_Vehicle.setEnrollDate(null);
+        en_Vehicle.setLicensePlate("กข649");
+        en_Vehicle.setBrandName("YAMAHA");
+        en_Vehicle.setOtherDetails("Fino สีดำ-แดง");
+        en_Vehicle.setTypeOfVehicle(v_type);
+        en_Vehicle.setCreatedBy(staff);
+        en_Vehicle.setEnrolledStudents(rbk);
+
+        Set<ConstraintViolation<EnrollVehicle>> result = validator.validate(en_Vehicle);
+
+        //ต้องมี error 1 ค่าเท่านั้น
+        assertEquals(1, result.size());
+
+        // error message ตรง และถูก field
+        ConstraintViolation<EnrollVehicle> show = result.iterator().next();
+        assertEquals("must not be null", show.getMessage());
+        assertEquals("enrollDate", show.getPropertyPath().toString());
+    }
+
+    @Test
+    void b6025502_testLicensePlateMustNotBeNull() {
+        // จำลองข้อมูลในการบันทึก EnrollVehicle
+        VehicleType v_type = new VehicleType();
+        v_type.setType("รถยนต์");
+        v_type = vehicleTypeRepository.saveAndFlush(v_type);
+        Staff staff = new Staff("Natthawut Sunthornrot", "black", "asd123");
+        staff = staffRepository.saveAndFlush(staff);
+        Students students = new Students("Natthawut Sunthornrot", "B6025502", "black", "asdasd");
+        students = studentsRepository.saveAndFlush(students);
+        Rooms rooms = new Rooms("7133");
+        rooms = roomsRepository.saveAndFlush(rooms);
+        Branches branches = new Branches("What's branch?");
+        branches = branchesRepository.saveAndFlush(branches);
+        RoomBooking rbk = new RoomBooking(students, rooms, branches);
+        rbk = roomBookingRepository.saveAndFlush(rbk);
+
+        // สร้าง EnrollVehice และ setter ทุก field ของ EnrollVehicle
+        EnrollVehicle en_Vehicle = new EnrollVehicle();
+        en_Vehicle.setEnrollDate(new Date());
+        // set ให้ licensePlate เป็น Null
+        en_Vehicle.setLicensePlate(null);
+        en_Vehicle.setBrandName("YAMAHA");
+        en_Vehicle.setOtherDetails("Fino สีดำ-แดง");
+        en_Vehicle.setTypeOfVehicle(v_type);
+        en_Vehicle.setCreatedBy(staff);
+        en_Vehicle.setEnrolledStudents(rbk);
+
+        Set<ConstraintViolation<EnrollVehicle>> result = validator.validate(en_Vehicle);
+
+        //ต้องมี error 1 ค่าเท่านั้น
+        assertEquals(1, result.size());
+
+        // error message ตรง และถูก field
+        ConstraintViolation<EnrollVehicle> show = result.iterator().next();
+        assertEquals("must not be null", show.getMessage());
+        assertEquals("licensePlate", show.getPropertyPath().toString());
+    }
+
+    @Test
+    void b6025502_testBrandNameMustNotBeNull() {
+        // จำลองข้อมูลในการบันทึก EnrollVehicle
+        VehicleType v_type = new VehicleType();
+        v_type.setType("รถยนต์");
+        v_type = vehicleTypeRepository.saveAndFlush(v_type);
+        Staff staff = new Staff("Natthawut Sunthornrot", "black", "asd123");
+        staff = staffRepository.saveAndFlush(staff);
+        Students students = new Students("Natthawut Sunthornrot", "B6025502", "black", "asdasd");
+        students = studentsRepository.saveAndFlush(students);
+        Rooms rooms = new Rooms("7133");
+        rooms = roomsRepository.saveAndFlush(rooms);
+        Branches branches = new Branches("What's branch?");
+        branches = branchesRepository.saveAndFlush(branches);
+        RoomBooking rbk = new RoomBooking(students, rooms, branches);
+        rbk = roomBookingRepository.saveAndFlush(rbk);
+
+        // สร้าง EnrollVehice และ setter ทุก field ของ EnrollVehicle
+        EnrollVehicle en_Vehicle = new EnrollVehicle();
+        en_Vehicle.setEnrollDate(new Date());
+        en_Vehicle.setLicensePlate("กข649");
+        // set ให้ brandName เป็น Null
+        en_Vehicle.setBrandName(null);
+        en_Vehicle.setOtherDetails("Fino สีดำ-แดง");
+        en_Vehicle.setTypeOfVehicle(v_type);
+        en_Vehicle.setCreatedBy(staff);
+        en_Vehicle.setEnrolledStudents(rbk);
+
+        Set<ConstraintViolation<EnrollVehicle>> result = validator.validate(en_Vehicle);
+
+        //ต้องมี error 1 ค่าเท่านั้น
+        assertEquals(1, result.size());
+
+        // error message ตรง และถูก field
+        ConstraintViolation<EnrollVehicle> show = result.iterator().next();
+        assertEquals("must not be null", show.getMessage());
+        assertEquals("brandName", show.getPropertyPath().toString());
+    }
+
+    @Test
+    void b6025502_testOtherDetailsMustNotBeNull() {
+        // จำลองข้อมูลในการบันทึก EnrollVehicle
+        VehicleType v_type = new VehicleType();
+        v_type.setType("รถยนต์");
+        v_type = vehicleTypeRepository.saveAndFlush(v_type);
+        Staff staff = new Staff("Natthawut Sunthornrot", "black", "asd123");
+        staff = staffRepository.saveAndFlush(staff);
+        Students students = new Students("Natthawut Sunthornrot", "B6025502", "black", "asdasd");
+        students = studentsRepository.saveAndFlush(students);
+        Rooms rooms = new Rooms("7133");
+        rooms = roomsRepository.saveAndFlush(rooms);
+        Branches branches = new Branches("What's branch?");
+        branches = branchesRepository.saveAndFlush(branches);
+        RoomBooking rbk = new RoomBooking(students, rooms, branches);
+        rbk = roomBookingRepository.saveAndFlush(rbk);
+
+        // สร้าง EnrollVehice และ setter ทุก field ของ EnrollVehicle
+        EnrollVehicle en_Vehicle = new EnrollVehicle();
+        en_Vehicle.setEnrollDate(new Date());
+        en_Vehicle.setLicensePlate("กข649");
+        en_Vehicle.setBrandName("YAMAHA");
+        // set ให้ otherDetails เป็น Null
+        en_Vehicle.setOtherDetails(null);
+        en_Vehicle.setTypeOfVehicle(v_type);
+        en_Vehicle.setCreatedBy(staff);
+        en_Vehicle.setEnrolledStudents(rbk);
+
+        Set<ConstraintViolation<EnrollVehicle>> result = validator.validate(en_Vehicle);
+
+        //ต้องมี error 1 ค่าเท่านั้น
+        assertEquals(1, result.size());
+
+        // error message ตรง และถูก field
+        ConstraintViolation<EnrollVehicle> show = result.iterator().next();
+        assertEquals("must not be null", show.getMessage());
+        assertEquals("otherDetails", show.getPropertyPath().toString());
+    }
+
+    @Test
+    void b6025502_testTypeOfVehicleMustNotBeNull() {
+        // จำลองข้อมูลในการบันทึก EnrollVehicle
+        VehicleType v_type = new VehicleType();
+        v_type.setType("รถยนต์");
+        v_type = vehicleTypeRepository.saveAndFlush(v_type);
+        Staff staff = new Staff("Natthawut Sunthornrot", "black", "asd123");
+        staff = staffRepository.saveAndFlush(staff);
+        Students students = new Students("Natthawut Sunthornrot", "B6025502", "black", "asdasd");
+        students = studentsRepository.saveAndFlush(students);
+        Rooms rooms = new Rooms("7133");
+        rooms = roomsRepository.saveAndFlush(rooms);
+        Branches branches = new Branches("What's branch?");
+        branches = branchesRepository.saveAndFlush(branches);
+        RoomBooking rbk = new RoomBooking(students, rooms, branches);
+        rbk = roomBookingRepository.saveAndFlush(rbk);
+
+        // สร้าง EnrollVehice และ setter ทุก field ของ EnrollVehicle
+        EnrollVehicle en_Vehicle = new EnrollVehicle();
+        en_Vehicle.setEnrollDate(new Date());
+        en_Vehicle.setLicensePlate("กข649");
+        en_Vehicle.setBrandName("YAMAHA");
+        en_Vehicle.setOtherDetails("Fino สีดำ-แดง");
+        // set ให้ typeOfVehicle เป็น Null
+        en_Vehicle.setTypeOfVehicle(null);
+        en_Vehicle.setCreatedBy(staff);
+        en_Vehicle.setEnrolledStudents(rbk);
+
+        Set<ConstraintViolation<EnrollVehicle>> result = validator.validate(en_Vehicle);
+
+        //ต้องมี error 1 ค่าเท่านั้น
+        assertEquals(1, result.size());
+
+        // error message ตรง และถูก field
+        ConstraintViolation<EnrollVehicle> show = result.iterator().next();
+        assertEquals("must not be null", show.getMessage());
+        assertEquals("typeOfVehicle", show.getPropertyPath().toString());
+    }
+
+    @Test
+    void b6025502_testCreatedByMustNotBeNull() {
+        // จำลองข้อมูลในการบันทึก EnrollVehicle
+        VehicleType v_type = new VehicleType();
+        v_type.setType("รถยนต์");
+        v_type = vehicleTypeRepository.saveAndFlush(v_type);
+        Staff staff = new Staff("Natthawut Sunthornrot", "black", "asd123");
+        staff = staffRepository.saveAndFlush(staff);
+        Students students = new Students("Natthawut Sunthornrot", "B6025502", "black", "asdasd");
+        students = studentsRepository.saveAndFlush(students);
+        Rooms rooms = new Rooms("7133");
+        rooms = roomsRepository.saveAndFlush(rooms);
+        Branches branches = new Branches("What's branch?");
+        branches = branchesRepository.saveAndFlush(branches);
+        RoomBooking rbk = new RoomBooking(students, rooms, branches);
+        rbk = roomBookingRepository.saveAndFlush(rbk);
+
+        // สร้าง EnrollVehice และ setter ทุก field ของ EnrollVehicle
+        EnrollVehicle en_Vehicle = new EnrollVehicle();
+        en_Vehicle.setEnrollDate(new Date());
+        en_Vehicle.setLicensePlate("กข649");
+        en_Vehicle.setBrandName("YAMAHA");
+        en_Vehicle.setOtherDetails("Fino สีดำ-แดง");
+        en_Vehicle.setTypeOfVehicle(v_type);
+        // set ให้ createdBy เป็น Null
+        en_Vehicle.setCreatedBy(null);
+        en_Vehicle.setEnrolledStudents(rbk);
+
+        Set<ConstraintViolation<EnrollVehicle>> result = validator.validate(en_Vehicle);
+
+        //ต้องมี error 1 ค่าเท่านั้น
+        assertEquals(1, result.size());
+
+        // error message ตรง และถูก field
+        ConstraintViolation<EnrollVehicle> show = result.iterator().next();
+        assertEquals("must not be null", show.getMessage());
+        assertEquals("createdBy", show.getPropertyPath().toString());
+    }
+
+    @Test
+    void b6025502_testEnrolledStudentsMustNotBeNull() {
+        // จำลองข้อมูลในการบันทึก EnrollVehicle
+        VehicleType v_type = new VehicleType();
+        v_type.setType("รถยนต์");
+        v_type = vehicleTypeRepository.saveAndFlush(v_type);
+        Staff staff = new Staff("Natthawut Sunthornrot", "black", "asd123");
+        staff = staffRepository.saveAndFlush(staff);
+        Students students = new Students("Natthawut Sunthornrot", "B6025502", "black", "asdasd");
+        students = studentsRepository.saveAndFlush(students);
+        Rooms rooms = new Rooms("7133");
+        rooms = roomsRepository.saveAndFlush(rooms);
+        Branches branches = new Branches("What's branch?");
+        branches = branchesRepository.saveAndFlush(branches);
+        RoomBooking rbk = new RoomBooking(students, rooms, branches);
+        rbk = roomBookingRepository.saveAndFlush(rbk);
+
+        // สร้าง EnrollVehice และ setter ทุก field ของ EnrollVehicle
+        EnrollVehicle en_Vehicle = new EnrollVehicle();
+        en_Vehicle.setEnrollDate(new Date());
+        en_Vehicle.setLicensePlate("กข649");
+        en_Vehicle.setBrandName("YAMAHA");
+        en_Vehicle.setOtherDetails("Fino สีดำ-แดง");
+        en_Vehicle.setTypeOfVehicle(v_type);
+        en_Vehicle.setCreatedBy(staff);
+        // set ให้ enrolledStudents เป็น Null
+        en_Vehicle.setEnrolledStudents(null);
+
+        Set<ConstraintViolation<EnrollVehicle>> result = validator.validate(en_Vehicle);
+
+        //ต้องมี error 1 ค่าเท่านั้น
+        assertEquals(1, result.size());
+
+        // error message ตรง และถูก field
+        ConstraintViolation<EnrollVehicle> show = result.iterator().next();
+        assertEquals("must not be null", show.getMessage());
+        assertEquals("enrolledStudents", show.getPropertyPath().toString());
+    }
+
+    // Test size of field
+    @Test
+    void b6025502_testLicensePlateMustLessEqualThan8() {
+        // จำลองข้อมูลในการบันทึก EnrollVehicle
+        VehicleType v_type = new VehicleType();
+        v_type.setType("รถยนต์");
+        v_type = vehicleTypeRepository.saveAndFlush(v_type);
+        Staff staff = new Staff("Natthawut Sunthornrot", "black", "asd123");
+        staff = staffRepository.saveAndFlush(staff);
+        Students students = new Students("Natthawut Sunthornrot", "B6025502", "black", "asdasd");
+        students = studentsRepository.saveAndFlush(students);
+        Rooms rooms = new Rooms("7133");
+        rooms = roomsRepository.saveAndFlush(rooms);
+        Branches branches = new Branches("What's branch?");
+        branches = branchesRepository.saveAndFlush(branches);
+        RoomBooking rbk = new RoomBooking(students, rooms, branches);
+        rbk = roomBookingRepository.saveAndFlush(rbk);
+
+        // สร้าง EnrollVehice และ setter ทุก field ของ EnrollVehicle
+        EnrollVehicle en_Vehicle = new EnrollVehicle();
+        en_Vehicle.setEnrollDate(new Date());
+        en_Vehicle.setLicensePlate("123456789");
+        en_Vehicle.setBrandName("YAMAHA");
+        en_Vehicle.setOtherDetails("Fino สีดำ-แดง");
+        en_Vehicle.setTypeOfVehicle(v_type);
+        en_Vehicle.setCreatedBy(staff);
+        en_Vehicle.setEnrolledStudents(rbk);
+
+        Set<ConstraintViolation<EnrollVehicle>> result = validator.validate(en_Vehicle);
+
+        //ต้องมี error 1 ค่าเท่านั้น
+        assertEquals(1, result.size());
+
+        // error message ตรง และถูก field
+        ConstraintViolation<EnrollVehicle> show = result.iterator().next();
+        assertEquals("size must be between 0 and 8", show.getMessage());
+        assertEquals("licensePlate", show.getPropertyPath().toString());
+    }
+
+    @Test
+    void b6025502_testBrandNameMustLessEqualThan20() {
+        // จำลองข้อมูลในการบันทึก EnrollVehicle
+        VehicleType v_type = new VehicleType();
+        v_type.setType("รถยนต์");
+        v_type = vehicleTypeRepository.saveAndFlush(v_type);
+        Staff staff = new Staff("Natthawut Sunthornrot", "black", "asd123");
+        staff = staffRepository.saveAndFlush(staff);
+        Students students = new Students("Natthawut Sunthornrot", "B6025502", "black", "asdasd");
+        students = studentsRepository.saveAndFlush(students);
+        Rooms rooms = new Rooms("7133");
+        rooms = roomsRepository.saveAndFlush(rooms);
+        Branches branches = new Branches("What's branch?");
+        branches = branchesRepository.saveAndFlush(branches);
+        RoomBooking rbk = new RoomBooking(students, rooms, branches);
+        rbk = roomBookingRepository.saveAndFlush(rbk);
+
+        // สร้าง EnrollVehice และ setter ทุก field ของ EnrollVehicle
+        EnrollVehicle en_Vehicle = new EnrollVehicle();
+        en_Vehicle.setEnrollDate(new Date());
+        en_Vehicle.setLicensePlate("กข649");
+        en_Vehicle.setBrandName("12345678901234657890123456");
+        en_Vehicle.setOtherDetails("Fino สีดำ-แดง");
+        en_Vehicle.setTypeOfVehicle(v_type);
+        en_Vehicle.setCreatedBy(staff);
+        en_Vehicle.setEnrolledStudents(rbk);
+
+        Set<ConstraintViolation<EnrollVehicle>> result = validator.validate(en_Vehicle);
+
+        //ต้องมี error 1 ค่าเท่านั้น
+        assertEquals(1, result.size());
+
+        // error message ตรง และถูก field
+        ConstraintViolation<EnrollVehicle> show = result.iterator().next();
+        assertEquals("size must be between 0 and 20", show.getMessage());
+        assertEquals("brandName", show.getPropertyPath().toString());
+    }
+
+    @Test
+    void b6025502_testOtherDetailsMustLessEqualThan50() {
+        // จำลองข้อมูลในการบันทึก EnrollVehicle
+        VehicleType v_type = new VehicleType();
+        v_type.setType("รถยนต์");
+        v_type = vehicleTypeRepository.saveAndFlush(v_type);
+        Staff staff = new Staff("Natthawut Sunthornrot", "black", "asd123");
+        staff = staffRepository.saveAndFlush(staff);
+        Students students = new Students("Natthawut Sunthornrot", "B6025502", "black", "asdasd");
+        students = studentsRepository.saveAndFlush(students);
+        Rooms rooms = new Rooms("7133");
+        rooms = roomsRepository.saveAndFlush(rooms);
+        Branches branches = new Branches("What's branch?");
+        branches = branchesRepository.saveAndFlush(branches);
+        RoomBooking rbk = new RoomBooking(students, rooms, branches);
+        rbk = roomBookingRepository.saveAndFlush(rbk);
+
+        // สร้าง EnrollVehice และ setter ทุก field ของ EnrollVehicle
+        EnrollVehicle en_Vehicle = new EnrollVehicle();
+        en_Vehicle.setEnrollDate(new Date());
+        en_Vehicle.setLicensePlate("กข649");
+        en_Vehicle.setBrandName("YAMAHA");
+        en_Vehicle.setOtherDetails("123465789012345678901234657890123465789012345678901");
+        en_Vehicle.setTypeOfVehicle(v_type);
+        en_Vehicle.setCreatedBy(staff);
+        en_Vehicle.setEnrolledStudents(rbk);
+
+        Set<ConstraintViolation<EnrollVehicle>> result = validator.validate(en_Vehicle);
+
+        //ต้องมี error 1 ค่าเท่านั้น
+        assertEquals(1, result.size());
+
+        // error message ตรง และถูก field
+        ConstraintViolation<EnrollVehicle> show = result.iterator().next();
+        assertEquals("size must be between 0 and 50", show.getMessage());
+        assertEquals("otherDetails", show.getPropertyPath().toString());
+    }
+}
