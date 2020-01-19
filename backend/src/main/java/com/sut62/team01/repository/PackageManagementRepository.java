@@ -8,7 +8,6 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 @RepositoryRestResource
 public interface PackageManagementRepository extends JpaRepository<PackageManagement, Long> {
-    PackageManagement findById(long id);
-
+    // PackageManagement findById(long id);
     PackageManagement findByRoomBooking(RoomBooking roomBooking);
 }
