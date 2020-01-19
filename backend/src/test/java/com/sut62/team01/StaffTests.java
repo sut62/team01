@@ -1,6 +1,5 @@
 package com.sut62.team01;
 
-import com.sut62.team01.entity.ElectricType;
 import com.sut62.team01.entity.Staff;
 import com.sut62.team01.repository.StaffRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -18,15 +17,15 @@ import java.util.Set;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @DataJpaTest
-public class StaffTests{
+public class StaffTests {
 
-    private Validator validator ;
+    private Validator validator;
 
     @Autowired
     private StaffRepository staffRepository;
 
     @BeforeEach
-    public void setup(){
+    public void setup() {
         ValidatorFactory validatorFactory = Validation.buildDefaultValidatorFactory();
         validator = validatorFactory.getValidator();
     }
@@ -42,44 +41,41 @@ public class StaffTests{
     }
 
     @Test
-    void b6003296_testNameMustnotBeNull(){
+    void b6003296_testNameMustnotBeNull() {
 
-        Staff staff = new Staff(null,"asdas","qwe");
+        Staff staff = new Staff(null, "asdas", "qwe");
 
         Set<ConstraintViolation<Staff>> result = validator.validate(staff);
 
-
         assertEquals(1, result.size());
-        assertEquals("must not be null",result.iterator().next().getMessage());
-        assertEquals("name",result.iterator().next().getPropertyPath().toString());
+        assertEquals("must not be null", result.iterator().next().getMessage());
+        assertEquals("name", result.iterator().next().getPropertyPath().toString());
 
     }
 
     @Test
-    void b6003296_testUserNameMustnotBeNull(){
+    void b6003296_testUserNameMustnotBeNull() {
 
-        Staff staff = new Staff("asdas",null,"qwe");
+        Staff staff = new Staff("asdas", null, "qwe");
 
         Set<ConstraintViolation<Staff>> result = validator.validate(staff);
 
-
         assertEquals(1, result.size());
-        assertEquals("must not be null",result.iterator().next().getMessage());
-        assertEquals("username",result.iterator().next().getPropertyPath().toString());
+        assertEquals("must not be null", result.iterator().next().getMessage());
+        assertEquals("username", result.iterator().next().getPropertyPath().toString());
 
     }
 
     @Test
-    void b6003296_testPassWordMustnotBeNull(){
+    void b6003296_testPassWordMustnotBeNull() {
 
-        Staff staff = new Staff("asdas","asdas",null);
+        Staff staff = new Staff("asdas", "asdas", null);
 
         Set<ConstraintViolation<Staff>> result = validator.validate(staff);
 
-
         assertEquals(1, result.size());
-        assertEquals("must not be null",result.iterator().next().getMessage());
-        assertEquals("password",result.iterator().next().getPropertyPath().toString());
+        assertEquals("must not be null", result.iterator().next().getMessage());
+        assertEquals("password", result.iterator().next().getPropertyPath().toString());
 
     }
 
