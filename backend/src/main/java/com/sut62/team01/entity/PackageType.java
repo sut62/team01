@@ -8,9 +8,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import lombok.Data;
-import lombok.NonNull;
 
 @Data
 @Entity
@@ -20,9 +20,9 @@ public class PackageType {
     @SequenceGenerator(name = "packageType_seq", sequenceName = "packageType_seq")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "packageType_seq")
     @Column(name = "PACKAGETYPE_ID")
-    private @NonNull long id;
+    private long id;
 
-    private @NonNull String packageType;
+    private @NotNull String packageType;
 
     public PackageType() {
     }
