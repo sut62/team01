@@ -6,9 +6,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
+import javax.validation.constraints.NotNull;
 
 import lombok.Data;
-import lombok.NonNull;
 
 @Data
 @Entity
@@ -18,9 +18,9 @@ public class ElectricType{
     @SequenceGenerator(name="electicType_seq",sequenceName ="electicType_seq" )
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "electicType_seq")
     @Column(name = "ElecticType_ID")
-    private @NonNull long id;
+    private long id;
 
-    private @NonNull String name;
+    private @NotNull String name;
 
     public ElectricType(){}
     public ElectricType(String name){

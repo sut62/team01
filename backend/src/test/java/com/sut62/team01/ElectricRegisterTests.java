@@ -4,7 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.Date;
 import java.util.Optional;
+import java.util.Set;
 
+import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
@@ -88,5 +90,107 @@ public class ElectricRegisterTests {
                 .findById(electricalRegistration.getId());
         assertEquals(electricalRegistration, found.get());
     }
+
+    @Test
+    void b6003296_testStaffMustNotBeNull(){
+        // create oj
+        ElectricalRegistration electricalRegistration = new ElectricalRegistration();
+        // necessary for roombooking
+        Students students = new Students("Pontep Thaweesup", "B6000783", "pontep", "1234");
+        students = studentsRepository.saveAndFlush(students);
+        Rooms rooms = new Rooms("7133");
+        rooms = roomsRepository.saveAndFlush(rooms);
+        Branches branches = new Branches("What's branch?");
+        branches = branchesRepository.saveAndFlush(branches);
+        RoomBooking roomBooking = new RoomBooking(students, rooms, branches);
+        roomBooking = roomBookingRepository.saveAndFlush(roomBooking);
+        // necessary for electricRegister
+        ElectricType electricType = new ElectricType("asd");
+        electricType = electricTypeRepository.saveAndFlush(electricType);
+        Staff staff = new Staff("asdsa", "asdsa", "qwe");
+        staff = staffRepository.saveAndFlush(staff);
+
+        electricalRegistration.setRoomBooking(roomBooking);
+        electricalRegistration.setElectricType(electricType);
+        electricalRegistration.setStaff(null);
+        electricalRegistration.setDetails("details");
+        electricalRegistration.setElectricalRegistrationdate(new Date());
+
+        Set<ConstraintViolation<ElectricalRegistration>> result = validator.validate(electricalRegistration);
+
+        assertEquals(1,result.size());
+        assertEquals("must not be null",result.iterator().next().getMessage());
+        assertEquals("staff", result.iterator().next().getPropertyPath().toString());
+
+    }
+
+    @Test
+    void b6003296_testElectricTypeMustNotBeNull(){
+
+        // create oj
+        ElectricalRegistration electricalRegistration = new ElectricalRegistration();
+        // necessary for roombooking
+        Students students = new Students("Pontep Thaweesup", "B6000783", "pontep", "1234");
+        students = studentsRepository.saveAndFlush(students);
+        Rooms rooms = new Rooms("7133");
+        rooms = roomsRepository.saveAndFlush(rooms);
+        Branches branches = new Branches("What's branch?");
+        branches = branchesRepository.saveAndFlush(branches);
+        RoomBooking roomBooking = new RoomBooking(students, rooms, branches);
+        roomBooking = roomBookingRepository.saveAndFlush(roomBooking);
+        // necessary for electricRegister
+        ElectricType electricType = new ElectricType("asd");
+        electricType = electricTypeRepository.saveAndFlush(electricType);
+        Staff staff = new Staff("asdsa", "asdsa", "qwe");
+        staff = staffRepository.saveAndFlush(staff);
+
+        electricalRegistration.setRoomBooking(roomBooking);
+        electricalRegistration.setElectricType(null);
+        electricalRegistration.setStaff(staff);
+        electricalRegistration.setDetails("details");
+        electricalRegistration.setElectricalRegistrationdate(new Date());
+
+        Set<ConstraintViolation<ElectricalRegistration>> result = validator.validate(electricalRegistration);
+
+        assertEquals(1,result.size());
+        assertEquals("must not be null",result.iterator().next().getMessage());
+        assertEquals("electricType", result.iterator().next().getPropertyPath().toString());
+
+    }
+
+    @Test
+    void b6003296_testRoomBookingMustNoBeNull(){
+
+        // create oj
+        ElectricalRegistration electricalRegistration = new ElectricalRegistration();
+        // necessary for roombooking
+        Students students = new Students("Pontep Thaweesup", "B6000783", "pontep", "1234");
+        students = studentsRepository.saveAndFlush(students);
+        Rooms rooms = new Rooms("7133");
+        rooms = roomsRepository.saveAndFlush(rooms);
+        Branches branches = new Branches("What's branch?");
+        branches = branchesRepository.saveAndFlush(branches);
+        RoomBooking roomBooking = new RoomBooking(students, rooms, branches);
+        roomBooking = roomBookingRepository.saveAndFlush(roomBooking);
+        // necessary for electricRegister
+        ElectricType electricType = new ElectricType("asd");
+        electricType = electricTypeRepository.saveAndFlush(electricType);
+        Staff staff = new Staff("asdsa", "asdsa", "qwe");
+        staff = staffRepository.saveAndFlush(staff);
+
+        electricalRegistration.setRoomBooking(null);
+        electricalRegistration.setElectricType(electricType);
+        electricalRegistration.setStaff(staff);
+        electricalRegistration.setDetails("details");
+        electricalRegistration.setElectricalRegistrationdate(new Date());
+
+        Set<ConstraintViolation<ElectricalRegistration>> result = validator.validate(electricalRegistration);
+
+        assertEquals(1,result.size());
+        assertEquals("must not be null",result.iterator().next().getMessage());
+        assertEquals("roomBooking", result.iterator().next().getPropertyPath().toString());
+
+    }
+
 
 }
