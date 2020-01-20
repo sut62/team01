@@ -3,31 +3,8 @@ package com.sut62.team01;
 import java.util.Collections;
 import java.util.stream.Stream;
 
-import com.sut62.team01.entity.BikeType;
-import com.sut62.team01.entity.Branches;
-import com.sut62.team01.entity.DateType;
-import com.sut62.team01.entity.ElectricType;
-import com.sut62.team01.entity.RoomBooking;
-import com.sut62.team01.entity.Rooms;
-import com.sut62.team01.entity.Staff;
-import com.sut62.team01.entity.Students;
-import com.sut62.team01.entity.VehicleType;
-import com.sut62.team01.entity.PackageType;
-import com.sut62.team01.entity.DeviceName;
-import com.sut62.team01.entity.DeviceType;
-import com.sut62.team01.repository.DeviceNameRepository;
-import com.sut62.team01.repository.DeviceTypeRepository;
-import com.sut62.team01.repository.BikeTypeRepository;
-import com.sut62.team01.repository.BorrowedBikeRepository;
-import com.sut62.team01.repository.BranchesRepository;
-import com.sut62.team01.repository.DateTypeRepository;
-import com.sut62.team01.repository.ElectricTypeRepository;
-import com.sut62.team01.repository.RoomBookingRepository;
-import com.sut62.team01.repository.RoomsRepository;
-import com.sut62.team01.repository.StaffRepository;
-import com.sut62.team01.repository.StudentsRepository;
-import com.sut62.team01.repository.VehicleTypeRepository;
-import com.sut62.team01.repository.PackageTypeRepository;
+import com.sut62.team01.entity.*;
+import com.sut62.team01.repository.*;
 
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
@@ -48,16 +25,17 @@ public class SUT62TEAM01 {
 
     @Bean
     ApplicationRunner init(BorrowedBikeRepository borrowedBikeRepository, BikeTypeRepository bikeTypeRepository,
-            DateTypeRepository dateTypeRepository, RoomBookingRepository roomBookingRepository,
-            StudentsRepository studentsRepository, BranchesRepository branchesRepository,
-            RoomsRepository roomsRepository, StaffRepository staffRepository,
-            VehicleTypeRepository vehicleTypeRepository, ElectricTypeRepository electrictypeRepository,
-            PackageTypeRepository packageTypeRepository,DeviceTypeRepository deviceTypeRepository, 
-            DeviceNameRepository deviceNameRepository) {
+                           DateTypeRepository dateTypeRepository, RoomBookingRepository roomBookingRepository,
+                           StudentsRepository studentsRepository, BranchesRepository branchesRepository,
+                           RoomsRepository roomsRepository, StaffRepository staffRepository,
+                           VehicleTypeRepository vehicleTypeRepository, ElectricTypeRepository electrictypeRepository,
+                           PackageTypeRepository packageTypeRepository, DeviceTypeRepository deviceTypeRepository,
+                           DeviceNameRepository deviceNameRepository, BikeRepository bikeRepository) {
           
         return args -> {
 
             // TODO: Inject test data
+//            inject necessary data for katalon BorrowedBikeTest
             // BikeType
             BikeType bikeType1 = new BikeType("จักรยาน 2 ล้อ สำหรับคนเดียว");
             BikeType bikeType2 = new BikeType("จักรยาน 2 ล้อ สำหรับสองคน");
@@ -67,6 +45,24 @@ public class SUT62TEAM01 {
                 bikeTypeRepository.save(bikeType);
                 System.out.println(bikeType);
             });
+
+//            Bike
+            for(int i = 1 ; i <= 10 ; i++){
+                Bike bike = new Bike(bikeType1, "Bike"+"01"+ ( i < 10 ? "0"+i : i));
+                bikeRepository.save(bike);
+            }
+            for(int i = 1 ; i <= 10 ; i++){
+                Bike bike = new Bike(bikeType2, "Bike"+"02"+ ( i < 10 ? "0"+i : i));
+                bikeRepository.save(bike);
+            }
+            for(int i = 1 ; i <= 10 ; i++){
+                Bike bike = new Bike(bikeType3, "Bike"+"03"+ ( i < 10 ? "0"+i : i));
+                bikeRepository.save(bike);
+            }
+            for(int i = 1 ; i <= 10 ; i++){
+                Bike bike = new Bike(bikeType4, "Bike"+"04"+ ( i < 10 ? "0"+i : i));
+                bikeRepository.save(bike);
+            }
 
             // DateType
             DateType dateType1 = new DateType("ยืม 3 วัน");
@@ -107,6 +103,10 @@ public class SUT62TEAM01 {
             // RoomBooking
             RoomBooking roomBooking1 = new RoomBooking(student1, room7133, branches1);
             roomBookingRepository.save(roomBooking1);
+
+//            inject necessary data for katalon ApproveBorrowedBikeTest
+            BorrowedBike borrowedBike = new BorrowedBike(bikeType1,roomBooking1,dateType1);
+            borrowedBikeRepository.save(borrowedBike);
                       
             //ElectricType-LEO
 			ElectricType electricType1 = new ElectricType("พัดลม");

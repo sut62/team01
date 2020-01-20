@@ -8,10 +8,7 @@ import com.sut62.team01.entity.BorrowedBike;
 import com.sut62.team01.entity.DateType;
 import com.sut62.team01.entity.RoomBooking;
 import com.sut62.team01.entity.payload.BorrowedBikeRequest;
-import com.sut62.team01.repository.BikeTypeRepository;
-import com.sut62.team01.repository.BorrowedBikeRepository;
-import com.sut62.team01.repository.DateTypeRepository;
-import com.sut62.team01.repository.RoomBookingRepository;
+import com.sut62.team01.repository.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -40,6 +37,9 @@ public class BorrowedBikeController {
     @Autowired
     private DateTypeRepository dateTypeRepository;
 
+    @Autowired
+    private BikeRepository bikeRepository;
+
     @GetMapping("/borrowedbikes")
     public Iterable<BorrowedBike> getBorrowedBikes() {
         return borrowedBikeRepository.findAll();
@@ -55,29 +55,6 @@ public class BorrowedBikeController {
         }
 
     }
-
-    // @PostMapping("/myborrowedbike")
-    // public ResponseEntity<?> getMyBorrowedBike(@RequestBody LoginRequest
-    // loginRequest) {
-    // // Optional<Student> my =
-    // // studentRepository.findByUsernameAndPassword(loginRequest.getUsername(),
-    // // loginRequest.getPassword());
-    // Student my =
-    // studentRepository.findByUsernameAndPassword(loginRequest.getUsername(),
-    // loginRequest.getPassword());
-    // if (my == null) {
-    // return ResponseEntity.badRequest().body("Error: Username or Password is
-    // incorrect.");
-    // } else {
-    // List<BorrowedBike> bb = borrowedBikeRepository.findByStudent(my);
-    // if (bb.isEmpty()) {
-    // return ResponseEntity.badRequest().body("Error: You have no borrowed bike
-    // request.");
-    // } else {
-    // return ResponseEntity.ok().body(bb);
-    // }
-    // }
-    // }
 
     @PostMapping(value = "/borrowedbike")
     public ResponseEntity<?> newBorrowedBike(@RequestBody BorrowedBikeRequest bbRequest) {

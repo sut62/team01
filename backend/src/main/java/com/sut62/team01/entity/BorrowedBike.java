@@ -41,9 +41,28 @@ public class BorrowedBike {
     @NotNull
     private DateType dateType;
 
+    //    Null ได้ เพราะรอ staff ให้ยืม
+    @ManyToOne
+    @JoinColumn(name = "STAFF_ID")
+    @JsonManagedReference
+    private Staff staff;
+
     @NotNull
     private Date requestDate;
 
-//    Can null ->
+//    Null ได้ เพราะรอ staff ให้ยืม
+    @ManyToOne
+    @JoinColumn(name = "BIKE_ID")
+    @JsonManagedReference
     private Bike bike;
+
+    public BorrowedBike() {
+    }
+
+    public BorrowedBike(@NotNull BikeType bikeType, @NotNull RoomBooking roomBooking, @NotNull DateType dateType) {
+        this.bikeType = bikeType;
+        this.roomBooking = roomBooking;
+        this.dateType = dateType;
+        this.requestDate = new Date();
+    }
 }

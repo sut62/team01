@@ -11,7 +11,8 @@ import javax.validation.constraints.NotNull;
 public class Bike {
 
     @Id
-    @GeneratedValue
+    @Column(name = "BIKE_ID")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
@@ -21,8 +22,15 @@ public class Bike {
     private BikeType bikeType;
 
     @NotNull
-    private String bikeId;
+    private String name;
 
     @NotNull
-    private boolean available;
+    private boolean available = true;
+
+    public Bike(){}
+
+    public Bike(@NotNull BikeType bikeType, @NotNull String name) {
+        this.bikeType = bikeType;
+        this.name = name;
+    }
 }
