@@ -9,22 +9,22 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
-import com.sut62.team01.entity.Branches;
-import com.sut62.team01.repository.BranchesRepository;
+import com.sut62.team01.entity.Bed;
+import com.sut62.team01.repository.BedRepository;
 
 
 
 @CrossOrigin(origins = "http://localhost:8080")
 @RestController
 @RequestMapping("/api")
-public class BranchesController {
+public class BedController {
 
     @Autowired
-    BranchesRepository branchesRepository;
+    BedRepository bedRepository;
 
-    @GetMapping("/branches")
-    public Collection<Branches> getAllBranches() {
-        return branchesRepository.findAll().stream().collect(Collectors.toList());
+    @GetMapping("/bed")
+    public Collection<Bed> getAllBed() {
+        return bedRepository.findAll().stream().collect(Collectors.toList());
     }
 
 }

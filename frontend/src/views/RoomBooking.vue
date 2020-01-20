@@ -31,10 +31,10 @@
           ></v-select>
 
           <v-select
-            v-model="selectedBranches"
-            :items="Branches"
-            label="เลือกสำนักวิชา"
-            item-text="branches"
+            v-model="selectedBed"
+            :items="Bed"
+            label="เลือกเตียง"
+            item-text="bed"
             item-value="id"
           ></v-select>
         </v-card-text>
@@ -61,16 +61,16 @@ export default {
   mounted() {
     this.getAlStudents();
     this.getAllRooms();
-    this.getAllBranches();
+    this.getAllBed();
   },
   data() {
     return {
       selectedStudents: null,
       selectedRooms: null,
-      selectedBranches: null,
+      selectedBed: null,
       Students: [],
       Rooms: [],
-      Branches: [],
+      Bed: [],
       alertSuccess: false,
       alertFailed: false
     };
@@ -91,12 +91,12 @@ export default {
           console.log(e);
         });
     },
-    getAllBranches() {
+    getAllBed() {
       api
-        .get("/api/branches")
+        .get("/api/bed")
         .then(res => {
-          this.Branches = res.data;
-          console.log("loading branches");
+          this.Bed = res.data;
+          console.log("loading bed");
           console.log(JSON.parse(JSON.stringify(res.data)));
         })
         .catch(e => {
@@ -124,7 +124,7 @@ export default {
       if (
         !this.selectedStudents ||
         !this.selectedRooms ||
-        !this.selectedBranches
+        !this.selectedBed
       ) {
         this.clearAlert();
         this.alertFailed = true;
@@ -142,7 +142,7 @@ export default {
       let newelepayload = {
         student_id: this.selectedStudents,
         room_id: this.selectedRooms,
-        branche_id: this.selectedBranches
+        bed_id: this.selectedBed
       };
       console.log(newelepayload);
       api
@@ -153,7 +153,7 @@ export default {
           //alert("บันทึกข้อมูลสำเร็จ!");
           this.selectedStudents = null;
           this.selectedRooms = null;
-          this.selectedBranches = null;
+          this.selectedBed = null;
         })
         .catch(e => {
           console.log(e);

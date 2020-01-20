@@ -25,17 +25,17 @@ public class SUT62TEAM01 {
 
     @Bean
     ApplicationRunner init(BorrowedBikeRepository borrowedBikeRepository, BikeTypeRepository bikeTypeRepository,
-                           DateTypeRepository dateTypeRepository, RoomBookingRepository roomBookingRepository,
-                           StudentsRepository studentsRepository, BranchesRepository branchesRepository,
-                           RoomsRepository roomsRepository, StaffRepository staffRepository,
-                           VehicleTypeRepository vehicleTypeRepository, ElectricTypeRepository electrictypeRepository,
-                           PackageTypeRepository packageTypeRepository, DeviceTypeRepository deviceTypeRepository,
-                           DeviceNameRepository deviceNameRepository, BikeRepository bikeRepository) {
-          
+            DateTypeRepository dateTypeRepository, RoomBookingRepository roomBookingRepository,
+            StudentsRepository studentsRepository, BedRepository bedRepository, RoomsRepository roomsRepository,
+            StaffRepository staffRepository, VehicleTypeRepository vehicleTypeRepository,
+            ElectricTypeRepository electrictypeRepository, PackageTypeRepository packageTypeRepository,
+            DeviceTypeRepository deviceTypeRepository, DeviceNameRepository deviceNameRepository,
+            BikeRepository bikeRepository) {
+
         return args -> {
 
             // TODO: Inject test data
-//            inject necessary data for katalon BorrowedBikeTest
+            // inject necessary data for katalon BorrowedBikeTest
             // BikeType
             BikeType bikeType1 = new BikeType("จักรยาน 2 ล้อ สำหรับคนเดียว");
             BikeType bikeType2 = new BikeType("จักรยาน 2 ล้อ สำหรับสองคน");
@@ -46,21 +46,21 @@ public class SUT62TEAM01 {
                 System.out.println(bikeType);
             });
 
-//            Bike
-            for(int i = 1 ; i <= 10 ; i++){
-                Bike bike = new Bike(bikeType1, "Bike"+"01"+ ( i < 10 ? "0"+i : i));
+            // Bike
+            for (int i = 1; i <= 10; i++) {
+                Bike bike = new Bike(bikeType1, "Bike" + "01" + (i < 10 ? "0" + i : i));
                 bikeRepository.save(bike);
             }
-            for(int i = 1 ; i <= 10 ; i++){
-                Bike bike = new Bike(bikeType2, "Bike"+"02"+ ( i < 10 ? "0"+i : i));
+            for (int i = 1; i <= 10; i++) {
+                Bike bike = new Bike(bikeType2, "Bike" + "02" + (i < 10 ? "0" + i : i));
                 bikeRepository.save(bike);
             }
-            for(int i = 1 ; i <= 10 ; i++){
-                Bike bike = new Bike(bikeType3, "Bike"+"03"+ ( i < 10 ? "0"+i : i));
+            for (int i = 1; i <= 10; i++) {
+                Bike bike = new Bike(bikeType3, "Bike" + "03" + (i < 10 ? "0" + i : i));
                 bikeRepository.save(bike);
             }
-            for(int i = 1 ; i <= 10 ; i++){
-                Bike bike = new Bike(bikeType4, "Bike"+"04"+ ( i < 10 ? "0"+i : i));
+            for (int i = 1; i <= 10; i++) {
+                Bike bike = new Bike(bikeType4, "Bike" + "04" + (i < 10 ? "0" + i : i));
                 bikeRepository.save(bike);
             }
 
@@ -82,17 +82,12 @@ public class SUT62TEAM01 {
                 System.out.println(student);
             });
 
-            Branches branches1 = new Branches("สำนักวิชาวิทยาศาสตร์");
-			Branches branches2 = new Branches("สำนักวิชาเทคโนโลยีสังคม");
-			Branches branches3 = new Branches("สำนักวิชาเทคโนโลยีการเกษตร");
-			Branches branches4 = new Branches("สำนักวิชาวิศวกรรมศาสตร์ ");
-			Branches branches5 = new Branches("สำนักวิชาแพทยศาสตร์");
-			Branches branches6 = new Branches("สำนักวิชาพยาบาลศาสตร์");
-			Branches branches7 = new Branches("สำนักวิชาทันตแพทยศาสตร์");
-			Branches branches8 = new Branches("สำนักวิชาสาธารณสุขศาสตร์");
-			Stream.of(branches1,branches2,branches3,branches4,branches5,branches6,branches7,branches8).forEach(bra -> {
-				branchesRepository.save(bra); 
-			});
+            Bed bed1 = new Bed("เตียง A (ติดประตูทางเข้า)");
+            Bed bed2 = new Bed("เตียง B (กลางห้อง)");
+            Bed bed3 = new Bed("เตียง C (ติดประตูหลัง)");
+            Stream.of(bed1, bed2, bed3).forEach(bed -> {
+                        bedRepository.save(bed);
+                    });
             // Room
             for (int i = 1; i <= 40; i++) {
                 Rooms room = new Rooms("71" + (i < 10 ? "0" + i : i));
@@ -101,23 +96,23 @@ public class SUT62TEAM01 {
             Rooms room7133 = roomsRepository.findByRoomId("7133");
 
             // RoomBooking
-            RoomBooking roomBooking1 = new RoomBooking(student1, room7133, branches1);
+            RoomBooking roomBooking1 = new RoomBooking(student1, room7133, bed1);
             roomBookingRepository.save(roomBooking1);
 
-//            inject necessary data for katalon ApproveBorrowedBikeTest
-            BorrowedBike borrowedBike = new BorrowedBike(bikeType1,roomBooking1,dateType1);
+            // inject necessary data for katalon ApproveBorrowedBikeTest
+            BorrowedBike borrowedBike = new BorrowedBike(bikeType1, roomBooking1, dateType1);
             borrowedBikeRepository.save(borrowedBike);
-                      
-            //ElectricType-LEO
-			ElectricType electricType1 = new ElectricType("พัดลม");
-			ElectricType electricType2 = new ElectricType("เต้ารีด");
-			ElectricType electricType3 = new ElectricType("กะทะไฟฟ้า");
-			ElectricType electricType4 = new ElectricType("คอม");
-			Stream.of(electricType1,electricType2,electricType3,electricType4).forEach(electricType -> {
-				electrictypeRepository.save(electricType);
+
+            // ElectricType-LEO
+            ElectricType electricType1 = new ElectricType("พัดลม");
+            ElectricType electricType2 = new ElectricType("เต้ารีด");
+            ElectricType electricType3 = new ElectricType("กะทะไฟฟ้า");
+            ElectricType electricType4 = new ElectricType("คอม");
+            Stream.of(electricType1, electricType2, electricType3, electricType4).forEach(electricType -> {
+                electrictypeRepository.save(electricType);
             });
 
-	    //PackageType
+            // PackageType
             PackageType pt1 = new PackageType("ซองจดหมาย");
             PackageType pt2 = new PackageType("ซองเอกสาร");
             PackageType pt3 = new PackageType("ซองพลาสติก");
@@ -138,48 +133,47 @@ public class SUT62TEAM01 {
             });
 
             Stream.of("รถจักรยานยนต์", "รถยนต์", "จักรยาน").forEach(type -> {
-				VehicleType	vehicleType = new VehicleType(); // สร้าง Object Customer
-				vehicleType.setType(type); // set ชื่อ (name) ให้ Object ชื่อ Customer
-				vehicleTypeRepository.save(vehicleType); // บันทึก Objcet ชื่อ Customer
+                VehicleType vehicleType = new VehicleType(); // สร้าง Object Customer
+                vehicleType.setType(type); // set ชื่อ (name) ให้ Object ชื่อ Customer
+                vehicleTypeRepository.save(vehicleType); // บันทึก Objcet ชื่อ Customer
             });
-            
-            //Repair
+
+            // Repair
             DeviceType deviceType1 = new DeviceType("อุปกรณ์ไฟฟ้า");
-			DeviceType deviceType2 = new DeviceType("อุปกรณ์ประปา");
-			DeviceType deviceType3 = new DeviceType("คุรุภัณฑ์");
-			DeviceType deviceType4 = new DeviceType("อื่นๆ");
-			Stream.of(deviceType1,deviceType2,deviceType3,deviceType4).forEach(deviceType -> {
-				deviceTypeRepository.save(deviceType); // บันทึก Objcet ชื่อ Customer
-			});
-			
-			DeviceName deviceName1 = new DeviceName("หลอดไฟ",deviceType1 );
-			DeviceName deviceName2 = new DeviceName("โคมไฟ",deviceType1 );
-			DeviceName deviceName3 = new DeviceName("พัดลม",deviceType1);
-			DeviceName deviceName4 = new DeviceName("สวิตซ์ เปิด-ปิดไฟ",deviceType1);
-			DeviceName deviceName5 = new DeviceName("สายไฟ",deviceType1);
-			
-			DeviceName deviceName6 = new DeviceName("ท่อน้ำ",deviceType2);
-			DeviceName deviceName7 = new DeviceName("ก็อกน้ำอ่างล่างหน้า",deviceType2);
-            DeviceName deviceName8 = new DeviceName("ท่อน้ำทิ้ง",deviceType2);
-            DeviceName deviceName9 = new DeviceName("ชักโครก",deviceType2);
+            DeviceType deviceType2 = new DeviceType("อุปกรณ์ประปา");
+            DeviceType deviceType3 = new DeviceType("คุรุภัณฑ์");
+            DeviceType deviceType4 = new DeviceType("อื่นๆ");
+            Stream.of(deviceType1, deviceType2, deviceType3, deviceType4).forEach(deviceType -> {
+                deviceTypeRepository.save(deviceType); // บันทึก Objcet ชื่อ Customer
+            });
 
-			DeviceName deviceName10 = new  DeviceName("มุ้งลวด",deviceType3);
-			DeviceName deviceName11 = new DeviceName("เตียง",deviceType3);
-			DeviceName deviceName12 = new DeviceName("เพดาน",deviceType3);
-			DeviceName deviceName13 = new DeviceName("ลูกบิดประตู",deviceType3);
-			DeviceName deviceName14 = new DeviceName("ประตูห้องพัก",deviceType3);
-			DeviceName deviceName15 = new DeviceName("บานเกล็ด",deviceType3);
-			
+            DeviceName deviceName1 = new DeviceName("หลอดไฟ", deviceType1);
+            DeviceName deviceName2 = new DeviceName("โคมไฟ", deviceType1);
+            DeviceName deviceName3 = new DeviceName("พัดลม", deviceType1);
+            DeviceName deviceName4 = new DeviceName("สวิตซ์ เปิด-ปิดไฟ", deviceType1);
+            DeviceName deviceName5 = new DeviceName("สายไฟ", deviceType1);
 
-			DeviceName deviceName16 = new DeviceName("อื่นๆ (โปรดระบุอุปกรณ์ที่เสียในช่องระบุอาการ/ปัญหาที่เกิดขึ้น)",deviceType4);
-			Stream.of(deviceName1,deviceName2,deviceName3,deviceName4,deviceName5,
-			deviceName6,deviceName7,deviceName8,deviceName9,deviceName10,
-			deviceName11,deviceName12,deviceName13,deviceName14,deviceName15,deviceName16).forEach(deviceName -> {
-				deviceNameRepository.save(deviceName); // บันทึก Objcet ชื่อ Customer
-			});
-    };
-}
+            DeviceName deviceName6 = new DeviceName("ท่อน้ำ", deviceType2);
+            DeviceName deviceName7 = new DeviceName("ก็อกน้ำอ่างล่างหน้า", deviceType2);
+            DeviceName deviceName8 = new DeviceName("ท่อน้ำทิ้ง", deviceType2);
+            DeviceName deviceName9 = new DeviceName("ชักโครก", deviceType2);
 
+            DeviceName deviceName10 = new DeviceName("มุ้งลวด", deviceType3);
+            DeviceName deviceName11 = new DeviceName("เตียง", deviceType3);
+            DeviceName deviceName12 = new DeviceName("เพดาน", deviceType3);
+            DeviceName deviceName13 = new DeviceName("ลูกบิดประตู", deviceType3);
+            DeviceName deviceName14 = new DeviceName("ประตูห้องพัก", deviceType3);
+            DeviceName deviceName15 = new DeviceName("บานเกล็ด", deviceType3);
+
+            DeviceName deviceName16 = new DeviceName("อื่นๆ (โปรดระบุอุปกรณ์ที่เสียในช่องระบุอาการ/ปัญหาที่เกิดขึ้น)",
+                    deviceType4);
+            Stream.of(deviceName1, deviceName2, deviceName3, deviceName4, deviceName5, deviceName6, deviceName7,
+                    deviceName8, deviceName9, deviceName10, deviceName11, deviceName12, deviceName13, deviceName14,
+                    deviceName15, deviceName16).forEach(deviceName -> {
+                        deviceNameRepository.save(deviceName); // บันทึก Objcet ชื่อ Customer
+                    });
+        };
+    }
 
     @Bean
     public FilterRegistrationBean simpleCorsFilter() {
