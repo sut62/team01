@@ -54,7 +54,7 @@ public class EnrollVehicleController {
         VehicleType typeOfVehicle = vehicleTypeRepository.findById(vehicle_Type_id);
         RoomBooking enrolledStudents = roomBookingRepository.findById(roomBooking_id);
 
-        newEnrollVehicle.setCraetedBy(craetedBy);
+        newEnrollVehicle.setCreatedBy(craetedBy);
         newEnrollVehicle.setTypeOfVehicle(typeOfVehicle);
         newEnrollVehicle.setEnrolledStudents(enrolledStudents);
         newEnrollVehicle.setEnrollDate(new Date());
