@@ -15,7 +15,7 @@ import javax.persistence.Table;
 import lombok.Data;
 
 import lombok.NonNull;
-
+import javax.validation.constraints.NotNull;
 @Data
 @Entity
 
@@ -26,9 +26,9 @@ public class DeviceType {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "DEVICETYPE_SEQ")
     @Column(name = "DEVICETYPE_ID", unique = true, nullable = true)
 
-    private @NonNull long id;
+    private  long id;
 
-    private @NonNull String type;
+    private @NotNull String type;
 
     // TODO: DeviceType 1 - * DeviceProblem
     // @OneToMany

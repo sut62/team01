@@ -19,6 +19,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
+import javax.validation.constraints.NotNull;
 
 @Data
 @Entity
@@ -31,9 +32,9 @@ public class DeviceName {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "DEVICENAMES_SEQ")
     @Column(name = "DEVICENAMES_ID", unique = true, nullable = true) // <--- แก้ให้แล้วนะ
 
-    private @NonNull long id;
+    private  long id;
 
-    private @NonNull String name;
+    private  @NotNull String name;
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = DeviceType.class)
     @JoinColumn(name = "DEVICETYPE_ID", insertable = true)
     @JsonManagedReference

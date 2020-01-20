@@ -18,6 +18,8 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Data
 @Entity
@@ -30,27 +32,32 @@ public class Repair {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "REPAIR_seq")
     @Column(name = "SREPAIR_ID", unique = true, nullable = true)
 
-    private @NonNull Long id;
+    private  Long id;
 
+    @NotNull
+    @Size(min = 5,max = 30) 
     @Column(name = "List")
-    private @NonNull String  list;
+    private  String  list;
 
     @Column(name = "Repair_Date")
-    private @NonNull Date repairDate;
+    private    @NotNull Date repairDate;
 
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = DeviceType.class)
     @JoinColumn(name = "DEVICETYPE_ID", insertable = true)
     @JsonManagedReference
+    @NotNull
     private DeviceType type;
 
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = DeviceName.class)
     @JoinColumn(name = "DEVICENAMES_ID", insertable = true)
     @JsonManagedReference
+    @NotNull
     private DeviceName name;
     
     @ManyToOne(fetch = FetchType.EAGER , targetEntity = RoomBooking.class)
     @JoinColumn(name = "ROOMBOOKING_ID", insertable = true)
     @JsonManagedReference
+    @NotNull
     private RoomBooking enrolled;
 
   
