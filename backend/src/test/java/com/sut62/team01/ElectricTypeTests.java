@@ -12,7 +12,6 @@ import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
 
-import java.util.Optional;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -37,8 +36,8 @@ public class ElectricTypeTests {
         ElectricType electricType = new ElectricType();
         electricType.setName("พัดลม");
         electricType = electricTypeRepository.saveAndFlush(electricType);
-        Optional<ElectricType> found = Optional.ofNullable(electricTypeRepository.findById(electricType.getId()));
-        assertEquals("พัดลม", found.get().getName());
+        ElectricType found = electricTypeRepository.findById(electricType.getId());
+        assertEquals("พัดลม", found.getName());
 
     }
 
