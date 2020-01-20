@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -26,7 +27,7 @@ public class RoomBooking {
     @Column(name = "ROOMBOOKING_ID", unique = true, nullable = true)
     private @NonNull Long id;
 
-    @ManyToOne(fetch = FetchType.EAGER, targetEntity = Students.class)
+    @OneToOne(fetch = FetchType.EAGER, targetEntity = Students.class)
     @JoinColumn(name = "STUDENT_ID", insertable = true)
     @JsonManagedReference
     private @NonNull Students student;
@@ -36,18 +37,18 @@ public class RoomBooking {
     @JsonManagedReference
     private @NonNull Rooms rooms;
 
-    @ManyToOne(fetch = FetchType.EAGER, targetEntity = Branches.class)
-    @JoinColumn(name = "BRANCHES_ID", insertable = true)
+    @ManyToOne(fetch = FetchType.EAGER, targetEntity = Bed.class)
+    @JoinColumn(name = "BED_ID", insertable = true)
     @JsonManagedReference
-    private @NonNull Branches branches;
+    private @NonNull Bed bed;
 
     public RoomBooking() {
     }
 
-    public RoomBooking(Students students, Rooms rooms, Branches branches) {
+    public RoomBooking(Students students, Rooms rooms, Bed bed) {
         this.student = students;
         this.rooms = rooms;
-        this.branches = branches;
+        this.bed = bed;
 
     }
 }

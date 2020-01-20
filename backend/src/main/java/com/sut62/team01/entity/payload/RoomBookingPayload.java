@@ -14,7 +14,7 @@ public class RoomBookingPayload {
     private Long student_id;
 
     @NotNull
-    private Long branche_id;
+    private Long bed_id;
 
     @NotNull
     private Long room_id;
