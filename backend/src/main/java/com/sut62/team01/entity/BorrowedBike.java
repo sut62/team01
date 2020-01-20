@@ -43,4 +43,7 @@ public class BorrowedBike {
 
     @NotNull
     private Date requestDate;
+
+//    Can null ->
+    private Bike bike;
 }
