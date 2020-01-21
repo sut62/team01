@@ -10,12 +10,15 @@ import lombok.Data;
 @Data
 public class RoomBookingPayload {
 
-    @NotNull
+    
     private Long student_id;
 
-    @NotNull
+    
     private Long bed_id;
 
-    @NotNull
+    
     private Long room_id;
+
+
+    private String detail;
 }

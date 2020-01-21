@@ -96,7 +96,7 @@ public class SUT62TEAM01 {
             Rooms room7133 = roomsRepository.findByRoomId("7133");
 
             // RoomBooking
-            RoomBooking roomBooking1 = new RoomBooking(student1, room7133, bed1);
+            RoomBooking roomBooking1 = new RoomBooking(student1, room7133, bed1 ,"ต้องการเตียงเสริม");
             roomBookingRepository.save(roomBooking1);
 
             // inject necessary data for katalon ApproveBorrowedBikeTest

@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 
@@ -18,13 +19,13 @@ public class Rooms {
 	@SequenceGenerator(name="ROOMS_seq",sequenceName="ROOMS_seq")
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="ROOMS_seq")
 	@Column(name="ROOMS_ID",unique = true, nullable = true)
-	private @NonNull Long id;
+	private Long id;
 
-	private @NonNull String roomId;
+	private @NotNull String roomId;
 
 	public Rooms(){}
 
-	public Rooms(@NonNull String roomId) {
+	public Rooms(String roomId) {
 		this.roomId = roomId;
 	}
 }

@@ -37,6 +37,13 @@
             item-text="bed"
             item-value="id"
           ></v-select>
+
+          <v-row justify="center">
+          <v-col cols="6" class="pa-0 mx-2">
+            <v-text-field solo label="หมายเหตุ" height="80px" v-model="detail" />
+          </v-col>
+        </v-row>
+
         </v-card-text>
 
         <v-card-actions>
@@ -68,6 +75,7 @@ export default {
       selectedStudents: null,
       selectedRooms: null,
       selectedBed: null,
+      detail: null,
       Students: [],
       Rooms: [],
       Bed: [],
@@ -124,7 +132,8 @@ export default {
       if (
         !this.selectedStudents ||
         !this.selectedRooms ||
-        !this.selectedBed
+        !this.selectedBed ||
+        !this.detail
       ) {
         this.clearAlert();
         this.alertFailed = true;
@@ -142,7 +151,8 @@ export default {
       let newelepayload = {
         student_id: this.selectedStudents,
         room_id: this.selectedRooms,
-        bed_id: this.selectedBed
+        bed_id: this.selectedBed,
+        detail: this.detail
       };
       console.log(newelepayload);
       api
@@ -154,6 +164,7 @@ export default {
           this.selectedStudents = null;
           this.selectedRooms = null;
           this.selectedBed = null;
+          this.detail = null;
         })
         .catch(e => {
           console.log(e);
