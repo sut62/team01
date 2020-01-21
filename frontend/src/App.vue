@@ -271,7 +271,16 @@ export default {
           click: () => {
             this.$router.push("/staff/packageManagement");
           }
+        },
+        {
+          icon: "mdi-contacts",
+          role: "staff",
+          text: "ข้อมูลการแจ้งซ่อม",
+          click: () => {
+            this.$router.push("/staff/RepairDetail");
+          }
         }
+
       ],
       items: [
         {

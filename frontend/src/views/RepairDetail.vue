@@ -8,8 +8,8 @@
     </v-layout>
 
     <v-row justify="center">
-      <v-col cols="8">
-        <v-data-table :headers="headers" :items="items" :items-per-page="5" class="elevation-1"></v-data-table>
+      <v-col cols="10">
+        <v-data-table :headers="headers" :items="items" :items-per-page="5" class="elevation-3"></v-data-table>
       </v-col>
     </v-row>
 
@@ -27,15 +27,17 @@ export default {
     return {
       headers: [
         {
-          text: "ห้อง",
+          text:"ลำดับ",
           align: "left",
           sortable: false,
-          value: "enrolled.Rooms"
+          value: "id"
         },
-        { text: "ชื่ออุปกรณ์", value: "name.name" },
-        { text: "ประเภทอุปกรณ์", value: "type.type" },
+        { text: "ผู้แจ้ง", value: "enrolled.student.fullName" },
+        { text: "ห้อง", sortable: false, value: "enrolled.rooms.roomId" },
+        { text: "ชื่ออุปกรณ์ที่ชำรุด", value: "name.name" },
+        { text: "ประเภทอุปกรณ์ที่ชำรุด", value: "type.type" },
         { text: "ปัญหา", value: "list" },
-        { text: "เวลาที่แจ้งเข้า", value: "repairDate" }
+        { text: "วันที่แจ้ง", value: "repairDate" }
       ],
       items: []
     };
