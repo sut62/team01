@@ -358,9 +358,9 @@ public class EnrollVehicleTests {
         assertEquals("enrolledStudents", show.getPropertyPath().toString());
     }
 
-    // Test size of field
+    // Test size of field (MustLessThanOrEqualTo..)
     @Test
-    void b6025502_testLicensePlateMustLessEqualThan8() {
+    void b6025502_testLicensePlateMustLessThanOrEqualTo8() {
         // จำลองข้อมูลในการบันทึก EnrollVehicle
         VehicleType v_type = new VehicleType();
         v_type.setType("รถยนต์");
@@ -393,12 +393,12 @@ public class EnrollVehicleTests {
 
         // error message ตรง และถูก field
         ConstraintViolation<EnrollVehicle> show = result.iterator().next();
-        assertEquals("size must be between 0 and 8", show.getMessage());
+        assertEquals("size must be between 4 and 8", show.getMessage());
         assertEquals("licensePlate", show.getPropertyPath().toString());
     }
 
     @Test
-    void b6025502_testBrandNameMustLessEqualThan20() {
+    void b6025502_testBrandNameMustLessThanOrEqualTo20() {
         // จำลองข้อมูลในการบันทึก EnrollVehicle
         VehicleType v_type = new VehicleType();
         v_type.setType("รถยนต์");
@@ -418,7 +418,7 @@ public class EnrollVehicleTests {
         EnrollVehicle en_Vehicle = new EnrollVehicle();
         en_Vehicle.setEnrollDate(new Date());
         en_Vehicle.setLicensePlate("กข649");
-        en_Vehicle.setBrandName("12345678901234657890123456");
+        en_Vehicle.setBrandName("123456789012346578901");
         en_Vehicle.setOtherDetails("Fino สีดำ-แดง");
         en_Vehicle.setTypeOfVehicle(v_type);
         en_Vehicle.setCreatedBy(staff);
@@ -431,12 +431,12 @@ public class EnrollVehicleTests {
 
         // error message ตรง และถูก field
         ConstraintViolation<EnrollVehicle> show = result.iterator().next();
-        assertEquals("size must be between 0 and 20", show.getMessage());
+        assertEquals("size must be between 5 and 20", show.getMessage());
         assertEquals("brandName", show.getPropertyPath().toString());
     }
 
     @Test
-    void b6025502_testOtherDetailsMustLessEqualThan50() {
+    void b6025502_testOtherDetailsMustLessThanOrEqualTo50() {
         // จำลองข้อมูลในการบันทึก EnrollVehicle
         VehicleType v_type = new VehicleType();
         v_type.setType("รถยนต์");
@@ -469,7 +469,122 @@ public class EnrollVehicleTests {
 
         // error message ตรง และถูก field
         ConstraintViolation<EnrollVehicle> show = result.iterator().next();
-        assertEquals("size must be between 0 and 50", show.getMessage());
+        assertEquals("size must be between 5 and 50", show.getMessage());
+        assertEquals("otherDetails", show.getPropertyPath().toString());
+    }
+
+    // Test size of field (MustGreaterThanOrEqualTo..)
+    @Test
+    void b6025502_testLicensePlateMustGreaterThanOrEqualTo4() {
+        // จำลองข้อมูลในการบันทึก EnrollVehicle
+        VehicleType v_type = new VehicleType();
+        v_type.setType("รถยนต์");
+        v_type = vehicleTypeRepository.saveAndFlush(v_type);
+        Staff staff = new Staff("Natthawut Sunthornrot", "black", "asd123");
+        staff = staffRepository.saveAndFlush(staff);
+        Students students = new Students("Natthawut Sunthornrot", "B6025502", "black", "asdasd");
+        students = studentsRepository.saveAndFlush(students);
+        Rooms rooms = new Rooms("7133");
+        rooms = roomsRepository.saveAndFlush(rooms);
+        Bed bed = new Bed("What's bed?");
+        bed = bedRepository.saveAndFlush(bed);
+        RoomBooking rbk = new RoomBooking(students, rooms, bed,"ต้องการเตียงเสริม");
+        rbk = roomBookingRepository.saveAndFlush(rbk);
+
+        // สร้าง EnrollVehice และ setter ทุก field ของ EnrollVehicle
+        EnrollVehicle en_Vehicle = new EnrollVehicle();
+        en_Vehicle.setEnrollDate(new Date());
+        en_Vehicle.setLicensePlate("123");
+        en_Vehicle.setBrandName("YAMAHA");
+        en_Vehicle.setOtherDetails("Fino สีดำ-แดง");
+        en_Vehicle.setTypeOfVehicle(v_type);
+        en_Vehicle.setCreatedBy(staff);
+        en_Vehicle.setEnrolledStudents(rbk);
+
+        Set<ConstraintViolation<EnrollVehicle>> result = validator.validate(en_Vehicle);
+
+        // ต้องมี error 1 ค่าเท่านั้น
+        assertEquals(1, result.size());
+
+        // error message ตรง และถูก field
+        ConstraintViolation<EnrollVehicle> show = result.iterator().next();
+        assertEquals("size must be between 4 and 8", show.getMessage());
+        assertEquals("licensePlate", show.getPropertyPath().toString());
+    }
+
+    @Test
+    void b6025502_testBrandNameMustGreateThanOrEqualTo5() {
+        // จำลองข้อมูลในการบันทึก EnrollVehicle
+        VehicleType v_type = new VehicleType();
+        v_type.setType("รถยนต์");
+        v_type = vehicleTypeRepository.saveAndFlush(v_type);
+        Staff staff = new Staff("Natthawut Sunthornrot", "black", "asd123");
+        staff = staffRepository.saveAndFlush(staff);
+        Students students = new Students("Natthawut Sunthornrot", "B6025502", "black", "asdasd");
+        students = studentsRepository.saveAndFlush(students);
+        Rooms rooms = new Rooms("7133");
+        rooms = roomsRepository.saveAndFlush(rooms);
+        Bed bed = new Bed("What's bed?");
+        bed = bedRepository.saveAndFlush(bed);
+        RoomBooking rbk = new RoomBooking(students, rooms, bed,"ต้องการเตียงเสริม");
+        rbk = roomBookingRepository.saveAndFlush(rbk);
+
+        // สร้าง EnrollVehice และ setter ทุก field ของ EnrollVehicle
+        EnrollVehicle en_Vehicle = new EnrollVehicle();
+        en_Vehicle.setEnrollDate(new Date());
+        en_Vehicle.setLicensePlate("กข649");
+        en_Vehicle.setBrandName("1234");
+        en_Vehicle.setOtherDetails("Fino สีดำ-แดง");
+        en_Vehicle.setTypeOfVehicle(v_type);
+        en_Vehicle.setCreatedBy(staff);
+        en_Vehicle.setEnrolledStudents(rbk);
+
+        Set<ConstraintViolation<EnrollVehicle>> result = validator.validate(en_Vehicle);
+
+        // ต้องมี error 1 ค่าเท่านั้น
+        assertEquals(1, result.size());
+
+        // error message ตรง และถูก field
+        ConstraintViolation<EnrollVehicle> show = result.iterator().next();
+        assertEquals("size must be between 5 and 20", show.getMessage());
+        assertEquals("brandName", show.getPropertyPath().toString());
+    }
+
+    @Test
+    void b6025502_testOtherDetailsMustGreaterThanOrEqualTo5() {
+        // จำลองข้อมูลในการบันทึก EnrollVehicle
+        VehicleType v_type = new VehicleType();
+        v_type.setType("รถยนต์");
+        v_type = vehicleTypeRepository.saveAndFlush(v_type);
+        Staff staff = new Staff("Natthawut Sunthornrot", "black", "asd123");
+        staff = staffRepository.saveAndFlush(staff);
+        Students students = new Students("Natthawut Sunthornrot", "B6025502", "black", "asdasd");
+        students = studentsRepository.saveAndFlush(students);
+        Rooms rooms = new Rooms("7133");
+        rooms = roomsRepository.saveAndFlush(rooms);
+        Bed bed = new Bed("What's bed?");
+        bed = bedRepository.saveAndFlush(bed);
+        RoomBooking rbk = new RoomBooking(students, rooms, bed,"ต้องการเตียงเสริม");
+        rbk = roomBookingRepository.saveAndFlush(rbk);
+
+        // สร้าง EnrollVehice และ setter ทุก field ของ EnrollVehicle
+        EnrollVehicle en_Vehicle = new EnrollVehicle();
+        en_Vehicle.setEnrollDate(new Date());
+        en_Vehicle.setLicensePlate("กข649");
+        en_Vehicle.setBrandName("YAMAHA");
+        en_Vehicle.setOtherDetails("1234");
+        en_Vehicle.setTypeOfVehicle(v_type);
+        en_Vehicle.setCreatedBy(staff);
+        en_Vehicle.setEnrolledStudents(rbk);
+
+        Set<ConstraintViolation<EnrollVehicle>> result = validator.validate(en_Vehicle);
+
+        // ต้องมี error 1 ค่าเท่านั้น
+        assertEquals(1, result.size());
+
+        // error message ตรง และถูก field
+        ConstraintViolation<EnrollVehicle> show = result.iterator().next();
+        assertEquals("size must be between 5 and 50", show.getMessage());
         assertEquals("otherDetails", show.getPropertyPath().toString());
     }
 }
