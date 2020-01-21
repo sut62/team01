@@ -154,7 +154,7 @@ public class RepairTests {
         // ต้องมี 1 Error
         assertEquals(1, result.size());
         // error message ตรงชนิด และ ถูก field
-        assertEquals("size must be between 5 and 30", result.iterator().next().getMessage());
+        assertEquals("size must be between 3 and 30", result.iterator().next().getMessage());
         assertEquals("list", result.iterator().next().getPropertyPath().toString());
     }
 
