@@ -38,7 +38,7 @@ public class BorrowedBikeTests {
     private RoomBookingRepository roomBookingRepository;
 
     @Autowired
-    private BranchesRepository branchesRepository;
+    private BedRepository bedRepository;
 
     @Autowired
     private RoomsRepository roomsRepository;
@@ -60,9 +60,9 @@ public class BorrowedBikeTests {
         students = studentsRepository.saveAndFlush(students);
         Rooms rooms = new Rooms("7133");
         rooms = roomsRepository.saveAndFlush(rooms);
-        Branches branches = new Branches("What's branch?");
-        branches = branchesRepository.saveAndFlush(branches);
-        RoomBooking roomBooking = new RoomBooking(students, rooms, branches);
+        Bed bed = new Bed("What's bed?");
+        bed = bedRepository.saveAndFlush(bed);
+        RoomBooking roomBooking = new RoomBooking(students, rooms, bed);
         roomBooking = roomBookingRepository.saveAndFlush(roomBooking);
 
         // สร้าง borrowedBike และ set ค่าต่างๆ
@@ -90,9 +90,9 @@ public class BorrowedBikeTests {
         students = studentsRepository.saveAndFlush(students);
         Rooms rooms = new Rooms("7133");
         rooms = roomsRepository.saveAndFlush(rooms);
-        Branches branches = new Branches("What's branch?");
-        branches = branchesRepository.saveAndFlush(branches);
-        RoomBooking roomBooking = new RoomBooking(students, rooms, branches);
+        Bed bed = new Bed("What's bed?");
+        bed = bedRepository.saveAndFlush(bed);
+        RoomBooking roomBooking = new RoomBooking(students, rooms, bed);
         roomBooking = roomBookingRepository.saveAndFlush(roomBooking);
 
         // สร้าง borrowedBike และ set ค่าต่างๆ
@@ -110,6 +110,7 @@ public class BorrowedBikeTests {
         assertEquals("must not be null", result.iterator().next().getMessage());
         assertEquals("requestDate", result.iterator().next().getPropertyPath().toString());
     }
+
     @Test
     void b6000783_testDateTypeMustNotBeNull() {
         // จำลองข้อมูลที่จำเป็นในการบันทึก BorrowedBike
@@ -121,9 +122,9 @@ public class BorrowedBikeTests {
         students = studentsRepository.saveAndFlush(students);
         Rooms rooms = new Rooms("7133");
         rooms = roomsRepository.saveAndFlush(rooms);
-        Branches branches = new Branches("What's branch?");
-        branches = branchesRepository.saveAndFlush(branches);
-        RoomBooking roomBooking = new RoomBooking(students, rooms, branches);
+        Bed bed = new Bed("What's bed?");
+        bed = bedRepository.saveAndFlush(bed);
+        RoomBooking roomBooking = new RoomBooking(students, rooms, bed);
         roomBooking = roomBookingRepository.saveAndFlush(roomBooking);
 
         // สร้าง borrowedBike และ set ค่าต่างๆ
@@ -152,9 +153,9 @@ public class BorrowedBikeTests {
         students = studentsRepository.saveAndFlush(students);
         Rooms rooms = new Rooms("7133");
         rooms = roomsRepository.saveAndFlush(rooms);
-        Branches branches = new Branches("What's branch?");
-        branches = branchesRepository.saveAndFlush(branches);
-        RoomBooking roomBooking = new RoomBooking(students, rooms, branches);
+        Bed bed = new Bed("What's bed?");
+        bed = bedRepository.saveAndFlush(bed);
+        RoomBooking roomBooking = new RoomBooking(students, rooms, bed);
         roomBooking = roomBookingRepository.saveAndFlush(roomBooking);
 
         // สร้าง borrowedBike และ set ค่าต่างๆ
@@ -172,7 +173,6 @@ public class BorrowedBikeTests {
         assertEquals("must not be null", result.iterator().next().getMessage());
         assertEquals("bikeType", result.iterator().next().getPropertyPath().toString());
     }
-    
 
     @Test
     void b6000783_testRoomBookingMustNotBeNull() {
@@ -185,9 +185,9 @@ public class BorrowedBikeTests {
         students = studentsRepository.saveAndFlush(students);
         Rooms rooms = new Rooms("7133");
         rooms = roomsRepository.saveAndFlush(rooms);
-        Branches branches = new Branches("What's branch?");
-        branches = branchesRepository.saveAndFlush(branches);
-        RoomBooking roomBooking = new RoomBooking(students, rooms, branches);
+        Bed bed = new Bed("What's bed?");
+        bed = bedRepository.saveAndFlush(bed);
+        RoomBooking roomBooking = new RoomBooking(students, rooms, bed);
         roomBooking = roomBookingRepository.saveAndFlush(roomBooking);
 
         // สร้าง borrowedBike และ set ค่าต่างๆ

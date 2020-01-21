@@ -11,13 +11,7 @@ import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
 
-import com.sut62.team01.entity.Branches;
-import com.sut62.team01.entity.PackageType;
-import com.sut62.team01.entity.PackageManagement;
-import com.sut62.team01.entity.RoomBooking;
-import com.sut62.team01.entity.Rooms;
-import com.sut62.team01.entity.Staff;
-import com.sut62.team01.entity.Students;
+import com.sut62.team01.entity.*;
 import com.sut62.team01.repository.*;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -40,7 +34,7 @@ public class PackageManagementTest {
     private RoomBookingRepository roomBookingRepository;
 
     @Autowired
-    private BranchesRepository branchesRepository;
+    private BedRepository bedRepository;
 
     @Autowired
     private RoomsRepository roomsRepository;
@@ -69,9 +63,9 @@ public class PackageManagementTest {
         students = studentsRepository.saveAndFlush(students);
         Rooms rooms = new Rooms("7133");
         rooms = roomsRepository.saveAndFlush(rooms);
-        Branches branches = new Branches("What's branch?");
-        branches = branchesRepository.saveAndFlush(branches);
-        RoomBooking roomBooking = new RoomBooking(students, rooms, branches);
+        Bed bed = new Bed("What's branch?");
+        bed = bedRepository.saveAndFlush(bed);
+        RoomBooking roomBooking = new RoomBooking(students, rooms, bed);
         roomBooking = roomBookingRepository.saveAndFlush(roomBooking);
         // necessary for PackageManagement
         PackageType packageType = new PackageType("sth");
@@ -99,9 +93,9 @@ public class PackageManagementTest {
         students = studentsRepository.saveAndFlush(students);
         Rooms rooms = new Rooms("7133");
         rooms = roomsRepository.saveAndFlush(rooms);
-        Branches branches = new Branches("What's branch?");
-        branches = branchesRepository.saveAndFlush(branches);
-        RoomBooking roomBooking = new RoomBooking(students, rooms, branches);
+        Bed bed = new Bed("What's branch?");
+        bed = bedRepository.saveAndFlush(bed);
+        RoomBooking roomBooking = new RoomBooking(students, rooms, bed);
         roomBooking = roomBookingRepository.saveAndFlush(roomBooking);
         // necessary for PackageManagement
         PackageType packageType = new PackageType("sth");
@@ -133,9 +127,9 @@ public class PackageManagementTest {
         students = studentsRepository.saveAndFlush(students);
         Rooms rooms = new Rooms("7133");
         rooms = roomsRepository.saveAndFlush(rooms);
-        Branches branches = new Branches("What's branch?");
-        branches = branchesRepository.saveAndFlush(branches);
-        RoomBooking roomBooking = new RoomBooking(students, rooms, branches);
+        Bed bed = new Bed("What's branch?");
+        bed = bedRepository.saveAndFlush(bed);
+        RoomBooking roomBooking = new RoomBooking(students, rooms, bed);
         roomBooking = roomBookingRepository.saveAndFlush(roomBooking);
         // necessary for PackageManagement
         PackageType packageType = new PackageType("asd");
@@ -167,9 +161,9 @@ public class PackageManagementTest {
         students = studentsRepository.saveAndFlush(students);
         Rooms rooms = new Rooms("7133");
         rooms = roomsRepository.saveAndFlush(rooms);
-        Branches branches = new Branches("What's branch?");
-        branches = branchesRepository.saveAndFlush(branches);
-        RoomBooking roomBooking = new RoomBooking(students, rooms, branches);
+        Bed bed = new Bed("What's bed?");
+        bed = bedRepository.saveAndFlush(bed);
+        RoomBooking roomBooking = new RoomBooking(students, rooms, bed);
         roomBooking = roomBookingRepository.saveAndFlush(roomBooking);
         // necessary for PackageManagement
         PackageType packageType = new PackageType("asd");

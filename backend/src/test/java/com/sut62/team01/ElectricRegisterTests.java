@@ -34,7 +34,7 @@ public class ElectricRegisterTests {
     private RoomBookingRepository roomBookingRepository;
 
     @Autowired
-    private BranchesRepository branchesRepository;
+    private BedRepository bedRepository;
 
     @Autowired
     private RoomsRepository roomsRepository;
@@ -63,9 +63,9 @@ public class ElectricRegisterTests {
         students = studentsRepository.saveAndFlush(students);
         Rooms rooms = new Rooms("7133");
         rooms = roomsRepository.saveAndFlush(rooms);
-        Branches branches = new Branches("What's branch?");
-        branches = branchesRepository.saveAndFlush(branches);
-        RoomBooking roomBooking = new RoomBooking(students, rooms, branches);
+        Bed bed = new Bed("What's branch?");
+        bed = bedRepository.saveAndFlush(bed);
+        RoomBooking roomBooking = new RoomBooking(students, rooms, bed);
         roomBooking = roomBookingRepository.saveAndFlush(roomBooking);
         // necessary for electricRegister
         ElectricType electricType = new ElectricType("asd");
@@ -94,8 +94,8 @@ public class ElectricRegisterTests {
         students = studentsRepository.saveAndFlush(students);
         Rooms rooms = new Rooms("7133");
         rooms = roomsRepository.saveAndFlush(rooms);
-        Branches branches = new Branches("What's branch?");
-        branches = branchesRepository.saveAndFlush(branches);
+        Bed branches = new Bed("What's bed?");
+        branches = bedRepository.saveAndFlush(branches);
         RoomBooking roomBooking = new RoomBooking(students, rooms, branches);
         roomBooking = roomBookingRepository.saveAndFlush(roomBooking);
         // necessary for electricRegister
@@ -128,9 +128,9 @@ public class ElectricRegisterTests {
         students = studentsRepository.saveAndFlush(students);
         Rooms rooms = new Rooms("7133");
         rooms = roomsRepository.saveAndFlush(rooms);
-        Branches branches = new Branches("What's branch?");
-        branches = branchesRepository.saveAndFlush(branches);
-        RoomBooking roomBooking = new RoomBooking(students, rooms, branches);
+        Bed bed = new Bed("What's bed?");
+        bed = bedRepository.saveAndFlush(bed);
+        RoomBooking roomBooking = new RoomBooking(students, rooms, bed);
         roomBooking = roomBookingRepository.saveAndFlush(roomBooking);
         // necessary for electricRegister
         ElectricType electricType = new ElectricType("asd");
@@ -162,9 +162,9 @@ public class ElectricRegisterTests {
         students = studentsRepository.saveAndFlush(students);
         Rooms rooms = new Rooms("7133");
         rooms = roomsRepository.saveAndFlush(rooms);
-        Branches branches = new Branches("What's branch?");
-        branches = branchesRepository.saveAndFlush(branches);
-        RoomBooking roomBooking = new RoomBooking(students, rooms, branches);
+        Bed bed = new Bed("What's bed?");
+        bed = bedRepository.saveAndFlush(bed);
+        RoomBooking roomBooking = new RoomBooking(students, rooms, bed);
         roomBooking = roomBookingRepository.saveAndFlush(roomBooking);
         // necessary for electricRegister
         ElectricType electricType = new ElectricType("asd");
@@ -195,9 +195,9 @@ public class ElectricRegisterTests {
         students = studentsRepository.saveAndFlush(students);
         Rooms rooms = new Rooms("7133");
         rooms = roomsRepository.saveAndFlush(rooms);
-        Branches branches = new Branches("What's branch?");
-        branches = branchesRepository.saveAndFlush(branches);
-        RoomBooking roomBooking = new RoomBooking(students, rooms, branches);
+        Bed bed = new Bed("What's bed?");
+        bed = bedRepository.saveAndFlush(bed);
+        RoomBooking roomBooking = new RoomBooking(students, rooms, bed);
         roomBooking = roomBookingRepository.saveAndFlush(roomBooking);
         // necessary for electricRegister
         ElectricType electricType = new ElectricType("asd");
@@ -226,9 +226,9 @@ public class ElectricRegisterTests {
         students = studentsRepository.saveAndFlush(students);
         Rooms rooms = new Rooms("7133");
         rooms = roomsRepository.saveAndFlush(rooms);
-        Branches branches = new Branches("What's branch?");
-        branches = branchesRepository.saveAndFlush(branches);
-        RoomBooking roomBooking = new RoomBooking(students, rooms, branches);
+        Bed bed = new Bed("What's bed?");
+        bed = bedRepository.saveAndFlush(bed);
+        RoomBooking roomBooking = new RoomBooking(students, rooms, bed);
         roomBooking = roomBookingRepository.saveAndFlush(roomBooking);
         // necessary for electricRegister
         ElectricType electricType = new ElectricType("asd");
