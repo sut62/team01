@@ -11,20 +11,8 @@ import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
 
-import com.sut62.team01.entity.Branches;
-import com.sut62.team01.entity.EnrollVehicle;
-import com.sut62.team01.entity.RoomBooking;
-import com.sut62.team01.entity.Rooms;
-import com.sut62.team01.entity.Staff;
-import com.sut62.team01.entity.Students;
-import com.sut62.team01.entity.VehicleType;
-import com.sut62.team01.repository.BranchesRepository;
-import com.sut62.team01.repository.EnrollVehicleRepository;
-import com.sut62.team01.repository.RoomBookingRepository;
-import com.sut62.team01.repository.RoomsRepository;
-import com.sut62.team01.repository.StaffRepository;
-import com.sut62.team01.repository.StudentsRepository;
-import com.sut62.team01.repository.VehicleTypeRepository;
+import com.sut62.team01.entity.*;
+import com.sut62.team01.repository.*;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -51,7 +39,7 @@ public class EnrollVehicleTests {
     private RoomBookingRepository roomBookingRepository;
 
     @Autowired
-    private BranchesRepository branchesRepository;
+    private BedRepository bedRepository;
 
     @Autowired
     private RoomsRepository roomsRepository;
@@ -74,11 +62,11 @@ public class EnrollVehicleTests {
         students = studentsRepository.saveAndFlush(students);
         Rooms rooms = new Rooms("7133");
         rooms = roomsRepository.saveAndFlush(rooms);
-        Branches branches = new Branches("What's branch?");
-        branches = branchesRepository.saveAndFlush(branches);
-        RoomBooking rbk = new RoomBooking(students, rooms, branches);
+        Bed bed = new Bed("What's bed?");
+        bed = bedRepository.saveAndFlush(bed);
+        RoomBooking rbk = new RoomBooking(students, rooms, bed);
         rbk = roomBookingRepository.saveAndFlush(rbk);
-        
+
         // สร้าง EnrollVehice และ setter ทุก field ของ EnrollVehicle
         EnrollVehicle en_Vehicle = new EnrollVehicle();
         en_Vehicle.setEnrollDate(new Date());
@@ -109,9 +97,9 @@ public class EnrollVehicleTests {
         students = studentsRepository.saveAndFlush(students);
         Rooms rooms = new Rooms("7133");
         rooms = roomsRepository.saveAndFlush(rooms);
-        Branches branches = new Branches("What's branch?");
-        branches = branchesRepository.saveAndFlush(branches);
-        RoomBooking rbk = new RoomBooking(students, rooms, branches);
+        Bed bed = new Bed("What's bed?");
+        bed = bedRepository.saveAndFlush(bed);
+        RoomBooking rbk = new RoomBooking(students, rooms, bed);
         rbk = roomBookingRepository.saveAndFlush(rbk);
 
         // สร้าง EnrollVehice และ setter ทุก field ของ EnrollVehicle
@@ -127,7 +115,7 @@ public class EnrollVehicleTests {
 
         Set<ConstraintViolation<EnrollVehicle>> result = validator.validate(en_Vehicle);
 
-        //ต้องมี error 1 ค่าเท่านั้น
+        // ต้องมี error 1 ค่าเท่านั้น
         assertEquals(1, result.size());
 
         // error message ตรง และถูก field
@@ -148,9 +136,9 @@ public class EnrollVehicleTests {
         students = studentsRepository.saveAndFlush(students);
         Rooms rooms = new Rooms("7133");
         rooms = roomsRepository.saveAndFlush(rooms);
-        Branches branches = new Branches("What's branch?");
-        branches = branchesRepository.saveAndFlush(branches);
-        RoomBooking rbk = new RoomBooking(students, rooms, branches);
+        Bed bed = new Bed("What's bed?");
+        bed = bedRepository.saveAndFlush(bed);
+        RoomBooking rbk = new RoomBooking(students, rooms, bed);
         rbk = roomBookingRepository.saveAndFlush(rbk);
 
         // สร้าง EnrollVehice และ setter ทุก field ของ EnrollVehicle
@@ -166,7 +154,7 @@ public class EnrollVehicleTests {
 
         Set<ConstraintViolation<EnrollVehicle>> result = validator.validate(en_Vehicle);
 
-        //ต้องมี error 1 ค่าเท่านั้น
+        // ต้องมี error 1 ค่าเท่านั้น
         assertEquals(1, result.size());
 
         // error message ตรง และถูก field
@@ -187,9 +175,9 @@ public class EnrollVehicleTests {
         students = studentsRepository.saveAndFlush(students);
         Rooms rooms = new Rooms("7133");
         rooms = roomsRepository.saveAndFlush(rooms);
-        Branches branches = new Branches("What's branch?");
-        branches = branchesRepository.saveAndFlush(branches);
-        RoomBooking rbk = new RoomBooking(students, rooms, branches);
+        Bed bed = new Bed("What's bed?");
+        bed = bedRepository.saveAndFlush(bed);
+        RoomBooking rbk = new RoomBooking(students, rooms, bed);
         rbk = roomBookingRepository.saveAndFlush(rbk);
 
         // สร้าง EnrollVehice และ setter ทุก field ของ EnrollVehicle
@@ -205,7 +193,7 @@ public class EnrollVehicleTests {
 
         Set<ConstraintViolation<EnrollVehicle>> result = validator.validate(en_Vehicle);
 
-        //ต้องมี error 1 ค่าเท่านั้น
+        // ต้องมี error 1 ค่าเท่านั้น
         assertEquals(1, result.size());
 
         // error message ตรง และถูก field
@@ -226,9 +214,9 @@ public class EnrollVehicleTests {
         students = studentsRepository.saveAndFlush(students);
         Rooms rooms = new Rooms("7133");
         rooms = roomsRepository.saveAndFlush(rooms);
-        Branches branches = new Branches("What's branch?");
-        branches = branchesRepository.saveAndFlush(branches);
-        RoomBooking rbk = new RoomBooking(students, rooms, branches);
+        Bed bed = new Bed("What's bed?");
+        bed = bedRepository.saveAndFlush(bed);
+        RoomBooking rbk = new RoomBooking(students, rooms, bed);
         rbk = roomBookingRepository.saveAndFlush(rbk);
 
         // สร้าง EnrollVehice และ setter ทุก field ของ EnrollVehicle
@@ -244,7 +232,7 @@ public class EnrollVehicleTests {
 
         Set<ConstraintViolation<EnrollVehicle>> result = validator.validate(en_Vehicle);
 
-        //ต้องมี error 1 ค่าเท่านั้น
+        // ต้องมี error 1 ค่าเท่านั้น
         assertEquals(1, result.size());
 
         // error message ตรง และถูก field
@@ -265,9 +253,9 @@ public class EnrollVehicleTests {
         students = studentsRepository.saveAndFlush(students);
         Rooms rooms = new Rooms("7133");
         rooms = roomsRepository.saveAndFlush(rooms);
-        Branches branches = new Branches("What's branch?");
-        branches = branchesRepository.saveAndFlush(branches);
-        RoomBooking rbk = new RoomBooking(students, rooms, branches);
+        Bed bed = new Bed("What's bed?");
+        bed = bedRepository.saveAndFlush(bed);
+        RoomBooking rbk = new RoomBooking(students, rooms, bed);
         rbk = roomBookingRepository.saveAndFlush(rbk);
 
         // สร้าง EnrollVehice และ setter ทุก field ของ EnrollVehicle
@@ -283,7 +271,7 @@ public class EnrollVehicleTests {
 
         Set<ConstraintViolation<EnrollVehicle>> result = validator.validate(en_Vehicle);
 
-        //ต้องมี error 1 ค่าเท่านั้น
+        // ต้องมี error 1 ค่าเท่านั้น
         assertEquals(1, result.size());
 
         // error message ตรง และถูก field
@@ -304,9 +292,9 @@ public class EnrollVehicleTests {
         students = studentsRepository.saveAndFlush(students);
         Rooms rooms = new Rooms("7133");
         rooms = roomsRepository.saveAndFlush(rooms);
-        Branches branches = new Branches("What's branch?");
-        branches = branchesRepository.saveAndFlush(branches);
-        RoomBooking rbk = new RoomBooking(students, rooms, branches);
+        Bed bed = new Bed("What's bed?");
+        bed = bedRepository.saveAndFlush(bed);
+        RoomBooking rbk = new RoomBooking(students, rooms, bed);
         rbk = roomBookingRepository.saveAndFlush(rbk);
 
         // สร้าง EnrollVehice และ setter ทุก field ของ EnrollVehicle
@@ -322,7 +310,7 @@ public class EnrollVehicleTests {
 
         Set<ConstraintViolation<EnrollVehicle>> result = validator.validate(en_Vehicle);
 
-        //ต้องมี error 1 ค่าเท่านั้น
+        // ต้องมี error 1 ค่าเท่านั้น
         assertEquals(1, result.size());
 
         // error message ตรง และถูก field
@@ -343,9 +331,9 @@ public class EnrollVehicleTests {
         students = studentsRepository.saveAndFlush(students);
         Rooms rooms = new Rooms("7133");
         rooms = roomsRepository.saveAndFlush(rooms);
-        Branches branches = new Branches("What's branch?");
-        branches = branchesRepository.saveAndFlush(branches);
-        RoomBooking rbk = new RoomBooking(students, rooms, branches);
+        Bed bed = new Bed("What's bed?");
+        bed = bedRepository.saveAndFlush(bed);
+        RoomBooking rbk = new RoomBooking(students, rooms, bed);
         rbk = roomBookingRepository.saveAndFlush(rbk);
 
         // สร้าง EnrollVehice และ setter ทุก field ของ EnrollVehicle
@@ -361,7 +349,7 @@ public class EnrollVehicleTests {
 
         Set<ConstraintViolation<EnrollVehicle>> result = validator.validate(en_Vehicle);
 
-        //ต้องมี error 1 ค่าเท่านั้น
+        // ต้องมี error 1 ค่าเท่านั้น
         assertEquals(1, result.size());
 
         // error message ตรง และถูก field
@@ -383,9 +371,9 @@ public class EnrollVehicleTests {
         students = studentsRepository.saveAndFlush(students);
         Rooms rooms = new Rooms("7133");
         rooms = roomsRepository.saveAndFlush(rooms);
-        Branches branches = new Branches("What's branch?");
-        branches = branchesRepository.saveAndFlush(branches);
-        RoomBooking rbk = new RoomBooking(students, rooms, branches);
+        Bed bed = new Bed("What's bed?");
+        bed = bedRepository.saveAndFlush(bed);
+        RoomBooking rbk = new RoomBooking(students, rooms, bed);
         rbk = roomBookingRepository.saveAndFlush(rbk);
 
         // สร้าง EnrollVehice และ setter ทุก field ของ EnrollVehicle
@@ -400,7 +388,7 @@ public class EnrollVehicleTests {
 
         Set<ConstraintViolation<EnrollVehicle>> result = validator.validate(en_Vehicle);
 
-        //ต้องมี error 1 ค่าเท่านั้น
+        // ต้องมี error 1 ค่าเท่านั้น
         assertEquals(1, result.size());
 
         // error message ตรง และถูก field
@@ -421,9 +409,9 @@ public class EnrollVehicleTests {
         students = studentsRepository.saveAndFlush(students);
         Rooms rooms = new Rooms("7133");
         rooms = roomsRepository.saveAndFlush(rooms);
-        Branches branches = new Branches("What's branch?");
-        branches = branchesRepository.saveAndFlush(branches);
-        RoomBooking rbk = new RoomBooking(students, rooms, branches);
+        Bed bed = new Bed("What's bed?");
+        bed = bedRepository.saveAndFlush(bed);
+        RoomBooking rbk = new RoomBooking(students, rooms, bed);
         rbk = roomBookingRepository.saveAndFlush(rbk);
 
         // สร้าง EnrollVehice และ setter ทุก field ของ EnrollVehicle
@@ -438,7 +426,7 @@ public class EnrollVehicleTests {
 
         Set<ConstraintViolation<EnrollVehicle>> result = validator.validate(en_Vehicle);
 
-        //ต้องมี error 1 ค่าเท่านั้น
+        // ต้องมี error 1 ค่าเท่านั้น
         assertEquals(1, result.size());
 
         // error message ตรง และถูก field
@@ -459,9 +447,9 @@ public class EnrollVehicleTests {
         students = studentsRepository.saveAndFlush(students);
         Rooms rooms = new Rooms("7133");
         rooms = roomsRepository.saveAndFlush(rooms);
-        Branches branches = new Branches("What's branch?");
-        branches = branchesRepository.saveAndFlush(branches);
-        RoomBooking rbk = new RoomBooking(students, rooms, branches);
+        Bed bed = new Bed("What's bed?");
+        bed = bedRepository.saveAndFlush(bed);
+        RoomBooking rbk = new RoomBooking(students, rooms, bed);
         rbk = roomBookingRepository.saveAndFlush(rbk);
 
         // สร้าง EnrollVehice และ setter ทุก field ของ EnrollVehicle
@@ -476,7 +464,7 @@ public class EnrollVehicleTests {
 
         Set<ConstraintViolation<EnrollVehicle>> result = validator.validate(en_Vehicle);
 
-        //ต้องมี error 1 ค่าเท่านั้น
+        // ต้องมี error 1 ค่าเท่านั้น
         assertEquals(1, result.size());
 
         // error message ตรง และถูก field

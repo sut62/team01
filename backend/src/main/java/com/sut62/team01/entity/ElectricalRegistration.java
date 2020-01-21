@@ -14,6 +14,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -47,7 +48,8 @@ public class ElectricalRegistration {
     @JsonManagedReference
     private @NotNull Staff staff;
 
-    private String details;
+
+    private @Size(min = 5, max = 30) String details;
 
     public ElectricalRegistration() {
     }

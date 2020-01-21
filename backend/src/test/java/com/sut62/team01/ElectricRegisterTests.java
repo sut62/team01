@@ -11,13 +11,7 @@ import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
 
-import com.sut62.team01.entity.Branches;
-import com.sut62.team01.entity.ElectricType;
-import com.sut62.team01.entity.ElectricalRegistration;
-import com.sut62.team01.entity.RoomBooking;
-import com.sut62.team01.entity.Rooms;
-import com.sut62.team01.entity.Staff;
-import com.sut62.team01.entity.Students;
+import com.sut62.team01.entity.*;
 import com.sut62.team01.repository.*;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -40,7 +34,7 @@ public class ElectricRegisterTests {
     private RoomBookingRepository roomBookingRepository;
 
     @Autowired
-    private BranchesRepository branchesRepository;
+    private BedRepository bedRepository;
 
     @Autowired
     private RoomsRepository roomsRepository;
@@ -69,9 +63,9 @@ public class ElectricRegisterTests {
         students = studentsRepository.saveAndFlush(students);
         Rooms rooms = new Rooms("7133");
         rooms = roomsRepository.saveAndFlush(rooms);
-        Branches branches = new Branches("What's branch?");
-        branches = branchesRepository.saveAndFlush(branches);
-        RoomBooking roomBooking = new RoomBooking(students, rooms, branches);
+        Bed bed = new Bed("What's branch?");
+        bed = bedRepository.saveAndFlush(bed);
+        RoomBooking roomBooking = new RoomBooking(students, rooms, bed);
         roomBooking = roomBookingRepository.saveAndFlush(roomBooking);
         // necessary for electricRegister
         ElectricType electricType = new ElectricType("asd");
@@ -100,8 +94,8 @@ public class ElectricRegisterTests {
         students = studentsRepository.saveAndFlush(students);
         Rooms rooms = new Rooms("7133");
         rooms = roomsRepository.saveAndFlush(rooms);
-        Branches branches = new Branches("What's branch?");
-        branches = branchesRepository.saveAndFlush(branches);
+        Bed branches = new Bed("What's bed?");
+        branches = bedRepository.saveAndFlush(branches);
         RoomBooking roomBooking = new RoomBooking(students, rooms, branches);
         roomBooking = roomBookingRepository.saveAndFlush(roomBooking);
         // necessary for electricRegister
@@ -134,9 +128,9 @@ public class ElectricRegisterTests {
         students = studentsRepository.saveAndFlush(students);
         Rooms rooms = new Rooms("7133");
         rooms = roomsRepository.saveAndFlush(rooms);
-        Branches branches = new Branches("What's branch?");
-        branches = branchesRepository.saveAndFlush(branches);
-        RoomBooking roomBooking = new RoomBooking(students, rooms, branches);
+        Bed bed = new Bed("What's bed?");
+        bed = bedRepository.saveAndFlush(bed);
+        RoomBooking roomBooking = new RoomBooking(students, rooms, bed);
         roomBooking = roomBookingRepository.saveAndFlush(roomBooking);
         // necessary for electricRegister
         ElectricType electricType = new ElectricType("asd");
@@ -168,9 +162,9 @@ public class ElectricRegisterTests {
         students = studentsRepository.saveAndFlush(students);
         Rooms rooms = new Rooms("7133");
         rooms = roomsRepository.saveAndFlush(rooms);
-        Branches branches = new Branches("What's branch?");
-        branches = branchesRepository.saveAndFlush(branches);
-        RoomBooking roomBooking = new RoomBooking(students, rooms, branches);
+        Bed bed = new Bed("What's bed?");
+        bed = bedRepository.saveAndFlush(bed);
+        RoomBooking roomBooking = new RoomBooking(students, rooms, bed);
         roomBooking = roomBookingRepository.saveAndFlush(roomBooking);
         // necessary for electricRegister
         ElectricType electricType = new ElectricType("asd");
@@ -190,6 +184,68 @@ public class ElectricRegisterTests {
         assertEquals("must not be null",result.iterator().next().getMessage());
         assertEquals("roomBooking", result.iterator().next().getPropertyPath().toString());
 
+    }
+
+    @Test
+    void B6003296_testDetailsustBeGreaterEqual5(){
+        // create oj
+        ElectricalRegistration electricalRegistration = new ElectricalRegistration();
+        // necessary for roombooking
+        Students students = new Students("Pontep Thaweesup", "B6000783", "pontep", "1234");
+        students = studentsRepository.saveAndFlush(students);
+        Rooms rooms = new Rooms("7133");
+        rooms = roomsRepository.saveAndFlush(rooms);
+        Bed bed = new Bed("What's bed?");
+        bed = bedRepository.saveAndFlush(bed);
+        RoomBooking roomBooking = new RoomBooking(students, rooms, bed);
+        roomBooking = roomBookingRepository.saveAndFlush(roomBooking);
+        // necessary for electricRegister
+        ElectricType electricType = new ElectricType("asd");
+        electricType = electricTypeRepository.saveAndFlush(electricType);
+        Staff staff = new Staff("asdsa", "asdsa", "qwe");
+        staff = staffRepository.saveAndFlush(staff);
+
+        electricalRegistration.setRoomBooking(roomBooking);
+        electricalRegistration.setElectricType(electricType);
+        electricalRegistration.setStaff(staff);
+        electricalRegistration.setDetails("1234");
+        electricalRegistration.setElectricalRegistrationdate(new Date());
+
+        Set<ConstraintViolation<ElectricalRegistration>> result = validator.validate(electricalRegistration);
+        assertEquals(1,result.size());
+        assertEquals("size must be between 5 and 30",result.iterator().next().getMessage());
+        assertEquals("details",result.iterator().next().getPropertyPath().toString());
+    }
+
+    @Test
+    void B6003296_testDetailsustBeLessEqual30(){
+        // create oj
+        ElectricalRegistration electricalRegistration = new ElectricalRegistration();
+        // necessary for roombooking
+        Students students = new Students("Pontep Thaweesup", "B6000783", "pontep", "1234");
+        students = studentsRepository.saveAndFlush(students);
+        Rooms rooms = new Rooms("7133");
+        rooms = roomsRepository.saveAndFlush(rooms);
+        Bed bed = new Bed("What's bed?");
+        bed = bedRepository.saveAndFlush(bed);
+        RoomBooking roomBooking = new RoomBooking(students, rooms, bed);
+        roomBooking = roomBookingRepository.saveAndFlush(roomBooking);
+        // necessary for electricRegister
+        ElectricType electricType = new ElectricType("asd");
+        electricType = electricTypeRepository.saveAndFlush(electricType);
+        Staff staff = new Staff("asdsa", "asdsa", "qwe");
+        staff = staffRepository.saveAndFlush(staff);
+
+        electricalRegistration.setRoomBooking(roomBooking);
+        electricalRegistration.setElectricType(electricType);
+        electricalRegistration.setStaff(staff);
+        electricalRegistration.setDetails("1234567890123456789012345678901");
+        electricalRegistration.setElectricalRegistrationdate(new Date());
+
+        Set<ConstraintViolation<ElectricalRegistration>> result = validator.validate(electricalRegistration);
+        assertEquals(1,result.size());
+        assertEquals("size must be between 5 and 30",result.iterator().next().getMessage());
+        assertEquals("details",result.iterator().next().getPropertyPath().toString());
     }
 
 

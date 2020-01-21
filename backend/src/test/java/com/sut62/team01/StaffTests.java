@@ -11,7 +11,6 @@ import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
-import java.util.Optional;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -31,13 +30,13 @@ public class StaffTests {
     }
 
     @Test
-    void b6000783_testInsertStaffOK() {
+    void b6003296testInsertStaffOK() {
         Staff staff = new Staff("asdsa", "asdsa", "qwe");
         staff = staffRepository.saveAndFlush(staff);
-        Optional<Staff> found = Optional.ofNullable(staffRepository.findById(staff.getId()));
-        assertEquals(staff.getName(), found.get().getName());
-        assertEquals(staff.getUsername(), found.get().getUsername());
-        assertEquals(staff.getPassword(), found.get().getPassword());
+        Staff found = staffRepository.findById(staff.getId());
+        assertEquals(staff.getName(), found.getName());
+        assertEquals(staff.getUsername(), found.getUsername());
+        assertEquals(staff.getPassword(), found.getPassword());
     }
 
     @Test
