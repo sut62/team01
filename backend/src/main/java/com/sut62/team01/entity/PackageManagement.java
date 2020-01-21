@@ -36,6 +36,7 @@ public class PackageManagement {
     @Column(name = "packageDATE")
     private @NotNull Date packageDate;
 
+    @Size(min = 5, max = 20)
     private String details;
 
     public PackageManagement() {
