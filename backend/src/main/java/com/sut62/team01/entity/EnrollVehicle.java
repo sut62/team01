@@ -37,17 +37,17 @@ public class EnrollVehicle {
     private Date enrollDate;
 
     @NotNull
-    @Size(max = 8)
+    @Size(min = 4, max = 8)
     @Column(name = "LICENSE_PLATE")
     private String licensePlate;
 
     @NotNull
-    @Size(max = 20)
+    @Size(min = 5, max = 20)
     @Column(name = "BRAND_NAME")
     private String brandName;
     
     @NotNull
-    @Size(max = 50)
+    @Size(min = 5, max = 50)
     @Column(name = "OTHER_DETAILS")
     private String otherDetails;
 
