@@ -20,12 +20,13 @@ public class Students {
 	@SequenceGenerator(name = "STUDENTS_seq", sequenceName = "STUDENTS_seq")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "STUDENTS_seq")
 	@Column(name = "STUDENTS_ID", unique = true, nullable = true)
-	private @NonNull Long id;
+	private Long id;
 
-	private @NotNull String studentId;
+	private String studentId;
 
 	@NotNull
 	private String fullName;
+
 	@NotNull
 	private String username;
 
@@ -35,9 +36,9 @@ public class Students {
 	public Students() {
 	}
 
-	public Students(String students) {
-		this.studentId = students;
-	}
+	// public Students(String students) {
+	// 	//this.studentId = students;
+	// }
 
 	public Students(String fullName, String studentId, String username, String password) {
 		this.fullName = fullName;

@@ -1,6 +1,5 @@
 package com.sut62.team01.controller;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -47,7 +46,7 @@ public class RoomBookingController {
 
     @PostMapping("/roombooking/{students_id}/{rooms_id}/{bed_id}")
     public RoomBooking newroombooking(RoomBooking newRoomBooking, @PathVariable long students_id,
-            @PathVariable long bed_id, @PathVariable long rooms_id) {
+            @PathVariable long bed_id, @PathVariable long rooms_id, @PathVariable String detail) {
 
         Students students = studentsrepository.findById(students_id);
         Bed bed = bedrepository.findById(bed_id);
@@ -56,7 +55,6 @@ public class RoomBookingController {
         newRoomBooking.setStudent(students);
         newRoomBooking.setBed(bed);
         newRoomBooking.setRooms(rooms);
-
         return roomBookingRepository.save(newRoomBooking);
 
     }
@@ -71,6 +69,7 @@ public class RoomBookingController {
         newRoomBooking.setStudent(students.get());
         newRoomBooking.setBed(bed.get());
         newRoomBooking.setRooms(rooms.get());
+        newRoomBooking.setDetail(r.getDetail());
         return roomBookingRepository.save(newRoomBooking);
     }
 

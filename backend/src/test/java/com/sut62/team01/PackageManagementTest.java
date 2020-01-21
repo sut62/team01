@@ -65,7 +65,7 @@ public class PackageManagementTest {
         rooms = roomsRepository.saveAndFlush(rooms);
         Bed bed = new Bed("What's branch?");
         bed = bedRepository.saveAndFlush(bed);
-        RoomBooking roomBooking = new RoomBooking(students, rooms, bed);
+        RoomBooking roomBooking = new RoomBooking(students, rooms, bed,"ต้องการเตียงเสริม");
         roomBooking = roomBookingRepository.saveAndFlush(roomBooking);
         // necessary for PackageManagement
         PackageType packageType = new PackageType("sth");
@@ -95,7 +95,7 @@ public class PackageManagementTest {
         rooms = roomsRepository.saveAndFlush(rooms);
         Bed bed = new Bed("What's branch?");
         bed = bedRepository.saveAndFlush(bed);
-        RoomBooking roomBooking = new RoomBooking(students, rooms, bed);
+        RoomBooking roomBooking = new RoomBooking(students, rooms, bed,"ต้องการเตียงเสริม");
         roomBooking = roomBookingRepository.saveAndFlush(roomBooking);
         // necessary for PackageManagement
         PackageType packageType = new PackageType("sth");
@@ -129,7 +129,7 @@ public class PackageManagementTest {
         rooms = roomsRepository.saveAndFlush(rooms);
         Bed bed = new Bed("What's branch?");
         bed = bedRepository.saveAndFlush(bed);
-        RoomBooking roomBooking = new RoomBooking(students, rooms, bed);
+        RoomBooking roomBooking = new RoomBooking(students, rooms, bed,"ต้องการเตียงเสริม");
         roomBooking = roomBookingRepository.saveAndFlush(roomBooking);
         // necessary for PackageManagement
         PackageType packageType = new PackageType("asd");
@@ -163,7 +163,7 @@ public class PackageManagementTest {
         rooms = roomsRepository.saveAndFlush(rooms);
         Bed bed = new Bed("What's bed?");
         bed = bedRepository.saveAndFlush(bed);
-        RoomBooking roomBooking = new RoomBooking(students, rooms, bed);
+        RoomBooking roomBooking = new RoomBooking(students, rooms, bed,"ต้องการเตียงเสริม");
         roomBooking = roomBookingRepository.saveAndFlush(roomBooking);
         // necessary for PackageManagement
         PackageType packageType = new PackageType("asd");
@@ -197,7 +197,7 @@ public class PackageManagementTest {
         rooms = roomsRepository.saveAndFlush(rooms);
         Bed bed = new Bed("What's bed?");
         bed = bedRepository.saveAndFlush(bed);
-        RoomBooking roomBooking = new RoomBooking(students, rooms, bed);
+        RoomBooking roomBooking = new RoomBooking(students, rooms, bed,"ต้องการเตียงเสริม");
         roomBooking = roomBookingRepository.saveAndFlush(roomBooking);
         // necessary for PackageManagement
         PackageType packageType = new PackageType("asd");
@@ -231,7 +231,7 @@ public class PackageManagementTest {
         rooms = roomsRepository.saveAndFlush(rooms);
         Bed bed = new Bed("What's bed?");
         bed = bedRepository.saveAndFlush(bed);
-        RoomBooking roomBooking = new RoomBooking(students, rooms, bed);
+        RoomBooking roomBooking = new RoomBooking(students, rooms, bed,"ต้องการเตียงเสริม");
         roomBooking = roomBookingRepository.saveAndFlush(roomBooking);
         // necessary for PackageManagement
         PackageType packageType = new PackageType("asd");

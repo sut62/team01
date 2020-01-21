@@ -64,7 +64,7 @@ public class EnrollVehicleTests {
         rooms = roomsRepository.saveAndFlush(rooms);
         Bed bed = new Bed("What's bed?");
         bed = bedRepository.saveAndFlush(bed);
-        RoomBooking rbk = new RoomBooking(students, rooms, bed);
+        RoomBooking rbk = new RoomBooking(students, rooms, bed,"ต้องการเตียงเสริม");
         rbk = roomBookingRepository.saveAndFlush(rbk);
 
         // สร้าง EnrollVehice และ setter ทุก field ของ EnrollVehicle
@@ -99,7 +99,7 @@ public class EnrollVehicleTests {
         rooms = roomsRepository.saveAndFlush(rooms);
         Bed bed = new Bed("What's bed?");
         bed = bedRepository.saveAndFlush(bed);
-        RoomBooking rbk = new RoomBooking(students, rooms, bed);
+        RoomBooking rbk = new RoomBooking(students, rooms, bed,"ต้องการเตียงเสริม");
         rbk = roomBookingRepository.saveAndFlush(rbk);
 
         // สร้าง EnrollVehice และ setter ทุก field ของ EnrollVehicle
@@ -138,7 +138,7 @@ public class EnrollVehicleTests {
         rooms = roomsRepository.saveAndFlush(rooms);
         Bed bed = new Bed("What's bed?");
         bed = bedRepository.saveAndFlush(bed);
-        RoomBooking rbk = new RoomBooking(students, rooms, bed);
+        RoomBooking rbk = new RoomBooking(students, rooms, bed,"ต้องการเตียงเสริม");
         rbk = roomBookingRepository.saveAndFlush(rbk);
 
         // สร้าง EnrollVehice และ setter ทุก field ของ EnrollVehicle
@@ -177,7 +177,7 @@ public class EnrollVehicleTests {
         rooms = roomsRepository.saveAndFlush(rooms);
         Bed bed = new Bed("What's bed?");
         bed = bedRepository.saveAndFlush(bed);
-        RoomBooking rbk = new RoomBooking(students, rooms, bed);
+        RoomBooking rbk = new RoomBooking(students, rooms, bed,"ต้องการเตียงเสริม");
         rbk = roomBookingRepository.saveAndFlush(rbk);
 
         // สร้าง EnrollVehice และ setter ทุก field ของ EnrollVehicle
@@ -216,7 +216,7 @@ public class EnrollVehicleTests {
         rooms = roomsRepository.saveAndFlush(rooms);
         Bed bed = new Bed("What's bed?");
         bed = bedRepository.saveAndFlush(bed);
-        RoomBooking rbk = new RoomBooking(students, rooms, bed);
+        RoomBooking rbk = new RoomBooking(students, rooms, bed,"ต้องการเตียงเสริม");
         rbk = roomBookingRepository.saveAndFlush(rbk);
 
         // สร้าง EnrollVehice และ setter ทุก field ของ EnrollVehicle
@@ -255,7 +255,7 @@ public class EnrollVehicleTests {
         rooms = roomsRepository.saveAndFlush(rooms);
         Bed bed = new Bed("What's bed?");
         bed = bedRepository.saveAndFlush(bed);
-        RoomBooking rbk = new RoomBooking(students, rooms, bed);
+        RoomBooking rbk = new RoomBooking(students, rooms, bed,"ต้องการเตียงเสริม");
         rbk = roomBookingRepository.saveAndFlush(rbk);
 
         // สร้าง EnrollVehice และ setter ทุก field ของ EnrollVehicle
@@ -294,7 +294,7 @@ public class EnrollVehicleTests {
         rooms = roomsRepository.saveAndFlush(rooms);
         Bed bed = new Bed("What's bed?");
         bed = bedRepository.saveAndFlush(bed);
-        RoomBooking rbk = new RoomBooking(students, rooms, bed);
+        RoomBooking rbk = new RoomBooking(students, rooms, bed,"ต้องการเตียงเสริม");
         rbk = roomBookingRepository.saveAndFlush(rbk);
 
         // สร้าง EnrollVehice และ setter ทุก field ของ EnrollVehicle
@@ -333,7 +333,7 @@ public class EnrollVehicleTests {
         rooms = roomsRepository.saveAndFlush(rooms);
         Bed bed = new Bed("What's bed?");
         bed = bedRepository.saveAndFlush(bed);
-        RoomBooking rbk = new RoomBooking(students, rooms, bed);
+        RoomBooking rbk = new RoomBooking(students, rooms, bed,"ต้องการเตียงเสริม");
         rbk = roomBookingRepository.saveAndFlush(rbk);
 
         // สร้าง EnrollVehice และ setter ทุก field ของ EnrollVehicle
@@ -373,7 +373,7 @@ public class EnrollVehicleTests {
         rooms = roomsRepository.saveAndFlush(rooms);
         Bed bed = new Bed("What's bed?");
         bed = bedRepository.saveAndFlush(bed);
-        RoomBooking rbk = new RoomBooking(students, rooms, bed);
+        RoomBooking rbk = new RoomBooking(students, rooms, bed,"ต้องการเตียงเสริม");
         rbk = roomBookingRepository.saveAndFlush(rbk);
 
         // สร้าง EnrollVehice และ setter ทุก field ของ EnrollVehicle
@@ -411,7 +411,7 @@ public class EnrollVehicleTests {
         rooms = roomsRepository.saveAndFlush(rooms);
         Bed bed = new Bed("What's bed?");
         bed = bedRepository.saveAndFlush(bed);
-        RoomBooking rbk = new RoomBooking(students, rooms, bed);
+        RoomBooking rbk = new RoomBooking(students, rooms, bed,"ต้องการเตียงเสริม");
         rbk = roomBookingRepository.saveAndFlush(rbk);
 
         // สร้าง EnrollVehice และ setter ทุก field ของ EnrollVehicle
@@ -449,7 +449,7 @@ public class EnrollVehicleTests {
         rooms = roomsRepository.saveAndFlush(rooms);
         Bed bed = new Bed("What's bed?");
         bed = bedRepository.saveAndFlush(bed);
-        RoomBooking rbk = new RoomBooking(students, rooms, bed);
+        RoomBooking rbk = new RoomBooking(students, rooms, bed,"ต้องการเตียงเสริม");
         rbk = roomBookingRepository.saveAndFlush(rbk);
 
         // สร้าง EnrollVehice และ setter ทุก field ของ EnrollVehicle
