@@ -184,5 +184,73 @@ public class PackageManagementTest {
         assertEquals("roomBooking", result.iterator().next().getPropertyPath().toString());
 
     }
+    
+    @Test
+    void b6018474_testDetailsNotLessThanMin() {
+
+        // create oj
+        PackageManagement packageManagement = new PackageManagement();
+        // necessary for roombooking
+        Students students = new Students("Pontep Thaweesup", "B6000783", "pontep", "1234");
+        students = studentsRepository.saveAndFlush(students);
+        Rooms rooms = new Rooms("7133");
+        rooms = roomsRepository.saveAndFlush(rooms);
+        Bed bed = new Bed("What's bed?");
+        bed = bedRepository.saveAndFlush(bed);
+        RoomBooking roomBooking = new RoomBooking(students, rooms, bed);
+        roomBooking = roomBookingRepository.saveAndFlush(roomBooking);
+        // necessary for PackageManagement
+        PackageType packageType = new PackageType("asd");
+        packageType = packageTypeRepository.saveAndFlush(packageType);
+        Staff staff = new Staff("asdsa", "asdsa", "qwe");
+        staff = staffRepository.saveAndFlush(staff);
+
+        packageManagement.setRoomBooking(roomBooking);
+        packageManagement.setPackageType(packageType);
+        packageManagement.setStaff(staff);
+        packageManagement.setDetails("1234");
+        packageManagement.setPackageDate(new Date());
+
+        Set<ConstraintViolation<PackageManagement>> result = validator.validate(packageManagement);
+
+        assertEquals(1, result.size());
+        assertEquals("size must be between 5 and 20", result.iterator().next().getMessage());
+        assertEquals("details", result.iterator().next().getPropertyPath().toString());
+
+    }
+
+    @Test
+    void b6018474_testDetailsNotGreaterThanMax() {
+
+        // create oj
+        PackageManagement packageManagement = new PackageManagement();
+        // necessary for roombooking
+        Students students = new Students("Pontep Thaweesup", "B6000783", "pontep", "1234");
+        students = studentsRepository.saveAndFlush(students);
+        Rooms rooms = new Rooms("7133");
+        rooms = roomsRepository.saveAndFlush(rooms);
+        Bed bed = new Bed("What's bed?");
+        bed = bedRepository.saveAndFlush(bed);
+        RoomBooking roomBooking = new RoomBooking(students, rooms, bed);
+        roomBooking = roomBookingRepository.saveAndFlush(roomBooking);
+        // necessary for PackageManagement
+        PackageType packageType = new PackageType("asd");
+        packageType = packageTypeRepository.saveAndFlush(packageType);
+        Staff staff = new Staff("asdsa", "asdsa", "qwe");
+        staff = staffRepository.saveAndFlush(staff);
+
+        packageManagement.setRoomBooking(roomBooking);
+        packageManagement.setPackageType(packageType);
+        packageManagement.setStaff(staff);
+        packageManagement.setDetails("123456789012345678901");
+        packageManagement.setPackageDate(new Date());
+
+        Set<ConstraintViolation<PackageManagement>> result = validator.validate(packageManagement);
+
+        assertEquals(1, result.size());
+        assertEquals("size must be between 5 and 20", result.iterator().next().getMessage());
+        assertEquals("details", result.iterator().next().getPropertyPath().toString());
+
+    }
 
 }
