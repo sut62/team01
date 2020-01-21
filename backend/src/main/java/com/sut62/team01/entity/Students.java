@@ -21,7 +21,8 @@ public class Students {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "STUDENTS_seq")
 	@Column(name = "STUDENTS_ID", unique = true, nullable = true)
 	private Long id;
-
+	
+	@NotNull
 	private String studentId;
 
 	@NotNull
