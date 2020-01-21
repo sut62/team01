@@ -92,7 +92,7 @@ public class RepairTests {
 
 
     @Test
-    void b6004897_testListMustBeGreaterEqual5() {
+    void b6004897_testListMustBeGreaterEqual3() {
         DeviceType deviceType = new DeviceType("อุปกรณ์ไฟฟ้า");
         deviceType  = deviceTypeRepository.saveAndFlush(deviceType);
         
@@ -114,13 +114,13 @@ public class RepairTests {
         repair.setName(deviceName);
         repair.setRepairDate(new Date());
         repair.setEnrolled(roomBooking);
-        repair.setList("1234");
+        repair.setList("12");
         // validate Repair
         Set<ConstraintViolation<Repair>> result = validator.validate(repair);
         // ต้องมี 1 Error
         assertEquals(1, result.size());
         // error message ตรงชนิด และ ถูก field
-        assertEquals("size must be between 5 and 30", result.iterator().next().getMessage());
+        assertEquals("size must be between 3 and 30", result.iterator().next().getMessage());
         assertEquals("list", result.iterator().next().getPropertyPath().toString());
     }
 
