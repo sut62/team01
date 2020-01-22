@@ -13,9 +13,7 @@
       </v-col>
     </v-row>
 
-    <div class="text-center">
-      <v-btn color="warning" class="mr-3" @click="back">กลับ</v-btn>
-    </div>
+
   </v-container>
 </template>
 
@@ -28,7 +26,7 @@ export default {
       headers: [
         {
           text:"ลำดับ",
-          align: "left",
+          align: "center",
           sortable: false,
           value: "id"
         },
