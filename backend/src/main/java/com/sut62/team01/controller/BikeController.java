@@ -39,4 +39,13 @@ public class BikeController {
         return ResponseEntity.ok().body(bikes);
     }
 
+    @PostMapping(value = "/bike2")
+    public ResponseEntity<?> getBike2(@RequestBody BikePayload payload) {
+        Optional<BikeType> bikeType = bikeTypeRepository.findById(payload.getBikeTypeId());
+        if (!bikeType.isPresent())
+            return ResponseEntity.badRequest().body("Error: BikeType not found!");
+        Collection<Bike> bikes = bikeRepository.findByBikeTypeAndAvailableIsTrue(bikeType.get());
+        return ResponseEntity.ok().body(bikes);
+    }
+
 }

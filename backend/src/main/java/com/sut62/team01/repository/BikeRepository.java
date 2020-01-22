@@ -11,4 +11,7 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 @RepositoryRestResource
 public interface BikeRepository extends JpaRepository<Bike, Long> {
     Collection<Bike> findByBikeType(BikeType bikeType);
+
+    Collection<Bike> findByBikeTypeAndAvailableIsTrue(BikeType bikeType);
+
 }
