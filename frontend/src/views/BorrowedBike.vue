@@ -12,6 +12,7 @@
         <v-card-text>
           <v-form>
             <v-select
+              id="select_student"
               v-model="selectedRoomBooking"
               :items="roomBookings"
               item-text="student.fullName"

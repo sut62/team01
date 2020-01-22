@@ -1,65 +1,16 @@
 <template>
   <v-app id="inspire">
-    <v-navigation-drawer
-      v-model="drawer"
-      :clipped="$vuetify.breakpoint.lgAndUp"
-      app
-    >
+    <v-navigation-drawer v-model="drawer" :clipped="$vuetify.breakpoint.lgAndUp" app>
       <template v-if="isSignin">
         <template v-if="user.studentId">
           <v-list dense>
             <template v-for="item in items">
-              <!-- <v-row v-if="item.heading" :key="item.heading" align="center">
-                <v-col cols="6">
-                  <v-subheader v-if="item.heading">
-                    {{ item.heading }}
-                  </v-subheader>
-                </v-col>
-                <v-col cols="6" class="text-center">
-                  <a href="#!" class="body-2 black--text">EDIT</a>
-                </v-col>
-              </v-row>
-              <v-list-group
-                v-else-if="item.children"
-                :key="item.text"
-                v-model="item.model"
-                :prepend-icon="item.model ? item.icon : item['icon-alt']"
-                append-icon=""
-              >
-                <template v-slot:activator>
-                  <v-list-item>
-                    <v-list-item-content>
-                      <v-list-item-title>
-                        {{ item.text }}
-                      </v-list-item-title>
-                    </v-list-item-content>
-                  </v-list-item>
-                </template>
-                <v-list-item v-for="(child, i) in item.children" :key="i" link>
-                  <v-list-item-action v-if="child.icon">
-                    <v-icon>{{ child.icon }}</v-icon>
-                  </v-list-item-action>
-                  <v-list-item-content>
-                    <v-list-item-title>
-                      {{ child.text }}
-                    </v-list-item-title>
-                  </v-list-item-content>
-                </v-list-item>
-              </v-list-group> -->
-              <!-- <v-list-item v-else :key="item.text" link @click="item.click"> -->
-              <v-list-item
-                :key="item.text"
-                link
-                @click="item.click"
-                :disabled="item.disabled"
-              >
+              <v-list-item :key="item.text" link @click="item.click" :disabled="item.disabled">
                 <v-list-item-action>
                   <v-icon>{{ item.icon }}</v-icon>
                 </v-list-item-action>
                 <v-list-item-content>
-                  <v-list-item-title>
-                    {{ item.text }}
-                  </v-list-item-title>
+                  <v-list-item-title>{{ item.text }}</v-list-item-title>
                 </v-list-item-content>
               </v-list-item>
             </template>
@@ -70,9 +21,7 @@
             <template v-for="item in staffItems">
               <v-row v-if="item.heading" :key="item.heading" align="center">
                 <v-col cols="6">
-                  <v-subheader v-if="item.heading">
-                    {{ item.heading }}
-                  </v-subheader>
+                  <v-subheader v-if="item.heading">{{ item.heading }}</v-subheader>
                 </v-col>
                 <v-col cols="6" class="text-center">
                   <a href="#!" class="body-2 black--text">EDIT</a>
@@ -83,14 +32,12 @@
                 :key="item.text"
                 v-model="item.model"
                 :prepend-icon="item.model ? item.icon : item['icon-alt']"
-                append-icon=""
+                append-icon
               >
                 <template v-slot:activator>
                   <v-list-item>
                     <v-list-item-content>
-                      <v-list-item-title>
-                        {{ item.text }}
-                      </v-list-item-title>
+                      <v-list-item-title>{{ item.text }}</v-list-item-title>
                     </v-list-item-content>
                   </v-list-item>
                 </template>
@@ -99,9 +46,7 @@
                     <v-icon>{{ child.icon }}</v-icon>
                   </v-list-item-action>
                   <v-list-item-content>
-                    <v-list-item-title>
-                      {{ child.text }}
-                    </v-list-item-title>
+                    <v-list-item-title>{{ child.text }}</v-list-item-title>
                   </v-list-item-content>
                 </v-list-item>
               </v-list-group>
@@ -110,9 +55,7 @@
                   <v-icon>{{ item.icon }}</v-icon>
                 </v-list-item-action>
                 <v-list-item-content>
-                  <v-list-item-title>
-                    {{ item.text }}
-                  </v-list-item-title>
+                  <v-list-item-title>{{ item.text }}</v-list-item-title>
                 </v-list-item-content>
               </v-list-item>
             </template>
@@ -123,12 +66,10 @@
         <v-list dense>
           <v-list-item @click="handleIndex">
             <v-list-item-action>
-              <v-icon>mdi-home </v-icon>
+              <v-icon>mdi-home</v-icon>
             </v-list-item-action>
             <v-list-item-content>
-              <v-list-item-title>
-                หน้าแรก
-              </v-list-item-title>
+              <v-list-item-title>หน้าแรก</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
         </v-list>
@@ -141,14 +82,11 @@
       :color="appBarColor()"
       :dark="user ? true : false"
     >
-      <!-- student: blue darken-3 , staff: amber darken-3 -->
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-btn icon large>
         <v-avatar size="32px" item>
-          <v-img
-            src="https://cdn.vuetifyjs.com/images/logos/logo.svg"
-            alt="Vuetify"
-        /></v-avatar>
+          <v-img src="https://cdn.vuetifyjs.com/images/logos/logo.svg" alt="Vuetify" />
+        </v-avatar>
       </v-btn>
       <v-toolbar-title style="width: 300px" class="ml-0 pl-4">
         <span class="hidden-sm-and-down">SUT Dormitory</span>
@@ -168,19 +106,13 @@
       <v-btn icon>
         <v-icon>mdi-bell</v-icon>
       </v-btn>
-      <!-- TODO: เพิ่ม Sign in as ให้ Katalon ตรวจจับ assert -->
-
       <template v-if="isSignin">
         <span>Sign in as</span>
         <template v-if="user.studentId">
-          <v-btn text @click="handleProfile">
-            {{ user.fullName }}
-          </v-btn>
+          <v-btn text @click="handleProfile">{{ user.fullName }}</v-btn>
         </template>
         <template v-else>
-          <v-btn text @click="handleProfile">
-            {{ user.name }}
-          </v-btn>
+          <v-btn text @click="handleProfile">{{ user.name }}</v-btn>
         </template>
 
         <v-menu left bottom>
@@ -198,7 +130,7 @@
         </v-menu>
       </template>
       <template v-else>
-        <v-btn text to="/signin"> Sign in </v-btn>
+        <v-btn text to="/signin">Sign in</v-btn>
       </template>
     </v-app-bar>
     <v-content>
@@ -208,9 +140,6 @@
         </v-row>
       </v-container>
     </v-content>
-    <!-- <v-btn bottom color="pink" dark fab fixed right @click="dialog = !dialog">
-      <v-icon>mdi-plus</v-icon>
-    </v-btn> -->
   </v-app>
 </template>
 <script>
@@ -279,8 +208,15 @@ export default {
           click: () => {
             this.$router.push("/staff/RepairDetail");
           }
+        },
+        {
+          icon: "mdi-bicycle",
+          role: "staff",
+          text: "อนุมัติคำร้องขอยืมรถจักรยาน",
+          click: () => {
+            this.$router.push("/staff/approve/borrowedbike");
+          }
         }
-
       ],
       items: [
         {
@@ -315,34 +251,6 @@ export default {
             this.$router.push("/repair");
           }
         }
-
-        // { icon: "mdi-history", text: "Frequently contacted" },
-        // { icon: "mdi-content-copy", text: "Duplicates" },
-        // {
-        //   icon: "mdi-chevron-up",
-        //   "icon-alt": "mdi-chevron-down",
-        //   text: "Labels",
-        //   model: true,
-        //   children: [{ icon: "mdi-plus", text: "Create label" }]
-        // },
-        // {
-        //   icon: "mdi-chevron-up",
-        //   "icon-alt": "mdi-chevron-down",
-        //   text: "More",
-        //   model: false,
-        //   children: [
-        //     { text: "Import" },
-        //     { text: "Export" },
-        //     { text: "Print" },
-        //     { text: "Undo changes" },
-        //     { text: "Other contacts" }
-        //   ]
-        // },
-        // { icon: "mdi-settings", text: "Settings" },
-        // { icon: "mdi-message", text: "Send feedback" },
-        // { icon: "mdi-help-circle", text: "Help" },
-        // { icon: "mdi-cellphone-link", text: "App downloads" },
-        // { icon: "mdi-keyboard", text: "Go to the old version" }
       ]
     };
   },
@@ -351,11 +259,9 @@ export default {
     if (this.user) {
       this.isSignin = true;
       if (this.user.studentId) {
-        // alert("welcome student.");
         this.userRole = "student";
         this.checkStudentAlreadyBookingRoom();
       } else {
-        // alert("welcome staff.");
         this.userRole = "staff";
       }
     } else {
@@ -371,8 +277,6 @@ export default {
       api
         .post("/api/roombooking/student", JSON.stringify(body))
         .then(res => {
-          console.log(JSON.parse(JSON.stringify(res.data)));
-          console.log(res.data.length);
           if (res.data.length > 0) {
             this.items[1].click = () => {
               alert("นักศึกษาจองห้องไปแล้ว");
@@ -403,11 +307,9 @@ export default {
       this.$router.push("/profile");
     },
     handleSignout() {
-      if (confirm("Do you want to sign out?")) {
-        this.isSignin = false;
-        localStorage.removeItem("user");
-        this.$router.go("/");
-      }
+      this.isSignin = false;
+      localStorage.removeItem("user");
+      this.$router.go("/");
     },
     handleIndex() {
       this.$router.push("/");

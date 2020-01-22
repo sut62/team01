@@ -25,30 +25,30 @@ public class BorrowedBikeStaffController {
     private StaffRepository staffRepository;
 
     @PutMapping("/staff/borrowedbikerequest")
-    public ResponseEntity<?> approveBorrowedBikeRequest(@RequestBody ApproveBorrowedBikeRequest request){
-//      find  BorrowedBike
+    public ResponseEntity<?> approveBorrowedBikeRequest(@RequestBody ApproveBorrowedBikeRequest request) {
+        // find BorrowedBike
         Optional<BorrowedBike> borrowedBike = borrowedBikeRepository.findById(request.getBorrowedBikeId());
         if (!borrowedBike.isPresent())
             return ResponseEntity.badRequest().body("Error: BorrowedBike not found!");
 
-//      find  Bike
+        // find Bike
         Optional<Bike> bike = bikeRepository.findById(request.getBikeId());
         if (!bike.isPresent())
             return ResponseEntity.badRequest().body("Error: Bike not found!");
 
-//      find  Staff
+        // find Staff
         Optional<Staff> staff = staffRepository.findById(request.getStaffId());
         if (!staff.isPresent())
             return ResponseEntity.badRequest().body("Error: Staff not found!");
 
-//        Bike: set Bike status -> available = false
+        // Bike: set Bike status -> available = false
         bike.get().setAvailable(false);
-//        BorrowedBike: set Bike
+        // BorrowedBike: set Bike
         borrowedBike.get().setBike(bike.get());
-//        set Staff
+        // set Staff
         borrowedBike.get().setStaff(staff.get());
 
-//        OK. Return BorrowedBike object
+        // OK. Return BorrowedBike object
         return ResponseEntity.ok().body(borrowedBikeRepository.save(borrowedBike.get()));
     }
 
