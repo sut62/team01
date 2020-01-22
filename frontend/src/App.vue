@@ -202,7 +202,7 @@ export default {
           }
         },
         {
-          icon: "mdi-contacts",
+          icon: "mdi-email",
           role: "staff",
           text: "ข้อมูลการแจ้งซ่อม",
           click: () => {
