@@ -1,5 +1,7 @@
 package com.sut62.team01.repository;
 
+import java.util.Collection;
+
 // import java.util.List;
 
 import com.sut62.team01.entity.BorrowedBike;
@@ -14,5 +16,6 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 @RepositoryRestResource
 public interface BorrowedBikeRepository extends JpaRepository<BorrowedBike, Long> {
 
+    Collection<BorrowedBike> findByBikeIsNull();
     // public List<BorrowedBike> findByStudent(Student student);
 }

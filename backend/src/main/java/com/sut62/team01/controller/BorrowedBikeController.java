@@ -45,6 +45,11 @@ public class BorrowedBikeController {
         return borrowedBikeRepository.findAll();
     }
 
+    @GetMapping("/borrowedbikes/bike_null")
+    public Iterable<BorrowedBike> getBorrowedBikes2() {
+        return borrowedBikeRepository.findByBikeIsNull();
+    }
+
     @GetMapping("/borrowedbike/{id}")
     public ResponseEntity<?> getSpecificBorrowedBike(@PathVariable Long id) {
         Optional<BorrowedBike> bb = borrowedBikeRepository.findById(id);
