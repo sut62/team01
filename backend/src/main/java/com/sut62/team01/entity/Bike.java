@@ -5,6 +5,8 @@ import lombok.Data;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 @Entity
 @Data
@@ -22,6 +24,7 @@ public class Bike {
     private BikeType bikeType;
 
     @NotNull
+    @Pattern(regexp = "Bike+\\d{4}")
     private String name;
 
     @NotNull
