@@ -216,6 +216,14 @@ export default {
           click: () => {
             this.$router.push("/staff/approve/borrowedbike");
           }
+        },
+        {
+          icon: "mdi-contacts",
+          role: "staff",
+          text: "แสดงข้อมูลเครื่องไฟฟ้า",
+          click: () => {
+            this.$router.push("/staff/showElectric");
+          }
         }
       ],
       items: [
