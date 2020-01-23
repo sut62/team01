@@ -60,7 +60,6 @@ export default {
     return {
       isData: false,
       details: null,
-      StdNames: [],
       roomNumber: undefined,
       alertSuccess: false,
       alertFailed: false,
