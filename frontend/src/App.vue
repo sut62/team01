@@ -5,47 +5,6 @@
         <template v-if="user.studentId">
           <v-list dense>
             <template v-for="item in items">
-<<<<<<< HEAD
-=======
-              <!-- <v-row v-if="item.heading" :key="item.heading" align="center">
-                <v-col cols="6">
-                  <v-subheader v-if="item.heading">
-                    {{ item.heading }}
-                  </v-subheader>
-                </v-col>
-                <v-col cols="6" class="text-center">
-                  <a href="#!" class="body-2 black--text">EDIT</a>
-                </v-col>
-              </v-row>
-              <v-list-group
-                v-else-if="item.children"
-                :key="item.text"
-                v-model="item.model"
-                :prepend-icon="item.model ? item.icon : item['icon-alt']"
-                append-icon=""
-              >
-                <template v-slot:activator>
-                  <v-list-item>
-                    <v-list-item-content>
-                      <v-list-item-title>
-                        {{ item.text }}
-                      </v-list-item-title>
-                    </v-list-item-content>
-                  </v-list-item>
-                </template>
-                <v-list-item v-for="(child, i) in item.children" :key="i" link>
-                  <v-list-item-action v-if="child.icon">
-                    <v-icon>{{ child.icon }}</v-icon>
-                  </v-list-item-action>
-                  <v-list-item-content>
-                    <v-list-item-title>
-                      {{ child.text }}
-                    </v-list-item-title>
-                  </v-list-item-content>
-                </v-list-item>
-              </v-list-group>-->
-              <!-- <v-list-item v-else :key="item.text" link @click="item.click"> -->
->>>>>>> vue2
               <v-list-item :key="item.text" link @click="item.click" :disabled="item.disabled">
                 <v-list-item-action>
                   <v-icon>{{ item.icon }}</v-icon>
@@ -181,12 +140,6 @@
         </v-row>
       </v-container>
     </v-content>
-<<<<<<< HEAD
-=======
-    <!-- <v-btn bottom color="pink" dark fab fixed right @click="dialog = !dialog">
-      <v-icon>mdi-plus</v-icon>
-    </v-btn>-->
->>>>>>> vue2
   </v-app>
 </template>
 <script>
@@ -243,14 +196,6 @@ export default {
         {
           icon: "mdi-contacts",
           role: "staff",
-          text: "แสดงข้อมูลเครื่องไฟฟ้า",
-          click: () => {
-            this.$router.push("/staff/showElectric");
-          }
-        },
-        {
-          icon: "mdi-contacts",
-          role: "staff",
           text: "จัดการพัสดุ",
           click: () => {
             this.$router.push("/staff/packageManagement");
@@ -270,6 +215,14 @@ export default {
           text: "อนุมัติคำร้องขอยืมรถจักรยาน",
           click: () => {
             this.$router.push("/staff/approve/borrowedbike");
+          }
+        },
+        {
+          icon: "mdi-contacts",
+          role: "staff",
+          text: "แสดงข้อมูลเครื่องไฟฟ้า",
+          click: () => {
+            this.$router.push("/staff/showElectric");
           }
         }
       ],
