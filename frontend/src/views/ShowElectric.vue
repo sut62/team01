@@ -59,21 +59,11 @@ export default {
   data() {
     return {
       isData: false,
-      staff: [],
-      selectedStaff: null,
       details: null,
       StdNames: [],
       roomNumber: undefined,
       alertSuccess: false,
       alertFailed: false,
-
-      roomBooking: [],
-      selectedRoomBooking: null,
-
-      electricType: [],
-      selectedElectrictype: null,
-      dialog_details: null,
-      dialog: false,
       headers: [
         {
           text: "ID",
@@ -91,22 +81,6 @@ export default {
     };
   },
   methods: {
-    getAllStaffs() {
-      this.staff = JSON.parse(localStorage.getItem("user"));
-    },
-
-    getAllElectrictype() {
-      api
-        .get("/api/electrictypes/")
-        .then(response => {
-          this.electricType = response.data;
-          console.log(JSON.parse(JSON.stringify(response.data)));
-        })
-        .catch(e => {
-          console.log(e);
-        });
-    },
-
     getAllElectricalRegistration() {
       this.electricregister = [];
       this.count = 0;
@@ -132,43 +106,9 @@ export default {
       });
     },
 
-    getAllRoomBooking() {
-      api
-        .get("/api/roombooking/")
-        .then(response => {
-          this.roomBooking = response.data;
-          console.log(JSON.parse(JSON.stringify(response.data)));
-        })
-        .catch(e => {
-          console.log(e);
-        });
-    },
-
     clearAlert() {
       this.alertSuccess = false;
       this.alertFailed = false;
-    },
-
-    getSearch() {
-      api
-        .get("/api/roombooking/" + this.roomNumber)
-        .then(response => {
-          this.StdNames = response.data;
-          console.log(JSON.parse(JSON.stringify(response.data)));
-
-          if (response.data.length == 0) {
-            this.clearAlert();
-            this.alertFailed = true;
-            this.isData = false;
-          } else {
-            this.clearAlert();
-            this.alertSuccess = true;
-            this.isData = true;
-          }
-        })
-        .catch(e => {
-          console.log("Error in getSearch() :" + e);
-        });
     }
   }
 };
