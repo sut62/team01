@@ -45,7 +45,7 @@
         <v-divider></v-divider>
         <v-card-actions>
           <v-spacer />
-          <v-btn large color="primary" @click="handleBorrowBike">ยืนยัน</v-btn>
+          <v-btn block large color="primary" @click="handleBorrowBike">ยืนยัน</v-btn>
           <v-spacer />
         </v-card-actions>
       </v-card>
