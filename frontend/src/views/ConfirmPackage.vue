@@ -103,7 +103,7 @@ export default {
                 }
                 console.log("temp:");
                 console.log(JSON.parse(JSON.stringify(temp)));
-                this.PackageManagements = temp;
+                this.PackageManagements = temp; 
               }
             })
             .catch(e => {
