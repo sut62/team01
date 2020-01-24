@@ -25,7 +25,12 @@
                 <v-row align="right" justify="center">
                   <v-sheet class="text-center" height="150px" width="600px">
                     <v-btn class="ma-2" flat color="error" @click="sheet = !sheet; cancle()">cancel</v-btn>
-                    <v-btn class="ma-2" flat color="success" @click="save(item)">save</v-btn>
+                    <v-btn
+                      class="ma-2"
+                      flat
+                      color="success"
+                      @click="sheet = !sheet; save(item)"
+                    >save</v-btn>
                     <div class="py-3">กรุณากดปุ่ม save เพื่อยืนยันการรับพัสดุ</div>
                   </v-sheet>
                 </v-row>
