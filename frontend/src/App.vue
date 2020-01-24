@@ -232,6 +232,14 @@ export default {
           click: () => {
             this.$router.push("/staff/confirmPackage");
           }
+        },
+        {
+          icon: "mdi-account-search",
+          role: "staff",
+          text: "ค้นหาข้อมูลยานพาหนะ",
+          click: () => {
+            this.$router.push("/staff/searchEnrolledVehicle");
+          }
         }
       ],
       items: [
