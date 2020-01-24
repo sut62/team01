@@ -49,7 +49,7 @@ public class RoomBookingTest {
         // create oj
         RoomBooking roomBooking = new RoomBooking();
         // necessary for roombooking
-        Students students = new Students("Pontep Thaweesup", "B6000783", "pontep", "1234");
+        Students students = new Students("Pontep Thaweesup", "B6000783","วิศวกรรมศาสตร์", "pontep", "1234");
         students = studentsRepository.saveAndFlush(students);
         Rooms rooms = new Rooms("7133");
         rooms = roomsRepository.saveAndFlush(rooms);
@@ -71,7 +71,7 @@ public class RoomBookingTest {
     void b6010201_testStudentsMustNotBeNull() {
          // create oj
          // necessary for roombooking
-         Students students = new Students("Pontep Thaweesup", "B6000783", "pontep", "1234");
+         Students students = new Students("Pontep Thaweesup", "B6000783","วิศวกรรมศาสตร์", "pontep", "1234");
          students = studentsRepository.saveAndFlush(students);
          Rooms rooms = new Rooms("7133");
          rooms = roomsRepository.saveAndFlush(rooms);
@@ -99,7 +99,7 @@ public class RoomBookingTest {
 
     @Test
     void b6010201_testRoomsMustNotBeNull() {
-        Students students = new Students("Pontep Thaweesup", "B6000783", "pontep", "1234");
+        Students students = new Students("Pontep Thaweesup", "B6000783","วิศวกรรมศาสตร์", "pontep", "1234");
         students = studentsRepository.saveAndFlush(students);
         Rooms rooms = new Rooms("7133");
         rooms = roomsRepository.saveAndFlush(rooms);
@@ -118,7 +118,7 @@ public class RoomBookingTest {
 
     @Test
     void b6010201_testBedMustNotBeNull() {
-        Students students = new Students("Pontep Thaweesup", "B6000783", "pontep", "1234");
+        Students students = new Students("Pontep Thaweesup", "B6000783","วิศวกรรมศาสตร์", "pontep", "1234");
         students = studentsRepository.saveAndFlush(students);
         Rooms rooms = new Rooms("7133");
         rooms = roomsRepository.saveAndFlush(rooms);
@@ -139,7 +139,7 @@ public class RoomBookingTest {
     
     @Test
     void b6010201_testDetailNotLessThanMin() {
-        Students students = new Students("Pontep Thaweesup", "B6000783", "pontep", "1234");
+        Students students = new Students("Pontep Thaweesup", "B6000783","วิศวกรรมศาสตร์", "pontep", "1234");
         students = studentsRepository.saveAndFlush(students);
         Rooms rooms = new Rooms("7133");
         rooms = roomsRepository.saveAndFlush(rooms);
@@ -158,7 +158,7 @@ public class RoomBookingTest {
 
     @Test
     void b6010201_testDetailNotGreaterThanMax() {
-        Students students = new Students("Pontep Thaweesup", "B6000783", "pontep", "1234");
+        Students students = new Students("Pontep Thaweesup", "B6000783","วิศวกรรมศาสตร์", "pontep", "1234");
         students = studentsRepository.saveAndFlush(students);
         Rooms rooms = new Rooms("7133");
         rooms = roomsRepository.saveAndFlush(rooms);

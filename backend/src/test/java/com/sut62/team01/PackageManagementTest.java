@@ -59,7 +59,7 @@ public class PackageManagementTest {
         // create oj
         PackageManagement packageManagement = new PackageManagement();
         // necessary for roombooking
-        Students students = new Students("Pontep Thaweesup", "B6000783", "pontep", "1234");
+        Students students = new Students("Pontep Thaweesup", "B6000783","วิศวกรรมศาสตร์", "pontep", "1234");
         students = studentsRepository.saveAndFlush(students);
         Rooms rooms = new Rooms("7133");
         rooms = roomsRepository.saveAndFlush(rooms);
@@ -89,7 +89,7 @@ public class PackageManagementTest {
         // create oj
         PackageManagement packageManagement = new PackageManagement();
         // necessary for roombooking
-        Students students = new Students("Pontep Thaweesup", "B6000783", "pontep", "1234");
+        Students students = new Students("Pontep Thaweesup", "B6000783","วิศวกรรมศาสตร์", "pontep", "1234");
         students = studentsRepository.saveAndFlush(students);
         Rooms rooms = new Rooms("7133");
         rooms = roomsRepository.saveAndFlush(rooms);
@@ -123,7 +123,7 @@ public class PackageManagementTest {
         // create oj
         PackageManagement packageManagement = new PackageManagement();
         // necessary for roombooking
-        Students students = new Students("Pontep Thaweesup", "B6000783", "pontep", "1234");
+        Students students = new Students("Pontep Thaweesup", "B6000783","วิศวกรรมศาสตร์", "pontep", "1234");
         students = studentsRepository.saveAndFlush(students);
         Rooms rooms = new Rooms("7133");
         rooms = roomsRepository.saveAndFlush(rooms);
@@ -157,7 +157,7 @@ public class PackageManagementTest {
         // create oj
         PackageManagement packageManagement = new PackageManagement();
         // necessary for roombooking
-        Students students = new Students("Pontep Thaweesup", "B6000783", "pontep", "1234");
+        Students students = new Students("Pontep Thaweesup", "B6000783","วิศวกรรมศาสตร์", "pontep", "1234");
         students = studentsRepository.saveAndFlush(students);
         Rooms rooms = new Rooms("7133");
         rooms = roomsRepository.saveAndFlush(rooms);
@@ -191,7 +191,7 @@ public class PackageManagementTest {
         // create oj
         PackageManagement packageManagement = new PackageManagement();
         // necessary for roombooking
-        Students students = new Students("Pontep Thaweesup", "B6000783", "pontep", "1234");
+        Students students = new Students("Pontep Thaweesup", "B6000783","วิศวกรรมศาสตร์", "pontep", "1234");
         students = studentsRepository.saveAndFlush(students);
         Rooms rooms = new Rooms("7133");
         rooms = roomsRepository.saveAndFlush(rooms);
@@ -225,7 +225,7 @@ public class PackageManagementTest {
         // create oj
         PackageManagement packageManagement = new PackageManagement();
         // necessary for roombooking
-        Students students = new Students("Pontep Thaweesup", "B6000783", "pontep", "1234");
+        Students students = new Students("Pontep Thaweesup", "B6000783","วิศวกรรมศาสตร์", "pontep", "1234");
         students = studentsRepository.saveAndFlush(students);
         Rooms rooms = new Rooms("7133");
         rooms = roomsRepository.saveAndFlush(rooms);

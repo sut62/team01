@@ -64,7 +64,7 @@ public class RepairTests {
         DeviceName deviceName = new DeviceName();
         deviceName.setName("หลอดไฟ");
         deviceName = deviceNameRepository.saveAndFlush(deviceName);
-        Students students = new Students("Pontep Thaweesup", "B6000783", "pontep", "1234");
+        Students students = new Students("Pontep Thaweesup", "B6000783","วิศวกรรมศาสตร์", "pontep", "1234");
         students = studentsRepository.saveAndFlush(students);
         Rooms rooms = new Rooms("7133");
         rooms = roomsRepository.saveAndFlush(rooms);
@@ -99,7 +99,7 @@ public class RepairTests {
         DeviceName deviceName = new DeviceName();
         deviceName.setName("ตู้เย็น");
         deviceName = deviceNameRepository.saveAndFlush(deviceName);
-        Students students = new Students("Pontep Thaweesup", "B6000783", "pontep", "1234");
+        Students students = new Students("Pontep Thaweesup", "B6000783", "วิศวกรรมศาสตร์","pontep", "1234");
         students = studentsRepository.saveAndFlush(students);
         Rooms rooms = new Rooms("7133");
         rooms = roomsRepository.saveAndFlush(rooms);
@@ -133,7 +133,7 @@ public class RepairTests {
         DeviceName deviceName = new DeviceName();
         deviceName.setName("ตู้เย็น");
         deviceName = deviceNameRepository.saveAndFlush(deviceName);
-        Students students = new Students("Pontep Thaweesup", "B6000783", "pontep", "1234");
+        Students students = new Students("Pontep Thaweesup", "B6000783", "วิศวกรรมศาสตร์","pontep", "1234");
         students = studentsRepository.saveAndFlush(students);
         Rooms rooms = new Rooms("7133");
         rooms = roomsRepository.saveAndFlush(rooms);
@@ -167,7 +167,7 @@ public class RepairTests {
         DeviceName deviceName = new DeviceName();
         deviceName.setName("ตู้เย็น");
         deviceName = deviceNameRepository.saveAndFlush(deviceName);
-        Students students = new Students("Pontep Thaweesup", "B6000783", "pontep", "1234");
+        Students students = new Students("Pontep Thaweesup", "B6000783","วิศวกรรมศาสตร์", "pontep", "1234");
         students = studentsRepository.saveAndFlush(students);
         Rooms rooms = new Rooms("7133");
         rooms = roomsRepository.saveAndFlush(rooms);

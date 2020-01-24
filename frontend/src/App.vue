@@ -265,7 +265,15 @@ export default {
           text: "แจ้งซ่อม",
           click: () => {
             this.$router.push("/repair");
-          }
+        }
+        },
+        {
+          icon: "mdi-contacts",
+          role: "student",
+          text: "สถานะห้องพัก",
+          click: () => {
+            this.$router.push("/roomstatus");
+        }
         }
       ]
     };

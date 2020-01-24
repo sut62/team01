@@ -35,7 +35,7 @@ public class StudentsTest {
     @Test
     void b6010201_testInsertDataOK() {
 
-        Students students = new Students("นายปกรณ์ หาญนิโรจน์รัมย์","B6010201","france060","1234");
+        Students students = new Students("นายปกรณ์ หาญนิโรจน์รัมย์","B6010201","วิศวกรรมศาสตร์","france060","1234");
         // students.setFullName("นายปกรณ์ หาญนิโรจน์รัมย์");
         // students.setStudentId("B6010201");
         // students.setUsername("france060");
@@ -49,7 +49,7 @@ public class StudentsTest {
     @Test
     void b6010201_testfullNameMustNotBeNull() {
 
-        Students students = new Students(null,"B6010201","france060","1234");
+        Students students = new Students(null,"B6010201","france060","วิศวกรรมศาสตร์","1234");
 
         Set<ConstraintViolation<Students>> result = validator.validate(students);
 
@@ -62,7 +62,7 @@ public class StudentsTest {
     @Test
     void b6010201_testStudentIdMustNotBeNull() {
 
-        Students students = new Students("นายปกรณ์ หาญนิโรจน์รัมย์",null,"france060","1234");
+        Students students = new Students("นายปกรณ์ หาญนิโรจน์รัมย์",null,"วิศวกรรมศาสตร์","france060","1234");
 
         Set<ConstraintViolation<Students>> result = validator.validate(students);
 
@@ -71,11 +71,23 @@ public class StudentsTest {
         assertEquals("studentId", result.iterator().next().getPropertyPath().toString());
 
     }
+    @Test
+    void b6010201_testBachelorMustNotBeNull() {
+
+        Students students = new Students("นายปกรณ์ หาญนิโรจน์รัมย์","B6010201",null,"france060","1234");
+
+        Set<ConstraintViolation<Students>> result = validator.validate(students);
+
+        assertEquals(1, result.size());
+        assertEquals("must not be null", result.iterator().next().getMessage());
+        assertEquals("bachelor", result.iterator().next().getPropertyPath().toString());
+
+    }
 
     @Test
     void b6010201_testusernameMustNotBeNull() {
 
-        Students students = new Students("นายปกรณ์ หาญนิโรจน์รัมย์","B6010201",null,"1234");
+        Students students = new Students("นายปกรณ์ หาญนิโรจน์รัมย์","B6010201","วิศวกรรมศาสตร์",null,"1234");
 
         Set<ConstraintViolation<Students>> result = validator.validate(students);
 
@@ -87,7 +99,7 @@ public class StudentsTest {
     @Test
     void b6018474_testpasswordMustNotBeNull() {
 
-        Students students = new Students("นายปกรณ์ หาญนิโรจน์รัมย์","B6010201","france060",null);
+        Students students = new Students("นายปกรณ์ หาญนิโรจน์รัมย์","B6010201","วิศวกรรมศาสตร์","france060",null);
 
         Set<ConstraintViolation<Students>> result = validator.validate(students);
 
