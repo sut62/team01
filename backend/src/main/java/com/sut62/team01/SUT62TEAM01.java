@@ -30,7 +30,7 @@ public class SUT62TEAM01 {
             StaffRepository staffRepository, VehicleTypeRepository vehicleTypeRepository,
             ElectricTypeRepository electrictypeRepository, PackageTypeRepository packageTypeRepository,
             DeviceTypeRepository deviceTypeRepository, DeviceNameRepository deviceNameRepository,
-            BikeRepository bikeRepository) {
+            BikeRepository bikeRepository, PackageManagementRepository packageManagementRepository) {
 
         return args -> {
 
