@@ -51,7 +51,8 @@ public class ApproveBorrowedBikeController {
         bike.get().setAvailable(false);
 
 
-        // OK. Return BorrowedBike object
+        // BorrowedBike: save()
+
         return ResponseEntity.ok().body(borrowedBikeRepository.save(borrowedBike.get()));
     }
 
