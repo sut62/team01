@@ -58,7 +58,7 @@ public class EnrollVehicleTests {
         v_type = vehicleTypeRepository.saveAndFlush(v_type);
         Staff staff = new Staff("Natthawut Sunthornrot", "black", "asd123");
         staff = staffRepository.saveAndFlush(staff);
-        Students students = new Students("Natthawut Sunthornrot", "B6025502", "black", "asdasd");
+        Students students = new Students("Natthawut Sunthornrot", "B6025502","วิศวกรรมศาสตร์", "black", "asdasd");
         students = studentsRepository.saveAndFlush(students);
         Rooms rooms = new Rooms("7133");
         rooms = roomsRepository.saveAndFlush(rooms);
@@ -93,7 +93,7 @@ public class EnrollVehicleTests {
         v_type = vehicleTypeRepository.saveAndFlush(v_type);
         Staff staff = new Staff("Natthawut Sunthornrot", "black", "asd123");
         staff = staffRepository.saveAndFlush(staff);
-        Students students = new Students("Natthawut Sunthornrot", "B6025502", "black", "asdasd");
+        Students students = new Students("Natthawut Sunthornrot", "B6025502","วิศวกรรมศาสตร์", "black", "asdasd");
         students = studentsRepository.saveAndFlush(students);
         Rooms rooms = new Rooms("7133");
         rooms = roomsRepository.saveAndFlush(rooms);
@@ -132,7 +132,7 @@ public class EnrollVehicleTests {
         v_type = vehicleTypeRepository.saveAndFlush(v_type);
         Staff staff = new Staff("Natthawut Sunthornrot", "black", "asd123");
         staff = staffRepository.saveAndFlush(staff);
-        Students students = new Students("Natthawut Sunthornrot", "B6025502", "black", "asdasd");
+        Students students = new Students("Natthawut Sunthornrot", "B6025502","วิศวกรรมศาสตร์", "black", "asdasd");
         students = studentsRepository.saveAndFlush(students);
         Rooms rooms = new Rooms("7133");
         rooms = roomsRepository.saveAndFlush(rooms);
@@ -171,7 +171,7 @@ public class EnrollVehicleTests {
         v_type = vehicleTypeRepository.saveAndFlush(v_type);
         Staff staff = new Staff("Natthawut Sunthornrot", "black", "asd123");
         staff = staffRepository.saveAndFlush(staff);
-        Students students = new Students("Natthawut Sunthornrot", "B6025502", "black", "asdasd");
+        Students students = new Students("Natthawut Sunthornrot", "B6025502","วิศวกรรมศาสตร์", "black", "asdasd");
         students = studentsRepository.saveAndFlush(students);
         Rooms rooms = new Rooms("7133");
         rooms = roomsRepository.saveAndFlush(rooms);
@@ -210,7 +210,7 @@ public class EnrollVehicleTests {
         v_type = vehicleTypeRepository.saveAndFlush(v_type);
         Staff staff = new Staff("Natthawut Sunthornrot", "black", "asd123");
         staff = staffRepository.saveAndFlush(staff);
-        Students students = new Students("Natthawut Sunthornrot", "B6025502", "black", "asdasd");
+        Students students = new Students("Natthawut Sunthornrot", "B6025502","วิศวกรรมศาสตร์", "black", "asdasd");
         students = studentsRepository.saveAndFlush(students);
         Rooms rooms = new Rooms("7133");
         rooms = roomsRepository.saveAndFlush(rooms);
@@ -249,7 +249,7 @@ public class EnrollVehicleTests {
         v_type = vehicleTypeRepository.saveAndFlush(v_type);
         Staff staff = new Staff("Natthawut Sunthornrot", "black", "asd123");
         staff = staffRepository.saveAndFlush(staff);
-        Students students = new Students("Natthawut Sunthornrot", "B6025502", "black", "asdasd");
+        Students students = new Students("Natthawut Sunthornrot", "B6025502","วิศวกรรมศาสตร์", "black", "asdasd");
         students = studentsRepository.saveAndFlush(students);
         Rooms rooms = new Rooms("7133");
         rooms = roomsRepository.saveAndFlush(rooms);
@@ -288,7 +288,7 @@ public class EnrollVehicleTests {
         v_type = vehicleTypeRepository.saveAndFlush(v_type);
         Staff staff = new Staff("Natthawut Sunthornrot", "black", "asd123");
         staff = staffRepository.saveAndFlush(staff);
-        Students students = new Students("Natthawut Sunthornrot", "B6025502", "black", "asdasd");
+        Students students = new Students("Natthawut Sunthornrot", "B6025502","วิศวกรรมศาสตร์", "black", "asdasd");
         students = studentsRepository.saveAndFlush(students);
         Rooms rooms = new Rooms("7133");
         rooms = roomsRepository.saveAndFlush(rooms);
@@ -327,7 +327,7 @@ public class EnrollVehicleTests {
         v_type = vehicleTypeRepository.saveAndFlush(v_type);
         Staff staff = new Staff("Natthawut Sunthornrot", "black", "asd123");
         staff = staffRepository.saveAndFlush(staff);
-        Students students = new Students("Natthawut Sunthornrot", "B6025502", "black", "asdasd");
+        Students students = new Students("Natthawut Sunthornrot", "B6025502","วิศวกรรมศาสตร์", "black", "asdasd");
         students = studentsRepository.saveAndFlush(students);
         Rooms rooms = new Rooms("7133");
         rooms = roomsRepository.saveAndFlush(rooms);
@@ -367,7 +367,7 @@ public class EnrollVehicleTests {
         v_type = vehicleTypeRepository.saveAndFlush(v_type);
         Staff staff = new Staff("Natthawut Sunthornrot", "black", "asd123");
         staff = staffRepository.saveAndFlush(staff);
-        Students students = new Students("Natthawut Sunthornrot", "B6025502", "black", "asdasd");
+        Students students = new Students("Natthawut Sunthornrot", "B6025502","วิศวกรรมศาสตร์", "black", "asdasd");
         students = studentsRepository.saveAndFlush(students);
         Rooms rooms = new Rooms("7133");
         rooms = roomsRepository.saveAndFlush(rooms);
@@ -405,7 +405,7 @@ public class EnrollVehicleTests {
         v_type = vehicleTypeRepository.saveAndFlush(v_type);
         Staff staff = new Staff("Natthawut Sunthornrot", "black", "asd123");
         staff = staffRepository.saveAndFlush(staff);
-        Students students = new Students("Natthawut Sunthornrot", "B6025502", "black", "asdasd");
+        Students students = new Students("Natthawut Sunthornrot", "B6025502","วิศวกรรมศาสตร์", "black", "asdasd");
         students = studentsRepository.saveAndFlush(students);
         Rooms rooms = new Rooms("7133");
         rooms = roomsRepository.saveAndFlush(rooms);
@@ -443,7 +443,7 @@ public class EnrollVehicleTests {
         v_type = vehicleTypeRepository.saveAndFlush(v_type);
         Staff staff = new Staff("Natthawut Sunthornrot", "black", "asd123");
         staff = staffRepository.saveAndFlush(staff);
-        Students students = new Students("Natthawut Sunthornrot", "B6025502", "black", "asdasd");
+        Students students = new Students("Natthawut Sunthornrot", "B6025502","วิศวกรรมศาสตร์", "black", "asdasd");
         students = studentsRepository.saveAndFlush(students);
         Rooms rooms = new Rooms("7133");
         rooms = roomsRepository.saveAndFlush(rooms);
@@ -482,7 +482,7 @@ public class EnrollVehicleTests {
         v_type = vehicleTypeRepository.saveAndFlush(v_type);
         Staff staff = new Staff("Natthawut Sunthornrot", "black", "asd123");
         staff = staffRepository.saveAndFlush(staff);
-        Students students = new Students("Natthawut Sunthornrot", "B6025502", "black", "asdasd");
+        Students students = new Students("Natthawut Sunthornrot", "B6025502","วิศวกรรมศาสตร์", "black", "asdasd");
         students = studentsRepository.saveAndFlush(students);
         Rooms rooms = new Rooms("7133");
         rooms = roomsRepository.saveAndFlush(rooms);
@@ -520,7 +520,7 @@ public class EnrollVehicleTests {
         v_type = vehicleTypeRepository.saveAndFlush(v_type);
         Staff staff = new Staff("Natthawut Sunthornrot", "black", "asd123");
         staff = staffRepository.saveAndFlush(staff);
-        Students students = new Students("Natthawut Sunthornrot", "B6025502", "black", "asdasd");
+        Students students = new Students("Natthawut Sunthornrot", "B6025502","วิศวกรรมศาสตร์", "black", "asdasd");
         students = studentsRepository.saveAndFlush(students);
         Rooms rooms = new Rooms("7133");
         rooms = roomsRepository.saveAndFlush(rooms);
@@ -558,7 +558,7 @@ public class EnrollVehicleTests {
         v_type = vehicleTypeRepository.saveAndFlush(v_type);
         Staff staff = new Staff("Natthawut Sunthornrot", "black", "asd123");
         staff = staffRepository.saveAndFlush(staff);
-        Students students = new Students("Natthawut Sunthornrot", "B6025502", "black", "asdasd");
+        Students students = new Students("Natthawut Sunthornrot", "B6025502","วิศวกรรมศาสตร์", "black", "asdasd");
         students = studentsRepository.saveAndFlush(students);
         Rooms rooms = new Rooms("7133");
         rooms = roomsRepository.saveAndFlush(rooms);
