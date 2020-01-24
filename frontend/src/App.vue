@@ -224,6 +224,14 @@ export default {
           click: () => {
             this.$router.push("/staff/showElectric");
           }
+        },
+        {
+          icon: "mdi-contacts",
+          role: "staff",
+          text: "บันทึกสถานะพัสดุ",
+          click: () => {
+            this.$router.push("/staff/confirmPackage");
+          }
         }
       ],
       items: [
