@@ -14,7 +14,7 @@ import java.util.Optional;
 @CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api")
-public class BorrowedBikeStaffController {
+public class ApproveBorrowedBikeController {
     @Autowired
     private BorrowedBikeRepository borrowedBikeRepository;
 
