@@ -65,7 +65,7 @@ public class BorrowedBikeController {
     public ResponseEntity<?> newBorrowedBike(@RequestBody BorrowedBikeRequest bbRequest) {
 
         // 3.new BorowedBike
-        BorrowedBike _bb = new BorrowedBike();
+        BorrowedBike bb = new BorrowedBike();
 
 //        4.findById BikeType
         Optional<BikeType> bikeType = bikeTypeRepository.findById(bbRequest.getBikeType_id());
@@ -80,24 +80,24 @@ public class BorrowedBikeController {
         }
 
 //        6.findById DateType
-        Optional<DateType> _dt = dateTypeRepository.findById(bbRequest.getDateType_id());
-        if (!_dt.isPresent()) {
+        Optional<DateType> dt = dateTypeRepository.findById(bbRequest.getDateType_id());
+        if (!dt.isPresent()) {
             return ResponseEntity.badRequest().body("Error: DateType not found!");
         }
 
 //        7.set BikeType
-        _bb.setBikeType(bikeType.get());
+        bb.setBikeType(bikeType.get());
 //        8.set RoomBooking
-        _bb.setRoomBooking(rb.get());
+        bb.setRoomBooking(rb.get());
         // 9.set DateType
-        _bb.setDateType(_dt.get());
+        bb.setDateType(dt.get());
         // 10.set RequestDate
-        _bb.setRequestDate(new Date());
+        bb.setRequestDate(new Date());
 
         // 11.save BorrowedBike
-        borrowedBikeRepository.save(_bb);
+        borrowedBikeRepository.save(bb);
 
-        return ResponseEntity.ok().body(_bb);
+        return ResponseEntity.ok().body(bb);
     }
 
 }
