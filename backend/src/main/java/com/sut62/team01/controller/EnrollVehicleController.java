@@ -2,6 +2,7 @@ package com.sut62.team01.controller;
 
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -16,7 +17,6 @@ import com.sut62.team01.repository.StaffRepository;
 import com.sut62.team01.repository.VehicleTypeRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -45,6 +45,19 @@ public class EnrollVehicleController {
     @GetMapping("/enrolledVehicles")
     public Collection<EnrollVehicle> getEnrollVehicles() {
         return enrollVehicleRepository.findAll().stream().collect(Collectors.toList());
+    }
+
+    // ค้นหาจาก ป้ายทะเบียน
+    @GetMapping("/enrolledVehicles/searchLicensePlate={licensePlate}")
+    List<EnrollVehicle> findDetialsByLicensePlate(@PathVariable String licensePlate) {
+        List<EnrollVehicle> en_V = enrollVehicleRepository.findByLicensePlate(licensePlate);
+        return en_V;
+    }
+
+    @GetMapping("/enrolledVehicles/searchBrandName={brandName}")
+    List<EnrollVehicle> findDetialsByBrandName(@PathVariable String brandName) {
+        List<EnrollVehicle> en_V = enrollVehicleRepository.findByBrandName(brandName);
+        return en_V;
     }
 
     @PostMapping("/enrollVehicle")
