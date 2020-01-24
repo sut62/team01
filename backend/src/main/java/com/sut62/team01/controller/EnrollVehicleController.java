@@ -2,22 +2,26 @@ package com.sut62.team01.controller;
 
 import java.util.Collection;
 import java.util.Date;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import com.sut62.team01.entity.EnrollVehicle;
 import com.sut62.team01.entity.RoomBooking;
 import com.sut62.team01.entity.Staff;
 import com.sut62.team01.entity.VehicleType;
+import com.sut62.team01.entity.payload.newEnrollVehiclePayload;
 import com.sut62.team01.repository.EnrollVehicleRepository;
 import com.sut62.team01.repository.RoomBookingRepository;
 import com.sut62.team01.repository.StaffRepository;
 import com.sut62.team01.repository.VehicleTypeRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -28,10 +32,13 @@ public class EnrollVehicleController {
 
     @Autowired // เป็นการ connect ไปยัง database ซึ่งในที่นี้เราไม่ต้องเขียน connection database เอง
     private EnrollVehicleRepository enrollVehicleRepository;
+
     @Autowired
     private StaffRepository staffRepository;
+    
     @Autowired
     private VehicleTypeRepository vehicleTypeRepository;
+    
     @Autowired
     private RoomBookingRepository roomBookingRepository;
 
@@ -40,28 +47,27 @@ public class EnrollVehicleController {
         return enrollVehicleRepository.findAll().stream().collect(Collectors.toList());
     }
 
-    @PostMapping("/enrollVehicle/{staff_id}/{vehicle_Type_id}/{roomBooking_id}/{licensePlate}/{brandName}/{otherDetails}")
-    public EnrollVehicle newEnrollVehicle(EnrollVehicle newEnrollVehicle,
-    @PathVariable long staff_id,
-    @PathVariable long vehicle_Type_id,
-    @PathVariable long roomBooking_id,
-    @PathVariable String licensePlate,
-    @PathVariable String brandName,
-    @PathVariable String otherDetails
-    ) {
+    @PostMapping("/enrollVehicle")
+    public EnrollVehicle newEnrollVehicle(@RequestBody newEnrollVehiclePayload newEnroll) {
 
-        Staff craetedBy = staffRepository.findById(staff_id);
-        VehicleType typeOfVehicle = vehicleTypeRepository.findById(vehicle_Type_id);
-        RoomBooking enrolledStudents = roomBookingRepository.findById(roomBooking_id);
+        // new EnrollVehicle
+        EnrollVehicle enrollVehicle = new EnrollVehicle();
 
-        newEnrollVehicle.setCreatedBy(craetedBy);
-        newEnrollVehicle.setTypeOfVehicle(typeOfVehicle);
-        newEnrollVehicle.setEnrolledStudents(enrolledStudents);
-        newEnrollVehicle.setEnrollDate(new Date());
-        newEnrollVehicle.setLicensePlate(licensePlate);
-        newEnrollVehicle.setBrandName(brandName);
-        newEnrollVehicle.setOtherDetails(otherDetails);
+        // ประกาศตัวแปรเพื่อเก็บ data ของ id
+        Optional<VehicleType> vehicleType = vehicleTypeRepository.findById(newEnroll.getVehicleTypeId());
+        Optional<Staff> staff = staffRepository.findById(newEnroll.getStaffId());
+        Optional<RoomBooking> roomBooking = roomBookingRepository.findById(newEnroll.getRoomBookingId());
 
-        return enrollVehicleRepository.save(newEnrollVehicle);
+        // set Data
+        enrollVehicle.setEnrollDate(new Date());
+        enrollVehicle.setLicensePlate(newEnroll.getLicensePlate());
+        enrollVehicle.setBrandName(newEnroll.getBrandName());
+        enrollVehicle.setOtherDetails(newEnroll.getOtherDetails());
+        enrollVehicle.setTypeOfVehicle(vehicleType.get());
+        enrollVehicle.setCreatedBy(staff.get());
+        enrollVehicle.setEnrolledStudents(roomBooking.get());
+
+        // บันทึกข้อมูล
+        return enrollVehicleRepository.save(enrollVehicle);
     }
 }
