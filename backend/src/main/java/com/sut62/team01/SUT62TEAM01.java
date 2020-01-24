@@ -132,6 +132,14 @@ public class SUT62TEAM01 {
                 System.out.println(staff);
             });
 
+	     // PackageManagement
+            PackageManagement pm1 = new PackageManagement(roomBooking1, pt4, staff3, "กล่องมีรอยเล็กน้อย");
+            PackageManagement pm2 = new PackageManagement(roomBooking1, pt3, staff3, "สมบูรณ์");
+            Stream.of(pm1, pm2).forEach(pm -> {
+                packageManagementRepository.save(pm);
+                System.out.println(pm);
+            });
+
             Stream.of("รถจักรยานยนต์", "รถยนต์", "จักรยาน").forEach(type -> {
                 VehicleType vehicleType = new VehicleType(); // สร้าง Object Customer
                 vehicleType.setType(type); // set ชื่อ (name) ให้ Object ชื่อ Customer
