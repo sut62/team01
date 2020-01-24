@@ -150,18 +150,23 @@ export default {
     },
     
     enrollVehicle() {
-        api
-        .post(
-          "/api/enrollVehicle/" +
-          this.selectedStaffName + "/" + 
-          this.selectedVehicleType + "/" +
-          this.selectedStdName + "/" +
-          this.insLcPlate + "/" +
-          this.insVhcBrand + "/" +
-          this.insOtherDetails
-        )
-        .then(response => {
-          console.log(response.data);
+      let databox = {
+        licensePlate: this.insLcPlate,
+        brandName: this.insVhcBrand,
+        otherDetails: this.insOtherDetails,
+        vehicleTypeId: this.selectedVehicleType,
+        staffId: this.selectedStaffName,
+        roomBookingId: this.selectedStdName
+      };
+
+      api
+        .post("/api/enrollVehicle", databox)
+        .then(() => {
+          this.clearAlert();
+          this.alertSuccess = true;
+          
+          // 
+          // console.log(response.data);
           this.selectedStaffName = null;
           this.selectedStdName = null;
           this.selectedVehicleType = null;
@@ -169,9 +174,6 @@ export default {
           this.insLcPlate = null;
           this.insVhcBrand = null;
           this.insOtherDetails = null;
-          
-          this.clearAlert();
-          this.alertSuccess = true
         })
         .catch(e => {
           console.log(e);
