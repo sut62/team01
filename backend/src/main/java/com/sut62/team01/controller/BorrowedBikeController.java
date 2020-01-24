@@ -64,38 +64,37 @@ public class BorrowedBikeController {
     @PostMapping(value = "/borrowedbike")
     public ResponseEntity<?> newBorrowedBike(@RequestBody BorrowedBikeRequest bbRequest) {
 
-        // new BorowedBike
+        // 3.new BorowedBike
         BorrowedBike _bb = new BorrowedBike();
 
-        // set BikeType
+//        4.findById BikeType
         Optional<BikeType> bikeType = bikeTypeRepository.findById(bbRequest.getBikeType_id());
-        if (bikeType.isPresent()) {
-            BikeType _bikeType = bikeType.get();
-            _bb.setBikeType(_bikeType);
-        } else {
+        if (!bikeType.isPresent()) {
             return ResponseEntity.badRequest().body("Error: BikeType not found!");
         }
 
-        // set RoomBooking
+//        5.findById RoomBooking
         Optional<RoomBooking> rb = roomBookingRepository.findById(bbRequest.getRoomBooking_id());
-        if (rb.isPresent()) {
-            RoomBooking _rb = rb.get();
-            _bb.setRoomBooking(_rb);
-        } else {
+        if (!rb.isPresent()) {
             return ResponseEntity.badRequest().body("Error: RoomBooking not found");
         }
 
-        // set DateType
+//        6.findById DateType
         Optional<DateType> _dt = dateTypeRepository.findById(bbRequest.getDateType_id());
         if (!_dt.isPresent()) {
             return ResponseEntity.badRequest().body("Error: DateType not found!");
         }
-        _bb.setDateType(_dt.get());
 
-        // set RequestDate
+//        7.set BikeType
+        _bb.setBikeType(bikeType.get());
+//        8.set RoomBooking
+        _bb.setRoomBooking(rb.get());
+        // 9.set DateType
+        _bb.setDateType(_dt.get());
+        // 10.set RequestDate
         _bb.setRequestDate(new Date());
 
-        // save BorrowedBike
+        // 11.save BorrowedBike
         borrowedBikeRepository.save(_bb);
 
         return ResponseEntity.ok().body(_bb);
