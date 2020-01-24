@@ -1,17 +1,19 @@
 <template>
   <v-row align="center" justify="center">
     <v-col cols="12" sm="8" md="6">
-      <!-- TODO: เพิ่มการแจ้งเตือนเพื่อให้ katalon ตรวจจับได้ -->
       <v-alert type="success" dismissible v-model="alertSuccess">บันทึกข้อมูลการแจ้งยืมเรียบร้อย</v-alert>
       <v-alert type="error" dismissible v-model="alertFailed">กรุณาเลือกข้อมูลให้ครบทุกช่อง!</v-alert>
       <v-card class="elevation-12">
         <v-toolbar color="primary" dark flat>
-          <v-toolbar-title>ยืมจักรยาน</v-toolbar-title>
+          <v-toolbar-title>
+            <v-icon>mdi-bicycle</v-icon>&nbsp; ยืมจักรยาน
+          </v-toolbar-title>
           <v-spacer />
         </v-toolbar>
         <v-card-text>
           <v-form>
             <v-select
+              prepend-icon="mdi-account"
               id="select_student"
               v-model="selectedRoomBooking"
               :items="roomBookings"
@@ -21,6 +23,7 @@
               outlined
             ></v-select>
             <v-select
+              prepend-icon="mdi-bicycle"
               v-model="selectedBikeTypes"
               :items="bikeTypes"
               item-text="type"
@@ -29,6 +32,7 @@
               outlined
             ></v-select>
             <v-select
+              prepend-icon="mdi-calendar"
               v-model="selectedDateType"
               :items="dateTypes"
               item-text="type"
@@ -38,9 +42,10 @@
             ></v-select>
           </v-form>
         </v-card-text>
+        <v-divider></v-divider>
         <v-card-actions>
           <v-spacer />
-          <v-btn color="primary" @click="handleBorrowBike">ยืนยัน</v-btn>
+          <v-btn block large color="primary" @click="handleBorrowBike">ยืนยัน</v-btn>
           <v-spacer />
         </v-card-actions>
       </v-card>
@@ -56,10 +61,8 @@ export default {
   data() {
     return {
       student_id: null,
-
       roomBookings: [],
       bikeTypes: [],
-
       dateTypes: [],
       selectedRoomBooking: undefined,
       selectedBikeTypes: undefined,
@@ -87,14 +90,7 @@ export default {
         api
           .post("/api/borrowedbike", body)
           .then(() => {
-            // Katalon Recorder จับไม่เจอ ต้องใช้ Katalon Studio
-            // alert("บันทึกข้อมูลการแจ้งยืมเรียบร้อย.");
-            // this.$router.go();
-            //---------------------------------------------
-
-            // ปิด Alert อันเก่าไปก่อน เดี๋ยวอันใหม่เด้งมาทับ
             this.clearAlert();
-            // แจ้งเตือนว่าบันทึกเสร็จ
             this.alertSuccess = true;
             this.clearCombobox();
           })
@@ -113,33 +109,25 @@ export default {
       this.selectedBikeTypes = null;
       this.selectedDateType = null;
     },
-    // getStudentDetail() {
-    //   this.students.push(JSON.parse(localStorage.getItem("user")));
-    // },
     getSpecificRoomBookings() {
       let user = JSON.parse(localStorage.getItem("user"));
       let body = {
         student_id: user.id
       };
-      console.log(body);
       api
         .post("/api/roombooking/student", JSON.stringify(body))
         .then(res => {
           this.roomBookings = res.data;
-          console.log("getRoomBookingWhereStudent");
-          console.log(res.data);
         })
         .catch(e => {
           console.log(e);
         });
-      //TODO: ถ้า student จองห้องแล้ว ให้เอาเมนูจองห้องออก หรือ เข้าจองห้องไม่ได้
     },
     getAllBikeTypes() {
       api
         .get("/api/biketypes")
         .then(res => {
           this.bikeTypes = res.data;
-          // console.log(res.data)
         })
         .catch(e => {
           console.log(e);
@@ -150,7 +138,6 @@ export default {
         .get("/api/datetypes")
         .then(res => {
           this.dateTypes = res.data;
-          // console.log(res.data)
         })
         .catch(e => {
           console.log(e);
@@ -158,7 +145,6 @@ export default {
     }
   },
   mounted() {
-    // this.getStudentDetail();
     this.getAllBikeTypes();
     this.getAllDateTypes();
     this.getSpecificRoomBookings();

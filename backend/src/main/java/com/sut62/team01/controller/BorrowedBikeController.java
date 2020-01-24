@@ -64,41 +64,40 @@ public class BorrowedBikeController {
     @PostMapping(value = "/borrowedbike")
     public ResponseEntity<?> newBorrowedBike(@RequestBody BorrowedBikeRequest bbRequest) {
 
-        // new BorowedBike
-        BorrowedBike _bb = new BorrowedBike();
+        // 3.new BorowedBike
+        BorrowedBike bb = new BorrowedBike();
 
-        // set BikeType
+//        4.findById BikeType
         Optional<BikeType> bikeType = bikeTypeRepository.findById(bbRequest.getBikeType_id());
-        if (bikeType.isPresent()) {
-            BikeType _bikeType = bikeType.get();
-            _bb.setBikeType(_bikeType);
-        } else {
+        if (!bikeType.isPresent()) {
             return ResponseEntity.badRequest().body("Error: BikeType not found!");
         }
 
-        // set RoomBooking
+//        5.findById RoomBooking
         Optional<RoomBooking> rb = roomBookingRepository.findById(bbRequest.getRoomBooking_id());
-        if (rb.isPresent()) {
-            RoomBooking _rb = rb.get();
-            _bb.setRoomBooking(_rb);
-        } else {
+        if (!rb.isPresent()) {
             return ResponseEntity.badRequest().body("Error: RoomBooking not found");
         }
 
-        // set DateType
-        Optional<DateType> _dt = dateTypeRepository.findById(bbRequest.getDateType_id());
-        if (!_dt.isPresent()) {
+//        6.findById DateType
+        Optional<DateType> dt = dateTypeRepository.findById(bbRequest.getDateType_id());
+        if (!dt.isPresent()) {
             return ResponseEntity.badRequest().body("Error: DateType not found!");
         }
-        _bb.setDateType(_dt.get());
 
-        // set RequestDate
-        _bb.setRequestDate(new Date());
+//        7.set BikeType
+        bb.setBikeType(bikeType.get());
+//        8.set RoomBooking
+        bb.setRoomBooking(rb.get());
+        // 9.set DateType
+        bb.setDateType(dt.get());
+        // 10.set RequestDate
+        bb.setRequestDate(new Date());
 
-        // save BorrowedBike
-        borrowedBikeRepository.save(_bb);
+        // 11.save BorrowedBike
+        borrowedBikeRepository.save(bb);
 
-        return ResponseEntity.ok().body(_bb);
+        return ResponseEntity.ok().body(bb);
     }
 
 }

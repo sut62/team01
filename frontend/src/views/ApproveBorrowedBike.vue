@@ -19,7 +19,7 @@
           <v-divider></v-divider>
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn color="success" id="btn_accept" text @click="handleApproveBorrowedBike">อนุมัติ</v-btn>
+            <v-btn color="success" id="btn_accept" text @click="approveBorrowedBike">อนุมัติ</v-btn>
             <v-btn color="error" text @click="dialog = false">ยกเลิก</v-btn>
           </v-card-actions>
         </v-card>
@@ -96,7 +96,7 @@ export default {
       this.selectedBorrowedBike = null;
       this.selectedBike = null;
     },
-    handleApproveBorrowedBike() {
+    approveBorrowedBike() {
       if (
         !this.selectedStaff ||
         !this.selectedBike ||
