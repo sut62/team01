@@ -37,7 +37,7 @@ public class PackageManagementController {
     @Autowired
     private StaffRepository staffRepository;
 
-    @GetMapping("/PackageManagement")
+    @GetMapping("/packageManagement")
     public Collection<PackageManagement> getAllPackageManagements() {
         return packageManagementRepository.findAll().stream().collect(Collectors.toList());
     }

@@ -5,7 +5,7 @@
     <v-layout text-center wrap>
       <v-flex xs3 sm6 md9 lg12>
         <br />
-        <h1 class="display-2 font-weight-bold mb-3">Package Status</h1>
+        <h1 class="display-2 font-weight-bold mb-3">Confirm Package</h1>
         <v-data-table
           :headers="headers"
           :items="PackageManagements"
