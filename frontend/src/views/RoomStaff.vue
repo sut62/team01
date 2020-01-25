@@ -37,6 +37,7 @@ export default {
         { text: "รหัสนักศึกษา", value: "student.studentId" },
         { text: "ชื่อนักศึกษา", value: "student.fullName" },
         { text: "สาขาวิชา", value: "student.bachelor" },
+        { text: "หมายเหตุ", value: "detail" },
       ],
     };
   },

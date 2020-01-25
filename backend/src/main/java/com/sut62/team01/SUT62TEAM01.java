@@ -77,7 +77,9 @@ public class SUT62TEAM01 {
             Students student1 = new Students("นายพรเทพ ทวีทรัพย์", "b6000783","วิศวกรรมศาสตร์", "pontep", "1234");
             Students student2 = new Students("นายเจตุพนน์ ศรีภูธร", "b6000123","วิศวกรรมศาสตร์", "jayza", "1234");
             Students student3 = new Students("นายภูมิรินทร์ เพียวสูงเนิน", "b6003296", "วิศวกรรมศาสตร์","leo2541", "1234");
-            Stream.of(student1, student2, student3).forEach(student -> {
+            Students student4 = new Students("นายปกรณ์ หาญนิโรจน์รัมย์", "b6010201","วิศวกรรมศาสตร์", "france060", "1234");
+            Students student5 = new Students("นายณัฐวุฒิ สุนทรโรจน์", "b6025502", "วิศวกรรมศาสตร์","black2541", "1234");
+            Stream.of(student1, student2, student3, student4, student5).forEach(student -> {
                 studentsRepository.save(student);
                 System.out.println(student);
             });
@@ -94,10 +96,15 @@ public class SUT62TEAM01 {
                 roomsRepository.save(room);
             }
             Rooms room7133 = roomsRepository.findByRoomId("7133");
+            Rooms room7127 = roomsRepository.findByRoomId("7127");
 
             // RoomBooking
             RoomBooking roomBooking1 = new RoomBooking(student1, room7133, bed1 ,"ต้องการเตียงเสริม");
+            RoomBooking roomBooking2 = new RoomBooking(student5, room7133, bed2 ,"ต้องการเตียงเสริม");
+            RoomBooking roomBooking3 = new RoomBooking(student4, room7127, bed2 ,"ต้องการเตียงเสริม");
             roomBookingRepository.save(roomBooking1);
+            roomBookingRepository.save(roomBooking2);
+            roomBookingRepository.save(roomBooking3);
 
             // inject necessary data for katalon ApproveBorrowedBikeTest
             BorrowedBike borrowedBike = new BorrowedBike(bikeType1, roomBooking1, dateType1);

@@ -146,12 +146,12 @@ public class RoomBookingTest {
         Bed bed = new Bed("What's branch?");
         bed = bedRepository.saveAndFlush(bed);
 
-        RoomBooking roomBooking = new RoomBooking(students,rooms,bed,"ต้อง");
+        RoomBooking roomBooking = new RoomBooking(students,rooms,bed,"-");
 
         Set<ConstraintViolation<RoomBooking>> result = validator.validate(roomBooking);
 
         assertEquals(1, result.size());
-        assertEquals("size must be between 5 and 30", result.iterator().next().getMessage());
+        assertEquals("size must be between 2 and 30", result.iterator().next().getMessage());
         assertEquals("detail", result.iterator().next().getPropertyPath().toString());
 
     }
@@ -170,7 +170,7 @@ public class RoomBookingTest {
         Set<ConstraintViolation<RoomBooking>> result = validator.validate(roomBooking);
 
         assertEquals(1, result.size());
-        assertEquals("size must be between 5 and 30", result.iterator().next().getMessage());
+        assertEquals("size must be between 2 and 30", result.iterator().next().getMessage());
         assertEquals("detail", result.iterator().next().getPropertyPath().toString());
 
     }
