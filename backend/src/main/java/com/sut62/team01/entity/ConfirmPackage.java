@@ -4,6 +4,7 @@ import java.util.Date;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Data;
@@ -23,6 +24,7 @@ public class ConfirmPackage {
     @JsonManagedReference
     private @NotNull PackageManagement packageManagement;
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+7")
     @Column(name = "ConfirmDate")
     private @NotNull Date confirmDate;
 

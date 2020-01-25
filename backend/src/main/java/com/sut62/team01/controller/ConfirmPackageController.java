@@ -29,7 +29,7 @@ public class ConfirmPackageController {
     private PackageManagementRepository packageManagementRepository;
 
     @GetMapping("/confirmPackage")
-    public Collection<ConfirmPackage> getConfirmPackages() {
+    public Collection<ConfirmPackage> getAllConfirmPackages() {
         return confirmPackageRepository.findAll().stream().collect(Collectors.toList());
     }
 
