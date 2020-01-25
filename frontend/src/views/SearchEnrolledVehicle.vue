@@ -30,11 +30,19 @@
             </v-col>
         </v-row> -->
 
-        <v-row justify="center">
-      <v-col cols="10">
-        <v-data-table :headers="headers" :items="List_BndName" :items-per-page="5" class="elevation-3"></v-data-table>
-      </v-col>
-    </v-row>
+        <!-- <v-row justify="center">
+        <v-col cols="10">
+            <v-data-table :headers="headers" :items="List_BndName" :items-per-page="5" class="elevation-3"></v-data-table>
+        </v-col>
+        </v-row> -->
+
+        <v-card>
+            <v-data-table
+            :headers="headers"
+            :items="lst_BndName"
+            :items-per-page="5"
+            ></v-data-table>
+        </v-card>
     
       </v-flex>
     </v-layout>
@@ -48,20 +56,20 @@ export default {
     date() {
         return {
             headers: [
-                {
-                text: "Name",
-                align: "left",
-                sortable: false,
-                value: "enrolledStudents.student.fullName"
-                },
-                // { text: "Name", value: "enrolledStudents.student.fullName"},
+                // {
+                // // text: "Name",
+                // align: "left",
+                // sortable: false,
+                // // value: "enrolledStudents.student.fullName"
+                // },
+                { text: "Name", value: "enrolledStudents.student.fullName"},
                 { text: "Date Enroll", value: "enrollDate" },
                 { text: "Licnse Plate", value: "licensePlate" },
                 { text: "Brand Name", value: "brandName" },
                 { text: "Other Details", value: "otherDetails" },
             ],
-            List_lcPlate: [],
-            List_BndName: [],
+            lst_lcPlate: [],
+            lst_BndName: [],
             items: [],
             lc_Plate: undefined,
             bnd_Name: undefined,
@@ -75,7 +83,7 @@ export default {
             api
             .get("/api/enrolledVehicles/searchBrandName=" + this.bnd_Name)
             .then(response  => {
-                this.List_BndName = response.data;
+                this.lst_BndName = response.data;
                 console.log(JSON.parse(JSON.stringify(response.data)));
             })
             .catch(e => {
