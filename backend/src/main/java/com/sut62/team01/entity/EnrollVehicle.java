@@ -42,7 +42,7 @@ public class EnrollVehicle {
     private String licensePlate;
 
     @NotNull
-    @Size(min = 5, max = 20)
+    @Size(min = 2, max = 20)
     @Column(name = "BRAND_NAME")
     private String brandName;
     

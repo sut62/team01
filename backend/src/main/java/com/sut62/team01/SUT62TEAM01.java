@@ -149,7 +149,7 @@ public class SUT62TEAM01 {
                 System.out.println(pm);
             });
 
-            Stream.of("รถจักรยานยนต์", "รถยนต์", "จักรยาน").forEach(type -> {
+            Stream.of("รถยนต์", "จักรยาน").forEach(type -> {
                 VehicleType vehicleType = new VehicleType(); // สร้าง Object Customer
                 vehicleType.setType(type); // set ชื่อ (name) ให้ Object ชื่อ Customer
                 vehicleTypeRepository.save(vehicleType); // บันทึก Objcet ชื่อ Customer

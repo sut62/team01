@@ -5,7 +5,7 @@
         <v-row align="center" justify="center">
           <v-col cols="12" sm="8" md="6">
             <v-alert type="success" dismissible v-model="alertSuccess">บันทึกข้อมูลสำเร็จ</v-alert>
-            <v-alert type="error" dismissible v-model="alertFailed"> {{alertmsg}}!</v-alert>
+            <v-alert type="error" dismissible v-model="alertFailed">{{alertmsg}}!</v-alert>
           </v-col>
         </v-row>
         <br />
@@ -84,7 +84,7 @@
 
         <v-row justify="center">
           <v-col cols="6" class="pa-0 mx-2">
-            <v-btn @click="checkValiable" class="light-blue accent-4">ENROLL</v-btn>
+            <v-btn @click="checkEnrollData" class="light-blue accent-4">ENROLL</v-btn>
           </v-col>
         </v-row>
       </v-flex>
@@ -112,7 +112,7 @@ export default {
 
       alertFailed: false,
       alertSuccess: false,
-      alertmsg: null,
+      alertmsg: undefined,
     }
   },
 
@@ -166,8 +166,6 @@ export default {
           this.clearAlert();
           this.alertSuccess = true;
           
-          // 
-          // console.log(response.data);
           this.selectedStaffName = null;
           this.selectedStdName = null;
           this.selectedVehicleType = null;
@@ -175,38 +173,44 @@ export default {
           this.insLcPlate = null;
           this.insVhcBrand = null;
           this.insOtherDetails = null;
+          this.checkSizeOfins_();
         })
         .catch(e => {
           console.log(e);
         });
     },
-
-    checkValiable() {
+    checkEnrollData(){
       if(
       !this.selectedStaffName ||
       !this.selectedStdName ||
       !this.selectedVehicleType ||
-      !this.insLcPlate || 
+      !this.insLcPlate ||
       !this.insVhcBrand ||
-      !this.insOtherDetails) {
+      !this.insOtherDetails
+      ) {
         this.clearAlert();
+        this.alertmsg = "กรุณากรอกข้อมูลให้ครบ";
+        this.alertFailed = true;
+      } else if(this.insLcPlate.length < 4 || this.insLcPlate.length > 8) {
+        this.clearAlert();
+        this.alertmsg = "กรุณากรอกป้ายทะเบียน 4-8 ตัวอักษร";
+        this.alertFailed = true;
+      } else if(this.insVhcBrand.length < 2 || this.insVhcBrand.length > 20) {
+        this.clearAlert();
+        this.alertmsg = "กรุณากรอกยี่ห้อ 2-20 ตัวอักษร";
+        this.alertFailed = true;
+      } else if(this.insOtherDetails.length < 5 || this.insOtherDetails.length > 50) {
+        this.clearAlert();
+        this.alertmsg = "กรุณากรอกข้อมูล 5-50 ตัวอักษร";
         this.alertFailed = true;
       } else {
         this.enrollVehicle();
       }
     },
-
     clearAlert() {
       this.alertSuccess = false;
       this.alertFailed = false;
     },
   },
-  watch: {
-    checkSizeOfinsLcPlate: function() {
-      if(this.insLcPlate < 3){
-        this.alertmsg = "กรุณากรอกข้อมูลมาก";
-      }
-    }
-  }
 }
 </script>
