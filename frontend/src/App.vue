@@ -143,8 +143,11 @@
       </v-container>
     </v-content>
     <v-footer :color="footerColor()" :dark="isDark()" app>
-      <div>&copy; SUT62 TEAM01</div>
-      <v-divider vertical></v-divider>
+      <div>
+        &copy;
+        <strong>SUT62 TEAM01</strong>
+      </div>
+      <v-divider vertical style="padding-right: 5px"></v-divider>
       <div>
         <v-btn href="https://github.com/sut62/team01" icon small target="_blank" v-on="on">
           <v-icon>mdi-github-circle</v-icon>
@@ -161,8 +164,8 @@
           <v-icon>mdi-facebook</v-icon>
         </v-btn>
       </div>
-
       <v-spacer></v-spacer>
+      <div>{{ new Date().getFullYear() }} — SUT DORMITORY</div>
     </v-footer>
   </v-app>
 </template>
