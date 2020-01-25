@@ -48,17 +48,17 @@ public class EnrollVehicleController {
     }
 
     // ค้นหาจาก ป้ายทะเบียน
-    @GetMapping("/enrolledVehicles/searchLicensePlate={licensePlate}")
-    List<EnrollVehicle> findDetialsByLicensePlate(@PathVariable String licensePlate) {
-        List<EnrollVehicle> en_V = enrollVehicleRepository.findByLicensePlate(licensePlate);
-        return en_V;
-    }
-
-    // @GetMapping("/enrolledVehicles/searchBrandName={brandName}")
-    // List<EnrollVehicle> findDetialsByBrandName(@PathVariable String brandName) {
-    //     List<EnrollVehicle> en_V = enrollVehicleRepository.findByBrandName(brandName);
+    // @GetMapping("/enrolledVehicles/searchLicensePlate={licensePlate}")
+    // List<EnrollVehicle> findDetialsByLicensePlate(@PathVariable String licensePlate) {
+    //     List<EnrollVehicle> en_V = enrollVehicleRepository.findByLicensePlate(licensePlate);
     //     return en_V;
     // }
+
+    @GetMapping("/enrolledVehicles/searchBrandName={brandName}")
+    List<EnrollVehicle> findDetialsByBrandName(@PathVariable String brandName) {
+        List<EnrollVehicle> en_V = enrollVehicleRepository.findByBrandName(brandName);
+        return en_V;
+    }
 
     @PostMapping("/enrollVehicle")
     public EnrollVehicle newEnrollVehicle(@RequestBody newEnrollVehiclePayload newEnroll) {
