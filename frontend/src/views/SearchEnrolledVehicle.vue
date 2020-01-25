@@ -53,15 +53,15 @@
 <script>
 import api from "../Api.js";
 export default {
-    date() {
+    data() {
         return {
             headers: [
-                // {
-                // // text: "Name",
-                // align: "left",
-                // sortable: false,
-                // // value: "enrolledStudents.student.fullName"
-                // },
+                {
+                text: "ID",
+                align: "left",
+                sortable: false,
+                value: "id"
+                },
                 { text: "Name", value: "enrolledStudents.student.fullName"},
                 { text: "Date Enroll", value: "enrollDate" },
                 { text: "Licnse Plate", value: "licensePlate" },
