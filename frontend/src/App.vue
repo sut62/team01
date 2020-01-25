@@ -186,7 +186,7 @@ export default {
           }
         },
         {
-          icon: "mdi-contacts",
+          icon: "mdi-alien",
           role: "staff",
           text: "ลงทะเบียนเครื่องใช้ไฟฟ้า",
           click: () => {
@@ -218,7 +218,7 @@ export default {
           }
         },
         {
-          icon: "mdi-contacts",
+          icon: "mdi-rocket",
           role: "staff",
           text: "แสดงข้อมูลเครื่องไฟฟ้า",
           click: () => {
@@ -281,7 +281,7 @@ export default {
           text: "แจ้งซ่อม",
           click: () => {
             this.$router.push("/repair");
-        }
+          }
         },
         {
           icon: "mdi-help-circle",
@@ -289,7 +289,7 @@ export default {
           text: "สถานะห้องพัก",
           click: () => {
             this.$router.push("/roomstatus");
-        }
+          }
         }
       ]
     };
