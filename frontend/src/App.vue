@@ -194,7 +194,7 @@ export default {
           }
         },
         {
-          icon: "mdi-contacts",
+          icon: "mdi-package",
           role: "staff",
           text: "จัดการพัสดุ",
           click: () => {
@@ -226,7 +226,7 @@ export default {
           }
         },
         {
-          icon: "mdi-contacts",
+          icon: "mdi-checkbox-marked",
           role: "staff",
           text: "บันทึกสถานะพัสดุ",
           click: () => {
