@@ -2,9 +2,11 @@
   <v-container>
     <v-layout text-center wrap>
       <v-flex mb-4>
-        <br />
+            
+        <v-alert type="success" dismissible v-model="alertSuccess">ค้นหาสำเร็จ</v-alert>
+        <v-alert type="error" dismissible v-model="alertFailed">ไม่พบข้อมูล!</v-alert>
+        
         <h1 class="display-2 font-weight-bold mb-3">Search Enrolled Vehicle</h1>
-        <br>
         
         <v-row justify="center" class="pb-0 mb-0">
             <v-col cols="3">
@@ -14,36 +16,17 @@
             @keyup.enter="searchEnrolledVehicles"/>
             </v-col>
             <v-col cols="1">
-                <v-btn @click="searchEnrolledVehicles" large class="light-green accent-4">Search</v-btn>
+                <v-btn @click="searchEnrolledVehicles" large class="light-blue darken-1">Search</v-btn>
             </v-col>
         </v-row>
 
-        <!-- <v-row justify="center" class="pb-0 mb-0">
-            <v-col cols="3">
-            <v-text-field solo 
-            label="กรอกหมายเลขห้อง"
-            v-model="bnd_Name"
-            @keyup.enter="getStudentName"/>
-            </v-col>
-            <v-col cols="1">
-                <v-btn @click="s" large class="light-green accent-4">Search</v-btn>
-            </v-col>
-        </v-row> -->
-
-        <!-- <v-row justify="center">
-        <v-col cols="10">
-            <v-data-table :headers="headers" :items="List_BndName" :items-per-page="5" class="elevation-3"></v-data-table>
-        </v-col>
-        </v-row> -->
-
-        <v-card>
+        <v-card v-if="dataStatus">
             <v-data-table
             :headers="headers"
             :items="lst_BndName"
             :items-per-page="5"
             ></v-data-table>
         </v-card>
-    
       </v-flex>
     </v-layout>
   </v-container>
@@ -56,27 +39,19 @@ export default {
     data() {
         return {
             headers: [
-                {
-                text: "ID",
-                align: "left",
-                sortable: false,
-                value: "id"
-                },
-                { text: "Name", value: "enrolledStudents.student.fullName"},
-                { text: "Date Enroll", value: "enrollDate" },
-                { text: "Licnse Plate", value: "licensePlate" },
-                { text: "Brand Name", value: "brandName" },
-                { text: "Other Details", value: "otherDetails" },
+                { text: "Name", value: "enrolledStudents.student.fullName", align: 'left', sortable: false },
+                { text: "Date Enroll", value: "enrollDate", sortable: false },
+                { text: "Licnse Plate", value: "licensePlate", sortable: false },
+                { text: "Brand Name", value: "brandName", sortable: false },
+                { text: "Other Details", value: "otherDetails", sortable: false },
             ],
-            lst_lcPlate: [],
             lst_BndName: [],
             items: [],
-            lc_Plate: undefined,
             bnd_Name: undefined,
+            dataStatus: false,
+            alertSuccess: false,
+            alertFailed: false,
         }
-    },
-    mounted() {
-        // this.searchEnrolledVehicles();
     },
     methods: {
         searchEnrolledVehicles() {
@@ -85,10 +60,21 @@ export default {
             .then(response  => {
                 this.lst_BndName = response.data;
                 console.log(JSON.parse(JSON.stringify(response.data)));
+                this.clearAlert();
+                if(this.lst_BndName.length == 0) {
+                    this.alertFailed = true;
+                } else {
+                    this.alertSuccess = true;
+                    this.dataStatus = true;
+                }
             })
             .catch(e => {
                 console.log("Error in searchEnrolledVehicle() :" + e);
             });
+        },
+        clearAlert() {
+            this.alertSuccess = false;
+            this.alertFailed = false;
         }
     }
 }
