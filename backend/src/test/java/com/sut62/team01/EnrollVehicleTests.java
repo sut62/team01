@@ -431,7 +431,7 @@ public class EnrollVehicleTests {
 
         // error message ตรง และถูก field
         ConstraintViolation<EnrollVehicle> show = result.iterator().next();
-        assertEquals("size must be between 5 and 20", show.getMessage());
+        assertEquals("size must be between 2 and 20", show.getMessage());
         assertEquals("brandName", show.getPropertyPath().toString());
     }
 
@@ -513,7 +513,7 @@ public class EnrollVehicleTests {
     }
 
     @Test
-    void b6025502_testBrandNameMustGreateThanOrEqualTo5() {
+    void b6025502_testBrandNameMustGreateThanOrEqualTo2() {
         // จำลองข้อมูลในการบันทึก EnrollVehicle
         VehicleType v_type = new VehicleType();
         v_type.setType("รถยนต์");
@@ -533,7 +533,7 @@ public class EnrollVehicleTests {
         EnrollVehicle en_Vehicle = new EnrollVehicle();
         en_Vehicle.setEnrollDate(new Date());
         en_Vehicle.setLicensePlate("กข649");
-        en_Vehicle.setBrandName("1234");
+        en_Vehicle.setBrandName("1");
         en_Vehicle.setOtherDetails("Fino สีดำ-แดง");
         en_Vehicle.setTypeOfVehicle(v_type);
         en_Vehicle.setCreatedBy(staff);
@@ -546,7 +546,7 @@ public class EnrollVehicleTests {
 
         // error message ตรง และถูก field
         ConstraintViolation<EnrollVehicle> show = result.iterator().next();
-        assertEquals("size must be between 5 and 20", show.getMessage());
+        assertEquals("size must be between 2 and 20", show.getMessage());
         assertEquals("brandName", show.getPropertyPath().toString());
     }
 
