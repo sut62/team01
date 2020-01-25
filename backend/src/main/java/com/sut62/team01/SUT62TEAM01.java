@@ -1,6 +1,7 @@
 package com.sut62.team01;
 
 import java.util.Collections;
+import java.util.Date;
 import java.util.stream.Stream;
 
 import com.sut62.team01.entity.*;
@@ -30,7 +31,8 @@ public class SUT62TEAM01 {
             StaffRepository staffRepository, VehicleTypeRepository vehicleTypeRepository,
             ElectricTypeRepository electrictypeRepository, PackageTypeRepository packageTypeRepository,
             DeviceTypeRepository deviceTypeRepository, DeviceNameRepository deviceNameRepository,
-            BikeRepository bikeRepository, PackageManagementRepository packageManagementRepository) {
+            BikeRepository bikeRepository, PackageManagementRepository packageManagementRepository,
+            EnrollVehicleRepository enrollVehicleRepository) {
 
         return args -> {
 
@@ -187,6 +189,42 @@ public class SUT62TEAM01 {
                     deviceName15, deviceName16).forEach(deviceName -> {
                         deviceNameRepository.save(deviceName); // บันทึก Objcet ชื่อ Customer
                     });
+
+            // จำลองข้อมูลสำหรับ EnrollVehicle
+            VehicleType v_type = new VehicleType();
+            v_type.setType("รถจักรยานยนต์");
+            v_type = vehicleTypeRepository.saveAndFlush(v_type);
+
+            EnrollVehicle en_Vehicle1 = new EnrollVehicle();
+            en_Vehicle1.setEnrollDate(new Date());
+            en_Vehicle1.setLicensePlate("SUT01");
+            en_Vehicle1.setBrandName("HONDA");
+            en_Vehicle1.setOtherDetails("Scoopyi สีดำ-แดง");
+            en_Vehicle1.setTypeOfVehicle(v_type);
+            en_Vehicle1.setCreatedBy(staff1);
+            en_Vehicle1.setEnrolledStudents(roomBooking1);
+            
+            EnrollVehicle en_Vehicle2 = new EnrollVehicle();
+            en_Vehicle2.setEnrollDate(new Date());
+            en_Vehicle2.setLicensePlate("SUT02");
+            en_Vehicle2.setBrandName("HONDA");
+            en_Vehicle2.setOtherDetails("Wave ดำดำ");
+            en_Vehicle2.setTypeOfVehicle(v_type);
+            en_Vehicle2.setCreatedBy(staff2);
+            en_Vehicle2.setEnrolledStudents(roomBooking2);
+
+            EnrollVehicle en_Vehicle3 = new EnrollVehicle();
+            en_Vehicle3.setEnrollDate(new Date());
+            en_Vehicle3.setLicensePlate("SUT03");
+            en_Vehicle3.setBrandName("HONDA");
+            en_Vehicle3.setOtherDetails("Scoopyz ขาว-ดำ");
+            en_Vehicle3.setTypeOfVehicle(v_type);
+            en_Vehicle3.setCreatedBy(staff1);
+            en_Vehicle3.setEnrolledStudents(roomBooking3);
+
+            Stream.of(en_Vehicle1, en_Vehicle2, en_Vehicle3).forEach(en_Vehicle -> {
+                enrollVehicleRepository.save(en_Vehicle); // บันทึก Objcet ชื่อ Customer
+            });
         };
     }
 
