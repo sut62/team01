@@ -2,9 +2,15 @@
   <v-container>
     <v-layout text-center wrap>
       <v-flex mb-4>
-        <br />
+        
+        <v-row align="center" justify="center">
+        <v-col cols="12" sm="8" md="6">
+            <v-alert type="success" dismissible v-model.lazy="alertSuccess">บันทึกข้อมูลสำเร็จ</v-alert>
+            <v-alert type="error" dismissible v-model="alertFailed">กรุณาระบุข้อมูลให้ครบ!</v-alert>
+          </v-col>
+        </v-row>
+        
         <h1 class="display-2 font-weight-bold mb-3">Search Enrolled Vehicle</h1>
-        <br>
         
         <v-row justify="center" class="pb-0 mb-0">
             <v-col cols="3">
@@ -14,27 +20,9 @@
             @keyup.enter="searchEnrolledVehicles"/>
             </v-col>
             <v-col cols="1">
-                <v-btn @click="searchEnrolledVehicles" large class="light-green accent-4">Search</v-btn>
+                <v-btn @click="searchEnrolledVehicles" large class="light-blue darken-1">Search</v-btn>
             </v-col>
         </v-row>
-
-        <!-- <v-row justify="center" class="pb-0 mb-0">
-            <v-col cols="3">
-            <v-text-field solo 
-            label="กรอกหมายเลขห้อง"
-            v-model="bnd_Name"
-            @keyup.enter="getStudentName"/>
-            </v-col>
-            <v-col cols="1">
-                <v-btn @click="s" large class="light-green accent-4">Search</v-btn>
-            </v-col>
-        </v-row> -->
-
-        <!-- <v-row justify="center">
-        <v-col cols="10">
-            <v-data-table :headers="headers" :items="List_BndName" :items-per-page="5" class="elevation-3"></v-data-table>
-        </v-col>
-        </v-row> -->
 
         <v-card>
             <v-data-table
@@ -43,7 +31,6 @@
             :items-per-page="5"
             ></v-data-table>
         </v-card>
-    
       </v-flex>
     </v-layout>
   </v-container>
@@ -56,27 +43,18 @@ export default {
     data() {
         return {
             headers: [
-                {
-                text: "ID",
-                align: "left",
-                sortable: false,
-                value: "id"
-                },
-                { text: "Name", value: "enrolledStudents.student.fullName"},
+                { text: "Name", value: "enrolledStudents.student.fullName", align: 'left'},
                 { text: "Date Enroll", value: "enrollDate" },
                 { text: "Licnse Plate", value: "licensePlate" },
                 { text: "Brand Name", value: "brandName" },
                 { text: "Other Details", value: "otherDetails" },
             ],
-            lst_lcPlate: [],
             lst_BndName: [],
             items: [],
-            lc_Plate: undefined,
             bnd_Name: undefined,
+            alertSuccess: false,
+            alertFailed: false,
         }
-    },
-    mounted() {
-        // this.searchEnrolledVehicles();
     },
     methods: {
         searchEnrolledVehicles() {
