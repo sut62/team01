@@ -3,7 +3,6 @@ package com.sut62.team01;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.Date;
-import java.util.Optional;
 import java.util.Set;
 
 import javax.validation.ConstraintViolation;
@@ -59,13 +58,13 @@ public class PackageManagementTest {
         // create oj
         PackageManagement packageManagement = new PackageManagement();
         // necessary for roombooking
-        Students students = new Students("Pontep Thaweesup", "B6000783","วิศวกรรมศาสตร์", "pontep", "1234");
+        Students students = new Students("Pontep Thaweesup", "B6000783", "วิศวกรรมศาสตร์", "pontep", "1234");
         students = studentsRepository.saveAndFlush(students);
         Rooms rooms = new Rooms("7133");
         rooms = roomsRepository.saveAndFlush(rooms);
         Bed bed = new Bed("What's branch?");
         bed = bedRepository.saveAndFlush(bed);
-        RoomBooking roomBooking = new RoomBooking(students, rooms, bed,"ต้องการเตียงเสริม");
+        RoomBooking roomBooking = new RoomBooking(students, rooms, bed, "ต้องการเตียงเสริม");
         roomBooking = roomBookingRepository.saveAndFlush(roomBooking);
         // necessary for PackageManagement
         PackageType packageType = new PackageType("sth");
@@ -80,8 +79,8 @@ public class PackageManagementTest {
         packageManagement.setPackageDate(new Date());
         packageManagement = packageManagementRepository.saveAndFlush(packageManagement);
 
-        //Optional<PackageManagement> found = packageManagementRepository.findById(packageManagement.getId());
-        //assertEquals(packageManagement, found.get());
+        PackageManagement found = packageManagementRepository.findById(packageManagement.getId());
+        assertEquals(packageManagement, found);
     }
 
     @Test
@@ -89,13 +88,13 @@ public class PackageManagementTest {
         // create oj
         PackageManagement packageManagement = new PackageManagement();
         // necessary for roombooking
-        Students students = new Students("Pontep Thaweesup", "B6000783","วิศวกรรมศาสตร์", "pontep", "1234");
+        Students students = new Students("Pontep Thaweesup", "B6000783", "วิศวกรรมศาสตร์", "pontep", "1234");
         students = studentsRepository.saveAndFlush(students);
         Rooms rooms = new Rooms("7133");
         rooms = roomsRepository.saveAndFlush(rooms);
         Bed bed = new Bed("What's branch?");
         bed = bedRepository.saveAndFlush(bed);
-        RoomBooking roomBooking = new RoomBooking(students, rooms, bed,"ต้องการเตียงเสริม");
+        RoomBooking roomBooking = new RoomBooking(students, rooms, bed, "ต้องการเตียงเสริม");
         roomBooking = roomBookingRepository.saveAndFlush(roomBooking);
         // necessary for PackageManagement
         PackageType packageType = new PackageType("sth");
@@ -123,13 +122,13 @@ public class PackageManagementTest {
         // create oj
         PackageManagement packageManagement = new PackageManagement();
         // necessary for roombooking
-        Students students = new Students("Pontep Thaweesup", "B6000783","วิศวกรรมศาสตร์", "pontep", "1234");
+        Students students = new Students("Pontep Thaweesup", "B6000783", "วิศวกรรมศาสตร์", "pontep", "1234");
         students = studentsRepository.saveAndFlush(students);
         Rooms rooms = new Rooms("7133");
         rooms = roomsRepository.saveAndFlush(rooms);
         Bed bed = new Bed("What's branch?");
         bed = bedRepository.saveAndFlush(bed);
-        RoomBooking roomBooking = new RoomBooking(students, rooms, bed,"ต้องการเตียงเสริม");
+        RoomBooking roomBooking = new RoomBooking(students, rooms, bed, "ต้องการเตียงเสริม");
         roomBooking = roomBookingRepository.saveAndFlush(roomBooking);
         // necessary for PackageManagement
         PackageType packageType = new PackageType("asd");
@@ -157,13 +156,13 @@ public class PackageManagementTest {
         // create oj
         PackageManagement packageManagement = new PackageManagement();
         // necessary for roombooking
-        Students students = new Students("Pontep Thaweesup", "B6000783","วิศวกรรมศาสตร์", "pontep", "1234");
+        Students students = new Students("Pontep Thaweesup", "B6000783", "วิศวกรรมศาสตร์", "pontep", "1234");
         students = studentsRepository.saveAndFlush(students);
         Rooms rooms = new Rooms("7133");
         rooms = roomsRepository.saveAndFlush(rooms);
         Bed bed = new Bed("What's bed?");
         bed = bedRepository.saveAndFlush(bed);
-        RoomBooking roomBooking = new RoomBooking(students, rooms, bed,"ต้องการเตียงเสริม");
+        RoomBooking roomBooking = new RoomBooking(students, rooms, bed, "ต้องการเตียงเสริม");
         roomBooking = roomBookingRepository.saveAndFlush(roomBooking);
         // necessary for PackageManagement
         PackageType packageType = new PackageType("asd");
@@ -184,20 +183,20 @@ public class PackageManagementTest {
         assertEquals("roomBooking", result.iterator().next().getPropertyPath().toString());
 
     }
-    
+
     @Test
     void b6018474_testDetailsNotLessThanMin() {
 
         // create oj
         PackageManagement packageManagement = new PackageManagement();
         // necessary for roombooking
-        Students students = new Students("Pontep Thaweesup", "B6000783","วิศวกรรมศาสตร์", "pontep", "1234");
+        Students students = new Students("Pontep Thaweesup", "B6000783", "วิศวกรรมศาสตร์", "pontep", "1234");
         students = studentsRepository.saveAndFlush(students);
         Rooms rooms = new Rooms("7133");
         rooms = roomsRepository.saveAndFlush(rooms);
         Bed bed = new Bed("What's bed?");
         bed = bedRepository.saveAndFlush(bed);
-        RoomBooking roomBooking = new RoomBooking(students, rooms, bed,"ต้องการเตียงเสริม");
+        RoomBooking roomBooking = new RoomBooking(students, rooms, bed, "ต้องการเตียงเสริม");
         roomBooking = roomBookingRepository.saveAndFlush(roomBooking);
         // necessary for PackageManagement
         PackageType packageType = new PackageType("asd");
@@ -225,13 +224,13 @@ public class PackageManagementTest {
         // create oj
         PackageManagement packageManagement = new PackageManagement();
         // necessary for roombooking
-        Students students = new Students("Pontep Thaweesup", "B6000783","วิศวกรรมศาสตร์", "pontep", "1234");
+        Students students = new Students("Pontep Thaweesup", "B6000783", "วิศวกรรมศาสตร์", "pontep", "1234");
         students = studentsRepository.saveAndFlush(students);
         Rooms rooms = new Rooms("7133");
         rooms = roomsRepository.saveAndFlush(rooms);
         Bed bed = new Bed("What's bed?");
         bed = bedRepository.saveAndFlush(bed);
-        RoomBooking roomBooking = new RoomBooking(students, rooms, bed,"ต้องการเตียงเสริม");
+        RoomBooking roomBooking = new RoomBooking(students, rooms, bed, "ต้องการเตียงเสริม");
         roomBooking = roomBookingRepository.saveAndFlush(roomBooking);
         // necessary for PackageManagement
         PackageType packageType = new PackageType("asd");
