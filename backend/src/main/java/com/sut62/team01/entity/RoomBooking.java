@@ -45,7 +45,7 @@ public class RoomBooking {
     private @NotNull Bed bed;
 
     @NotNull
-    @Size(min = 5 , max = 30)
+    @Size(min = 2 , max = 30)
     @Column(name = "DETAIL")
     private String detail;
 

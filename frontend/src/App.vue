@@ -240,6 +240,14 @@ export default {
           click: () => {
             this.$router.push("/staff/searchEnrolledVehicle");
           }
+        },
+        {
+          icon: "mdi-folder",
+          role: "staff",
+          text: "ข้อมูลการจองห้องพัก",
+          click: () => {
+            this.$router.push("/staff/roomstaff");
+          }
         }
       ],
       items: [
@@ -276,7 +284,7 @@ export default {
         }
         },
         {
-          icon: "mdi-contacts",
+          icon: "mdi-help-circle",
           role: "student",
           text: "สถานะห้องพัก",
           click: () => {
