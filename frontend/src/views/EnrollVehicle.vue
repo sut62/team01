@@ -5,7 +5,7 @@
         <v-row align="center" justify="center">
           <v-col cols="12" sm="8" md="6">
             <v-alert type="success" dismissible v-model="alertSuccess">บันทึกข้อมูลสำเร็จ</v-alert>
-            <v-alert type="error" dismissible v-model="alertFailed">กรุณาระบุข้อมูลให้ครบ!</v-alert>
+            <v-alert type="error" dismissible v-model="alertFailed"> {{alertmsg}}!</v-alert>
           </v-col>
         </v-row>
         <br />
@@ -112,6 +112,7 @@ export default {
 
       alertFailed: false,
       alertSuccess: false,
+      alertmsg: null,
     }
   },
 
@@ -200,5 +201,12 @@ export default {
       this.alertFailed = false;
     },
   },
+  watch: {
+    checkSizeOfinsLcPlate: function() {
+      if(this.insLcPlate < 3){
+        this.alertmsg = "กรุณากรอกข้อมูลมาก";
+      }
+    }
+  }
 }
 </script>

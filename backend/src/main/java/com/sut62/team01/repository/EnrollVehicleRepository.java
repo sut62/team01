@@ -10,6 +10,6 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 @RepositoryRestResource
 public
 interface EnrollVehicleRepository extends JpaRepository<EnrollVehicle, Long> {
-    List<EnrollVehicle> findByLicensePlate(String licensePlate);
-    // List<EnrollVehicle> findByBrandName(String brandName);
+    // List<EnrollVehicle> findByLicensePlate(String licensePlate);
+    List<EnrollVehicle> findByBrandName(String brandName);
 }
