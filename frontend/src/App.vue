@@ -298,7 +298,7 @@ export default {
           }
         },
         {
-          icon: "mdi-contacts",
+          icon: "mdi-wrench",
           role: "student",
           text: "แจ้งซ่อม",
           click: () => {

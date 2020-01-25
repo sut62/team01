@@ -2,7 +2,8 @@
         <v-row align="center" justify="center">
           <v-col cols="12" sm="8" md="6">
             <v-alert type="success" dismissible v-model="alertSuccess">บันทึกข้อมูลการแจ้งซ่อมสำเร็จ</v-alert>
-             <v-alert type="error" dismissible v-model="alertFailed">กรุณาใส่ข้อมูลให้ครบทุกช่อง!</v-alert>
+             <v-alert type="error" dismissible v-model="alertFailed">{{alertmsg}}</v-alert>
+  
             <v-card class="elevation-12">
               <v-toolbar color="primary" light flat>
                 <v-icon dark>mdi-wrench</v-icon>&nbsp;&nbsp;
@@ -14,6 +15,7 @@
               </v-toolbar>
               <v-card-text>
                 <v-select
+                prepend-icon="mdi-account"
                   v-model="selectedStudent"
                   :items="roomBookings"
                   item-text="student.fullName"
@@ -22,6 +24,7 @@
                 ></v-select>
 
                 <v-select
+                prepend-icon="mdi-wrench"
                   v-model="selectedDeviceType"
                   :items="types"
                   item-text="type"
@@ -30,6 +33,7 @@
                 ></v-select>
 
                 <v-select
+                prepend-icon="mdi-screwdriver"
                   v-model="selectedDeviceName"
                   :items="problems"
                   item-text="name"
@@ -38,6 +42,7 @@
                 ></v-select>
 
                 <v-text-field
+                  prepend-icon="mdi-message"
                   v-model="insertList"
                   :items="titles"
                   item-text="name"
@@ -46,7 +51,7 @@
                 ></v-text-field>
 
                 <div class="text-center">
-                  <v-btn class="mr-3" color="warning" @click="Saveshow"
+                  <v-btn class="mr-3" color="primary" @click="Saveshow"
                     >บันทึก</v-btn
                   >
                 </div>
@@ -71,6 +76,7 @@ export default {
       selectedDeviceName: null,
       alertSuccess: false,
       alertFailed: false,
+      alertmsg:null,
       titles: [],
       roomBookings: [],
       types: [],
@@ -88,6 +94,7 @@ export default {
     },
     Saveshow() {
       //เมือกดปุ่มบันทึก ขณะที่ยังกรอกข้อมูลไม่ครบ ระบบจะแจ้งเตื่อน "กรุณากรอรกข้อมูลให้ครบ"
+      console.log(this.insertList.length)
       if (
         !this.insertList ||
         !this.selectedStudent ||
@@ -96,9 +103,17 @@ export default {
       ) {
         //alert("กรุณากรอกข้อมูลให้ครบ!");
         this.clearAlert();
+        this.alertmsg = "กรุณากรอกข้อมูลให้ครบ!";
         this.alertFailed = true;
-        this.clearCombobox();
-      } else {
+        //this.clearCombobox();
+      }
+    else if(this.insertList.length < 3 || this.insertList.length > 30){
+        this.clearAlert();
+        this.alertmsg = "คุณกรอกข้อมูลน้อยกว่า 3 ตัวอักษร หรือ กรอกมากกว่า 30 ตัวอักษร";
+        this.alertFailed = true;
+        //this.clearCombobox();
+      }
+       else {
         this.SaveRepair();
       }
     },
@@ -124,8 +139,9 @@ export default {
             this.alertSuccess = true;
             this.clearCombobox();
           })
-          .catch(() => {
+          .catch(e => {
             this.clearAlert();
+            this.alertmsg = e.message
             this.alertFailed = true;
           });
       
@@ -133,6 +149,7 @@ export default {
     clearAlert() {
       this.alertSuccess = false;
       this.alertFailed = false;
+       
     },
     clearCombobox() {
      this.insertList = null;
