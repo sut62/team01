@@ -99,4 +99,10 @@ public class RoomBookingController {
         Optional<Rooms> room = roomsrepository.findById(x);
         return roomBookingRepository.findByRooms(room.get());
     }
+
+    // @GetMapping("/findroomby={roomId}")
+    // List<Rooms> searchRoomname(@PathVariable String roomId) {
+    //     Optional<Rooms> room = roomsrepository.findByRoomId(roomId);
+    //     return roomBookingRepository.findByRooms(room.get());
+    // }
 }
