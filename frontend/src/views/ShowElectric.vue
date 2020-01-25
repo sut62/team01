@@ -54,7 +54,7 @@
 import api from "../Api.js";
 export default {
   mounted() {
-    this.getAllStaffs();
+    
   },
   data() {
     return {
