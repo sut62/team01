@@ -165,7 +165,10 @@
         </v-btn>
       </div>
       <v-spacer></v-spacer>
-      <div>{{ new Date().getFullYear() }} — SUT DORMITORY</div>
+      <div>
+        {{ new Date().getFullYear() }} —
+        <strong>SUT DORMITORY</strong>
+      </div>
     </v-footer>
   </v-app>
 </template>
