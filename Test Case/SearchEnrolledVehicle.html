@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta content="text/html; charset=UTF-8" http-equiv="content-type" />
+	<title>SearchEnrolledVehicle</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Pass TestCase ระบบค้นหาข้อมูลยานพาหนะ</td></tr>
+</thead>
+<tbody>
+<tr><td>open</td><td>http://localhost:8080/signin<datalist><option>http://localhost:8080/signin</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>link=exact:เข้าสู่ระบบสำหรับที่ปรึกษาหอพัก?<datalist><option>link=exact:เข้าสู่ระบบสำหรับที่ปรึกษาหอพัก?</option><option>//a[contains(text(),'เข้าสู่ระบบสำหรับที่ปรึกษาหอพัก?')]</option><option>//div[@id='inspire']/div/main/div/div/div/div/div/div/div[2]/a</option><option>//div[2]/a</option><option>css=div.v-card__actions &gt; a</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>id=input-43<datalist><option>id=input-43</option><option>name=login</option><option>//input[@id='input-43']</option><option>//div[@id='inspire']/div/main/div/div/div/div/div/div/div/form/div/div[2]/div/div/input</option><option>//div[2]/div/div/input</option><option>css=#input-43</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=input-43<datalist><option>id=input-43</option><option>name=login</option><option>//input[@id='input-43']</option><option>//div[@id='inspire']/div/main/div/div/div/div/div/div/div/form/div/div[2]/div/div/input</option><option>//div[2]/div/div/input</option><option>css=#input-43</option></datalist></td><td>black</td>
+</tr>
+<tr><td>click</td><td>id=password<datalist><option>id=password</option><option>name=password</option><option>//input[@id='password']</option><option>//div[@id='inspire']/div/main/div/div/div/div/div/div/div/form/div[2]/div[2]/div/div/input</option><option>//div[2]/div[2]/div/div/input</option><option>css=#password</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=password<datalist><option>id=password</option><option>name=password</option><option>//input[@id='password']</option><option>//div[@id='inspire']/div/main/div/div/div/div/div/div/div/form/div[2]/div[2]/div/div/input</option><option>//div[2]/div[2]/div/div/input</option><option>css=#password</option></datalist></td><td>asdasd</td>
+</tr>
+<tr><td>click</td><td>xpath=(//button[@type='button'])[5]<datalist><option>xpath=(//button[@type='button'])[5]</option><option>//div[@id='inspire']/div/main/div/div/div/div/div/div/div[2]/button</option><option>//div[2]/button</option><option>css=button.v-btn.v-btn--contained.theme--light.v-size--default.amber</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>//div[@id='inspire']/div/nav/div/div/div[9]/div[2]/div<datalist><option>//div[@id='inspire']/div/nav/div/div/div[9]/div[2]/div</option><option>//div[9]/div[2]/div</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>id=input-79<datalist><option>id=input-79</option><option>//input[@id='input-79']</option><option>//div[@id='inspire']/div/main/div/div/div/div/div/div/div[3]/div/div/div/div/div/input</option><option>//div[3]/div/div/div/div/div/input</option><option>css=#input-79</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=input-79<datalist><option>id=input-79</option><option>//input[@id='input-79']</option><option>//div[@id='inspire']/div/main/div/div/div/div/div/div/div[3]/div/div/div/div/div/input</option><option>//div[3]/div/div/div/div/div/input</option><option>css=#input-79</option></datalist></td><td>HONDA</td>
+</tr>
+<tr><td>click</td><td>//div[@id='inspire']/div/main/div/div/div/div/div/div/div[3]/div[2]/button/span<datalist><option>//div[@id='inspire']/div/main/div/div/div/div/div/div/div[3]/div[2]/button/span</option><option>//div[2]/button/span</option><option>css=button.light-blue.darken-1.v-btn.v-btn--contained.theme--light.v-size--large &gt; span.v-btn__content</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>//div[@id='inspire']/div/main/div/div/div/div/div/div/div/div/div<datalist><option>//div[@id='inspire']/div/main/div/div/div/div/div/div/div/div/div</option><option>//div/div/div/div/div/div/div/div/div</option><option>css=div.v-alert__content</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>//div[@id='inspire']/div/main/div/div/div/div/div/div/div/div/div<datalist><option>//div[@id='inspire']/div/main/div/div/div/div/div/div/div/div/div</option><option>//div/div/div/div/div/div/div/div/div</option><option>css=div.v-alert__content</option></datalist></td><td>ค้นหาสำเร็จ</td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Fail! TestCase ระบบค้นหาข้อมูลยานพาหนะ</td></tr>
+</thead>
+<tbody>
+<tr><td>open</td><td>http://localhost:8080/signin<datalist><option>http://localhost:8080/signin</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>link=exact:เข้าสู่ระบบสำหรับที่ปรึกษาหอพัก?<datalist><option>link=exact:เข้าสู่ระบบสำหรับที่ปรึกษาหอพัก?</option><option>//a[contains(text(),'เข้าสู่ระบบสำหรับที่ปรึกษาหอพัก?')]</option><option>//div[@id='inspire']/div/main/div/div/div/div/div/div/div[2]/a</option><option>//div[2]/a</option><option>css=div.v-card__actions &gt; a</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>id=input-43<datalist><option>id=input-43</option><option>name=login</option><option>//input[@id='input-43']</option><option>//div[@id='inspire']/div/main/div/div/div/div/div/div/div/form/div/div[2]/div/div/input</option><option>//div[2]/div/div/input</option><option>css=#input-43</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=input-43<datalist><option>id=input-43</option><option>name=login</option><option>//input[@id='input-43']</option><option>//div[@id='inspire']/div/main/div/div/div/div/div/div/div/form/div/div[2]/div/div/input</option><option>//div[2]/div/div/input</option><option>css=#input-43</option></datalist></td><td>black</td>
+</tr>
+<tr><td>type</td><td>id=password<datalist><option>id=password</option><option>name=password</option><option>//input[@id='password']</option><option>//div[@id='inspire']/div/main/div/div/div/div/div/div/div/form/div[2]/div[2]/div/div/input</option><option>//div[2]/div[2]/div/div/input</option><option>css=#password</option></datalist></td><td>asdasd</td>
+</tr>
+<tr><td>click</td><td>//div[@id='inspire']/div/main/div/div/div/div/div/div/div[2]/button/span<datalist><option>//div[@id='inspire']/div/main/div/div/div/div/div/div/div[2]/button/span</option><option>//div[2]/button/span</option><option>css=button.v-btn.v-btn--contained.theme--light.v-size--default.amber &gt; span.v-btn__content</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>//div[@id='inspire']/div/nav/div/div/div[9]/div[2]<datalist><option>//div[@id='inspire']/div/nav/div/div/div[9]/div[2]</option><option>//div[9]/div[2]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>id=input-79<datalist><option>id=input-79</option><option>//input[@id='input-79']</option><option>//div[@id='inspire']/div/main/div/div/div/div/div/div/div[3]/div/div/div/div/div/input</option><option>//div[3]/div/div/div/div/div/input</option><option>css=#input-79</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=input-79<datalist><option>id=input-79</option><option>//input[@id='input-79']</option><option>//div[@id='inspire']/div/main/div/div/div/div/div/div/div[3]/div/div/div/div/div/input</option><option>//div[3]/div/div/div/div/div/input</option><option>css=#input-79</option></datalist></td><td>GOOP</td>
+</tr>
+<tr><td>click</td><td>xpath=(//button[@type='button'])[9]<datalist><option>xpath=(//button[@type='button'])[9]</option><option>//div[@id='inspire']/div/main/div/div/div/div/div/div/div[3]/div[2]/button</option><option>//div[2]/button</option><option>css=button.light-blue.darken-1.v-btn.v-btn--contained.theme--light.v-size--large</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>//div[@id='inspire']/div/main/div/div/div/div/div/div/div[2]/div/div<datalist><option>//div[@id='inspire']/div/main/div/div/div/div/div/div/div[2]/div/div</option><option>//div/div/div/div[2]/div/div</option><option>css=div.v-alert.v-sheet.theme--dark.error &gt; div.v-alert__wrapper &gt; div.v-alert__content</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>//div[@id='inspire']/div/main/div/div/div/div/div/div/div[2]/div/div<datalist><option>//div[@id='inspire']/div/main/div/div/div/div/div/div/div[2]/div/div</option><option>//div/div/div/div[2]/div/div</option><option>css=div.v-alert.v-sheet.theme--dark.error &gt; div.v-alert__wrapper &gt; div.v-alert__content</option></datalist></td><td>ไม่พบข้อมูล!</td>
+</tr>
+</tbody></table>
+</body>
+</html>

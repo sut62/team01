@@ -2,13 +2,9 @@
   <v-container>
     <v-layout text-center wrap>
       <v-flex mb-4>
-        
-        <v-row align="center" justify="center">
-        <v-col cols="12" sm="8" md="6">
-            <v-alert type="success" dismissible v-model.lazy="alertSuccess">บันทึกข้อมูลสำเร็จ</v-alert>
-            <v-alert type="error" dismissible v-model="alertFailed">กรุณาระบุข้อมูลให้ครบ!</v-alert>
-          </v-col>
-        </v-row>
+            
+        <v-alert type="success" dismissible v-model="alertSuccess">ค้นหาสำเร็จ</v-alert>
+        <v-alert type="error" dismissible v-model="alertFailed">ไม่พบข้อมูล!</v-alert>
         
         <h1 class="display-2 font-weight-bold mb-3">Search Enrolled Vehicle</h1>
         
@@ -24,7 +20,7 @@
             </v-col>
         </v-row>
 
-        <v-card>
+        <v-card v-if="dataStatus">
             <v-data-table
             :headers="headers"
             :items="lst_BndName"
@@ -43,15 +39,16 @@ export default {
     data() {
         return {
             headers: [
-                { text: "Name", value: "enrolledStudents.student.fullName", align: 'left'},
-                { text: "Date Enroll", value: "enrollDate" },
-                { text: "Licnse Plate", value: "licensePlate" },
-                { text: "Brand Name", value: "brandName" },
-                { text: "Other Details", value: "otherDetails" },
+                { text: "Name", value: "enrolledStudents.student.fullName", align: 'left', sortable: false },
+                { text: "Date Enroll", value: "enrollDate", sortable: false },
+                { text: "Licnse Plate", value: "licensePlate", sortable: false },
+                { text: "Brand Name", value: "brandName", sortable: false },
+                { text: "Other Details", value: "otherDetails", sortable: false },
             ],
             lst_BndName: [],
             items: [],
             bnd_Name: undefined,
+            dataStatus: false,
             alertSuccess: false,
             alertFailed: false,
         }
@@ -63,10 +60,21 @@ export default {
             .then(response  => {
                 this.lst_BndName = response.data;
                 console.log(JSON.parse(JSON.stringify(response.data)));
+                this.clearAlert();
+                if(this.lst_BndName.length == 0) {
+                    this.alertFailed = true;
+                } else {
+                    this.alertSuccess = true;
+                    this.dataStatus = true;
+                }
             })
             .catch(e => {
                 console.log("Error in searchEnrolledVehicle() :" + e);
             });
+        },
+        clearAlert() {
+            this.alertSuccess = false;
+            this.alertFailed = false;
         }
     }
 }
