@@ -124,7 +124,9 @@
 
           <v-list>
             <v-list-item @click="handleSignout">
-              <v-list-item-title>Sign out</v-list-item-title>
+              <v-list-item-title>
+                <v-icon>mdi-logout</v-icon>Sign out
+              </v-list-item-title>
             </v-list-item>
           </v-list>
         </v-menu>
@@ -141,8 +143,26 @@
       </v-container>
     </v-content>
     <v-footer :color="footerColor()" :dark="isDark()" app>
-      <v-spacer></v-spacer>
       <div>&copy; SUT62 TEAM01</div>
+      <v-divider vertical></v-divider>
+      <div>
+        <v-btn href="https://github.com/sut62/team01" icon small target="_blank" v-on="on">
+          <v-icon>mdi-github-circle</v-icon>
+        </v-btn>
+      </div>
+      <div>
+        <v-btn
+          href="https://www.facebook.com/Sut-Se62-Team01-118308956295583"
+          icon
+          small
+          target="_blank"
+          v-on="on"
+        >
+          <v-icon>mdi-facebook</v-icon>
+        </v-btn>
+      </div>
+
+      <v-spacer></v-spacer>
     </v-footer>
   </v-app>
 </template>
