@@ -3,7 +3,7 @@
     <v-layout text-center wrap>
       <v-flex mb-4>
         <br />
-        <h1 class="display-2 font-weight-bold mb-3">สถานะห้องพัก</h1>
+        <h1 class="display-2 font-weight-bold mb-3">ข้อมูลการจองห้องพักของนักศึกษา</h1>
       </v-flex>
     </v-layout>
     <v-row justify="center">
@@ -21,16 +21,16 @@ import api from "../Api.js";
 export default {
    mounted() {
     // this.getAlStudents();
-     this.getAllRooms();
+    //  this.getAllRooms();
     // this.getAllBed();
     this.getAllRoomBooking();
   },
   data() {
     return {
       roomBooking: [],
-      Students: [],
-      Rooms: [],
-      Bed: [],
+      // Students: [],
+      // Rooms: [],
+      // Bed: [],
       headers: [
         
         { text: "ห้อง", value: "rooms.roomId" },
@@ -46,21 +46,21 @@ export default {
     // back() {
     //   this.$router.push("/home");
     // },
-     getAllRooms() {
+    //  getAllRooms() {
+    //   api
+    //     .get("/api/GetAndSortData")
+    //     .then(res => {
+    //       this.Rooms = res.data;
+    //       console.log("loading rooms");
+    //       console.log(JSON.parse(JSON.stringify(res.data)));
+    //     })
+    //     .catch(e => {
+    //       console.log(e);
+    //     });
+    // },
+      getAllRoomBooking() {
       api
-        .get("/api/rooms")
-        .then(res => {
-          this.Rooms = res.data;
-          console.log("loading rooms");
-          console.log(JSON.parse(JSON.stringify(res.data)));
-        })
-        .catch(e => {
-          console.log(e);
-        });
-    },
-    getAllRoomBooking() {
-      api
-        .get("/api/roombooking")
+        .get("/api/GetAndSortData")
         .then(res => {
           this.roomBooking = res.data;
           console.log("loading roombooking");

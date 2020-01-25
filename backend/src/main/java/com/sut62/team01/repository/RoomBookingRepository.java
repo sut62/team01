@@ -7,6 +7,7 @@ import com.sut62.team01.entity.Rooms;
 import com.sut62.team01.entity.Students;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 @RepositoryRestResource
@@ -16,4 +17,7 @@ public interface RoomBookingRepository extends JpaRepository<RoomBooking, Long> 
     List<RoomBooking> findByStudent(Students student);
 
     List<RoomBooking> findByRooms(Rooms rooms);
+
+    @Query(value = "SELECT a FROM RoomBooking a ORDER BY a.rooms")
+    List<RoomBooking> sortByRooms();
 }

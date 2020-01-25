@@ -245,14 +245,6 @@ export default {
             this.$router.push("/staff/searchEnrolledVehicle");
           }
         },
-        {
-          icon: "mdi-folder",
-          role: "staff",
-          text: "ข้อมูลการจองห้องพัก",
-          click: () => {
-            this.$router.push("/staff/roomstaff");
-          }
-        }
       ],
       items: [
         {
