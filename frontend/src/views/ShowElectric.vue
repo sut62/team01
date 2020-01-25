@@ -9,7 +9,7 @@
           <v-card class="elevation-12">
             <v-toolbar color="amber" light flat>
               <v-icon>mdi-paper-roll</v-icon>&nbsp;&nbsp;
-              <v-toolbar-title>แสดงข้อมูลเครื่องไฟฟ้า</v-toolbar-title>
+              <v-toolbar-title>แสดงข้อมูลเครื่องใช้ไฟฟ้า</v-toolbar-title>
               <div class="flex-grow-1"></div>
             </v-toolbar>
             <v-card-text>
