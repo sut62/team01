@@ -140,6 +140,10 @@
         </v-row>
       </v-container>
     </v-content>
+    <v-footer :color="footerColor()" :dark="isDark()" app>
+      <v-spacer></v-spacer>
+      <div>&copy; SUT62 TEAM01</div>
+    </v-footer>
   </v-app>
 </template>
 <script>
@@ -268,7 +272,7 @@ export default {
           }
         },
         {
-          icon: "mdi-contacts",
+          icon: "mdi-bicycle-basket",
           role: "student",
           text: "ยืมจักรยาน",
           click: () => {
@@ -334,11 +338,24 @@ export default {
         return "dark";
       }
     },
+    isDark() {
+      if (this.isSignin) return true;
+      else return false;
+    },
     appBarColor() {
       if (this.userRole == "staff") {
         return "amber darken-3";
       } else if (this.userRole == "student") {
         return "blue darken-3";
+      } else {
+        return "white";
+      }
+    },
+    footerColor() {
+      if (this.userRole == "staff") {
+        return "amber darken-4";
+      } else if (this.userRole == "student") {
+        return "primary";
       } else {
         return "white";
       }

@@ -8,6 +8,7 @@
           <v-card-title class="headline grey lighten-2" primary-title>{{ dialog_details }}</v-card-title>
           <v-card-text>
             <v-select
+              prepend-icon="mdi-bicycle"
               id="select_bike"
               :items="bikes"
               item-value="id"
