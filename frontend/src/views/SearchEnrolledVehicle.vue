@@ -27,6 +27,14 @@
             :items-per-page="5"
             ></v-data-table>
         </v-card>
+
+        <v-card v-if="!dataStatus">
+            <v-data-table
+            :headers="headers"
+            :items="lstAllEnroll"
+            :items-per-page="5"
+            ></v-data-table>
+        </v-card>
       </v-flex>
     </v-layout>
   </v-container>
@@ -46,12 +54,15 @@ export default {
                 { text: "Other Details", value: "otherDetails", sortable: false },
             ],
             lst_BndName: [],
-            items: [],
+            lstAllEnroll: [],
             bnd_Name: undefined,
             dataStatus: false,
             alertSuccess: false,
             alertFailed: false,
         }
+    },
+    mounted() {
+        this.getEnrolledVehicles();
     },
     methods: {
         searchEnrolledVehicles() {
@@ -75,7 +86,18 @@ export default {
         clearAlert() {
             this.alertSuccess = false;
             this.alertFailed = false;
-        }
+        },
+        getEnrolledVehicles() {
+            api
+            .get("/api/enrolledVehicles")
+            .then(response  => {
+                this.lstAllEnroll = response.data;
+                console.log(JSON.parse(JSON.stringify(response.data)));
+            })
+            .catch(e => {
+                console.log("Error in searchEnrolledVehicle() :" + e);
+            });
+        },
     }
 }
 </script>

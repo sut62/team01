@@ -238,7 +238,7 @@ export default {
           }
         },
         {
-          icon: "mdi-account-search",
+          icon: "mdi-car-info",
           role: "staff",
           text: "ค้นหาข้อมูลยานพาหนะ",
           click: () => {
