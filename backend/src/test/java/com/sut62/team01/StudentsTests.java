@@ -19,7 +19,7 @@ import java.util.Set;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @DataJpaTest
-public class StudentsTest {
+public class StudentsTests {
 
     private Validator validator;
 
@@ -33,7 +33,7 @@ public class StudentsTest {
     }
 
     @Test
-    void b6010201_testInsertDataOK() {
+    void b6010201_testInsertDataStudentsOK() {
 
         Students students = new Students("นายปกรณ์ หาญนิโรจน์รัมย์","B6010201","วิศวกรรมศาสตร์","france060","1234");
         // students.setFullName("นายปกรณ์ หาญนิโรจน์รัมย์");
