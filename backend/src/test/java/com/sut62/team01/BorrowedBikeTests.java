@@ -93,7 +93,7 @@ public class BorrowedBikeTests {
         bikeType = bikeTypeRepository.saveAndFlush(bikeType);
         DateType dateType = new DateType("ยืมแป๊ปเดียว");
         dateType = dateTypeRepository.saveAndFlush(dateType);
-        Students students = new Students("Pontep Thaweesup", "B6000783", "pontep", "1234");
+        Students students = new Students("Pontep Thaweesup", "B6000783","วิศวกรรมศาสตร์", "pontep", "1234");
         students = studentsRepository.saveAndFlush(students);
         Rooms rooms = new Rooms("7133");
         rooms = roomsRepository.saveAndFlush(rooms);
