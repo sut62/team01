@@ -216,7 +216,7 @@ public class SUT62TEAM01 {
             EnrollVehicle en_Vehicle3 = new EnrollVehicle();
             en_Vehicle3.setEnrollDate(new Date());
             en_Vehicle3.setLicensePlate("SUT03");
-            en_Vehicle3.setBrandName("HONDA");
+            en_Vehicle3.setBrandName("YAMAHA");
             en_Vehicle3.setOtherDetails("Scoopyz ขาว-ดำ");
             en_Vehicle3.setTypeOfVehicle(v_type);
             en_Vehicle3.setCreatedBy(staff1);
