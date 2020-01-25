@@ -20,7 +20,7 @@
             </v-col>
         </v-row>
 
-        <v-card v-if="dataStatus">
+        <v-card v-if="StatusSearch">
             <v-data-table
             :headers="headers"
             :items="lst_BndName"
@@ -28,7 +28,7 @@
             ></v-data-table>
         </v-card>
 
-        <v-card v-if="!dataStatus">
+        <v-card v-if="StatusGetAll">
             <v-data-table
             :headers="headers"
             :items="lstAllEnroll"
@@ -56,7 +56,8 @@ export default {
             lst_BndName: [],
             lstAllEnroll: [],
             bnd_Name: undefined,
-            dataStatus: false,
+            StatusSearch: false,
+            StatusGetAll: true,
             alertSuccess: false,
             alertFailed: false,
         }
@@ -74,9 +75,12 @@ export default {
                 this.clearAlert();
                 if(this.lst_BndName.length == 0) {
                     this.alertFailed = true;
+                    this.StatusSearch = true;
+                    this.StatusGetAll = false;
                 } else {
                     this.alertSuccess = true;
-                    this.dataStatus = true;
+                    this.StatusSearch = true;
+                    this.StatusGetAll = false;
                 }
             })
             .catch(e => {
@@ -86,6 +90,8 @@ export default {
         clearAlert() {
             this.alertSuccess = false;
             this.alertFailed = false;
+            this.StatusSearch = false;
+            this.StatusGetAll = true;
         },
         getEnrolledVehicles() {
             api
