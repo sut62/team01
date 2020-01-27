@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.Optional;
 
 @CrossOrigin(origins = "*")
@@ -26,33 +27,36 @@ public class ApproveBorrowedBikeController {
 
     @PutMapping("/staff/borrowedbikerequest")
     public ResponseEntity<?> approveBorrowedBike(@RequestBody ApproveBorrowedBikeRequest request) {
-        // findById BorrowedBike
+        //3 findById BorrowedBike
         Optional<BorrowedBike> borrowedBike = borrowedBikeRepository.findById(request.getBorrowedBikeId());
         if (!borrowedBike.isPresent())
             return ResponseEntity.badRequest().body("Error: BorrowedBike not found!");
 
-        // findById Bike
+        //4 findById Bike
         Optional<Bike> bike = bikeRepository.findById(request.getBikeId());
         if (!bike.isPresent())
             return ResponseEntity.badRequest().body("Error: Bike not found!");
 
-        // findById Staff
+        //5 findById Staff
         Optional<Staff> staff = staffRepository.findById(request.getStaffId());
         if (!staff.isPresent())
             return ResponseEntity.badRequest().body("Error: Staff not found!");
 
-        // BorrowedBike: set Bike
+        //6 BorrowedBike: set Bike
         borrowedBike.get().setBike(bike.get());
 
-        // set Staff
+        //7 set Staff
         borrowedBike.get().setStaff(staff.get());
 
-        // Bike: set Available status -> available = false
+        //8 Bike: set Available status -> available = false
         bike.get().setAvailable(false);
 
+//        9 set ApproveDate (now)
+        borrowedBike.get().setApproveDate(new Date());
+//        10 set Details
+        borrowedBike.get().setDetails(request.getDetails());
 
-        // BorrowedBike: save()
-
+        //11 BorrowedBike: save()
         return ResponseEntity.ok().body(borrowedBikeRepository.save(borrowedBike.get()));
     }
 

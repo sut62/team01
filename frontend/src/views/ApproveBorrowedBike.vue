@@ -16,6 +16,7 @@
               v-model="selectedBike"
               label="เลือกจักรยาน"
             ></v-select>
+            <v-textarea outlined name="input-7-4" label="รายละเอียด" v-model="details"></v-textarea>
           </v-card-text>
           <v-divider></v-divider>
           <v-card-actions>
@@ -74,6 +75,7 @@ export default {
   name: "approveBorrowedBike",
   data() {
     return {
+      details: null,
       alert_msg: null,
       alertInfo: false,
       alertSuccess: false,
@@ -96,6 +98,7 @@ export default {
     clearSelected() {
       this.selectedBorrowedBike = null;
       this.selectedBike = null;
+      this.details = null;
     },
     approveBorrowedBike() {
       if (
@@ -112,7 +115,8 @@ export default {
       let body = {
         borrowedBikeId: this.selectedBorrowedBike,
         bikeId: this.selectedBike,
-        staffId: this.selectedStaff
+        staffId: this.selectedStaff,
+        details: this.details
       };
       api
         .put("api/staff/borrowedbikerequest", JSON.stringify(body))

@@ -15,4 +15,6 @@ public class ApproveBorrowedBikeRequest {
 
     @NotBlank
     private Long staffId;
+
+    private String details;
 }

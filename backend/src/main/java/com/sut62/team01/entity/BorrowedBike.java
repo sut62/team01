@@ -64,6 +64,9 @@ public class BorrowedBike {
     @JsonManagedReference
     private Bike bike;
 
+//    TODO:
+//    UI Add details field;
+//    Controller add details and approveDate
     @Null
     @Size(max = 30)
     private String details;
