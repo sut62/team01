@@ -85,7 +85,6 @@ public class BorrowedBikeTests {
         assertEquals(borrowedBike, found.get());
     }
 
-//    OK
     @Test
     void b6000783_testApproveBorrowedBikeOK() {
         // จำลองข้อมูลที่จำเป็นในการบันทึก BorrowedBike
