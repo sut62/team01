@@ -4,6 +4,8 @@ import java.util.Date;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Null;
+import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -42,6 +44,7 @@ public class BorrowedBike {
     private DateType dateType;
 
     //    Null ได้ เพราะรอ staff ให้ยืม
+    @Null
     @ManyToOne
     @JoinColumn(name = "STAFF_ID")
     @JsonManagedReference
@@ -50,11 +53,20 @@ public class BorrowedBike {
     @NotNull
     private Date requestDate;
 
+    //    Null ได้ เพราะรอ staff ให้ยืม
+    @Null
+    private Date approveDate;
+
 //    Null ได้ เพราะรอ staff ให้ยืม
+    @Null
     @ManyToOne
     @JoinColumn(name = "BIKE_ID")
     @JsonManagedReference
     private Bike bike;
+
+    @Null
+    @Size(max = 30)
+    private String details;
 
     public BorrowedBike() {
     }
