@@ -3,6 +3,8 @@
     <v-layout text-center wrap>
       <v-flex mb-4>
         <br />
+        <v-alert type="success" dismissible v-model="alertSuccess">พบข้อมูลการแจ้งซ่อม</v-alert>
+       <v-alert type="error" dismissible v-model="alertFailed">{{alertmsg}}</v-alert>
         <h1 class="display-2 font-weight-bold mb-3">ข้อมูลการแจ้งซ่อมของนักศึกษา</h1>
       </v-flex>
     </v-layout>
@@ -51,10 +53,25 @@ export default {
         .then(response => {
           this.items = response.data;
           console.log(this.items);
+          if(this.items.length == 0){
+          this.clearAlert();
+          this.alertmsg = "ไม่พบข้อมูลการแจ้งซ่อม";
+          this.alertFailed = true;
+
+          }
+         else{
+           this.clearAlert();
+         this.alertSuccess = true;
+         }
         })
         .catch(e => {
           console.log(e);
         });
+    },
+    clearAlert() {
+      this.alertSuccess = false;
+      this.alertFailed = false;
+       
     }
   },
 

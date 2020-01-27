@@ -233,7 +233,7 @@ export default {
         {
           icon: "mdi-email",
           role: "staff",
-          text: "ข้อมูลการแจ้งซ่อม",
+          text: "แสดงข้อมูลการแจ้งซ่อม",
           click: () => {
             this.$router.push("/staff/RepairDetail");
           }
