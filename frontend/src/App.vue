@@ -149,7 +149,7 @@
       </div>
       <v-divider vertical style="padding-right: 5px"></v-divider>
       <div>
-        <v-btn href="https://github.com/sut62/team01" icon small target="_blank" v-on="on">
+        <v-btn href="https://github.com/sut62/team01" icon small target="_blank">
           <v-icon>mdi-github-circle</v-icon>
         </v-btn>
       </div>
@@ -159,7 +159,6 @@
           icon
           small
           target="_blank"
-          v-on="on"
         >
           <v-icon>mdi-facebook</v-icon>
         </v-btn>
@@ -270,7 +269,7 @@ export default {
           click: () => {
             this.$router.push("/staff/searchEnrolledVehicle");
           }
-        },
+        }
       ],
       items: [
         {
