@@ -5,8 +5,10 @@ import java.util.Date;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Null;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Data;
@@ -44,30 +46,27 @@ public class BorrowedBike {
     private DateType dateType;
 
     //    Null ได้ เพราะรอ staff ให้ยืม
-    @Null
     @ManyToOne
     @JoinColumn(name = "STAFF_ID")
     @JsonManagedReference
     private Staff staff;
 
     @NotNull
+    @Pattern(regexp = "^(19[0-9]{2}|2[0-9]{3})-(0[1-9]|1[012])-([123]0|[012][1-9]|31) ([01][0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9])\\.[0-9]{3}$")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone="GMT+7")
     private Date requestDate;
 
     //    Null ได้ เพราะรอ staff ให้ยืม
-    @Null
+    @Pattern(regexp = "^(19[0-9]{2}|2[0-9]{3})-(0[1-9]|1[012])-([123]0|[012][1-9]|31) ([01][0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9])\\.[0-9]{3}$")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone="GMT+7")
     private Date approveDate;
 
 //    Null ได้ เพราะรอ staff ให้ยืม
-    @Null
     @ManyToOne
     @JoinColumn(name = "BIKE_ID")
     @JsonManagedReference
     private Bike bike;
 
-//    TODO:
-//    UI Add details field;
-//    Controller add details and approveDate
-    @Null
     @Size(max = 30)
     private String details;
 
