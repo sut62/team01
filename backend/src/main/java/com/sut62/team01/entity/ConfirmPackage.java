@@ -28,11 +28,17 @@ public class ConfirmPackage {
     @Column(name = "ConfirmDate")
     private @NotNull Date confirmDate;
 
+    @ManyToOne(fetch = FetchType.EAGER, targetEntity = Staff.class)
+    @JoinColumn(name = "STAFF_ID", insertable = true)
+    @JsonManagedReference
+    private @NotNull Staff staff;
+
     public ConfirmPackage() {
     }
 
-    public ConfirmPackage(PackageManagement packageManagement) {
+    public ConfirmPackage(PackageManagement packageManagement, Staff staff) {
         this.packageManagement = packageManagement;
         this.confirmDate = new Date();
+        this.staff = staff;
     }
 }

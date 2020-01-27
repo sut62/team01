@@ -5,5 +5,6 @@ import lombok.Data;
 @Data
 public class ConfirmPackagePayload {
     private Long packageManagementId;
+    private Long staffId;
 
 }
