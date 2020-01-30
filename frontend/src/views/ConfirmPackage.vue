@@ -61,10 +61,12 @@ import api from "../Api.js";
 
 export default {
   mounted() {
+    this.getSignedInStaff();
     this.getAllPackageManagements();
   },
   data() {
     return {
+      selectedStaff: null,
       selectedPackageId: null,
       confirmedPackages: [],
       sheet: false,
@@ -165,8 +167,12 @@ export default {
     },
     save() {
       // Post to server
+      let body = {
+        packageManagementId: this.selectedPackageId,
+        staffId: this.selectedStaff
+      };
       api
-        .post("/api/confirmPackage/" + this.selectedPackageId)
+        .post("/api/confirmPackage2", body)
         .then(response => {
           console.log(response.data);
           this.clearAlert();
@@ -189,6 +195,10 @@ export default {
         .catch(e => {
           console.log("Error in getConfirmPackages() :" + e);
         });
+    },
+    getSignedInStaff() {
+      var user = JSON.parse(localStorage.getItem("user"));
+      this.selectedStaff = user.id;
     }
   }
 };
