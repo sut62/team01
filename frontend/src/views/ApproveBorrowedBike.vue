@@ -184,12 +184,16 @@ export default {
           this.alert_msg = e.message;
           this.alertFailed = true;
         });
-    }
+    },
+    getSignedInStaff(){
+      var user = JSON.parse(localStorage.getItem("user"));
+      this.selectedStaff = user.id;
+    },
   },
   mounted() {
+    this.getSignedInStaff();
     this.getAllBorrowedBikes();
-    var user = JSON.parse(localStorage.getItem("user"));
-    this.selectedStaff = user.id;
+    
   }
 };
 </script>
