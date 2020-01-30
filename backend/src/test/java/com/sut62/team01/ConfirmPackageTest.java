@@ -73,13 +73,14 @@ public class ConfirmPackageTest {
         // necessary for PackageManagement
         PackageType packageType = new PackageType("sth");
         packageType = packageTypeRepository.saveAndFlush(packageType);
-        Staff staff = new Staff("zxc", "zxcv", "zxcvb");
+        Staff staff = new Staff("TestStaff", "test", "1234");
         staff = staffRepository.saveAndFlush(staff);
         PackageManagement packageManagement = new PackageManagement(roomBooking, packageType, staff, "สมบูรณ์");
         packageManagement = packageManagementRepository.saveAndFlush(packageManagement);
 
         confirmPackage.setPackageManagement(packageManagement);
         confirmPackage.setConfirmDate(new Date());
+        confirmPackage.setStaff(staff);
 
         confirmPackage = confirmPackageRepository.saveAndFlush(confirmPackage);
 
@@ -103,13 +104,14 @@ public class ConfirmPackageTest {
         // necessary for PackageManagement
         PackageType packageType = new PackageType("sth");
         packageType = packageTypeRepository.saveAndFlush(packageType);
-        Staff staff = new Staff("zxc", "zxcv", "zxcvb");
+        Staff staff = new Staff("TestStaff", "test", "1234");
         staff = staffRepository.saveAndFlush(staff);
         PackageManagement packageManagement = new PackageManagement(roomBooking, packageType, staff, "สมบูรณ์");
         packageManagement = packageManagementRepository.saveAndFlush(packageManagement);
 
         confirmPackage.setPackageManagement(null);
         confirmPackage.setConfirmDate(new Date());
+        confirmPackage.setStaff(staff);
 
         Set<ConstraintViolation<ConfirmPackage>> result = validator.validate(confirmPackage);
 
