@@ -50,6 +50,15 @@
                   label="ระบุอาการ/ปัญหา"
                 ></v-text-field>
 
+                <v-text-field
+                  prepend-icon="mdi-phone"
+                  v-model="insertTel"
+                  :items="tels"
+                  item-text="name"
+                  item-value="id"
+                  label="เบอร์ติดต่อ"
+                ></v-text-field>
+
                 <div class="text-center">
                   <v-btn class="mr-3" color="primary" @click="Saveshow"
                     >บันทึก</v-btn
@@ -71,6 +80,7 @@ export default {
   data() {
     return {
       insertList: undefined,
+      insertTel: undefined,
       selectedStudent: null,
       selectedDeviceType: null,
       selectedDeviceName: null,
@@ -80,7 +90,8 @@ export default {
       titles: [],
       roomBookings: [],
       types: [],
-      problems: []
+      problems: [],
+      tels:[]
     };
   },
   mounted() {
@@ -97,6 +108,7 @@ export default {
       console.log(this.insertList.length)
       if (
         !this.insertList ||
+        !this.insertTel||
         !this.selectedStudent ||
         !this.selectedDeviceType ||
         !this.selectedDeviceName
@@ -113,6 +125,11 @@ export default {
         this.alertFailed = true;
         //this.clearCombobox();
       }
+      else if(this.insertTel.length != 10){
+        this.clearAlert();
+        this.alertmsg = "คุณกรอกหมายเลขโทรศัพท์ไม่ถูกต้อง";
+        this.alertFailed = true;
+      }
        else {
         this.SaveRepair();
       }
@@ -128,7 +145,9 @@ export default {
             "/" +
             this.selectedDeviceName +
             "/" +
-            this.insertList
+            this.insertList +
+            "/" +
+            this.insertTel
         )
         .then(()=> {
          // alert("บันทึกข้อมูลสำเร็จ!");
@@ -156,6 +175,7 @@ export default {
      this.selectedStudent = null;
      this.selectedDeviceType = null;
      this.selectedDeviceName = null;
+     this.insertTel = null;
     },
 
     getSpecificRoomBookings() {

@@ -10,7 +10,7 @@
     </v-layout>
 
     <v-row justify="center">
-      <v-col cols="10">
+      <v-col cols="11">
         <v-data-table :headers="headers" :items="items" :items-per-page="5" class="elevation-3"></v-data-table>
       </v-col>
     </v-row>
@@ -37,6 +37,7 @@ export default {
         { text: "ชื่ออุปกรณ์ที่ชำรุด", value: "name.name" },
         { text: "ประเภทอุปกรณ์ที่ชำรุด", value: "type.type" },
         { text: "ปัญหา", value: "list" },
+        { text: "เบอร์ติดต่อ", value: "tel" },
         { text: "วันที่แจ้ง", value: "repairDate" }
       ],
       items: []

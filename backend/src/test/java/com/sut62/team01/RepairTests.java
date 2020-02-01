@@ -81,6 +81,7 @@ public class RepairTests {
         repair.setType(deviceType);
         repair.setName(deviceName);
         repair.setList("หลอดไฟขาด");
+        repair.setTel("0924184558");
                 
         // บันทึก repair
        repair = repairRepository.saveAndFlush(repair);
@@ -115,6 +116,7 @@ public class RepairTests {
         repair.setRepairDate(new Date());
         repair.setEnrolled(roomBooking);
         repair.setList("12");
+        repair.setTel("0924184558");
         // validate Repair
         Set<ConstraintViolation<Repair>> result = validator.validate(repair);
         // ต้องมี 1 Error
@@ -149,6 +151,7 @@ public class RepairTests {
         repair.setRepairDate(new Date());
         repair.setEnrolled(roomBooking);
         repair.setList("1234567890123456789012345678901");
+        repair.setTel("0924184558");
         // validate Repair
         Set<ConstraintViolation<Repair>> result = validator.validate(repair);
         // ต้องมี 1 Error
@@ -183,6 +186,7 @@ public class RepairTests {
         repair.setRepairDate(new Date());
         repair.setEnrolled(null);
         repair.setList("เปิดไม่ติด");
+        repair.setTel("0924184558");
         // validate Repair
         Set<ConstraintViolation<Repair>> result = validator.validate(repair);
         // ต้องมี 1 Error
@@ -191,9 +195,177 @@ public class RepairTests {
         assertEquals("must not be null", result.iterator().next().getMessage());
         assertEquals("enrolled", result.iterator().next().getPropertyPath().toString());
     }
+    @Test
+    void b6004897_testDeviceTypeMustBeNull() {
+        DeviceType deviceType = new DeviceType("อุปกรณ์ไฟฟ้า");
+        deviceType  = deviceTypeRepository.saveAndFlush(deviceType);
+        
+        DeviceName deviceName = new DeviceName();
+        deviceName.setName("ตู้เย็น");
+        deviceName = deviceNameRepository.saveAndFlush(deviceName);
+        Students students = new Students("Pontep Thaweesup", "B6000783","วิศวกรรมศาสตร์", "pontep", "1234");
+        students = studentsRepository.saveAndFlush(students);
+        Rooms rooms = new Rooms("7133");
+        rooms = roomsRepository.saveAndFlush(rooms);
+        Bed bed = new Bed("What's bed?");
+        bed = bedRepository.saveAndFlush(bed);
+        RoomBooking roomBooking = new RoomBooking(students, rooms, bed,"ต้องการเตียงเสริม");
+        roomBooking = roomBookingRepository.saveAndFlush(roomBooking);
 
+        // สร้าง Repair และ set ค่าต่างๆ
+        Repair repair = new Repair();
+        repair.setType(null);
+        repair.setName(deviceName);
+        repair.setRepairDate(new Date());
+        repair.setEnrolled(roomBooking);
+        repair.setList("เปิดไม่ติด");
+        repair.setTel("0924184558");
+        // validate Repair
+        Set<ConstraintViolation<Repair>> result = validator.validate(repair);
+        // ต้องมี 1 Error
+        assertEquals(1, result.size());
+        // error message ตรงชนิด และ ถูก field
+        assertEquals("must not be null", result.iterator().next().getMessage());
+        assertEquals("type", result.iterator().next().getPropertyPath().toString());
+    }
 
+    
+    @Test
+    void b6004897_testDeviceNameMustBeNull() {
+        DeviceType deviceType = new DeviceType("อุปกรณ์ไฟฟ้า");
+        deviceType  = deviceTypeRepository.saveAndFlush(deviceType);
+        
+        DeviceName deviceName = new DeviceName();
+        deviceName.setName("ตู้เย็น");
+        deviceName = deviceNameRepository.saveAndFlush(deviceName);
+        Students students = new Students("Pontep Thaweesup", "B6000783","วิศวกรรมศาสตร์", "pontep", "1234");
+        students = studentsRepository.saveAndFlush(students);
+        Rooms rooms = new Rooms("7133");
+        rooms = roomsRepository.saveAndFlush(rooms);
+        Bed bed = new Bed("What's bed?");
+        bed = bedRepository.saveAndFlush(bed);
+        RoomBooking roomBooking = new RoomBooking(students, rooms, bed,"ต้องการเตียงเสริม");
+        roomBooking = roomBookingRepository.saveAndFlush(roomBooking);
 
+        // สร้าง Repair และ set ค่าต่างๆ
+        Repair repair = new Repair();
+        repair.setType(deviceType);
+        repair.setName(null);
+        repair.setRepairDate(new Date());
+        repair.setEnrolled(roomBooking);
+        repair.setList("เปิดไม่ติด");
+        repair.setTel("0924184558");
+        // validate Repair
+        Set<ConstraintViolation<Repair>> result = validator.validate(repair);
+        // ต้องมี 1 Error
+        assertEquals(1, result.size());
+        // error message ตรงชนิด และ ถูก field
+        assertEquals("must not be null", result.iterator().next().getMessage());
+        assertEquals("name", result.iterator().next().getPropertyPath().toString());
+    }
+
+    @Test
+    void b6004897_testRepairDateMustBeNull() {
+        DeviceType deviceType = new DeviceType("อุปกรณ์ไฟฟ้า");
+        deviceType  = deviceTypeRepository.saveAndFlush(deviceType);
+        
+        DeviceName deviceName = new DeviceName();
+        deviceName.setName("ตู้เย็น");
+        deviceName = deviceNameRepository.saveAndFlush(deviceName);
+        Students students = new Students("Pontep Thaweesup", "B6000783","วิศวกรรมศาสตร์", "pontep", "1234");
+        students = studentsRepository.saveAndFlush(students);
+        Rooms rooms = new Rooms("7133");
+        rooms = roomsRepository.saveAndFlush(rooms);
+        Bed bed = new Bed("What's bed?");
+        bed = bedRepository.saveAndFlush(bed);
+        RoomBooking roomBooking = new RoomBooking(students, rooms, bed,"ต้องการเตียงเสริม");
+        roomBooking = roomBookingRepository.saveAndFlush(roomBooking);
+
+        // สร้าง Repair และ set ค่าต่างๆ
+        Repair repair = new Repair();
+        repair.setType(deviceType);
+        repair.setName(deviceName);
+        repair.setRepairDate(null);
+        repair.setEnrolled(roomBooking);
+        repair.setList("เปิดไม่ติด");
+        repair.setTel("0924184558");
+        // validate Repair
+        Set<ConstraintViolation<Repair>> result = validator.validate(repair);
+        // ต้องมี 1 Error
+        assertEquals(1, result.size());
+        // error message ตรงชนิด และ ถูก field
+        assertEquals("must not be null", result.iterator().next().getMessage());
+        assertEquals("repairDate", result.iterator().next().getPropertyPath().toString());
+    }
+
+   
+    @Test
+    void b6004897_testTel9Digit() {
+        DeviceType deviceType = new DeviceType("อุปกรณ์ไฟฟ้า");
+        deviceType  = deviceTypeRepository.saveAndFlush(deviceType);
+        
+        DeviceName deviceName = new DeviceName();
+        deviceName.setName("ตู้เย็น");
+        deviceName = deviceNameRepository.saveAndFlush(deviceName);
+        Students students = new Students("Pontep Thaweesup", "B6000783","วิศวกรรมศาสตร์", "pontep", "1234");
+        students = studentsRepository.saveAndFlush(students);
+        Rooms rooms = new Rooms("7133");
+        rooms = roomsRepository.saveAndFlush(rooms);
+        Bed bed = new Bed("What's bed?");
+        bed = bedRepository.saveAndFlush(bed);
+        RoomBooking roomBooking = new RoomBooking(students, rooms, bed,"ต้องการเตียงเสริม");
+        roomBooking = roomBookingRepository.saveAndFlush(roomBooking);
+
+        // สร้าง Repair และ set ค่าต่างๆ
+        Repair repair = new Repair();
+        repair.setType(deviceType);
+        repair.setName(deviceName);
+        repair.setRepairDate(new Date());
+        repair.setEnrolled(roomBooking);
+        repair.setList("เปิดไม่ติด");
+        repair.setTel("012345678");
+        // validate Repair
+        Set<ConstraintViolation<Repair>> result = validator.validate(repair);
+        // ต้องมี 1 Error
+        assertEquals(1, result.size());
+        // error message ตรงชนิด และ ถูก field
+        assertEquals("must match \"\\d{10}\"", result.iterator().next().getMessage());
+        assertEquals("tel", result.iterator().next().getPropertyPath().toString());
+    }
+
+    @Test
+    void b6004897_testTel11Digit() {
+        DeviceType deviceType = new DeviceType("อุปกรณ์ไฟฟ้า");
+        deviceType  = deviceTypeRepository.saveAndFlush(deviceType);
+        
+        DeviceName deviceName = new DeviceName();
+        deviceName.setName("ตู้เย็น");
+        deviceName = deviceNameRepository.saveAndFlush(deviceName);
+        Students students = new Students("Pontep Thaweesup", "B6000783","วิศวกรรมศาสตร์", "pontep", "1234");
+        students = studentsRepository.saveAndFlush(students);
+        Rooms rooms = new Rooms("7133");
+        rooms = roomsRepository.saveAndFlush(rooms);
+        Bed bed = new Bed("What's bed?");
+        bed = bedRepository.saveAndFlush(bed);
+        RoomBooking roomBooking = new RoomBooking(students, rooms, bed,"ต้องการเตียงเสริม");
+        roomBooking = roomBookingRepository.saveAndFlush(roomBooking);
+
+        // สร้าง Repair และ set ค่าต่างๆ
+        Repair repair = new Repair();
+        repair.setType(deviceType);
+        repair.setName(deviceName);
+        repair.setRepairDate(new Date());
+        repair.setEnrolled(roomBooking);
+        repair.setList("เปิดไม่ติด");
+        repair.setTel("01234567890");
+        // validate Repair
+        Set<ConstraintViolation<Repair>> result = validator.validate(repair);
+        // ต้องมี 1 Error
+        assertEquals(1, result.size());
+        // error message ตรงชนิด และ ถูก field
+        assertEquals("must match \"\\d{10}\"", result.iterator().next().getMessage());
+        assertEquals("tel", result.iterator().next().getPropertyPath().toString());
+    }
 
 
 
