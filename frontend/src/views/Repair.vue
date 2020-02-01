@@ -127,7 +127,7 @@ export default {
       }
       else if(this.insertTel.length != 10){
         this.clearAlert();
-        this.alertmsg = "คุณกรอกหมายเลขโทรศัพท์ไม่ถูกต้อง";
+        this.alertmsg = "คุณกรอกเบอร์ติดต่อไม่ถูกต้อง";
         this.alertFailed = true;
       }
        else {
