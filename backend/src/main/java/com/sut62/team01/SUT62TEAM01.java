@@ -76,11 +76,14 @@ public class SUT62TEAM01 {
             });
 
             // Students
-            Students student1 = new Students("นายพรเทพ ทวีทรัพย์", "b6000783","วิศวกรรมศาสตร์", "pontep", "1234");
-            Students student2 = new Students("นายเจตุพนน์ ศรีภูธร", "b6000123","วิศวกรรมศาสตร์", "jayza", "1234");
-            Students student3 = new Students("นายภูมิรินทร์ เพียวสูงเนิน", "b6003296", "วิศวกรรมศาสตร์","leo2541", "1234");
-            Students student4 = new Students("นายปกรณ์ หาญนิโรจน์รัมย์", "b6010201","วิศวกรรมศาสตร์", "france060", "1234");
-            Students student5 = new Students("นายณัฐวุฒิ สุนทรโรจน์", "b6025502", "วิศวกรรมศาสตร์","black2541", "1234");
+            Students student1 = new Students("นายพรเทพ ทวีทรัพย์", "b6000783", "วิศวกรรมศาสตร์", "pontep", "1234");
+            Students student2 = new Students("นายเจตุพนน์ ศรีภูธร", "b6000123", "วิศวกรรมศาสตร์", "jayza", "1234");
+            Students student3 = new Students("นายภูมิรินทร์ เพียวสูงเนิน", "b6003296", "วิศวกรรมศาสตร์", "leo2541",
+                    "1234");
+            Students student4 = new Students("นายปกรณ์ หาญนิโรจน์รัมย์", "b6010201", "วิศวกรรมศาสตร์", "france060",
+                    "1234");
+            Students student5 = new Students("นายณัฐวุฒิ สุนทรโรจน์", "b6025502", "วิศวกรรมศาสตร์", "black2541",
+                    "1234");
             Stream.of(student1, student2, student3, student4, student5).forEach(student -> {
                 studentsRepository.save(student);
                 System.out.println(student);
@@ -90,8 +93,8 @@ public class SUT62TEAM01 {
             Bed bed2 = new Bed("เตียง B (กลางห้อง)");
             Bed bed3 = new Bed("เตียง C (ติดประตูหลัง)");
             Stream.of(bed1, bed2, bed3).forEach(bed -> {
-                        bedRepository.save(bed);
-                    });
+                bedRepository.save(bed);
+            });
             // Room
             for (int i = 1; i <= 40; i++) {
                 Rooms room = new Rooms("71" + (i < 10 ? "0" + i : i));
@@ -101,9 +104,9 @@ public class SUT62TEAM01 {
             Rooms room7127 = roomsRepository.findByRoomId("7127");
 
             // RoomBooking
-            RoomBooking roomBooking1 = new RoomBooking(student1, room7133, bed1 ,"ต้องการเตียงเสริม");
-            RoomBooking roomBooking2 = new RoomBooking(student5, room7133, bed2 ,"ต้องการเตียงเสริม");
-            RoomBooking roomBooking3 = new RoomBooking(student4, room7127, bed2 ,"ต้องการเตียงเสริม");
+            RoomBooking roomBooking1 = new RoomBooking(student1, room7133, bed1, "ต้องการเตียงเสริม");
+            RoomBooking roomBooking2 = new RoomBooking(student5, room7133, bed2, "ต้องการเตียงเสริม");
+            RoomBooking roomBooking3 = new RoomBooking(student4, room7127, bed2, "ต้องการเตียงเสริม");
             roomBookingRepository.save(roomBooking1);
             roomBookingRepository.save(roomBooking2);
             roomBookingRepository.save(roomBooking3);
@@ -141,9 +144,9 @@ public class SUT62TEAM01 {
                 System.out.println(staff);
             });
 
-	     // PackageManagement
-            PackageManagement pm1 = new PackageManagement(roomBooking1, pt4, staff3, "กล่องมีรอยเล็กน้อย");
-            PackageManagement pm2 = new PackageManagement(roomBooking1, pt3, staff3, "สมบูรณ์");
+            // PackageManagement
+            PackageManagement pm1 = new PackageManagement(roomBooking1, pt4, staff3, "Not ok");
+            PackageManagement pm2 = new PackageManagement(roomBooking1, pt3, staff3, "Ok");
             Stream.of(pm1, pm2).forEach(pm -> {
                 packageManagementRepository.save(pm);
                 System.out.println(pm);
@@ -203,7 +206,7 @@ public class SUT62TEAM01 {
             en_Vehicle1.setTypeOfVehicle(v_type);
             en_Vehicle1.setCreatedBy(staff1);
             en_Vehicle1.setEnrolledStudents(roomBooking1);
-            
+
             EnrollVehicle en_Vehicle2 = new EnrollVehicle();
             en_Vehicle2.setEnrollDate(new Date());
             en_Vehicle2.setLicensePlate("SUT02");

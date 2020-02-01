@@ -3,7 +3,7 @@ package com.sut62.team01.entity;
 import java.util.Date;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -39,7 +39,8 @@ public class PackageManagement {
     @Column(name = "packageDATE")
     private @NotNull Date packageDate;
 
-    @Size(min = 5, max = 20)
+    @Pattern(regexp = "[A-Za-z\\s]+") // สามารถใส่ A-Z, a-z และ white space
+    @Size(min = 2, max = 20)
     private String details;
 
     public PackageManagement() {

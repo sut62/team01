@@ -16,7 +16,6 @@ import com.sut62.team01.repository.StaffRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,7 +27,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class ConfirmPackageController {
 
     @Autowired // เป็นการ connect ไปยัง database ซึ่งในที่นี้เราไม่ต้องเขียน connection
-               // database เอง : ใช่อ่อ?
+               // database เอง
     private ConfirmPackageRepository confirmPackageRepository;
     @Autowired
     private PackageManagementRepository packageManagementRepository;
@@ -41,16 +40,20 @@ public class ConfirmPackageController {
         return confirmPackageRepository.findAll().stream().collect(Collectors.toList());
     }
 
-    @PostMapping("/confirmPackage/{packageManagement_id}")
-    public ConfirmPackage newConfirmPackage(ConfirmPackage newConfirmPackage, @PathVariable long packageManagement_id) {
+    // @PostMapping("/confirmPackage/{packageManagement_id}/{staff_id}")
+    // public ConfirmPackage newConfirmPackage(ConfirmPackage newConfirmPackage,
+    // @PathVariable long packageManagement_id,
+    // @PathVariable long staff_id) {
 
-        PackageManagement packageManagement = packageManagementRepository.findById(packageManagement_id);
+    // PackageManagement packageManagement =
+    // packageManagementRepository.findById(packageManagement_id);
+    // Staff staff = staffRepository.findById(staff_id);
+    // newConfirmPackage.setPackageManagement(packageManagement);
+    // newConfirmPackage.setConfirmDate(new Date());
+    // newConfirmPackage.setStaff(staff);
 
-        newConfirmPackage.setPackageManagement(packageManagement);
-        newConfirmPackage.setConfirmDate(new Date());
-
-        return confirmPackageRepository.save(newConfirmPackage);
-    }
+    // return confirmPackageRepository.save(newConfirmPackage);
+    // }
 
     @PostMapping("/confirmPackage2")
     public ConfirmPackage newConfirmPackage2(ConfirmPackage newConfirmPackage,

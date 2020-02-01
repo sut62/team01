@@ -8,7 +8,6 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -42,21 +41,22 @@ public class PackageManagementController {
         return packageManagementRepository.findAll().stream().collect(Collectors.toList());
     }
 
-    @PostMapping("/packageManagement/{ROOMBOOKING_ID}/{PACKAGETYPE_ID}/{STAFF_ID}")
-    public PackageManagement Save(PackageManagement newPackageManagement, @PathVariable long ROOMBOOKING_ID,
-            @PathVariable long packageType_id, @PathVariable long STAFF_ID) {
+    // @PostMapping("/packageManagement/{ROOMBOOKING_ID}/{PACKAGETYPE_ID}/{STAFF_ID}")
+    // public PackageManagement Save(PackageManagement newPackageManagement,
+    // @PathVariable long ROOMBOOKING_ID,
+    // @PathVariable long packageType_id, @PathVariable long STAFF_ID) {
 
-        RoomBooking roomBooking = roomBookingRepository.findById(ROOMBOOKING_ID);
-        PackageType packageType = packageTypeRepository.findById(packageType_id);
-        Staff staff = staffRepository.findById(STAFF_ID);
+    // RoomBooking roomBooking = roomBookingRepository.findById(ROOMBOOKING_ID);
+    // PackageType packageType = packageTypeRepository.findById(packageType_id);
+    // Staff staff = staffRepository.findById(STAFF_ID);
 
-        newPackageManagement.setPackageDate(new Date());
-        newPackageManagement.setRoomBooking(roomBooking);
-        newPackageManagement.setPackageType(packageType);
-        newPackageManagement.setStaff(staff);
+    // newPackageManagement.setPackageDate(new Date());
+    // newPackageManagement.setRoomBooking(roomBooking);
+    // newPackageManagement.setPackageType(packageType);
+    // newPackageManagement.setStaff(staff);
 
-        return packageManagementRepository.save(newPackageManagement);
-    }
+    // return packageManagementRepository.save(newPackageManagement);
+    // }
 
     @PostMapping("/packageManagement")
     public PackageManagement newPackageManagement(@RequestBody PackageManagementPayload packages) {
