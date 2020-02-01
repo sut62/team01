@@ -56,9 +56,10 @@ public class RepairController{
 
     }
 
-    @PostMapping("/Repair/{roomBooking_id}/{DeviceType_id}/{DeviceName_id}/{list}")
+    @PostMapping("/Repair/{roomBooking_id}/{DeviceType_id}/{DeviceName_id}/{list}/{tel}")
     public Repair newRepair(Repair newRepair,
     @PathVariable String list,
+    @PathVariable String tel,
     @PathVariable long roomBooking_id,
     @PathVariable long DeviceType_id,
     @PathVariable long DeviceName_id)
@@ -68,13 +69,15 @@ public class RepairController{
         DeviceType type = deviceTypeRepository.findById(DeviceType_id);
         DeviceName name = deviceNameRepository.findById(DeviceName_id);
         RoomBooking enrolled = roomBookingRepository.findById(roomBooking_id);
-
+        
+        
         newRepair.setEnrolled(enrolled);
         newRepair.setList(list);
         newRepair.setRepairDate(new Date());
         newRepair.setType(type);
         newRepair.setName(name);
-
+        newRepair.setTel(tel);
+        
         return repairRepository.save(newRepair);
 
 

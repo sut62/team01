@@ -20,6 +20,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 @Data
@@ -39,6 +40,12 @@ public class Repair {
     @Size(min = 3,max = 30) 
     @Column(name = "List")
     private  String  list;
+
+    @NotNull
+    @Pattern(regexp = "\\d{10}")
+    @Column(name = "Phone")
+    private String tel;
+
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone="GMT+7")
     @Column(name = "Repair_Date")
