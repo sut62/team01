@@ -30,15 +30,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api")
 public class EnrollVehicleController {
 
-    @Autowired // เป็นการ connect ไปยัง database ซึ่งในที่นี้เราไม่ต้องเขียน connection database เอง
+    @Autowired // เป็นการ connect ไปยัง database ซึ่งในที่นี้เราไม่ต้องเขียน connection
+               // database เอง
     private EnrollVehicleRepository enrollVehicleRepository;
 
     @Autowired
     private StaffRepository staffRepository;
-    
+
     @Autowired
     private VehicleTypeRepository vehicleTypeRepository;
-    
+
     @Autowired
     private RoomBookingRepository roomBookingRepository;
 
@@ -49,11 +50,14 @@ public class EnrollVehicleController {
 
     // ค้นหาจาก ป้ายทะเบียน
     // @GetMapping("/enrolledVehicles/searchLicensePlate={licensePlate}")
-    // List<EnrollVehicle> findDetialsByLicensePlate(@PathVariable String licensePlate) {
-    //     List<EnrollVehicle> en_V = enrollVehicleRepository.findByLicensePlate(licensePlate);
-    //     return en_V;
+    // List<EnrollVehicle> findDetialsByLicensePlate(@PathVariable String
+    // licensePlate) {
+    // List<EnrollVehicle> en_V =
+    // enrollVehicleRepository.findByLicensePlate(licensePlate);
+    // return en_V;
     // }
 
+    // ค้นหาจาก ยี่ห้อรถ
     @GetMapping("/enrolledVehicles/searchBrandName={brandName}")
     List<EnrollVehicle> findDetialsByBrandName(@PathVariable String brandName) {
         List<EnrollVehicle> en_V = enrollVehicleRepository.findByBrandName(brandName);
