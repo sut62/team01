@@ -13,6 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -27,27 +28,26 @@ import lombok.NoArgsConstructor;
 public class EnrollVehicle {
 
     @Id
-    @SequenceGenerator(name="enroll_vehicle_seq",sequenceName="enroll_vehicle_seq")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="enroll_vehicle_seq")
+    @SequenceGenerator(name = "enroll_vehicle_seq", sequenceName = "enroll_vehicle_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "enroll_vehicle_seq")
     @Column(name = "ENROLL_VEHICLE_ID", unique = true, nullable = true)
     private Long id;
-    
+
     @NotNull
     @Column(name = "ENROLL_DATE")
     private Date enrollDate;
 
     @NotNull
-    @Size(min = 4, max = 8)
+    @Pattern(regexp = "[A-Z]{3}\\d+")
+    @Size(min = 5, max = 8)
     @Column(name = "LICENSE_PLATE")
     private String licensePlate;
 
     @NotNull
-    @Size(min = 2, max = 20)
     @Column(name = "BRAND_NAME")
     private String brandName;
-    
+
     @NotNull
-    @Size(min = 5, max = 50)
     @Column(name = "OTHER_DETAILS")
     private String otherDetails;
 
