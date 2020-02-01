@@ -75,7 +75,7 @@ public class ConfirmPackageTest {
         packageType = packageTypeRepository.saveAndFlush(packageType);
         Staff staff = new Staff("TestStaff", "test", "1234");
         staff = staffRepository.saveAndFlush(staff);
-        PackageManagement packageManagement = new PackageManagement(roomBooking, packageType, staff, "สมบูรณ์");
+        PackageManagement packageManagement = new PackageManagement(roomBooking, packageType, staff, "details");
         packageManagement = packageManagementRepository.saveAndFlush(packageManagement);
 
         confirmPackage.setPackageManagement(packageManagement);
@@ -106,7 +106,7 @@ public class ConfirmPackageTest {
         packageType = packageTypeRepository.saveAndFlush(packageType);
         Staff staff = new Staff("TestStaff", "test", "1234");
         staff = staffRepository.saveAndFlush(staff);
-        PackageManagement packageManagement = new PackageManagement(roomBooking, packageType, staff, "สมบูรณ์");
+        PackageManagement packageManagement = new PackageManagement(roomBooking, packageType, staff, "details");
         packageManagement = packageManagementRepository.saveAndFlush(packageManagement);
 
         confirmPackage.setPackageManagement(null);
