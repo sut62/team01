@@ -1,5 +1,7 @@
 package com.sut62.team01.entity;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -47,17 +49,21 @@ public class RoomBooking {
 
     @NotNull
     @Email
-    @Size(min = 2 , max = 30)
+    @Size(min = 10 , max = 30)
     @Column(name = "EMAIL")
-    private String detail;
+    private String email;
+
+    // @NotNull
+    // @Column(name = "ROOMBOOKINGDATE")
+    // private Date roombookingdDate;
 
     public RoomBooking() {
     }
 
-    public RoomBooking(Students students, Rooms rooms, Bed bed, String detail) {
+    public RoomBooking(Students students, Rooms rooms, Bed bed, String email) {
         this.student = students;
         this.rooms = rooms;
         this.bed = bed;
-        this.detail=detail;
+        this.email = email;
     }
 }

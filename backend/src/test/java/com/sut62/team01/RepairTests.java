@@ -70,7 +70,7 @@ public class RepairTests {
         rooms = roomsRepository.saveAndFlush(rooms);
         Bed bed = new Bed("What's bed?");
         bed = bedRepository.saveAndFlush(bed);
-        RoomBooking roomBooking = new RoomBooking(students, rooms, bed,"ต้องการเตียงเสริม");
+        RoomBooking roomBooking = new RoomBooking(students, rooms, bed,"pakorn@hotmail.com");
         roomBooking = roomBookingRepository.saveAndFlush(roomBooking);
 
         // สร้าง Repair และ set ค่าต่างๆ
@@ -106,7 +106,7 @@ public class RepairTests {
         rooms = roomsRepository.saveAndFlush(rooms);
         Bed bed = new Bed("What's bed?");
         bed = bedRepository.saveAndFlush(bed);
-        RoomBooking roomBooking = new RoomBooking(students, rooms, bed,"ต้องการเตียงเสริม");
+        RoomBooking roomBooking = new RoomBooking(students, rooms, bed,"pakorn@hotmail.com");
         roomBooking = roomBookingRepository.saveAndFlush(roomBooking);
 
         // สร้าง Repair และ set ค่าต่างๆ
@@ -141,7 +141,7 @@ public class RepairTests {
         rooms = roomsRepository.saveAndFlush(rooms);
         Bed bed = new Bed("What's bed?");
         bed = bedRepository.saveAndFlush(bed);
-        RoomBooking roomBooking = new RoomBooking(students, rooms, bed,"ต้องการเตียงเสริม");
+        RoomBooking roomBooking = new RoomBooking(students, rooms, bed,"pakorn@hotmail.com");
         roomBooking = roomBookingRepository.saveAndFlush(roomBooking);
 
         // สร้าง Repair และ set ค่าต่างๆ
@@ -176,7 +176,7 @@ public class RepairTests {
         rooms = roomsRepository.saveAndFlush(rooms);
         Bed bed = new Bed("What's bed?");
         bed = bedRepository.saveAndFlush(bed);
-        RoomBooking roomBooking = new RoomBooking(students, rooms, bed,"ต้องการเตียงเสริม");
+        RoomBooking roomBooking = new RoomBooking(students, rooms, bed,"pakorn@hotmail.com");
         roomBooking = roomBookingRepository.saveAndFlush(roomBooking);
 
         // สร้าง Repair และ set ค่าต่างๆ
@@ -209,7 +209,7 @@ public class RepairTests {
         rooms = roomsRepository.saveAndFlush(rooms);
         Bed bed = new Bed("What's bed?");
         bed = bedRepository.saveAndFlush(bed);
-        RoomBooking roomBooking = new RoomBooking(students, rooms, bed,"ต้องการเตียงเสริม");
+        RoomBooking roomBooking = new RoomBooking(students, rooms, bed,"pakorn@hotmail.com");
         roomBooking = roomBookingRepository.saveAndFlush(roomBooking);
 
         // สร้าง Repair และ set ค่าต่างๆ
@@ -244,7 +244,7 @@ public class RepairTests {
         rooms = roomsRepository.saveAndFlush(rooms);
         Bed bed = new Bed("What's bed?");
         bed = bedRepository.saveAndFlush(bed);
-        RoomBooking roomBooking = new RoomBooking(students, rooms, bed,"ต้องการเตียงเสริม");
+        RoomBooking roomBooking = new RoomBooking(students, rooms, bed,"pakorn@hotmail.com");
         roomBooking = roomBookingRepository.saveAndFlush(roomBooking);
 
         // สร้าง Repair และ set ค่าต่างๆ
@@ -278,7 +278,7 @@ public class RepairTests {
         rooms = roomsRepository.saveAndFlush(rooms);
         Bed bed = new Bed("What's bed?");
         bed = bedRepository.saveAndFlush(bed);
-        RoomBooking roomBooking = new RoomBooking(students, rooms, bed,"ต้องการเตียงเสริม");
+        RoomBooking roomBooking = new RoomBooking(students, rooms, bed,"pakorn@hotmail.com");
         roomBooking = roomBookingRepository.saveAndFlush(roomBooking);
 
         // สร้าง Repair และ set ค่าต่างๆ
@@ -313,7 +313,7 @@ public class RepairTests {
         rooms = roomsRepository.saveAndFlush(rooms);
         Bed bed = new Bed("What's bed?");
         bed = bedRepository.saveAndFlush(bed);
-        RoomBooking roomBooking = new RoomBooking(students, rooms, bed,"ต้องการเตียงเสริม");
+        RoomBooking roomBooking = new RoomBooking(students, rooms, bed,"pakorn@hotmail.com");
         roomBooking = roomBookingRepository.saveAndFlush(roomBooking);
 
         // สร้าง Repair และ set ค่าต่างๆ
@@ -347,7 +347,7 @@ public class RepairTests {
         rooms = roomsRepository.saveAndFlush(rooms);
         Bed bed = new Bed("What's bed?");
         bed = bedRepository.saveAndFlush(bed);
-        RoomBooking roomBooking = new RoomBooking(students, rooms, bed,"ต้องการเตียงเสริม");
+        RoomBooking roomBooking = new RoomBooking(students, rooms, bed,"pakorn@hotmail.com");
         roomBooking = roomBookingRepository.saveAndFlush(roomBooking);
 
         // สร้าง Repair และ set ค่าต่างๆ

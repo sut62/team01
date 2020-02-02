@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -69,7 +70,8 @@ public class RoomBookingController {
         newRoomBooking.setStudent(students.get());
         newRoomBooking.setBed(bed.get());
         newRoomBooking.setRooms(rooms.get());
-        newRoomBooking.setDetail(r.getDetail());
+        newRoomBooking.setEmail(r.getEmail());
+        // newRoomBooking.setRoombookingdDate(new Date());
         return roomBookingRepository.save(newRoomBooking);
     }
 
