@@ -11,6 +11,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -45,8 +46,9 @@ public class RoomBooking {
     private @NotNull Bed bed;
 
     @NotNull
+    @Email
     @Size(min = 2 , max = 30)
-    @Column(name = "DETAIL")
+    @Column(name = "EMAIL")
     private String detail;
 
     public RoomBooking() {

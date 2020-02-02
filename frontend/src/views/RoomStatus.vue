@@ -57,7 +57,8 @@ export default {
         { text: "ห้อง", value: "rooms.roomId" },
         { text: "รหัสนักศึกษา", value: "student.studentId" },
         { text: "ชื่อนักศึกษา", value: "student.fullName" },
-        { text: "สาขาวิชา", value: "student.bachelor" }
+        { text: "สาขาวิชา", value: "student.bachelor" },
+        { text: "เตียง", value: "bed.bed" }
       ],
       alertFailed: false,
       alertSuccess: false,
