@@ -57,7 +57,7 @@ public class RoomBookingTests {
         roomBooking.setStudent(students);
         roomBooking.setRooms(rooms);
         roomBooking.setBed(bed);
-        roomBooking.setDetail("ต้องการเตียงเสริม");
+        roomBooking.setEmail("pakorn@hotmail.com");
         roomBooking = roomBookingRepository.saveAndFlush(roomBooking);
 
         Optional<RoomBooking> found = roomBookingRepository.findById(roomBooking.getId());
@@ -77,7 +77,7 @@ public class RoomBookingTests {
  
         
 
-         RoomBooking roomBooking = new RoomBooking(null,rooms,bed,"ต้องการเตียงเสริม");
+         RoomBooking roomBooking = new RoomBooking(null,rooms,bed,"pakorn@hotmail.com");
         // necessary for PackageManagement
         // roomBooking.setStudent(students);
         // roomBooking.setRooms(rooms);
@@ -103,7 +103,7 @@ public class RoomBookingTests {
         Bed bed = new Bed("What's branch?");
         bed = bedRepository.saveAndFlush(bed);
 
-        RoomBooking roomBooking = new RoomBooking(students,null,bed,"ต้องการเตียงเสริม");
+        RoomBooking roomBooking = new RoomBooking(students,null,bed,"pakorn@hotmail.com");
 
        Set<ConstraintViolation<RoomBooking>> result = validator.validate(roomBooking);
 
@@ -124,7 +124,7 @@ public class RoomBookingTests {
 
        
 
-        RoomBooking roomBooking = new RoomBooking(students,rooms,null,"ต้องการเตียงเสริม");
+        RoomBooking roomBooking = new RoomBooking(students,rooms,null,"pakorn@hotmail.com");
 
        Set<ConstraintViolation<RoomBooking>> result = validator.validate(roomBooking);
 
@@ -135,7 +135,7 @@ public class RoomBookingTests {
     }
     
     @Test
-    void b6010201_testDetailNotLessThanMin() {
+    void b6010201_testEmailNotLessThanMin() {
         Students students = new Students("Pontep Thaweesup", "B6000783","วิศวกรรมศาสตร์", "pontep", "1234");
         students = studentsRepository.saveAndFlush(students);
         Rooms rooms = new Rooms("7133");
@@ -143,18 +143,18 @@ public class RoomBookingTests {
         Bed bed = new Bed("What's branch?");
         bed = bedRepository.saveAndFlush(bed);
 
-        RoomBooking roomBooking = new RoomBooking(students,rooms,bed,"-");
+        RoomBooking roomBooking = new RoomBooking(students,rooms,bed,"a@a.com");
 
         Set<ConstraintViolation<RoomBooking>> result = validator.validate(roomBooking);
 
         assertEquals(1, result.size());
-        assertEquals("size must be between 2 and 30", result.iterator().next().getMessage());
-        assertEquals("detail", result.iterator().next().getPropertyPath().toString());
+        assertEquals("size must be between 10 and 30", result.iterator().next().getMessage());
+        assertEquals("email", result.iterator().next().getPropertyPath().toString());
 
     }
 
     @Test
-    void b6010201_testDetailNotGreaterThanMax() {
+    void b6010201_testEmailNotGreaterThanMax() {
         Students students = new Students("Pontep Thaweesup", "B6000783","วิศวกรรมศาสตร์", "pontep", "1234");
         students = studentsRepository.saveAndFlush(students);
         Rooms rooms = new Rooms("7133");
@@ -162,13 +162,13 @@ public class RoomBookingTests {
         Bed bed = new Bed("What's branch?");
         bed = bedRepository.saveAndFlush(bed);
 
-        RoomBooking roomBooking = new RoomBooking(students,rooms,bed,"ต้องการที่จะได้ A SE แต่คงจะเป็นไปได้ยาก งั้นขอแค่ C ก็พอครับ");
+        RoomBooking roomBooking = new RoomBooking(students,rooms,bed,"aaaaaaaaaaaaaaaaaaa@aaaaaaaaaaaaaaaaaaaaaa.com");
 
         Set<ConstraintViolation<RoomBooking>> result = validator.validate(roomBooking);
 
         assertEquals(1, result.size());
-        assertEquals("size must be between 2 and 30", result.iterator().next().getMessage());
-        assertEquals("detail", result.iterator().next().getPropertyPath().toString());
+        assertEquals("size must be between 10 and 30", result.iterator().next().getMessage());
+        assertEquals("email", result.iterator().next().getPropertyPath().toString());
 
     }
 

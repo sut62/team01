@@ -20,5 +20,5 @@ public class RoomBookingPayload {
     private Long room_id;
 
 
-    private String detail;
+    private String email;
 }

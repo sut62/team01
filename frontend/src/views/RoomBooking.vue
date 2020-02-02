@@ -40,7 +40,7 @@
 
           <v-row justify="center">
           <v-col cols="6" class="pa-0 mx-2">
-            <v-text-field solo label="Email" height="80px" v-model="detail" />
+            <v-text-field solo label="Email" height="80px" v-model="email" />
           </v-col>
         </v-row>
 
@@ -75,7 +75,7 @@ export default {
       selectedStudents: null,
       selectedRooms: null,
       selectedBed: null,
-      detail: null,
+      email: null,
       Students: [],
       Rooms: [],
       Bed: [],
@@ -133,7 +133,7 @@ export default {
         !this.selectedStudents ||
         !this.selectedRooms ||
         !this.selectedBed ||
-        !this.detail
+        !this.email
       ) {
         this.clearAlert();
         this.alertFailed = true;
@@ -152,7 +152,7 @@ export default {
         student_id: this.selectedStudents,
         room_id: this.selectedRooms,
         bed_id: this.selectedBed,
-        detail: this.detail
+        email: this.email
       };
       console.log(newelepayload);
       api
@@ -164,7 +164,7 @@ export default {
           this.selectedStudents = null;
           this.selectedRooms = null;
           this.selectedBed = null;
-          this.detail = null;
+          this.email = null;
         })
         .catch(e => {
           console.log(e);
