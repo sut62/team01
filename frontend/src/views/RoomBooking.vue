@@ -40,7 +40,7 @@
 
           <v-row justify="center">
           <v-col cols="6" class="pa-0 mx-2">
-            <v-text-field solo label="หมายเหตุ" height="80px" v-model="detail" />
+            <v-text-field solo label="Email" height="80px" v-model="detail" />
           </v-col>
         </v-row>
 

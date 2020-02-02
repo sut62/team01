@@ -104,9 +104,9 @@ public class SUT62TEAM01 {
             Rooms room7127 = roomsRepository.findByRoomId("7127");
 
             // RoomBooking
-            RoomBooking roomBooking1 = new RoomBooking(student1, room7133, bed1, "ต้องการเตียงเสริม");
-            RoomBooking roomBooking2 = new RoomBooking(student5, room7133, bed2, "ต้องการเตียงเสริม");
-            RoomBooking roomBooking3 = new RoomBooking(student4, room7127, bed2, "ต้องการเตียงเสริม");
+            RoomBooking roomBooking1 = new RoomBooking(student1, room7133, bed1, "pontepza@hotmail.com");
+            RoomBooking roomBooking2 = new RoomBooking(student5, room7133, bed2, "nattawutza@hotmail.com");
+            RoomBooking roomBooking3 = new RoomBooking(student4, room7127, bed2, "pakornza@hotmail.com");
             roomBookingRepository.save(roomBooking1);
             roomBookingRepository.save(roomBooking2);
             roomBookingRepository.save(roomBooking3);
