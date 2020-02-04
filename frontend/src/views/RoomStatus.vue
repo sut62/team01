@@ -27,7 +27,7 @@
               class="elevation-3"
             ></v-data-table>
         </v-card> 
-        <v-card v-if="!Status">
+        <v-card v-if="Statussearch">
             <v-data-table
               :headers="headers"
               :items="SearchRoom"
@@ -49,10 +49,7 @@ export default {
   },
   data() {
     return {
-      roomBooking: [],
-      SearchRoom: [],
-      roomName: undefined,
-      Status: true,
+      
       headers: [
         { text: "ห้อง", value: "rooms.roomId" },
         { text: "รหัสนักศึกษา", value: "student.studentId" },
@@ -61,6 +58,11 @@ export default {
         { text: "เตียง", value: "bed.bed" },
         { text: "วันเวลาจอง", value: "roombookingDate" }
       ],
+      roomBooking: [],
+      SearchRoom: [],
+      roomName: undefined,
+      Status: true,
+      Statussearch: false,
       alertFailed: false,
       alertSuccess: false,
     };
@@ -90,9 +92,12 @@ export default {
           this.clearAlert();
           if (this.SearchRoom.length == 0) {
             this.alertFailed = true;
+             this.Status = false;
+             this.Statussearch = true;
           } else {
             this.alertSuccess = true;
             this.Status = false;
+            this.Statussearch = true;
           }
         })
         .catch(e => {
@@ -102,6 +107,8 @@ export default {
     clearAlert() {
     this.alertSuccess = false;
     this.alertFailed = false;
+    this.Status = true;
+    this.Statussearch = false;
   }
 
   },
