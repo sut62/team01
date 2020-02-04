@@ -135,6 +135,49 @@ public class RoomBookingTests {
        assertEquals("bed", result.iterator().next().getPropertyPath().toString());
 
     }
+
+    @Test
+    void b6010201_testEmailMustNotBeNull() {
+        Students students = new Students("Pontep Thaweesup", "B6000783","วิศวกรรมศาสตร์", "pontep", "1234");
+        students = studentsRepository.saveAndFlush(students);
+        Rooms rooms = new Rooms("7133");
+        rooms = roomsRepository.saveAndFlush(rooms);
+        Bed bed = new Bed("What's branch?");
+        bed = bedRepository.saveAndFlush(bed);
+
+       
+
+        RoomBooking roomBooking = new RoomBooking(students,rooms,bed,null);
+
+       Set<ConstraintViolation<RoomBooking>> result = validator.validate(roomBooking);
+
+       assertEquals(1, result.size());
+       assertEquals("must not be null", result.iterator().next().getMessage());
+       assertEquals("email", result.iterator().next().getPropertyPath().toString());
+
+    }
+
+    
+    @Test
+    void b6010201_testEmailIsCorrect() {
+        Students students = new Students("Pontep Thaweesup", "B6000783","วิศวกรรมศาสตร์", "pontep", "1234");
+        students = studentsRepository.saveAndFlush(students);
+        Rooms rooms = new Rooms("7133");
+        rooms = roomsRepository.saveAndFlush(rooms);
+        Bed bed = new Bed("What's branch?");
+        bed = bedRepository.saveAndFlush(bed);
+
+       
+
+        RoomBooking roomBooking = new RoomBooking(students,rooms,bed,"pakorn&hotmail.com");
+
+       Set<ConstraintViolation<RoomBooking>> result = validator.validate(roomBooking);
+
+       assertEquals(1, result.size());
+       assertEquals("must be a well-formed email address", result.iterator().next().getMessage());
+       assertEquals("email", result.iterator().next().getPropertyPath().toString());
+
+    }
     
     @Test
     void b6010201_testEmailNotLessThanMin() {
