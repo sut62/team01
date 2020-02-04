@@ -58,7 +58,8 @@ export default {
         { text: "รหัสนักศึกษา", value: "student.studentId" },
         { text: "ชื่อนักศึกษา", value: "student.fullName" },
         { text: "สาขาวิชา", value: "student.bachelor" },
-        // { text: "เตียง", value: "bed.bed" }
+        { text: "เตียง", value: "bed.bed" },
+        { text: "วันเวลาจอง", value: "roombookingDate" }
       ],
       alertFailed: false,
       alertSuccess: false,

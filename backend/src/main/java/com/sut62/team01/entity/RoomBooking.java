@@ -17,6 +17,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.*;
@@ -53,9 +54,10 @@ public class RoomBooking {
     @Column(name = "EMAIL")
     private String email;
 
-    // @NotNull
-    // @Column(name = "ROOMBOOKINGDATE")
-    // private Date roombookingdDate;
+    @NotNull
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+7")
+    @Column(name = "ROOMBOOKINGDATE")
+    private Date roombookingDate;
 
     public RoomBooking() {
     }
@@ -65,5 +67,6 @@ public class RoomBooking {
         this.rooms = rooms;
         this.bed = bed;
         this.email = email;
+        this.roombookingDate = new Date();
     }
 }
