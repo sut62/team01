@@ -39,7 +39,7 @@ public class EnrollVehicle {
 
     @NotNull
     @Pattern(regexp = "[A-Z]{3}\\d+")
-    @Size(min = 5, max = 8)
+    @Size(min = 5, max = 7)
     @Column(name = "LICENSE_PLATE")
     private String licensePlate;
 

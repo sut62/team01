@@ -13,10 +13,12 @@
 
         <v-row justify="center" class="pb-0 mb-0">
           <v-col cols="3">
-            <v-text-field solo 
-            label="กรอกหมายเลขห้อง"
-            v-model="insRoomNo"
-            @keyup.enter="getStudentName"/>
+            <v-text-field
+              solo
+              label="กรอกหมายเลขห้อง"
+              v-model="insRoomNo"
+              @keyup.enter="getStudentName"
+            />
           </v-col>
           <v-col cols="1">
             <v-btn @click="getStudentName" large class="light-green accent-4">Search</v-btn>
@@ -25,60 +27,55 @@
 
         <v-row justify="center">
           <v-col cols="6">
-            <v-select class="pa-0 ma-0"
-            label="เลือกชื่อที่ปรึกษาหอพัก"
-            v-model="selectedStaffName"
-            :items="StaffName"
-            item-text="name"
-            item-value="id"
+            <v-select
+              class="pa-0 ma-0"
+              label="เลือกชื่อที่ปรึกษาหอพัก"
+              v-model="selectedStaffName"
+              :items="StaffName"
+              item-text="name"
+              item-value="id"
             />
           </v-col>
         </v-row>
 
         <v-row justify="center">
           <v-col cols="6">
-            <v-select class="pa-0"
-            label="เลือกชื่อนักศึกษา"
-            v-model="selectedStdName"
-            :items="StdNames"
-            item-text="student.fullName"
-            item-value="id"
+            <v-select
+              class="pa-0"
+              label="เลือกชื่อนักศึกษา"
+              v-model="selectedStdName"
+              :items="StdNames"
+              item-text="student.fullName"
+              item-value="id"
             />
           </v-col>
         </v-row>
 
         <v-row justify="center">
           <v-col cols="6">
-            <v-select class="pa-0 ma-0"
-            label="เลือกประเภทยานพาหนะ"
-            v-model="selectedVehicleType"
-            :items="VehicleTypes"
-            item-text="type"
-            item-value="id"
+            <v-select
+              class="pa-0 ma-0"
+              label="เลือกประเภทยานพาหนะ"
+              v-model="selectedVehicleType"
+              :items="VehicleTypes"
+              item-text="type"
+              item-value="id"
             />
           </v-col>
         </v-row>
 
         <v-row justify="center">
           <v-col cols="3" class="pa-1 mr-1">
-            <v-text-field solo 
-            label="กรอกป้ายทะเบียน"
-            v-model="insLcPlate"/>
+            <v-text-field solo label="กรอกป้ายทะเบียน" v-model="insLcPlate" />
           </v-col>
           <v-col cols="3" class="pa-1 ml-1">
-            <v-text-field solo 
-            label="กรอกยี่ห้อยานพาหนะ" 
-            v-model="insVhcBrand"/>
+            <v-text-field solo label="กรอกยี่ห้อยานพาหนะ" v-model="insVhcBrand" />
           </v-col>
         </v-row>
 
         <v-row justify="center">
           <v-col cols="6" class="pa-0 mx-2">
-            <v-text-field solo
-            label="รายละเอียดอื่นๆ" 
-            height="80px"
-            v-model="insOtherDetails" 
-            />
+            <v-text-field solo label="รายละเอียดอื่นๆ" height="80px" v-model="insOtherDetails" />
           </v-col>
         </v-row>
 
@@ -105,15 +102,15 @@ export default {
       insLcPlate: undefined,
       insVhcBrand: undefined,
       insOtherDetails: undefined,
-      
+
       StaffName: [],
       StdNames: [],
       VehicleTypes: [],
 
       alertFailed: false,
       alertSuccess: false,
-      alertmsg: undefined,
-    }
+      alertmsg: undefined
+    };
   },
 
   mounted() {
@@ -128,28 +125,28 @@ export default {
 
     getStudentName() {
       api
-      .get("/api/roombooking/" + this.insRoomNo)
-      .then(response => {
-        this.StdNames = response.data;
-        console.log(JSON.parse(JSON.stringify(response.data)));
-      })
-      .catch(e => {
-        console.log("Error in getStudentName() :" + e);
-      });
+        .get("/api/roombooking/" + this.insRoomNo)
+        .then(response => {
+          this.StdNames = response.data;
+          console.log(JSON.parse(JSON.stringify(response.data)));
+        })
+        .catch(e => {
+          console.log("Error in getStudentName() :" + e);
+        });
     },
-    
+
     getVehicleTypes() {
       api
-      .get("/api/vehicleTypes")
-      .then(response => {
-        this.VehicleTypes = response.data;
-        console.log(JSON.parse(JSON.stringify(response.data)));
-      })
-      .catch(e => {
-        console.log("Error in getVehicleTypes() :" + e);
-      });
+        .get("/api/vehicleTypes")
+        .then(response => {
+          this.VehicleTypes = response.data;
+          console.log(JSON.parse(JSON.stringify(response.data)));
+        })
+        .catch(e => {
+          console.log("Error in getVehicleTypes() :" + e);
+        });
     },
-    
+
     enrollVehicle() {
       let databox = {
         licensePlate: this.insLcPlate,
@@ -165,7 +162,7 @@ export default {
         .then(() => {
           this.clearAlert();
           this.alertSuccess = true;
-          
+
           this.selectedStaffName = null;
           this.selectedStdName = null;
           this.selectedVehicleType = null;
@@ -179,38 +176,64 @@ export default {
           console.log(e);
         });
     },
-    checkEnrollData(){
-      if(
-      !this.selectedStaffName ||
-      !this.selectedStdName ||
-      !this.selectedVehicleType ||
-      !this.insLcPlate ||
-      !this.insVhcBrand ||
-      !this.insOtherDetails
+    checkEnrollData() {
+      if (
+        !this.selectedStaffName ||
+        !this.selectedStdName ||
+        !this.selectedVehicleType ||
+        !this.insLcPlate ||
+        !this.insVhcBrand ||
+        !this.insOtherDetails
       ) {
         this.clearAlert();
         this.alertmsg = "กรุณากรอกข้อมูลให้ครบ";
         this.alertFailed = true;
-      } else if(this.insLcPlate.length < 4 || this.insLcPlate.length > 8) {
+      } else if (
+        this.insLcPlate.length < 4 ||
+        this.insLcPlate.length > 8 ||
+        this.checkPatternLicensePlate()
+      ) {
         this.clearAlert();
-        this.alertmsg = "กรุณากรอกป้ายทะเบียน 4-8 ตัวอักษร";
-        this.alertFailed = true;
-      } else if(this.insVhcBrand.length < 2 || this.insVhcBrand.length > 20) {
-        this.clearAlert();
-        this.alertmsg = "กรุณากรอกยี่ห้อ 2-20 ตัวอักษร";
-        this.alertFailed = true;
-      } else if(this.insOtherDetails.length < 5 || this.insOtherDetails.length > 50) {
-        this.clearAlert();
-        this.alertmsg = "กรุณากรอกข้อมูล 5-50 ตัวอักษร";
+        this.alertmsg =
+          "กรอกป้ายทะเบียนให้ถูกต้อง (A-Zสามตัวแรก ต่อด้วยตัวเลข 0-9 สองถึงสี่ตัว)";
         this.alertFailed = true;
       } else {
         this.enrollVehicle();
       }
     },
+    checkPatternLicensePlate() {
+      var i;
+      var j;
+      var result = 0;
+      var inslength = this.insLcPlate.length;
+      for (j = 0; j < inslength; j++) {
+        if (j < 3) {
+          for (i = 65; i < 91; i++) {
+            if (this.insLcPlate.charAt(result) == String.fromCharCode(i)) {
+              result++;
+              break;
+            }
+          }
+        } else {
+          for (i = "0"; i < "10"; i++) {
+            if (this.insLcPlate.charAt(result) == i) {
+              result++;
+              break;
+            }
+          }
+        }
+      }
+
+      if (inslength == result) {
+        return false;
+      } else {
+        return true;
+      }
+    },
     clearAlert() {
       this.alertSuccess = false;
       this.alertFailed = false;
-    },
-  },
-}
+    }
+  }
+};
 </script>

@@ -400,7 +400,7 @@ public class EnrollVehicleTests {
 
     // Test size must be between ... and ...
     @Test
-    void b6025502_testLicensePlateMustLessThanOrEqualTo8() {
+    void b6025502_testLicensePlateMustLessThanOrEqualTo7() {
         // จำลองข้อมูลในการบันทึก EnrollVehicle
         VehicleType v_type = new VehicleType();
         v_type.setType("รถยนต์");
@@ -433,7 +433,7 @@ public class EnrollVehicleTests {
 
         // error message ตรง และถูก field
         ConstraintViolation<EnrollVehicle> show = result.iterator().next();
-        assertEquals("size must be between 5 and 8", show.getMessage());
+        assertEquals("size must be between 5 and 7", show.getMessage());
         assertEquals("licensePlate", show.getPropertyPath().toString());
     }
 
@@ -471,7 +471,7 @@ public class EnrollVehicleTests {
 
         // error message ตรง และถูก field
         ConstraintViolation<EnrollVehicle> show = result.iterator().next();
-        assertEquals("size must be between 5 and 8", show.getMessage());
+        assertEquals("size must be between 5 and 7", show.getMessage());
         assertEquals("licensePlate", show.getPropertyPath().toString());
     }
 }

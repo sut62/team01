@@ -48,18 +48,9 @@ public class EnrollVehicleController {
         return enrollVehicleRepository.findAll().stream().collect(Collectors.toList());
     }
 
-    // ค้นหาจาก ป้ายทะเบียน
-    // @GetMapping("/enrolledVehicles/searchLicensePlate={licensePlate}")
-    // List<EnrollVehicle> findDetialsByLicensePlate(@PathVariable String
-    // licensePlate) {
-    // List<EnrollVehicle> en_V =
-    // enrollVehicleRepository.findByLicensePlate(licensePlate);
-    // return en_V;
-    // }
-
     // ค้นหาจาก ยี่ห้อรถ
     @GetMapping("/enrolledVehicles/searchBrandName={brandName}")
-    List<EnrollVehicle> findDetialsByBrandName(@PathVariable String brandName) {
+    List<EnrollVehicle> getDetialsVehicle(@PathVariable String brandName) {
         List<EnrollVehicle> en_V = enrollVehicleRepository.findByBrandName(brandName);
         return en_V;
     }
