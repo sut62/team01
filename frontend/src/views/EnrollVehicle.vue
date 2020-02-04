@@ -190,7 +190,7 @@ export default {
         this.alertFailed = true;
       } else if (
         this.insLcPlate.length < 4 ||
-        this.insLcPlate.length > 8 ||
+        this.insLcPlate.length > 7 ||
         this.checkPatternLicensePlate()
       ) {
         this.clearAlert();
