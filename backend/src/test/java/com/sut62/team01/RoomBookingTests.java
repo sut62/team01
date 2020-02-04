@@ -2,6 +2,7 @@ package com.sut62.team01;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.Date;
 import java.util.Optional;
 import java.util.Set;
 
@@ -58,6 +59,7 @@ public class RoomBookingTests {
         roomBooking.setRooms(rooms);
         roomBooking.setBed(bed);
         roomBooking.setEmail("pakorn@hotmail.com");
+        roomBooking.setRoombookingDate(new Date());
         roomBooking = roomBookingRepository.saveAndFlush(roomBooking);
 
         Optional<RoomBooking> found = roomBookingRepository.findById(roomBooking.getId());
