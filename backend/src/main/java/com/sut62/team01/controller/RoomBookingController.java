@@ -45,20 +45,20 @@ public class RoomBookingController {
         return roomBookingRepository.findAll().stream().collect(Collectors.toList());
     }
 
-    @PostMapping("/roombooking/{students_id}/{rooms_id}/{bed_id}")
-    public RoomBooking newroombooking(RoomBooking newRoomBooking, @PathVariable long students_id,
-            @PathVariable long bed_id, @PathVariable long rooms_id, @PathVariable String detail) {
+    // @PostMapping("/roombooking/{students_id}/{rooms_id}/{bed_id}")
+    // public RoomBooking newroombooking(RoomBooking newRoomBooking, @PathVariable long students_id,
+    //         @PathVariable long bed_id, @PathVariable long rooms_id, @PathVariable String detail) {
 
-        Students students = studentsrepository.findById(students_id);
-        Bed bed = bedrepository.findById(bed_id);
-        Rooms rooms = roomsrepository.findById(rooms_id);
+    //     Students students = studentsrepository.findById(students_id);
+    //     Bed bed = bedrepository.findById(bed_id);
+    //     Rooms rooms = roomsrepository.findById(rooms_id);
 
-        newRoomBooking.setStudent(students);
-        newRoomBooking.setBed(bed);
-        newRoomBooking.setRooms(rooms);
-        return roomBookingRepository.save(newRoomBooking);
+    //     newRoomBooking.setStudent(students);
+    //     newRoomBooking.setBed(bed);
+    //     newRoomBooking.setRooms(rooms);
+    //     return roomBookingRepository.save(newRoomBooking);
 
-    }
+    // }
 
     @PostMapping("/roombooking/new")
     public RoomBooking newRoomBooking2(@RequestBody RoomBookingPayload r) {
@@ -67,11 +67,11 @@ public class RoomBookingController {
         Optional<Bed> bed = bedrepository.findById(r.getBed_id());
         Optional<Rooms> rooms = roomsrepository.findById(r.getRoom_id());
 
+        newRoomBooking.setRoombookingDate(new Date());
         newRoomBooking.setStudent(students.get());
         newRoomBooking.setBed(bed.get());
         newRoomBooking.setRooms(rooms.get());
         newRoomBooking.setEmail(r.getEmail());
-        // newRoomBooking.setRoombookingdDate(new Date());
         return roomBookingRepository.save(newRoomBooking);
     }
 
