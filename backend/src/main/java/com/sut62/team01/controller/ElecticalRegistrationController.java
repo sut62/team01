@@ -52,7 +52,7 @@ public class ElecticalRegistrationController {
         Staff staff = staffRepository.findById(STAFF_ID);
         RoomBooking roomBooking = roombookingRepository.findById(ROOMBOOKING_ID);
         ElectricType electricType = electrictypeRepository.findById(ELECTRICTYPE_ID);
-        newElectricalRegistration.setElectricalRegistrationdate(new Date());
+        newElectricalRegistration.setElectricalRegistrationDate(new Date());
         newElectricalRegistration.setStaff(staff);
         newElectricalRegistration.setRoomBooking(roomBooking);
         newElectricalRegistration.setElectricType(electricType);
@@ -67,7 +67,7 @@ public class ElecticalRegistrationController {
         Optional<RoomBooking> roomBooking = roombookingRepository.findById(electric.getRoomBookingId());
         Optional<ElectricType> electricType = electrictypeRepository.findById(electric.getElectricTypeId());
 
-        electricalRegistration.setElectricalRegistrationdate(new Date());
+        electricalRegistration.setElectricalRegistrationDate(new Date());
         electricalRegistration.setStaff(staff.get());
         electricalRegistration.setRoomBooking(roomBooking.get());
         electricalRegistration.setElectricType(electricType.get());

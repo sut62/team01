@@ -14,6 +14,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PastOrPresent;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -31,7 +32,7 @@ public class ElectricalRegistration {
     private @NotNull long id;
 
     // TODO: แก้ชื่อตัวแปรให้ขึ้นต้นด้วยตัวพิมพ์เล็ก
-    private @NotNull Date ElectricalRegistrationdate;
+    private @NotNull @PastOrPresent Date electricalRegistrationDate;
 
     @OneToOne(fetch = FetchType.EAGER, targetEntity = RoomBooking.class)
     @JoinColumn(name = "ROOMBOOKING_ID", insertable = true)
@@ -59,6 +60,6 @@ public class ElectricalRegistration {
         this.electricType = et;
         this.staff = st;
         this.details = details;
-        this.ElectricalRegistrationdate = new Date();
+        this.electricalRegistrationDate = new Date();
     }
 }
