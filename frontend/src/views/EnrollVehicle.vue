@@ -170,7 +170,6 @@ export default {
           this.insLcPlate = null;
           this.insVhcBrand = null;
           this.insOtherDetails = null;
-          this.checkSizeOfins_();
         })
         .catch(e => {
           console.log(e);
@@ -189,7 +188,7 @@ export default {
         this.alertmsg = "กรุณากรอกข้อมูลให้ครบ";
         this.alertFailed = true;
       } else if (
-        this.insLcPlate.length < 4 ||
+        this.insLcPlate.length < 5 ||
         this.insLcPlate.length > 7 ||
         this.checkPatternLicensePlate()
       ) {
