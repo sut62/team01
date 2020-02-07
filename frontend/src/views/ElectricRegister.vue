@@ -5,6 +5,7 @@
         <v-col cols="12" sm="8" md="6">
           <v-alert type="success" dismissible v-model="alertSuccess">บันทึกสำเร็จ</v-alert>
           <v-alert type="error" dismissible v-model="alertFailed">กรุณาเลือกข้อมูลให้ครบ!</v-alert>
+          <v-alert type="error" dismissible v-model="alertFailed2">กรุณากรอกข้อมูลไม่เกิน30ตัว!</v-alert>
           <v-card class="elevation-12">
             <v-toolbar color="amber" light flat>
               <v-icon>mdi-paper-roll</v-icon>&nbsp;&nbsp;
@@ -81,6 +82,7 @@ export default {
       roomNumber: undefined,
       alertSuccess: false,
       alertFailed: false,
+      alertFailed2: false,
 
       roomBooking: [],
       selectedRoomBooking: null,
@@ -91,7 +93,7 @@ export default {
   },
   methods: {
     getAllStaffs() {
-      this.staff = JSON.parse(localStorage.getItem("user"))
+      this.staff.push(JSON.parse(localStorage.getItem("user")))
     },
 
     Save() {
@@ -103,7 +105,10 @@ export default {
         this.clearAlert();
         this.alertFailed = true;
         // alert("กรุณาเลือกข้อมูลให้ครบ!");
-      } else {
+      }else if(this.details.length > 30 ){
+        this.clearAlert();
+        this.alertFailed2 = true;
+      }else {
         
         this.SavaData();
       }
@@ -162,6 +167,7 @@ export default {
     clearAlert() {
       this.alertSuccess = false;
       this.alertFailed = false;
+      this.alertFailed2 = false;
     },
 
     getSearch() {
