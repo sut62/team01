@@ -79,8 +79,8 @@ export default {
   },
   data() {
     return {
-      insertList: undefined,
-      insertTel: undefined,
+      insertList: "",
+      insertTel: "",
       selectedStudent: null,
       selectedDeviceType: null,
       selectedDeviceName: null,
