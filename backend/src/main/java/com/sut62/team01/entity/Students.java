@@ -40,10 +40,6 @@ public class Students {
 	public Students() {
 	}
 
-	// public Students(String students) {
-	// 	//this.studentId = students;
-	// }
-
 	public Students(String fullName, String studentId, String bachelor, String username, String password) {
 		this.fullName = fullName;
 		this.username = username;

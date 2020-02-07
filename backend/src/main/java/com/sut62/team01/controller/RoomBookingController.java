@@ -45,21 +45,6 @@ public class RoomBookingController {
         return roomBookingRepository.findAll().stream().collect(Collectors.toList());
     }
 
-    // @PostMapping("/roombooking/{students_id}/{rooms_id}/{bed_id}")
-    // public RoomBooking newroombooking(RoomBooking newRoomBooking, @PathVariable long students_id,
-    //         @PathVariable long bed_id, @PathVariable long rooms_id, @PathVariable String detail) {
-
-    //     Students students = studentsrepository.findById(students_id);
-    //     Bed bed = bedrepository.findById(bed_id);
-    //     Rooms rooms = roomsrepository.findById(rooms_id);
-
-    //     newRoomBooking.setStudent(students);
-    //     newRoomBooking.setBed(bed);
-    //     newRoomBooking.setRooms(rooms);
-    //     return roomBookingRepository.save(newRoomBooking);
-
-    // }
-
     @PostMapping("/roombooking/new")
     public RoomBooking newRoomBooking2(@RequestBody RoomBookingPayload r) {
         RoomBooking newRoomBooking = new RoomBooking();
@@ -102,9 +87,4 @@ public class RoomBookingController {
         return roomBookingRepository.findByRooms(room.get());
     }
 
-    // @GetMapping("/findroomby={roomId}")
-    // List<Rooms> searchRoomname(@PathVariable String roomId) {
-    //     Optional<Rooms> room = roomsrepository.findByRoomId(roomId);
-    //     return roomBookingRepository.findByRooms(room.get());
-    // }
 }
