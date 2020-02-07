@@ -79,13 +79,12 @@ public class RoomBookingTests {
  
         
 
-         RoomBooking roomBooking = new RoomBooking(null,rooms,bed,"pakorn@hotmail.com");
-        // necessary for PackageManagement
-        // roomBooking.setStudent(students);
-        // roomBooking.setRooms(rooms);
-        // roomBooking.setBed(bed);
-        // roomBooking.setDetail(null);
-        // roomBooking = roomBookingRepository.saveAndFlush(roomBooking);
+         RoomBooking roomBooking = new RoomBooking();
+         roomBooking.setStudent(null);
+         roomBooking.setRooms(rooms);
+         roomBooking.setBed(bed);
+         roomBooking.setEmail("pakorn@hotmail.com");
+         roomBooking.setRoombookingDate(new Date());
 
 
         Set<ConstraintViolation<RoomBooking>> result = validator.validate(roomBooking);
@@ -105,8 +104,13 @@ public class RoomBookingTests {
         Bed bed = new Bed("What's branch?");
         bed = bedRepository.saveAndFlush(bed);
 
-        RoomBooking roomBooking = new RoomBooking(students,null,bed,"pakorn@hotmail.com");
-
+        RoomBooking roomBooking = new RoomBooking();
+        roomBooking.setStudent(students);
+        roomBooking.setRooms(null);
+        roomBooking.setBed(bed);
+        roomBooking.setEmail("pakorn@hotmail.com");
+        roomBooking.setRoombookingDate(new Date());
+        
        Set<ConstraintViolation<RoomBooking>> result = validator.validate(roomBooking);
 
        assertEquals(1, result.size());
@@ -126,7 +130,13 @@ public class RoomBookingTests {
 
        
 
-        RoomBooking roomBooking = new RoomBooking(students,rooms,null,"pakorn@hotmail.com");
+        RoomBooking roomBooking = new RoomBooking();
+        roomBooking.setStudent(students);
+        roomBooking.setRooms(rooms);
+        roomBooking.setBed(null);
+        roomBooking.setEmail("pakorn@hotmail.com");
+        roomBooking.setRoombookingDate(new Date());
+        
 
        Set<ConstraintViolation<RoomBooking>> result = validator.validate(roomBooking);
 
@@ -147,13 +157,46 @@ public class RoomBookingTests {
 
        
 
-        RoomBooking roomBooking = new RoomBooking(students,rooms,bed,null);
+        RoomBooking roomBooking = new RoomBooking();
+        roomBooking.setStudent(students);
+        roomBooking.setRooms(rooms);
+        roomBooking.setBed(bed);
+        roomBooking.setEmail(null);
+        roomBooking.setRoombookingDate(new Date());
+        
 
        Set<ConstraintViolation<RoomBooking>> result = validator.validate(roomBooking);
 
        assertEquals(1, result.size());
        assertEquals("must not be null", result.iterator().next().getMessage());
        assertEquals("email", result.iterator().next().getPropertyPath().toString());
+
+    }
+
+    @Test
+    void b6010201_testDateMustNotBeNull() {
+        Students students = new Students("Pontep Thaweesup", "B6000783","วิศวกรรมศาสตร์", "pontep", "1234");
+        students = studentsRepository.saveAndFlush(students);
+        Rooms rooms = new Rooms("7133");
+        rooms = roomsRepository.saveAndFlush(rooms);
+        Bed bed = new Bed("What's branch?");
+        bed = bedRepository.saveAndFlush(bed);
+
+       
+
+        RoomBooking roomBooking = new RoomBooking();
+        roomBooking.setStudent(students);
+        roomBooking.setRooms(rooms);
+        roomBooking.setBed(bed);
+        roomBooking.setEmail("pakorn@hotmail.com");
+        roomBooking.setRoombookingDate(null);
+        
+
+       Set<ConstraintViolation<RoomBooking>> result = validator.validate(roomBooking);
+
+       assertEquals(1, result.size());
+       assertEquals("must not be null", result.iterator().next().getMessage());
+       assertEquals("roombookingDate", result.iterator().next().getPropertyPath().toString());
 
     }
 
