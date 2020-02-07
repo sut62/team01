@@ -40,21 +40,6 @@ public class ConfirmPackageController {
         return confirmPackageRepository.findAll().stream().collect(Collectors.toList());
     }
 
-    // @PostMapping("/confirmPackage/{packageManagement_id}/{staff_id}")
-    // public ConfirmPackage newConfirmPackage(ConfirmPackage newConfirmPackage,
-    // @PathVariable long packageManagement_id,
-    // @PathVariable long staff_id) {
-
-    // PackageManagement packageManagement =
-    // packageManagementRepository.findById(packageManagement_id);
-    // Staff staff = staffRepository.findById(staff_id);
-    // newConfirmPackage.setPackageManagement(packageManagement);
-    // newConfirmPackage.setConfirmDate(new Date());
-    // newConfirmPackage.setStaff(staff);
-
-    // return confirmPackageRepository.save(newConfirmPackage);
-    // }
-
     @PostMapping("/confirmPackage2")
     public ConfirmPackage newConfirmPackage2(ConfirmPackage newConfirmPackage,
             @RequestBody ConfirmPackagePayload payload) {
