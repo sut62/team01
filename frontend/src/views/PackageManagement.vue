@@ -2,8 +2,12 @@
   <v-container>
     <v-row align="center" justify="center">
       <v-col cols="12" sm="8" md="6">
-        <v-alert type="success" dismissible v-model="alertSuccess">บันทึกข้อมูลสำเร็จ</v-alert>
-        <v-alert type="error" dismissible v-model="alertFailed">กรุณาระบุข้อมูลให้ครบ!</v-alert>
+        <v-alert type="success" dismissible v-model="alertSuccess"
+          >บันทึกข้อมูลสำเร็จ</v-alert
+        >
+        <v-alert type="error" dismissible v-model="alertFailed"
+          >กรุณาระบุข้อมูลให้ครบและถูกต้อง!</v-alert
+        >
       </v-col>
     </v-row>
     <v-layout text-center wrap>
@@ -21,7 +25,9 @@
             />
           </v-col>
           <v-col cols="1">
-            <v-btn @click="getSearch" large class="light-green accent-4">Search</v-btn>
+            <v-btn @click="getSearch" large class="light-green accent-4"
+              >Search</v-btn
+            >
           </v-col>
         </v-row>
 
@@ -64,7 +70,12 @@
 
         <v-row justify="center">
           <v-col cols="6" class="pa-0 mx-2">
-            <v-text-field solo label="โปรดระบุสภาพของพัสดุ" height="80px" v-model="details" />
+            <v-text-field
+              solo
+              label="โปรดระบุสภาพของพัสดุ"
+              height="80px"
+              v-model="details"
+            />
           </v-col>
         </v-row>
 
@@ -76,7 +87,7 @@
   </v-container>
 </template>
 
-  <script>
+<script>
 import api from "../Api.js";
 
 export default {

@@ -41,23 +41,6 @@ public class PackageManagementController {
         return packageManagementRepository.findAll().stream().collect(Collectors.toList());
     }
 
-    // @PostMapping("/packageManagement/{ROOMBOOKING_ID}/{PACKAGETYPE_ID}/{STAFF_ID}")
-    // public PackageManagement Save(PackageManagement newPackageManagement,
-    // @PathVariable long ROOMBOOKING_ID,
-    // @PathVariable long packageType_id, @PathVariable long STAFF_ID) {
-
-    // RoomBooking roomBooking = roomBookingRepository.findById(ROOMBOOKING_ID);
-    // PackageType packageType = packageTypeRepository.findById(packageType_id);
-    // Staff staff = staffRepository.findById(STAFF_ID);
-
-    // newPackageManagement.setPackageDate(new Date());
-    // newPackageManagement.setRoomBooking(roomBooking);
-    // newPackageManagement.setPackageType(packageType);
-    // newPackageManagement.setStaff(staff);
-
-    // return packageManagementRepository.save(newPackageManagement);
-    // }
-
     @PostMapping("/packageManagement")
     public PackageManagement newPackageManagement(@RequestBody PackageManagementPayload packages) {
         PackageManagement packageManagement = new PackageManagement();

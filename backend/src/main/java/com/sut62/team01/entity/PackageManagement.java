@@ -41,7 +41,7 @@ public class PackageManagement {
 
     @Pattern(regexp = "[A-Za-z\\s]+") // สามารถใส่ A-Z, a-z และ white space
     @Size(min = 2, max = 20)
-    private String details;
+    private @NotNull String details;
 
     public PackageManagement() {
     }
