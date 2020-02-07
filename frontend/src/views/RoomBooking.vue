@@ -5,7 +5,7 @@
         >บันทึกข้อมูลสำเร็จ</v-alert
       >
       <v-alert type="error" dismissible v-model="alertFailed"
-        >กรุณาเลือกข้อมูลให้ครบทุกช่อง!</v-alert
+        >กรุณาระบุข้อมูลให้ครบและถูกต้อง!</v-alert
       >
       <v-card class="elevation-12">
         <v-toolbar color="primary" dark flat>
