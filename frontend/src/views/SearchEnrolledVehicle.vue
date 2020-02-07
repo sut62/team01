@@ -63,7 +63,6 @@ export default {
   mounted() {
     this.getEnrolledVehicles();
   },
-
   methods: {
     searchEnrolledVehicles() {
       api
