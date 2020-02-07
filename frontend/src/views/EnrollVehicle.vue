@@ -120,7 +120,7 @@ export default {
 
   methods: {
     getStaffName() {
-      this.StaffName = JSON.parse(localStorage.getItem("user"));
+      this.StaffName.push(JSON.parse(localStorage.getItem("user")));
     },
 
     getStudentName() {
