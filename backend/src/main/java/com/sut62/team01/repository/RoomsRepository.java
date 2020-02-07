@@ -1,6 +1,5 @@
 package com.sut62.team01.repository;
 
-import java.util.List;
 
 import com.sut62.team01.entity.Rooms;
 
@@ -13,5 +12,4 @@ public interface RoomsRepository extends JpaRepository<Rooms, Long> {
 
 	Rooms findByRoomId(String roomId);
 
-	// List<Rooms> findByRooms(String roomId);
 }

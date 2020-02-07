@@ -147,7 +147,6 @@ export default {
       this.alertFailed = false;
     },
     registered() {
-      // เพิ่มเข้ามาใหม่
       let newelepayload = {
         student_id: this.selectedStudents,
         room_id: this.selectedRooms,

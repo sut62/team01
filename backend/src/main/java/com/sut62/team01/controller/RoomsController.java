@@ -41,9 +41,4 @@ public class RoomsController {
         return roomBookingRepository.sortByRooms();
     }
 
-    // @GetMapping("/a={rooms}")
-    // public java.util.List<RoomBooking> getAll(Rooms rooms){
-    //     return roomBookingRepository.sortByRooms(rooms);
-    // }
-
 }
