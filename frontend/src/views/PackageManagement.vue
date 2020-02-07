@@ -136,7 +136,7 @@ export default {
       api
         .get("/api/staff/")
         .then(response => {
-          this.staff = JSON.parse(localStorage.getItem("user"));
+          this.staff.push(JSON.parse(localStorage.getItem("user")));
           console.log("Staff data have bean loaded.");
           console.log(JSON.parse(JSON.stringify(response.data)));
         })
@@ -165,19 +165,15 @@ export default {
     checkPattern() {
       var re = new RegExp("[A-Za-z\\s]+");
       if (!re.exec(this.details)) {
-        console.log("FALSE");
         return false;
       } else {
-        console.log("true");
         return true;
       }
     },
     checkSize() {
       if (this.details.length < 2 || this.details.length > 20) {
-        console.log("A");
         return false;
       } else {
-        console.log("B");
         return true;
       }
     },
