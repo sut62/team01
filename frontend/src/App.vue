@@ -249,7 +249,7 @@ export default {
         {
           icon: "mdi-rocket",
           role: "staff",
-          text: "แสดงข้อมูลเครื่องไฟฟ้า",
+          text: "แสดงข้อมูลใช้เครื่องไฟฟ้า",
           click: () => {
             this.$router.push("/staff/showElectric");
           }
