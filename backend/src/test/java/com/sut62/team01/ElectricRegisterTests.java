@@ -187,37 +187,6 @@ public class ElectricRegisterTests {
     }
 
     @Test
-    void B6003296_testDetailsustBeGreaterEqual5(){
-        // create oj
-        ElectricalRegistration electricalRegistration = new ElectricalRegistration();
-        // necessary for roombooking
-        Students students = new Students("Pontep Thaweesup", "B6000783","วิศวกรรมศาสตร์", "pontep", "1234");
-        students = studentsRepository.saveAndFlush(students);
-        Rooms rooms = new Rooms("7133");
-        rooms = roomsRepository.saveAndFlush(rooms);
-        Bed bed = new Bed("What's bed?");
-        bed = bedRepository.saveAndFlush(bed);
-        RoomBooking roomBooking = new RoomBooking(students, rooms, bed,"pakorn@hotmail.com");
-        roomBooking = roomBookingRepository.saveAndFlush(roomBooking);
-        // necessary for electricRegister
-        ElectricType electricType = new ElectricType("asd");
-        electricType = electricTypeRepository.saveAndFlush(electricType);
-        Staff staff = new Staff("asdsa", "asdsa", "qwe");
-        staff = staffRepository.saveAndFlush(staff);
-
-        electricalRegistration.setRoomBooking(roomBooking);
-        electricalRegistration.setElectricType(electricType);
-        electricalRegistration.setStaff(staff);
-        electricalRegistration.setDetails("1234");
-        electricalRegistration.setElectricalRegistrationDate(new Date());
-
-        Set<ConstraintViolation<ElectricalRegistration>> result = validator.validate(electricalRegistration);
-        assertEquals(1,result.size());
-        assertEquals("size must be between 5 and 30",result.iterator().next().getMessage());
-        assertEquals("details",result.iterator().next().getPropertyPath().toString());
-    }
-
-    @Test
     void B6003296_testDetailsustBeLessEqual30(){
         // create oj
         ElectricalRegistration electricalRegistration = new ElectricalRegistration();
@@ -244,10 +213,10 @@ public class ElectricRegisterTests {
 
         Set<ConstraintViolation<ElectricalRegistration>> result = validator.validate(electricalRegistration);
         assertEquals(1,result.size());
-        assertEquals("size must be between 5 and 30",result.iterator().next().getMessage());
+        assertEquals("size must be between 0 and 30",result.iterator().next().getMessage());
         assertEquals("details",result.iterator().next().getPropertyPath().toString());
     }
-
+    
     @Test
     void B6003296_testElectricalRegistrationDateMustBePastOrPresent(){
         // create oj

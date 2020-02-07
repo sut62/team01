@@ -50,7 +50,7 @@ public class ElectricalRegistration {
     private @NotNull Staff staff;
 
 
-    private @Size(min = 5, max = 30) String details;
+    private @Size(max = 30) String details;
 
     public ElectricalRegistration() {
     }
