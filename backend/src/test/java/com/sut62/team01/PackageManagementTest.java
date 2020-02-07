@@ -151,6 +151,75 @@ public class PackageManagementTest {
     }
 
     @Test
+    void b6018474_testDateMustNotBeNull() {
+
+        // create oj
+        PackageManagement packageManagement = new PackageManagement();
+        // necessary for roombooking
+        Students students = new Students("Pontep Thaweesup", "B6000783", "วิศวกรรมศาสตร์", "pontep", "1234");
+        students = studentsRepository.saveAndFlush(students);
+        Rooms rooms = new Rooms("7133");
+        rooms = roomsRepository.saveAndFlush(rooms);
+        Bed bed = new Bed("What's bed?");
+        bed = bedRepository.saveAndFlush(bed);
+        RoomBooking roomBooking = new RoomBooking(students, rooms, bed, "pakorn@hotmail.com");
+        roomBooking = roomBookingRepository.saveAndFlush(roomBooking);
+        // necessary for PackageManagement
+        PackageType packageType = new PackageType("asd");
+        packageType = packageTypeRepository.saveAndFlush(packageType);
+        Staff staff = new Staff("asdsa", "asdsa", "qwe");
+        staff = staffRepository.saveAndFlush(staff);
+
+        packageManagement.setRoomBooking(roomBooking);
+        packageManagement.setPackageType(packageType);
+        packageManagement.setStaff(staff);
+        packageManagement.setDetails("details");
+        packageManagement.setPackageDate(null);
+
+        Set<ConstraintViolation<PackageManagement>> result = validator.validate(packageManagement);
+
+        assertEquals(1, result.size());
+        assertEquals("must not be null", result.iterator().next().getMessage());
+        assertEquals("packageDate", result.iterator().next().getPropertyPath().toString());
+
+    }
+
+    @Test
+    void b6018474_testDetailMustNotBeNull() {
+
+        // create oj
+        PackageManagement packageManagement = new PackageManagement();
+        // necessary for roombooking
+        Students students = new Students("Pontep Thaweesup", "B6000783", "วิศวกรรมศาสตร์", "pontep", "1234");
+        students = studentsRepository.saveAndFlush(students);
+        Rooms rooms = new Rooms("7133");
+        rooms = roomsRepository.saveAndFlush(rooms);
+        Bed bed = new Bed("What's bed?");
+        bed = bedRepository.saveAndFlush(bed);
+        RoomBooking roomBooking = new RoomBooking(students, rooms, bed, "pakorn@hotmail.com");
+        roomBooking = roomBookingRepository.saveAndFlush(roomBooking);
+        // necessary for PackageManagement
+        PackageType packageType = new PackageType("asd");
+        packageType = packageTypeRepository.saveAndFlush(packageType);
+        Staff staff = new Staff("asdsa", "asdsa", "qwe");
+        staff = staffRepository.saveAndFlush(staff);
+
+        packageManagement.setRoomBooking(roomBooking);
+        packageManagement.setPackageType(packageType);
+        packageManagement.setStaff(staff);
+        packageManagement.setDetails(null);
+        packageManagement.setPackageDate(new Date());
+
+        Set<ConstraintViolation<PackageManagement>> result = validator.validate(packageManagement);
+
+        assertEquals(1, result.size());
+        assertEquals("must not be null", result.iterator().next().getMessage());
+        assertEquals("details", result.iterator().next().getPropertyPath().toString());
+
+    }
+
+
+    @Test
     void b6018474_testRoomBookingMustNotBeNull() {
 
         // create oj
@@ -183,6 +252,7 @@ public class PackageManagementTest {
         assertEquals("roomBooking", result.iterator().next().getPropertyPath().toString());
 
     }
+
 
     @Test
     void b6018474_testDetailsNotLessThanMin() {
