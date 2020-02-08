@@ -55,7 +55,7 @@ public class BorrowedBikeTests {
         validator = factory.getValidator();
     }
 
-//    แก้ I
+//    TODO: แก้ I เพิ่ม test ของ details (@Size(max=30))
     @Test
     void b6000783_testDetailsMustNotBeGreaterThan30(){
         // จำลองข้อมูลที่จำเป็นในการบันทึก BorrowedBike
