@@ -56,6 +56,57 @@ public class BorrowedBikeTests {
     }
 
     @Test
+    void b6000783_testDetailsMustNotBeGreaterThan30(){
+        // จำลองข้อมูลที่จำเป็นในการบันทึก BorrowedBike
+        BikeType bikeType = new BikeType("จักรยานล้อเดียว");
+        bikeType = bikeTypeRepository.saveAndFlush(bikeType);
+        DateType dateType = new DateType("ยืมแป๊ปเดียว");
+        dateType = dateTypeRepository.saveAndFlush(dateType);
+        Students students = new Students("Pontep Thaweesup", "B6000783","วิศวกรรมศาสตร์", "pontep", "1234");
+        students = studentsRepository.saveAndFlush(students);
+        Rooms rooms = new Rooms("7133");
+        rooms = roomsRepository.saveAndFlush(rooms);
+        Bed bed = new Bed("What's bed?");
+        bed = bedRepository.saveAndFlush(bed);
+        RoomBooking roomBooking = new RoomBooking(students, rooms, bed,"pakorn@hotmail.com" );
+        roomBooking = roomBookingRepository.saveAndFlush(roomBooking);
+
+//        necessary data for approveBorrowedBike (bike,staff)
+        Bike bike = new Bike(bikeType,"Bike1234");
+        bike = bikeRepository.saveAndFlush(bike);
+        Staff staff = new Staff("TestStaff","test","1234");
+        staff = staffRepository.saveAndFlush(staff);
+
+        // สร้าง borrowedBike และ set ค่าต่างๆ
+        BorrowedBike borrowedBike = new BorrowedBike();
+        borrowedBike.setBikeType(bikeType);
+        borrowedBike.setDateType(dateType);
+        borrowedBike.setRoomBooking(roomBooking);
+        borrowedBike.setRequestDate(new Date());
+        // บันทึก borrowedBike
+        borrowedBike = borrowedBikeRepository.saveAndFlush(borrowedBike);
+        // เรียก borrowedBike ที่พึ่งบันทึกขึ้นมาดู
+        Optional<BorrowedBike> found = borrowedBikeRepository.findById(borrowedBike.getId());
+        // assert check
+        assertEquals(borrowedBike, found.get());
+
+//        Approve Borrowed Bike
+        Optional<BorrowedBike> approved = borrowedBikeRepository.findById(borrowedBike.getId());
+        Optional<Bike> selectedBike = bikeRepository.findById(bike.getId());
+        Staff selectedStaff = staffRepository.findById(staff.getId());
+        approved.get().setBike(selectedBike.get());
+        approved.get().setStaff(selectedStaff);
+        approved.get().setApproveDate(new Date());
+        approved.get().setDetails("1234567890123456789012345678901");
+
+        Set<ConstraintViolation<BorrowedBike>> result = validator.validate(approved.get());
+        assertEquals(1,result.size());
+
+        assertEquals("size must be between 0 and 30",result.iterator().next().getMessage());
+        assertEquals("details",result.iterator().next().getPropertyPath().toString());
+    }
+
+    @Test
     void b6000783_testInsertDataToBorrowedBikeOK() {
         // จำลองข้อมูลที่จำเป็นในการบันทึก BorrowedBike
         BikeType bikeType = new BikeType("จักรยานล้อเดียว");
