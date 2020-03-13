@@ -29,15 +29,16 @@ public class BikeTests {
 
     @Autowired
     private BikeTypeRepository bikeTypeRepository;
+
     @BeforeEach
-    public void setup(){
+    public void setup() {
         ValidatorFactory validatorFactory = Validation.buildDefaultValidatorFactory();
         validator = validatorFactory.getValidator();
     }
 
     @Test
-    void b6000783_testInsertDataOK(){
-//        necessary object for Bike
+    void b6000783_testInsertDataOK() {
+        // necessary object for Bike
         BikeType bikeType = new BikeType("ประเภทจักรยาน");
         bikeType = bikeTypeRepository.saveAndFlush(bikeType);
 
@@ -46,13 +47,13 @@ public class BikeTests {
         bike.setName("Bike1234");
         bike = bikeRepository.saveAndFlush(bike);
         Optional<Bike> found = bikeRepository.findById(bike.getId());
-        assertEquals(bike,found.get());
+        assertEquals(bike, found.get());
     }
 
     @Test
-//    test name must be match a pattern Bikexxxx | x is number
-    void b6000783_testNameMustMatchAPatternBikexxxx(){
-        //        necessary object for Bike
+    // test name must be match a pattern Bikexxxx | x is number
+    void b6000783_testNameMustMatchAPatternBikexxxx() {
+        // necessary object for Bike
         BikeType bikeType = new BikeType("ประเภทจักรยาน");
         bikeType = bikeTypeRepository.saveAndFlush(bikeType);
 
@@ -61,13 +62,13 @@ public class BikeTests {
         bike.setName("Bikeabcd");
         Set<ConstraintViolation<Bike>> result = validator.validate(bike);
 
-        assertEquals(1,result.size());
-        assertEquals("must match \"Bike+\\d{4}\"",result.iterator().next().getMessage());
-        assertEquals("name",result.iterator().next().getPropertyPath().toString());
+        assertEquals(1, result.size());
+        assertEquals("must match \"Bike+\\d{4}\"", result.iterator().next().getMessage());
+        assertEquals("name", result.iterator().next().getPropertyPath().toString());
     }
 
     @Test
-    void b6000783_testNameMustNotBeNull(){
+    void b6000783_testNameMustNotBeNull() {
         BikeType bikeType = new BikeType("ประเภทจักรยาน");
         bikeType = bikeTypeRepository.saveAndFlush(bikeType);
 
@@ -76,14 +77,14 @@ public class BikeTests {
         bike.setName(null);
         Set<ConstraintViolation<Bike>> result = validator.validate(bike);
 
-        assertEquals(1,result.size());
-        assertEquals("must not be null",result.iterator().next().getMessage());
-        assertEquals("name",result.iterator().next().getPropertyPath().toString());
+        assertEquals(1, result.size());
+        assertEquals("must not be null", result.iterator().next().getMessage());
+        assertEquals("name", result.iterator().next().getPropertyPath().toString());
     }
 
     @Test
-    void b6000783_testBikeTypeMustNotBeNull(){
-        //        necessary object for Bike
+    void b6000783_testBikeTypeMustNotBeNull() {
+        // necessary object for Bike
         BikeType bikeType = new BikeType("ประเภทจักรยาน");
         bikeType = bikeTypeRepository.saveAndFlush(bikeType);
 
@@ -92,8 +93,8 @@ public class BikeTests {
         bike.setName("Bike1234");
         Set<ConstraintViolation<Bike>> result = validator.validate(bike);
 
-        assertEquals(1,result.size());
-        assertEquals("must not be null",result.iterator().next().getMessage());
-        assertEquals("bikeType",result.iterator().next().getPropertyPath().toString());
+        assertEquals(1, result.size());
+        assertEquals("must not be null", result.iterator().next().getMessage());
+        assertEquals("bikeType", result.iterator().next().getPropertyPath().toString());
     }
 }
