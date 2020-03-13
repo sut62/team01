@@ -27,10 +27,12 @@ public class Bike {
     @Pattern(regexp = "Bike+\\d{4}")
     private String name;
 
-    @NotNull
+    // boolean เป็นได้แค่ true กับ false ในกรณีนี้เริ่มต้นตั้งค่าให้มัน true
+    // อยู่แล้ว
     private boolean available = true;
 
-    public Bike(){}
+    public Bike() {
+    }
 
     public Bike(@NotNull BikeType bikeType, @NotNull String name) {
         this.bikeType = bikeType;
